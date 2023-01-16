@@ -34,8 +34,8 @@
       "path": "/security/intro"
     },
     {
-      "title": "Reference",
-      "path": "/reference/markdown"
+      "title": "30 Seconds Overview",
+      "path": "/30sec-overview"
     },
     {
       "title": "Github",
@@ -67,11 +67,8 @@
       ]
     },
     {
-      "part": "Reference",
       "chapters": [
-        { "title": "Markdown Usage", "path": "/reference/markdown" },
-        { "title": "Fenced Code Usage", "path": "/reference/fencedcode" },
-        { "title": "Using MDX", "path": "/reference/using-mdx" }
+        { "title": "30 Seconds Overview", "path": "/30sec-overview" }
       ]
     }
   ]
