@@ -30,8 +30,8 @@
     },
 
     {
-      "title": "NextBook Features",
-      "path": "/nextbook/nextbook-features"
+      "title": "Security Requirements",
+      "path": "/security/intro"
     },
     {
       "title": "Reference",
@@ -50,27 +50,19 @@
       "chapters": [{ "title": "Weaknesses", "path": "/weaknesses" }]
     },
     {
-      "part": "Paper Voting Weaknessess",
+      "part": "Security Requirements",
       "chapters": [
         {
-          "title": "Weaknesses of Current Paper Voting Options",
-          "path": "/nextbook/nextbook-features"
+          "title": " Authenticated Voters",
+          "path": "/security/authentication"
         },
         {
-          "title": "Getting Started",
-          "path": "/nextbook/getting-started"
+          "title": "Private Voting",
+          "path": "/security/privacy"
         },
         {
-          "title": "Settings",
-          "path": "/nextbook/settings"
-        },
-        {
-          "title": "Page Metadata",
-          "path": "/nextbook/page-metadata"
-        },
-        {
-          "title": "In Progress Features",
-          "path": "/nextbook/in-progress-features"
+          "title": "Verifiable Results",
+          "path": "/security/verifiability"
         }
       ]
     },

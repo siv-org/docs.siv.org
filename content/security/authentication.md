@@ -1,6 +1,6 @@
 ---
-part: NextBook
-title: Work In Progress Features
+part: Security Requirements
+title: Authenticated Voters
 ---
 
 Here is a list of features which are planned to be implemented in future in no particular order.
