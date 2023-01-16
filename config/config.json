@@ -38,6 +38,14 @@
       "path": "/30sec-overview"
     },
     {
+      "title": "15 Minutes Overview",
+      "path": "/15min-overview"
+    },
+    {
+      "title": "SIV Technical Specification",
+      "path": "/spec/before-election"
+    },
+    {
       "title": "Github",
       "path": "https://github.com/amiroff/NextBook"
     }
@@ -69,6 +77,28 @@
     {
       "chapters": [
         { "title": "30 Seconds Overview", "path": "/30sec-overview" }
+      ]
+    },
+    {
+      "chapters": [
+        { "title": "15 Minutes Overview", "path": "/15min-overview" }
+      ]
+    },
+    {
+      "part": "Technical Specification",
+      "chapters": [
+        {
+          "title": "Before The Election",
+          "path": "/spec/before-election"
+        },
+        {
+          "title": "Election Begins",
+          "path": "/spec/election-begins"
+        },
+        {
+          "title": "Voting Period Ends",
+          "path": "/spec/voting-ends"
+        }
       ]
     }
   ]
