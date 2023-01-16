@@ -1,33 +1,54 @@
 ---
-part: Security Requirements
-title: Authenticated Voters
+part: Technical Specification
+title: Before The Election
 ---
 
-Authentication ensures that only legitimately registered voters are able to cast a ballot, and that each voter can only vote once. This process must also be independently auditable to provide assurance of its accuracy and integrity.
+These three pre-election steps — labeled `a`, `b`, & `c` — can be completed in any order, but are required before the election can begin.
 
-SIV (Secure Internet Voting) conforms to the standards of the paper-based voting system.
+### a. Compile Voter Roll
 
-In an election having SIV as one of the voting options, every voter choosing SIV receives a random Voter Authorization Token, prior to the beginning of the election. This token serves to ensure that each voter is only able to submit a single vote. Should the need arise, these tokens can be revoked, reissued, and audited to ensure the integrity of the election process.
+The Election Administrator must define a list of who is an eligible voter. Every Voter gets assigned a unique Authorization Token ("`Voter Auth Token`").
 
-The SIV system is designed to be highly adaptable in terms of voter authentication methods. While it is capable of replicating traditional voting protocols, such as the distribution of Auth Tokens via postal mail or provided in person, it also allows for the incorporation of additional authentication measures. This flexibility enables SIV to accommodate a wide range of security needs and requirements.
+Auth Tokens are required to cast a vote and can only be used once. They are intentionally infeasible to guess, and only valid for a single election. The SIV Admin Software automatically generates them, using cryptographically secure randomness, whenever an Admin adds a new Voter.
 
-Additional methods provided:
+Currently, they are strings of 10 hexadecimal characters (e.g. `2378bf376d`), which creates $16^{10}$ (= $2^{40}$), a little over a trillion possibilities. Attempting to brute force auth tokens is not currently a risk, because validating them is logged per IP address, and can be rate-limited.
 
-1. Unique codes sent to email addresses
-2. Unique codes sent to SMS numbers
-3. Unique codes sent to physical mail addresses
-4. Signature verification
-5. ID + selfie photos
-6. IP address geolocation
-7. Unique codes given in-person
-8. Time-based One-Time Passwords
+All assigned Voter Auth Tokens are known to the Election Administrator. When the election begins, they will be shared with the specific Voter they are assigned to. They act like a traditional API Authorization Token, and should be kept secret from everyone else.
 
-The specifics of the voter authentication process used are determined by the specific jurisdiction and requirements of each election.
+Election Administrators can invalidate individual Auth Tokens & generate new ones, as necessary, such as if a Voter accidentally leaks or loses theirs.
 
-It is worth noting that the entire SIV process is subject to audit, ensuring transparency and accountability. The following two main processes are required to be audited:
+All used Auth Tokens can be audited after the election.
 
-1. Voter Roll This is a requirement applicable to no matter what system is used. Currently, voter-rolls are audited by the government. This will remain true in the case of SIV as well.
+### b. Finalize Ballot Content
 
-2. “One Person, One Vote” Auditing that only one person received and cast only one vote accurately can be done via Risk Limiting Audits. For the exact math and examples, please see the section “Post Election Verification” —> “Voter Registration List Can Be Audited”.
+As with traditional paper elections, the Administrator must finalize the questions and options that appear on the ballot.
 
-Furthermore, the ability to revoke voter credentials at any stage of the election, including after voting and tallying, affords election administrators a new more powerful, precise, and flexible level of remediation.
+The SIV Admin software provides both a simple Point-and-Click Ballot Designer interface, as well as a machine-readable JSON Schema interface for advanced editing.
+
+Every ballot item should have a unique key, such as "president", "governor", "mayor", "proposition_3".
+
+SIV is fully compatible with alternative voting methods such as Ranked Choice Voting and Approval Voting. SIV makes it easier to adopt these less common methods because SIV provides real-time user-interface feedback, and can prevent Voters from accidentally invalidating their ballot.
+
+### c. Register Verifying Observers
+
+The Election Administrator can enroll "Verifying Observers". Each Verifying Observer adds additional assurance for voter privacy.
+
+Election Administrators choose who to invite, and Verifying Observers must also opt-in by accepting the invitation.
+
+Verifying Observers main role arrives later, after all votes have been submitted, but they must be registered before the election can begin. Later, they individually anonymize all the votes themselves, and verify the SIV Universal Zero-Knowledge Proofs to ensure all votes' integrity. Only after these two vital steps are completed, they work together to unlock the vote's encryption for final tallying.
+
+To ensure neutrally-credible acceptance of an election's fairness, Observers can be chosen to have competing interests. They are a more powerful version of the traditional concept of Election Observers from in-person elections. Similarly, a reasonable choice would be one Verifying Observer nominated by each candidate's political party, plus the Election Administrator themselves.
+
+Verifying Observers do not need to trust each other, and cannot possibly tamper with votes.
+
+Once all the Verifying Observers have been selected and accepted their invitation, they together preform a joint Decentralized Key Generation Ceremony to create a $t$-of-$n$ Threshold Public Key, with each of them holding a fractional share of the corresponding Private Key, where $n$ is the number of total trustees, and $t$ is the configured threshold — chosen by the election administrator — required to successfully use the private key.
+
+Vote privacy is protected even if individual Observers are malicious or compromised, as long as no more than $t$ Observers are compromised. For example, if the key is 4-of-5, up to 3 Observers can be compromised, and privacy is still protected.
+
+SIV currently uses the Pedersen DKG protocol first described in the 1992 paper "_Non-Interactive and Information-Theoretic Secure Verifiable Secret Sharing_" by Dr. Torben Pedersen. This protocol avoids ever centralizing the full key in any one location, and verifies that all ceremony members are following the protocol correctly.
+
+SIV provides Observer software to automatically run the ceremony for all participants, using cryptographically secure sources of randomness. Every Observer gets their own complete log of exactly each step taken. All private key material is stored in participants browsers' LocalStorage, as well as displayed visually for them to backup to additional locations.
+
+At the end of the ceremony a test encryption is created and jointly decrypted, to test the ceremony's success.
+
+SIV's Observer software can be run entirely in the browser, from any relatively modern desktop, laptop, or smartphone, without requiring any installations.

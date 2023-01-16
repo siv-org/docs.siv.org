@@ -1,20 +1,32 @@
 ---
-part: Security Requirements
-title: Private Voting
+part: Technical Specification
+title: Voting Period Ends
 ---
 
-For a truly "Free and Fair Election," voters must be able to make their choices freely, without anyone learning how they voted, including election officials and technology providers.
+### Step 4. Votes Are Anonymized
 
-Strong security comes from independently verifiable privacy design, not just unverifiable promises. It is not simply a question of ethics or ill-intent, but also resistance from the vendor’s systems being compromised. The goal of SIV is to ensure that the privacy of the voter is upheld, and that only the voter should be aware of how they voted.
+Although the anonymization step is conceptually simple, it involves some strong cryptography.
 
-Using [Threshold Key Cryptography](https://en.wikipedia.org/wiki/Threshold_cryptosystem), the SIV system doesn't allow anyone, including the election administrators and the SIV infrastructure, to see how anyone else voted.
+Conceptually, we're simply going to shuffle the list of encrypted votes.
 
-Once a voter makes their selections, all their options get encrypted on their voting device using elliptic curve cryptography, infeasible to brute-force computationally. The plaintext of how they vote never leaves their device.
+If we just shuffled the encrypted votes, people could see where they were permuted, so the person shuffling them is also going to re-encrypt each vote in such a way that it cannot be matched with the original, and yet decrypts to the same value.
 
-<span style={{color: "red"}}>INSERT ILLUSTRATION</span>
+However, this still allows the shuffler to know where the votes went, so we will have each Verifying Observer perform a shuffle sequentially. This way, no single Verifying Observer will know how the votes were shuffled, and neither will anyone else.
 
-Once all votes are received, the Election’s Verifying Observers each perform their own cryptographic shuffle of all the votes, for thorough anonymization, before working together to unlock the votes for tallying. This matches the expectations of paper ballot anonymization, where voters are confirmed, but voters' identification is separated from submitted ballots. The SIV system offers even more rigorous privacy, so nobody has the ability to connect votes to voter's identities, while maintaining complete auditability of who voted and verifiability of final results.
+To accomplish this step, we need an operation that takes a list of encrypted votes as input, and outputs a shuffled list of re-encrypted votes, in such a way that external observers can verify that this is what happened, i.e., a zero-knowledge proof that the output list is a re-encrypted shuffle of the input list.
 
-The SIV design also allows voters to prepare their encrypted vote submission on an “air-gapped” device” for extreme assurance that even their device cannot snoop on their selections. This protects against voter’s own devices being compromised by spyware, as well as the SIV Voting client software being compromised for surveillance.
+We use an algorithm based on Dr. Andrew Neff's 2004 paper "Verifiable Mixing (Shuffling) of ElGamal Pairs", with the only difference being that we replace modular exponentiation with Elliptic Curve Point Multiplication.
 
-Some people advocate for an even more rigorous voter privacy, prohibiting voters from willingly sharing how they voted in order to prevent them from selling their vote. From a strictly technical point of view, this is outside of the scope of the SIV Protocol, but we address this topic and defenses later in section “Mitigating Attacks” —> “Vote Selling”.
+The proofs of completeness, soundness and zero-knowledge remain the same in the case of Elliptic Curve Point Multiplication, and we get the benefit of a higher ratio of encryption strength to key-size.
+
+### Step 5. Encrypted Votes Are Unlocked and Tallied
+
+Now that the encrypted votes have been shuffled and re-encrypted, it is ok to decrypt them without anyone knowing whose vote is whose.
+
+We need to decrypt them without leaking the secret key, because then it could be used to decrypt the original encrypted votes, before they were shuffled.
+
+This decryption is done in another decentralized ceremony, involving a sufficient threshold number of Verifying Observers, whereby each Verifying Observer submits a partial decryption of each vote, but the information is useless beyond that.
+
+Note that this decryption is also provable -- meaning parties cannot cheat in such a way as to make the vote decrypt to something else without people knowing. These ZK Proofs of a Valid Shuffle are verifiable by everyone, and automatically checked by all the other Verifying Observers & SIV Admin Server.
+
+Once the votes are decrypted, their complete contents are shown to everyone, and it is trivial to tally them. The tally totals can be independently recounted, for confirmation.
