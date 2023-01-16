@@ -1,5 +1,5 @@
 {
-  "projectTitle": "NextBook: Easy Docs With Markdown!",
+  "projectTitle": "Secure Internet Voting",
   "projectDescription": "NextBook is quick and easy way to buid technical books or documentation that support modern standards and run blazingly fast. It's built with MDX, Next.js and React and works by compiling markdown or MDX down to plain static html.",
   "projectURL": "https://next-book.vercel.app",
   "locale": "en",
@@ -21,9 +21,14 @@
   },
   "navbarItems": [
     {
-      "title": "Home",
+      "title": "Introduction",
       "path": "/intro"
     },
+    {
+      "title": "Weaknesses",
+      "path": "/weaknesses"
+    },
+
     {
       "title": "NextBook Features",
       "path": "/nextbook/nextbook-features"
@@ -39,13 +44,16 @@
   ],
   "toc": [
     {
-      "chapters": [{ "title": "Welcome to NextBook", "path": "/intro" }]
+      "chapters": [{ "title": "Introduction", "path": "/intro" }]
     },
     {
-      "part": "Using NextBook",
+      "chapters": [{ "title": "Weaknesses", "path": "/weaknesses" }]
+    },
+    {
+      "part": "Paper Voting Weaknessess",
       "chapters": [
         {
-          "title": "NextBook Features",
+          "title": "Weaknesses of Current Paper Voting Options",
           "path": "/nextbook/nextbook-features"
         },
         {

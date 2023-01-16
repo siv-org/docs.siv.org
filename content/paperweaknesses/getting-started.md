@@ -1,9 +1,11 @@
 ---
-part: NextBook
-title: Getting Started
+part: Paper Voting Weaknessess
+title: Weaknesses of Current Paper Voting Options
 ---
 
-Here's how to get started with your own book or documentation.
+Representative governments derive their power from votes. Therefore, it is essential that our election infrastructure is as robust and reliable as possible.
+
+Currently, there are multiple challenges many of us, voters, experience during and after election time:
 
 1. Make sure you have NodeJS installed, you can get latest LTS version from [official site](https://nodejs.org/en/download/).
 2. Open a terminal/command prompt window and bootstrap a new project with `npx create-next-app my-awesome-book -e https://github.com/amiroff/NextBook`
