@@ -1,6 +1,6 @@
 ---
 part: Next
-title: Further Areass of Study
+title: Further Areas of Study
 ---
 
 - [ ] Information Theoretic Security: Quantum-resistant Cryptography
