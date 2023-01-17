@@ -52,6 +52,10 @@
     {
       "title": "Mitigating Attacks",
       "path": "/mitigating-attacks/authentication"
+    },
+    {
+      "title": "Comparison of Voting Methods",
+      "path": "/compare"
     }
   ],
   "toc": [
@@ -157,6 +161,11 @@
           "title": "Privacy Violations",
           "path": "/mitigating-attacks/privacy"
         }
+      ]
+    },
+    {
+      "chapters": [
+        { "title": "Comparison of Voting Methods", "path": "/compare" }
       ]
     }
   ]
