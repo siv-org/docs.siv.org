@@ -60,6 +60,10 @@
     {
       "title": "Analyzing Benefits",
       "path": "/turnout"
+    },
+    {
+      "title": "Conclusion",
+      "path": "/strong-security"
     }
   ],
   "toc": [
@@ -222,6 +226,19 @@
         {
           "title": "Public Records Requests",
           "path": "/benefits/public-records"
+        }
+      ]
+    },
+    {
+      "part": "Conclusion",
+      "chapters": [
+        {
+          "title": "Are computers inherently less secure than paper?",
+          "path": "/conclusion/strong-security"
+        },
+        {
+          "title": "Proposal",
+          "path": "/conclusion/proposal"
         }
       ]
     }

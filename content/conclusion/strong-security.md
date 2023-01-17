@@ -11,6 +11,6 @@ The US nuclear arsenal is secured by strong multi-party cryptography, and commun
 
 Millions of Americans have adopted online banking. In a single day, the NASDAQ Stock Exchange sees hundreds of billions of dollars of trading volume.
 
-As of January 2023, the collective cryptocurrency algorithms currently represent almost 1 trillion of market value, secured by nothing more than secret integers on individual devices— and with no reversibility, unlike SIV.
+As of January 2023, the collective cryptocurrency algorithms currently represent almost 1 trillion of market value, secured by nothing more than secret integers on individual devices — and with no reversibility, unlike SIV.
 
 Many people clearly prefer online options. It's easy to imagine many would likewise prefer internet voting, especially once shown how it can be even more secure than paper alternatives.
