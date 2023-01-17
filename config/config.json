@@ -50,8 +50,8 @@
       "path": "/post-verification/intro"
     },
     {
-      "title": "Github",
-      "path": "https://github.com/amiroff/NextBook"
+      "title": "Mitigating Attacks",
+      "path": "/mitigating-attacks/authentication"
     }
   ],
   "toc": [
@@ -123,6 +123,39 @@
         {
           "title": "Ballot Printing",
           "path": "/post-verification/print-votes"
+        }
+      ]
+    },
+    {
+      "part": "Mitigating Attacks",
+      "chapters": [
+        {
+          "title": "Authentication Attacks",
+          "path": "/mitigating-attacks/authentication"
+        },
+        {
+          "title": "Malware on Voter's Devices",
+          "path": "/mitigating-attacks/malware"
+        },
+        {
+          "title": "Vote Selling",
+          "path": "/mitigating-attacks/vote-selling"
+        },
+        {
+          "title": "Denial-of-Service Attacks",
+          "path": "/mitigating-attacks/dos"
+        },
+        {
+          "title": "Server Penetration Attacks",
+          "path": "/mitigating-attacks/server-penetration"
+        },
+        {
+          "title": "Spoofing Attacks",
+          "path": "/mitigating-attacks/spoofing"
+        },
+        {
+          "title": "Privacy Violations",
+          "path": "/mitigating-attacks/privacy"
         }
       ]
     }
