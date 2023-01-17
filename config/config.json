@@ -56,6 +56,10 @@
     {
       "title": "Comparison of Voting Methods",
       "path": "/compare"
+    },
+    {
+      "title": "Analyzing Benefits",
+      "path": "/turnout"
     }
   ],
   "toc": [
@@ -166,6 +170,59 @@
     {
       "chapters": [
         { "title": "Comparison of Voting Methods", "path": "/compare" }
+      ]
+    },
+    {
+      "part": "Benefits",
+      "chapters": [
+        {
+          "title": "Voter Turnout",
+          "path": "/benefits/turnout"
+        },
+        {
+          "title": "Budget Savings",
+          "path": "/benefits/budget"
+        },
+        {
+          "title": "Trust in Election Results",
+          "path": "/benefits/results"
+        },
+        {
+          "title": "Time Savings for Voters",
+          "path": "/benefits/time"
+        },
+        {
+          "title": "Faster Election Results",
+          "path": "/benefits/results"
+        },
+        {
+          "title": "Precision Remediation Abilities",
+          "path": "/benefits/remediation"
+        },
+        {
+          "title": "Ballot Stuffing",
+          "path": "/benefits/ballot-stuffing"
+        },
+        {
+          "title": "Privacy",
+          "path": "/benefits/privacy"
+        },
+        {
+          "title": "Language Translations",
+          "path": "/benefits/language"
+        },
+        {
+          "title": "Accessibility for Voters with Disabilities",
+          "path": "/benefits/accessibility"
+        },
+        {
+          "title": "Spoiler-Resistant Voting Methods",
+          "path": "/benefits/spoiler-resistant"
+        },
+        {
+          "title": "Public Records Requests",
+          "path": "/benefits/public-records"
+        }
       ]
     }
   ]
