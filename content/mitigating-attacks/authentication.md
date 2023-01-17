@@ -1,38 +1,18 @@
 ---
-part: Post Election Verification
-title: Election Scenario
+part: Mitigating Attacks
+title: Voter Authentication Attacks
 ---
 
-In order to provide a clear demonstration, we will narrate a hypothetical election and subsequently undergo a post-election verification process. This process will serve as an example of how post-election verification can be conducted by voters and auditors.
+The SIV Protocol is intentionally flexible about voter authentication methods. The specific process is up to each jurisdiction's and election's requirements.
 
-- Number of voters, all using SIV: 15
-- Question: Who should be president, George Washington or Abraham Lincoln?
+SIV can recreate the existing voting protocols, such as requiring unique codes sent via postal mail or given out in person.
 
-Due to the relatively small number of voters in this election, all 15 participants will act as Verifying Observers, so that they will all shuffle and do not need to trust each other to ensure privacy.
+In other words, SIV's authentication can be at least as strong as existing paper approaches.
 
-**Step 1 of the election**
+But we can also layer additional authentication methods, such as verified email delivery, SMS, drawn e-signatures, time-based one-time passwords, IP address geolocation, photos of government ID, or using cryptographic key pairs.
 
-As one of the voters, I receive my Voter Auth Token via an invitation email.
+Importantly, the entire SIV voter authentication process should be independently auditable.
 
-**Step 2**
+Additionally, all voter credentials can be revoked at any point of the election, including after voting and tallying. This means even if credentials are compromised, the issue can still be fixed.
 
-I submit an encrypted vote for Abraham Lincoln.
-
-**Step 3**
-
-I am emailed a submission receipt, with my encrypted vote, cryptographically signed by SIV.
-
-After a minute, all 15 encrypted votes have been submitted.
-
-**Step 4**
-
-We close the election, shuffle and then unlock the votes.
-
-**Step 5**
-
-Final results are:
-
-- 10: George Washington
-- 5: Abraham Lincoln
-
-Because my preferred candidate lost, I am unhappy with the results and I suspect fraud. Therefore, I wish to challenge the election results.
+Note that this is simply not possible with paper elections. It opens up powerful new precision remediation abilities for election administrators and legal court orders, who currently can only unfairly throw out entire precinct's votes or expensively require a new election.
