@@ -21,52 +21,17 @@
   },
   "navbarItems": [
     {
-      "title": "Introduction",
+      "title": "Back to SIV.org",
+      "path": "https://siv.org"
+    },
+    {
+      "title": "Docs Home",
       "path": "/intro"
     },
     {
-      "title": "Weaknesses",
-      "path": "/weaknesses"
-    },
-
-    {
-      "title": "Security Requirements",
-      "path": "/security/intro"
-    },
-    {
-      "title": "30 Seconds Overview",
-      "path": "/30sec-overview"
-    },
-    {
-      "title": "15 Minutes Overview",
-      "path": "/15min-overview"
-    },
-    {
-      "title": "SIV Technical Specification",
-      "path": "/spec/before-election"
-    },
-    {
-      "title": "Post Election Verification",
-      "path": "/post-verification/intro"
-    },
-    {
-      "title": "Mitigating Attacks",
-      "path": "/mitigating-attacks/authentication"
-    },
-    {
-      "title": "Comparison of Voting Methods",
-      "path": "/compare"
-    },
-    {
-      "title": "Analyzing Benefits",
-      "path": "/turnout"
-    },
-    {
-      "title": "Conclusion",
-      "path": "/strong-security"
-    },
-    { "title": "Further Areas of Study", "path": "/next" },
-    { "title": "Contact", "path": "/contact" }
+      "title": "Bring Secure Internet Voting to Your Area",
+      "path": "/contact"
+    }
   ],
   "toc": [
     {
