@@ -64,7 +64,8 @@
     {
       "title": "Conclusion",
       "path": "/strong-security"
-    }
+    },
+    { "title": "Further Areas of Study", "path": "/next" }
   ],
   "toc": [
     {
@@ -241,6 +242,9 @@
           "path": "/conclusion/proposal"
         }
       ]
+    },
+    {
+      "chapters": [{ "title": "Further Areas of Study", "path": "/next" }]
     }
   ]
 }
