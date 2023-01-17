@@ -46,6 +46,10 @@
       "path": "/spec/before-election"
     },
     {
+      "title": "Post Election Verification",
+      "path": "/post-verification/intro"
+    },
+    {
       "title": "Github",
       "path": "https://github.com/amiroff/NextBook"
     }
@@ -98,6 +102,23 @@
         {
           "title": "Voting Period Ends",
           "path": "/spec/voting-ends"
+        }
+      ]
+    },
+    {
+      "part": "Post Election Verification",
+      "chapters": [
+        {
+          "title": "Election Scenario",
+          "path": "/post-verification/intro"
+        },
+        {
+          "title": "Checks Voters Can Perform",
+          "path": "/post-verification/voter-checks"
+        },
+        {
+          "title": "Risk Limiting Audit",
+          "path": "/post-verification/rla"
         }
       ]
     }
