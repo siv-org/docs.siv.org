@@ -11,7 +11,7 @@ Using [Threshold Key Cryptography](https://en.wikipedia.org/wiki/Threshold_crypt
 
 Once a voter makes their selections, all their options get encrypted on their voting device using elliptic curve cryptography, infeasible to brute-force computationally. The plaintext of how they vote never leaves their device.
 
-<span style={{color: "red"}}>INSERT ILLUSTRATION</span>
+<img src="/images/encrypted-vote.png" style= {{width: "75%", margin: "left"}} />
 
 Once all votes are received, the Election’s Verifying Observers each perform their own cryptographic shuffle of all the votes, for thorough anonymization, before working together to unlock the votes for tallying. This matches the expectations of paper ballot anonymization, where voters are confirmed, but voters' identification is separated from submitted ballots. The SIV system offers even more rigorous privacy, so nobody has the ability to connect votes to voter's identities, while maintaining complete auditability of who voted and verifiability of final results.
 

@@ -19,9 +19,7 @@ Without addressing these fundamental issues, skepticism about the fairness of el
 
 ## Low Turnout
 
-The current paper-based voting system results in low levels of voter participation, with municipalities seeing as little as 6% participation and presidential elections seeing a maximum of 50% participation among the total population.
-
-<span style={{color: "red"}}>INSERT CHART</span>
+<span style={{color: "red"}}>UNDER CONSTRUCTION, TBD</span>
 
 ## Accessibility
 
