@@ -15,6 +15,7 @@ export const contentFilePaths = fs
 export const contentFolders = fs
   .readdirSync(CONTENT_PATH)
   .filter((path) => !path.includes('.md'))
+  .filter((path) => !path.includes('.DS_Store'))
 
 /**
  * Generate an array of each content folder with pages:
