@@ -1,6 +1,6 @@
 ---
 part: Benefits
-title: Election Budget Savings
+title: Budget Savings
 ---
 
 According to a report produced by [Massachusetts Institute of Technology](https://electionlab.mit.edu/sites/default/files/2022-05/TheCostofConductingElections-2022.pdf) the cost of conducting elections has been shown to range from $2 billion to $6 billion yearly.
