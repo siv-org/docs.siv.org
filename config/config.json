@@ -119,6 +119,10 @@
         {
           "title": "Risk Limiting Audit",
           "path": "/post-verification/rla"
+        },
+        {
+          "title": "Ballot Printing",
+          "path": "/post-verification/print-votes"
         }
       ]
     }
