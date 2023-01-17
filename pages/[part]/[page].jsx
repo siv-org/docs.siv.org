@@ -31,7 +31,11 @@ export const getStaticProps = async ({ params }) => {
   try {
     source = fs.readFileSync(`${filePath}.md`)
   } catch {
-    source = fs.readFileSync(`${filePath}.mdx`)
+    try {
+      source = fs.readFileSync(`${filePath}.mdx`)
+    } catch {
+      return { notFound: true }
+    }
   }
   const { content, data } = matter(source)
 
