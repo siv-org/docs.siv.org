@@ -8,7 +8,8 @@ import { _ } from './text'
 export default function PageNav() {
   const router = useRouter()
   const { toc } = config
-  const { asPath } = router
+  let { asPath } = router
+  if (asPath === '/') asPath = '/intro' // Since we're showing intro on index
 
   // isolate current part array
   const currentPart = toc.find((part) =>
