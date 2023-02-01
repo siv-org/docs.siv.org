@@ -32,13 +32,13 @@ export default function GlobalLayout({ title, part, description, children }) {
         <link rel='manifest' href='/manifest.json' />
       </Head>
 
-      <header className='z-40 md:shadow-md bg-gray-200 dark:bg-gray-800 fixed w-screen top-0 h-10 md:h-14 font-medium'>
+      <header className='fixed top-0 z-40 w-screen h-10 font-medium bg-gray-200 md:shadow dark:bg-gray-800 md:h-14'>
         <NavBar />
       </header>
 
-      <div className='content-wrapper mt-10 md:mt-14 flex xl:container xl:mx-auto'>
+      <div className='flex mt-10 content-wrapper md:mt-14 xl:container xl:mx-auto'>
         <SideBar />
-        <div className='md-wrapper flex md:ml-56 xl:ml-64'>{children}</div>
+        <div className='flex md-wrapper md:ml-56 xl:ml-64'>{children}</div>
       </div>
     </>
   )
