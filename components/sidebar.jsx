@@ -29,7 +29,7 @@ function SideBar() {
 
   return (
     <aside className={sideBarStyle} ref={ref}>
-      <div className='w-full pb-40 md:pb-16 h-full overflow-y-auto px-1'>
+      <div className='w-full h-full px-1 pb-40 overflow-y-auto md:pb-16'>
         <div className='flex flex-col md:mt-10'>
           <Link href='/'>
             <a aria-label={projectTitle}>
@@ -38,11 +38,11 @@ function SideBar() {
                   <img
                     src={`/${process.env.NEXT_PUBLIC_USE_LOGO}`}
                     alt={projectTitle}
-                    className='w-24 hidden md:inline-block'
+                    className='hidden w-24 md:inline-block'
                   />
                 )}
                 <span
-                  className='hidden px-4 text-center md:inline-block font-semibold '
+                  className='self-start hidden px-4 font-semibold md:inline-block '
                   title={projectTitle}
                 >
                   {projectTitle}
@@ -50,7 +50,7 @@ function SideBar() {
               </div>
             </a>
           </Link>
-          <div className='mt-6 pl-2 leading-loose tracking-wide'>
+          <div className='pl-2 mt-6 leading-loose tracking-wide'>
             {toc.map((toc, id) => (
               <SideBarSection toc={toc} key={id} />
             ))}
