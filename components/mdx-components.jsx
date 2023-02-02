@@ -6,20 +6,20 @@ import Text, { _ } from './text'
 
 export const P = (props) => <p {...props} />
 export const Hr = (props) => (
-  <hr className='my-3 mx-1 border-gray-300 dark:border-gray-600' {...props} />
+  <hr className='mx-1 my-3 border-gray-300 dark:border-gray-600' {...props} />
 )
 
 export const Ol = (props) => (
-  <ol className='ml-6 list-outside list-decimal leading-7' {...props} />
+  <ol className='ml-6 leading-7 list-decimal list-outside' {...props} />
 )
 
 export const Ul = (props) => (
-  <ul className='ml-6 list-outside list-disc leading-7' {...props} />
+  <ul className='ml-6 leading-7 list-disc list-outside' {...props} />
 )
 
 export const Thead = (props) => (
   <thead
-    className='tracking-wider text-sm 2xl:text-base font-medium uppercase'
+    className='text-sm font-medium tracking-wider uppercase 2xl:text-base'
     {...props}
   />
 )
@@ -27,29 +27,29 @@ export const Tbody = (props) => (
   <tbody className='text-sm 2xl:text-base' {...props} />
 )
 export const Tr = (props) => (
-  <tr className='border border-gray-400 dark:border-gray-600 p-2' {...props} />
+  <tr className='p-2 border border-gray-400 dark:border-gray-600' {...props} />
 )
 export const Td = (props) => (
-  <td className='border border-gray-400 dark:border-gray-600 p-2' {...props} />
+  <td className='p-2 border border-gray-400 dark:border-gray-600' {...props} />
 )
 export const Th = (props) => (
   <th
-    className='border border-gray-400 p-2 font-semibold bg-gray-300 dark:bg-gray-600 dark:border-gray-500'
+    className='p-2 font-semibold bg-gray-300 border border-gray-400 dark:bg-gray-600 dark:border-gray-500'
     {...props}
   />
 )
-export const Table = (props) => <table className='table-auto my-4' {...props} />
+export const Table = (props) => <table className='my-4 table-auto' {...props} />
 
 export const Blockquote = (props) => (
   <blockquote
-    className='m-2 ml-3 pl-2 border-l-4 dark:border-gray-600 border-gray-300 text-gray-500 dark:text-gray-400'
+    className='pl-2 m-2 ml-3 text-gray-500 border-l-4 border-gray-300 dark:border-gray-600 dark:text-gray-400'
     {...props}
   />
 )
 
 export const Accordion = (props) => (
   <details className='p-2 pl-0 font-normal'>
-    <summary className='summary cursor-pointer p-1 font-semibold pl-0 select-none'>
+    <summary className='p-1 pl-0 font-semibold cursor-pointer select-none summary'>
       {props.title}
     </summary>
     {props.children}
@@ -108,7 +108,7 @@ export const Code = (props) => {
   }
 
   return (
-    <code className='inline rounded p-1 bg-gray-300 dark:bg-gray-700 text-sm'>
+    <code className='inline p-1 text-sm bg-gray-300 rounded dark:bg-gray-700'>
       {props.children}
     </code>
   )
@@ -137,11 +137,11 @@ export const Tabs = (props) => {
   })
 
   return (
-    <div className='dark:bg-gray-600 bg-gray-50 rounded my-4 shadow'>
+    <div className='my-4 rounded shadow dark:bg-gray-600 bg-gray-50'>
       <div className='flex flex-col sm:flex-row' role='group'>
         {tabs}
       </div>
-      <div className='bg-transparent m-0 border-0 px-5 pb-2'>
+      <div className='px-5 pb-2 m-0 bg-transparent border-0'>
         {props.children[activeIndex]}
       </div>
     </div>
@@ -156,6 +156,9 @@ const Heading = (props) => {
   useEffect(() => {
     setlocation(`${window.location.href}#${props.id}`)
   }, [props.id])
+
+  // Hardcoding in possible tailwind classes so they'll get included in stylesheet (see https://tailwindcss.com/docs/content-configuration#dynamic-class-names)
+  // text-4xl text-3xl text-2xl text-xl text-lg
 
   return (
     <div className={`font-semibold my-5 text-${props.size}`}>
@@ -192,7 +195,7 @@ export const H1 = ({ children, id }) => {
 
 export const H2 = ({ children, id }) => {
   return (
-    <Heading level='2' id={id} size='4xl'>
+    <Heading level='2' id={id} size='2xl'>
       {children}
     </Heading>
   )
@@ -200,7 +203,7 @@ export const H2 = ({ children, id }) => {
 
 export const H3 = ({ children, id }) => {
   return (
-    <Heading level='3' id={id} size='3xl'>
+    <Heading level='3' id={id} size='xl'>
       {children}
     </Heading>
   )
@@ -208,7 +211,7 @@ export const H3 = ({ children, id }) => {
 
 export const H4 = ({ children, id }) => {
   return (
-    <Heading level='4' id={id} size='2xl'>
+    <Heading level='4' id={id} size='lg'>
       {children}
     </Heading>
   )
@@ -216,7 +219,7 @@ export const H4 = ({ children, id }) => {
 
 export const H5 = ({ children, id }) => {
   return (
-    <Heading level='5' id={id} size='xl'>
+    <Heading level='5' id={id} size='lg'>
       {children}
     </Heading>
   )
