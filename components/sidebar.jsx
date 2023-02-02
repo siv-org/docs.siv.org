@@ -30,7 +30,7 @@ function SideBar() {
   return (
     <aside className={sideBarStyle} ref={ref}>
       <div className='w-full h-full px-1 pb-40 overflow-y-auto md:pb-16'>
-        <div className='flex flex-col md:mt-10'>
+        <div className='flex flex-col md:mt-6'>
           <Link href='/'>
             <a aria-label={projectTitle}>
               <div className='flex flex-col items-center'>
