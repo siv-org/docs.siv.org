@@ -38,7 +38,7 @@
       "chapters": [{ "title": "Introduction", "path": "/intro" }]
     },
     {
-      "chapters": [{ "title": "Weaknesses", "path": "/weaknesses" }]
+      "chapters": [{ "title": "Paper's Weaknesses", "path": "/weaknesses" }]
     },
     {
       "part": "Security Requirements",

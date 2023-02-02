@@ -1,5 +1,5 @@
 ---
-part: Weaknesses
+part: Paper's Weaknesses
 title: Weaknesses of Current Paper Voting Options
 ---
 
