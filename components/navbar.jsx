@@ -9,9 +9,9 @@ function NavBar() {
   const router = useRouter()
 
   return (
-    <div className='flex pt-1 text-xs lg:text-sm'>
+    <div className='flex pt-1 text-xs lg:text-sm xl:container xl:mx-auto'>
       <SideBarToggler />
-      <nav className='text-left text-xs lg:text-sm ml-6 pt-1 flex-auto space-x-1'>
+      <nav className='flex-auto pt-1 ml-2.5 space-x-1 text-xs text-left lg:text-sm'>
         {navbarItems.map((item) => (
           <Link href={item.path} key={item.path}>
             <a
