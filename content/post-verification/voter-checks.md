@@ -3,18 +3,18 @@ part: Post Election Verification
 title: Checks Voters Can Perform
 ---
 
-### 1st Check ✅
+### ✅ 1st Check: Verify Own Vote
 
-I, the voter, can use a 2nd device to check my Verification # to confirm that my own vote is correctly cast.
+Voter can use a 2nd device to check the Verification # to confirm that their own vote is correctly cast.
 
-### 2nd Check ✅
+### ✅ 2nd Check: Verify Number of Votes
 
-I can confirm that the number of votes cast matches my expectations of the number of voters. In this case, 15 votes cast exactly equals 15 voters.
+Voter can confirm that the number of votes cast matches their expectations of the number of voters.
 
-### 3rd Check ✅
+### ✅ 3rd Check: Verify Tallies
 
-Voter recounts the votes to confirm that the results do add up to 10-to-5 for Washington.
+Voter can recount the votes to confirm that the results do add up.
 
-### 4th Check ✅
+### ✅ 4th Check: Verify Shuffles
 
-Voter re-runs the ZK-Proofs for Valid Shuffles and Valid Partial Decryptions, to ensure none of the encrypted votes were tampered with after they were received.
+Voter can re-run the Zero Knowledge Proofs for Valid Shuffles and Valid Partial Decryptions, to ensure none of the encrypted votes were tampered with after they were received.

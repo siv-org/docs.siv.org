@@ -84,10 +84,6 @@
       "part": "Post Election Verification",
       "chapters": [
         {
-          "title": "Election Scenario",
-          "path": "/post-verification/intro"
-        },
-        {
           "title": "Checks Voters Can Perform",
           "path": "/post-verification/voter-checks"
         },
