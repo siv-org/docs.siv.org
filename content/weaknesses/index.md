@@ -4,33 +4,38 @@ title: Weaknesses of Current Paper Voting Options
 
 Representative governments derive their power from votes. Therefore, it is essential that our election infrastructure is as robust and reliable as possible.
 
-Currently, there are multiple challenges many of us, voters, experience during and after election time:
+Currently, there are multiple challenges many voters experience during and after election time:
 
 ## Doubt in Results
 
 When there is widespread doubt about the accuracy of election results, it undermines the trust of the people in their government and threatens the stability of our free society.
 
-This lack of trust is often fueled by a lack of transparency in the vote-tallying process, leading to millions of voters calling for better verification. It is important to address these concerns about the accuracy and fairness of election results, regardless of who emerges victorious.
+This lack of trust is often fueled by a lack of transparency in the vote-tallying and authentication processes, leading to millions of voters calling for better verification. It is important to address these concerns about the accuracy and fairness of election results, regardless of who emerges victorious.
 
-This is because in the past, both parties have cried foul after their preferred candidates lost, with Democrats raising concerns in 2000 and 2004 and Republicans doing so in 2020.
+This is because in the past, both of the two major parties have cried foul after their preferred candidates lost, with Democrats raising concerns in 2000 and 2004 and Republicans in 2020.
 
 Without addressing these fundamental issues, skepticism about the fairness of elections will persist, eroding the legitimacy of our democratic system.
 
 ## Low Turnout
 
-<span style={{color: "red"}}>UNDER CONSTRUCTION, TBD</span>
+Our at-times unrelatable and inaccessible paper voting system is one of the contributing factors to low voter participation levels, with some municipalities seeing as little as 6% participation and even our highest profile presidential elections seeing on average 60% participation among eligible voters.
 
-## Accessibility
+<div class="text-xs opacity-50">
+Sources: 
+https://ballotpedia.org/Election_results,_2022:_Analysis_of_voter_turnout
+https://www.electproject.org/national-1789-present
+http://whovotesformayor.org/compare
+</div>
 
-Pandemics like COVID-19 make in-person voting unfeasible.
+## Poor Accessibility
 
-Long lines and other personal responsibilities make it difficult for people to find the time to go to the polls. And poor accessibility is often disproportionately experienced by marginalized communities.
+Pandemics like COVID-19 make in-person voting unusually challenging.
 
-Voting can also be particularly challenging for individuals with disabilities, who face barriers such as lack of accessible polling locations or voting equipment.
+Even without pandemics, long lines and other personal responsibilities make it difficult for people to find the time to go to the polls.
 
-Vote-by-mail may be a promising alternative, but it is unfamiliar especially to younger voters who do not often use snail mail.
+Voting can also be particularly challenging for individuals with various disabilities, who face barriers such as lack of accessible polling locations and voting equipment.
 
-The postal system also presents its own challenges, including the potential for delays and the risk of lost or [tampered ballots](https://en.wikipedia.org/wiki/Postal_censorship).
+Vote-by-mail may be a promising alternative, but it is unfamiliar especially to younger voters who rarely use snail mail. The postal system also introduces its own challenges, including the potential for delays and the risk of lost or [tampered ballots](https://en.wikipedia.org/wiki/Postal_censorship).
 
 ## Exorbitant Annual Elections Budgets
 
@@ -38,8 +43,18 @@ Governments allocate on average $25 per voter towards each election, regardless 
 
 ​​The recent report by the Election Infrastructure Initiative (EII) that aimed to estimate state and local costs to conduct elections over the next decade came up with a national figure of $53.3 billion, which is broadly consistent with the cost of past elections, when converted to an annual basis (i.e., $5.3 billion).
 
-The current state is that every year, billions of taxpayer dollars are funneled into processes that are labor-intensive and subject to human error, vulnerable to undetected fraud, and less accessible to some voters
+The status quo is that every year, billions of taxpayer dollars are funneled into processes that is labor-intensive and subject to human error, vulnerable to undetectable fraud, and less accessible for voters.
+
+## Limited Forensic and Remediation Options
+
+Because of election's strong privacy requirements, once paper ballots are accepted and mixed in with all others, there is limited ability to review or correct any issues that effect individual or specific ballots. When faced with legal challenges to election's accuracy, judges' only option is to ignore the issue or to throw out the entire jurisdiction's ballots and require a completely new election.
 
 ## Dominance of a Handful of Closed-Source Corporations
 
-The situation is further exacerbated by the fact that a limited number of closed-source corporations hold a monopoly on running American elections. This allows a select few companies to profit from the democratic process, while the general public is left to pay for subpar voting systems and bear the burden of an inadequate electoral experience.
+The situation is further exacerbated by the fact that a limited number of closed-source corporations dominate the voting counting technology that runs American elections. This allows a select few companies to profit from the democratic process, while the general public is left to pay for subpar voting systems and bear the burden of an inadequate electoral experience.
+
+<div class="mx-auto text-sm text-center">
+<img src="/images/vendors.png" width="250px" class="mx-auto border border-gray-600" />
+Just 3 companies control 92% of the election technology market
+(<a href="https://web.archive.org/web/20200701025059/https://publicpolicy.wharton.upenn.edu/live/files/270-the-business-of-votin" class="hover:underline">Source</a>)
+</div>
