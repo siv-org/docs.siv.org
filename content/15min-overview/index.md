@@ -1,6 +1,6 @@
 ---
-part: 15 Minutes Overview
-title: 15 Minutes Overview of a SIV Election
+part: 15 Minute Overview
+title: 15 Minute Overview of a SIV Election
 ---
 
 <p class="text-2xl">See the [SIV Protocol](https://siv.org/protocol) page.</p>

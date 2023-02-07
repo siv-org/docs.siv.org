@@ -1,6 +1,6 @@
 ---
-part: 30 Seconds Overview
-title: 30 Seconds Overview of a SIV Election
+part: 30 Second Overview
+title: 30-Second Simplified Overview of a SIV Election
 ---
 
 <div class="bg-gray-50">

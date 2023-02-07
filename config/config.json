@@ -58,14 +58,10 @@
       ]
     },
     {
-      "chapters": [
-        { "title": "30 Seconds Overview", "path": "/30sec-overview" }
-      ]
+      "chapters": [{ "title": "30 Second Overview", "path": "/30sec-overview" }]
     },
     {
-      "chapters": [
-        { "title": "15 Minutes Overview", "path": "/15min-overview" }
-      ]
+      "chapters": [{ "title": "15 Minute Overview", "path": "/15min-overview" }]
     },
     {
       "part": "Technical Specification",
