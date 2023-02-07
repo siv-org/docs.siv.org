@@ -22,12 +22,14 @@ export default function DocumentLayout({ children, frontMatter }) {
 
   return (
     <GlobalLayout title={title} part={part} description={description}>
-      <div className='content-container flex'>
-        <div
-          className='content px-4 md:px-8 w-screen max-w-screen-sm 
-                    md:max-w-screen-md xl:max-w-screen-md 2xl:max-w-screen-lg'
-        >
-          {title && <h1 className='text-4xl font-bold my-5'>{title}</h1>}
+      <div className='flex content-container'>
+        <div className='w-screen max-w-screen-sm px-4 content md:px-8 md:max-w-screen-md xl:max-w-screen-md 2xl:max-w-screen-lg'>
+          {part && <h4 className='mt-6 text-sky-900/70'>{part}</h4>}
+          {title && (
+            <h1 className={`${part ? 'my-2' : 'my-5'} text-4xl font-bold`}>
+              {title}
+            </h1>
+          )}
           {description && <p className='my-1'>{description}</p>}
           {tags && (
             <div className='my-2 text-sm 2xl:text-base'>
@@ -36,7 +38,7 @@ export default function DocumentLayout({ children, frontMatter }) {
               </span>
               {tags.map((tag) => (
                 <span
-                  className='bg-gray-300 dark:bg-gray-700 rounded m-1 p-1 text-xs'
+                  className='p-1 m-1 text-xs bg-gray-300 rounded dark:bg-gray-700'
                   key={tag}
                 >
                   {`#${tag}`}
@@ -46,9 +48,9 @@ export default function DocumentLayout({ children, frontMatter }) {
           )}
 
           <div className='md-content'>{children}</div>
-          <hr className='my-3 mx-1 print:hidden border-gray-300 dark:border-gray-600' />
+          <hr className='mx-1 my-3 border-gray-300 print:hidden dark:border-gray-600' />
           {updated && (
-            <div className='text-center text-xs'>
+            <div className='text-xs text-center'>
               <Text tid='Last Update' />:{' '}
               {new Date(updated).toLocaleDateString(
                 locale || 'en',
@@ -59,8 +61,8 @@ export default function DocumentLayout({ children, frontMatter }) {
           <PageNav />
         </div>
         {showToc && (
-          <div className='toc-container flex-none w-56 hidden lg:block'>
-            <div className='toc sticky top-20'>
+          <div className='flex-none hidden w-56 toc-container lg:block'>
+            <div className='sticky toc top-20'>
               <InPageToc tocRaw={tocRaw} />
             </div>
           </div>

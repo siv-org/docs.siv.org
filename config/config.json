@@ -206,7 +206,9 @@
       ]
     },
     {
-      "chapters": [{ "title": "Further Areas of Study", "path": "/next" }]
+      "chapters": [
+        { "title": "Further Areas of Study", "path": "/further-areas" }
+      ]
     },
     {
       "chapters": [{ "title": "Contact", "path": "/contact" }]

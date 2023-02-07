@@ -1,6 +1,6 @@
 ---
-part: Mitigating Attacks
-title: Voter Authentication Attacks
+part: Post Election Verification
+title: Ballot Printing
 ---
 
 **Election Administrators Can Print Submitted Votes per Ballots Onto Paper Ballots**

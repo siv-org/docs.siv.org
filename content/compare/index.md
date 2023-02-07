@@ -1,5 +1,4 @@
 ---
-part: Comparison
 title: Comparison of Voting Methods
 ---
 

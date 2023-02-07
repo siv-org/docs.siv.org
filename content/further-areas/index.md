@@ -1,5 +1,4 @@
 ---
-part: Next
 title: Further Areas of Study
 ---
 

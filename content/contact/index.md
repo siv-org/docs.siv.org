@@ -1,5 +1,4 @@
 ---
-part: Contact
 title: Contact
 ---
 
