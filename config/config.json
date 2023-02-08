@@ -41,21 +41,16 @@
       "chapters": [{ "title": "Paper's Weaknesses", "path": "/weaknesses" }]
     },
     {
-      "part": "Security Requirements",
-      "chapters": [
-        {
-          "title": " Authenticated Voters",
-          "path": "/security/authentication"
-        },
-        {
-          "title": "Private Voting",
-          "path": "/security/privacy"
-        },
-        {
-          "title": "Verifiable Results",
-          "path": "/security/verifiability"
-        }
-      ]
+      "chapters": [{ "title": "Security Requirements", "path": "/security" }]
+    },
+    {
+      "chapters": [{ "title": "Authentication", "path": "/authentication" }]
+    },
+    {
+      "chapters": [{ "title": "Privacy", "path": "/privacy" }]
+    },
+    {
+      "chapters": [{ "title": "Verifiability", "path": "/verifiability" }]
     },
     {
       "chapters": [{ "title": "30 Second Overview", "path": "/30sec-overview" }]
