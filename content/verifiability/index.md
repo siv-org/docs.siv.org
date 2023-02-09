@@ -7,7 +7,7 @@ For widely accepted results, vote totals must be independently auditable for acc
 
 For voters choosing Secure Internet Voting, there are powerful verification methods available.
 
-### Personally Verify _Your Vote_ Is In The Final Tally
+## Personally Verify Your Vote Is In The Final Tally
 
 When a voter submits their vote, their device generates a unique, randomly-generated, secret Verification Number. This number allows the voter to personally confirm that their vote was accurately recorded and included in the final tally.
 
@@ -15,7 +15,7 @@ This method provides a higher level of assurance than paper elections, where vot
 
 <span style={{color: "red"}}>INSERT ILLUSTRATION</span>
 
-### Personally Verify _Total Vote_ Count
+## Personally Verify Total Vote Count
 
 In contrast to traditional paper elections, SIV enables independent recounts at any time by providing the full list of anonymized votes. In fact, every device that accesses the public election status page automatically conducts its own recount, providing thousands of independent verifications at no additional cost. These counts can also be quickly and easily redone by voters’ or auditors themselves using freely available spreadsheet tools.
 
@@ -23,7 +23,7 @@ In contrast to traditional paper elections, SIV enables independent recounts at 
 
 In order to verify the correctness of the two stages in which votes get shuffled for anonymization and when they get unlocked, SIV allows for Cryptographic Universal Verifiability by providing Zero-Knowledge Proofs of a Valid Shuffle. These proofs are automatically run by the SIV admin software used by election administrators and all Verifying Observers. They can also be run by voters and independent auditors. These proofs verify vote accuracy, providing the ability to retrace the election steps from encrypted submissions to final results.
 
-### Verifying that _Other Voters Verify_ Their Vote
+## Verifying that Other Voters Verify Their Vote
 
 A common question is “Are other voters sufficiently verifying their votes were counted properly?”.
 
