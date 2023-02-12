@@ -53,6 +53,23 @@
       "chapters": [{ "title": "Verifiability", "path": "/verifiability" }]
     },
     {
+      "part": "Post Election Verification",
+      "chapters": [
+        {
+          "title": "Checks Voters Can Perform",
+          "path": "/post-verification/voter-checks"
+        },
+        {
+          "title": "Risk Limiting Audit",
+          "path": "/post-verification/rla"
+        },
+        {
+          "title": "Ballot Printing",
+          "path": "/post-verification/print-votes"
+        }
+      ]
+    },
+    {
       "chapters": [{ "title": "30 Second Overview", "path": "/30sec-overview" }]
     },
     {
@@ -75,23 +92,7 @@
         }
       ]
     },
-    {
-      "part": "Post Election Verification",
-      "chapters": [
-        {
-          "title": "Checks Voters Can Perform",
-          "path": "/post-verification/voter-checks"
-        },
-        {
-          "title": "Risk Limiting Audit",
-          "path": "/post-verification/rla"
-        },
-        {
-          "title": "Ballot Printing",
-          "path": "/post-verification/print-votes"
-        }
-      ]
-    },
+
     {
       "part": "Mitigating Attacks",
       "chapters": [
