@@ -1,30 +1,30 @@
 ---
-part: Security Requirements
-title: Verifiability
+part: Security Requirements → Verifiability
+title: Ensuring the Legitimacy of an Election
 ---
 
-## Ensuring the Legitimacy of an Election: A Guide to Verifying Secure Internet Voting (SIV)
+## A Guide to Verifying SIV Results
 
-The accuracy of elections and the ability for voters to verify it is a cornerstone of a healthy democracy. Verifiability is crucial in preventing corruption, manipulation, and fraud in the electoral process, which can result in a loss of public trust, civil unrest, and even the breakdown of the political system.
+The accuracy of elections, and the ability for voters to verify this, is a cornerstone of a healthy democracy. Verifiability is crucial to prevent corruption, manipulation, and fraud in the electoral process, which can result in a loss of public trust, civil unrest, and even the breakdown of the political system.
 
 In order to maintain the integrity of elections and protect our fundamental right to have our voices heard, it is essential to have a secure and independently verifiable election system.
 
 ## Contents of This Section
 
-I. Verify your vote was accurately recorded & included in the final tally
+I. Verify your personal vote was accurately counted in the final tally
 
-- Verification
+- Verification Number
 - 2nd Device Check
 
-II. Verify total vote count Published Vote List
+II. Verify Total Vote Count
 
-- Published Results, A New Level of Transparency In The Counting Process
+- Published Results: A New Level of Transparency In The Counting Process
 - Verify Number of Votes vs. Number of Voters
 - Recount votes
 
 III. Verify that Other Voters Verified Their Vote’s Accuracy
 
-- The Incentive of The Losing Candidate
+- The Losing Candidate
 - Risk-Limiting Audit
   - Introduction
   - How to Conduct a SIV Risk Limiting Audit

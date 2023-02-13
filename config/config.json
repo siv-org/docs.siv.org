@@ -63,6 +63,30 @@
         {
           "title": "Verify Total Vote Count",
           "path": "/verifiability/total-count"
+        },
+        {
+          "title": "Verify Others Have Verified Their Vote: Losing Candidate",
+          "path": "/verifiability/losing-candidate"
+        },
+        {
+          "title": "Verify Others Pt.2: Risk Limiting Audit",
+          "path": "/verifiability/rla"
+        },
+        {
+          "title": "Verify Others Pt.3: Automated Reward For Lost Votes",
+          "path": "/verifiability/automated-reward"
+        },
+        {
+          "title": "Zero-Knowledge Proofs",
+          "path": "/verifiability/zero-knowledge"
+        },
+        {
+          "title": "Auditing The Voter Roll",
+          "path": "/verifiability/voter-roll"
+        },
+        {
+          "title": "Generating Paper Ballots from Digital Votes",
+          "path": "/verifiability/print-ballots"
         }
       ]
     },
