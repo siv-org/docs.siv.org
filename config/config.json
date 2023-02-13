@@ -50,22 +50,19 @@
       "chapters": [{ "title": "Privacy", "path": "/privacy" }]
     },
     {
-      "chapters": [{ "title": "Verifiability", "path": "/verifiability" }]
-    },
-    {
-      "part": "Post Election Verification",
+      "part": "Verifiability",
       "chapters": [
         {
-          "title": "Checks Voters Can Perform",
-          "path": "/post-verification/voter-checks"
+          "title": "Introduction",
+          "path": "/verifiability/intro"
         },
         {
-          "title": "Risk Limiting Audit",
-          "path": "/post-verification/rla"
+          "title": "Verify Personal Vote",
+          "path": "/verifiability/personal-vote"
         },
         {
-          "title": "Ballot Printing",
-          "path": "/post-verification/print-votes"
+          "title": "Verify Total Vote Count",
+          "path": "/verifiability/total-count"
         }
       ]
     },
