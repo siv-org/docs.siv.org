@@ -17,4 +17,4 @@ At the end of the election when the list of votes is published, you can use your
 
 ## Using Multiple Devices to Detect Malware
 
-In order to provide extra layers of security against potential threats such as malware, SIV also provides a process you can quickly use on a second device to confirm your selections. See: [Mitigating Malware on Voter's Devices](/mitigating-attacks/malware). This method can help you personally double-check that your vote was not modified, but that it was cast as you intended.
+In order to provide extra layers of security against potential threats such as malware, SIV also provides a process you can quickly use on a second device to confirm your selections. See: [Using Multiple Devices to Detect Malware](/verifiability/multiple-devices). This method can help you personally double-check that your vote was not modified, but that it was cast as you intended.

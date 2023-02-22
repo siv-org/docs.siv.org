@@ -87,6 +87,10 @@
         {
           "title": "Generating Paper Ballots from Digital Votes",
           "path": "/verifiability/print-ballots"
+        },
+        {
+          "title": "Multiple Devices Verification",
+          "path": "/verifiability/multiple-devices"
         }
       ]
     },
