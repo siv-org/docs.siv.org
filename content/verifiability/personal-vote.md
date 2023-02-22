@@ -15,10 +15,6 @@ At the end of the election when the list of votes is published, you can use your
 
 <img src="/images/verification-num-list.png" style={{width: "50%" }} class="ml-5 shadow-lg shadow-sky-900/30 my-7"/>
 
-## 2nd Device Check
+## Using Multiple Devices to Detect Malware
 
-In order to provide an extra layer of security against potential threats such as malware, you can use a second device to confirm your selections.
-
-Once you submitted your choices, you scan a QR code with a 2nd device, ideally a different operating system, which will display your submitted selections.
-
-This method can help you personally double-check that your vote was not modified, but that it was cast as you intended.
+In order to provide extra layers of security against potential threats such as malware, SIV also provides a process you can quickly use on a second device to confirm your selections. See: [Mitigating Malware on Voter's Devices](/mitigating-attacks/malware). This method can help you personally double-check that your vote was not modified, but that it was cast as you intended.
