@@ -7,16 +7,17 @@ As an additional layer of security, SIV enables a voter to easily use multiple d
 
 These checks can be done in seconds, as quickly as scanning a QR code and with as many additional devices as desired. No special knowledge is needed.
 
-## Implementation Details
+Significantly, these checks can be initiated right at the time of vote, rather than waiting until the end of an election for votes to unlocked, which [checking Verification #'s](/verifiability/personal-vote) requires. The ideal time is immediately after a voter submits their encrypted ballot. Checking just before submission can also work, but sophisticated malware might notice a 2nd Device Check is being initiated, and thus _not cheat_. It would stopped, but harder to catch red-handed.
 
-After the voter submitted their selections, they scan a QR code, which opens a link like this:
+## Technical Implementation Details
 
-```
- siv.org/malware-check/$election_id/$auth_token/#url_encoded_vote_data url
-```
+After the voter submitted their selections, they can scan a QR code, which opens a link like this:
 
 ```
-encoded vote data = {verification number, selections: [q_id]: { plaintext, randomizers } } for all your vote selections.
+siv.org/malware-check/$election_id/$auth_token/#url_encoded_vote_data
+
+where encoded vote data is derived from the JSON object:
+{verification number, selections: [question_id]: { plaintext, randomizers } }
 ```
 
 **When that page loads on the new device, it:**
@@ -25,8 +26,8 @@ encoded vote data = {verification number, selections: [q_id]: { plaintext, rando
 - it recalculates encrypted vote given plaintext, randomizers, & verification \# from `url_encoded_vote_data`
 - sends recalculated encrypted vote to server, with election_id and auth_token
 - server stores a record of this 2nd devices submission, along with a timestamp and user agent
-- server sends back whether they match or not. If they don't — alert the user in the user interface, tell them to contact election admin, send SIV admin a notification about it
-- if the server reports there was a match, show the client the vote selections again, and ask them to confirm they are correct:
+- server sends back whether the re-calculated encrypted vote matches or not. If they don't — alert the user in the user interface, tell them to contact election admin, send SIV admin a notification about it
+- if the server reports there was a match, show the client the vote selections again, and ask them to confirm they are correct. Example:
 
 | Confirm your selections: |                   |
 | ------------------------ | ----------------- |
@@ -42,7 +43,7 @@ encoded vote data = {verification number, selections: [q_id]: { plaintext, rando
 
 - store in DB with timestamp
 - update the original vote confirmation page with "checked with 1 separate device - iPhone iOS 15.3, Safari 11.3"
-- invite voter to CAPTCHA or SMS confirm, to ensure a live human is doing the 2nd device check, not malware from the original device
+- invite voter to SMS confirm, to ensure a live human is doing the 2nd device check, not malware from the original device. Alternatively invite voters to provide their Anti-malware Confirmation Code, if provided on their physical voter invitation.
 - tell voter they can now close the 2nd device's window.
 
 **If voter says _"No”_:**
