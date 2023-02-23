@@ -3,7 +3,7 @@ part: Security Requirements → Verifiability
 title: Using Multiple Devices to Detect Malware
 ---
 
-As a redundant layer of security, SIV enables a voter to easily use multiple devices to verify their vote was submitted as intended. Separate devices with independent malware profiles, such as a different operating system, provide extra layers of defense.
+As an additional layer of security, SIV enables a voter to easily use multiple devices to verify their vote was submitted as intended. Separate devices with independent malware profiles, such as a different operating system, provide extra layers of defense.
 
 These checks can be done in seconds, as quickly as scanning a QR code and with as many additional devices as desired. No special knowledge is needed.
 
