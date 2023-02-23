@@ -7,7 +7,7 @@ As an additional layer of security, SIV enables a voter to easily use multiple d
 
 These checks can be done in seconds, as quickly as scanning a QR code and with as many additional devices as desired. No special knowledge is needed.
 
-Significantly, these checks can be initiated right at the time of vote, rather than waiting until the end of an election for votes to unlocked, which checking Verification #'s requires. The ideal time is immediately after a voter submits their encrypted ballot. Checking just before submission can also work, but sophisticated malware might notice a 2nd Device Check is being initiated, and thus _not cheat_. It would stopped, but harder to catch red-handed.
+Significantly, these checks can be initiated right at the time of vote, rather than waiting until the end of an election for votes to unlocked, which [checking Verification #'s](/verifiability/personal-vote) requires. The ideal time is immediately after a voter submits their encrypted ballot. Checking just before submission can also work, but sophisticated malware might notice a 2nd Device Check is being initiated, and thus _not cheat_. It would stopped, but harder to catch red-handed.
 
 ## Technical Implementation Details
 
