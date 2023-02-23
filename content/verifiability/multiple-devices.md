@@ -29,15 +29,15 @@ where encoded vote data is derived from the JSON object:
 - server sends back whether the re-calculated encrypted vote matches or not. If they don't — alert the user in the user interface, tell them to contact election admin, send SIV admin a notification about it
 - if the server reports there was a match, show the client the vote selections again, and ask them to confirm they are correct. Example:
 
-| Confirm your selections: |                   |
-| ------------------------ | ----------------- |
-| President:               | Abraham Lincoln   |
-| Governor:                | Grover Cleaveland |
-| State Rep:               | Jane Samson       |
-| Local Rep:               | Alex Smith        |
-| Proposition A:           | Against           |
-| Proposition B: Against   | Against           |
-| Proposition C:           | For               |
+| Confirm your selections: |                  |
+| ------------------------ | ---------------- |
+| President:               | Abraham Lincoln  |
+| Governor:                | Grover Cleveland |
+| State Rep:               | Jane Samson      |
+| Local Rep:               | Alex Smith       |
+| Proposition A:           | Against          |
+| Proposition B: Against   | Against          |
+| Proposition C:           | For              |
 
 **If voters confirms _"Yes"_:**
 
