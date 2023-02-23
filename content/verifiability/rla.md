@@ -1,9 +1,15 @@
 ---
 part: Security Requirements → Verifiability
-title: Verify Others Have Verified Their Vote — Risk Limiting Audit
+title: Risk Limiting Audits
 ---
 
-## Introduction
+You know that you have verified your vote, but are other voters also sufficiently verifying that their votes were counted correctly?
+
+It is worth noting that even without Risk Limiting Audits, there is a logical reason for voters to trust that other voters verify their vote using the Verification \#. Once the outcome does not go their preferred way, supporters of the losing candidate have a strong incentive to verify that their vote was tallied correctly using their Verification #. Voters can automatically store all necessary verification materials on their device, allowing them to easily check their vote at any time without any prior preparation.
+
+However, SIV's approach is to create multiple layers of security checks.
+
+## Risk Limiting Audit: Introduction
 
 Imagine participating in an election where you had the chance to cast your vote for one of two presidential candidates: George Washington or Abraham Lincoln. The final results show that George Washington received 10 votes and Abraham Lincoln received 5. But what if your preferred candidate didn't win? How can you be confident that the election results are accurate?
 
@@ -44,7 +50,7 @@ Considering that only a small proportion of the total number of votes need to be
 
 2. Voter’s selections must remain private
 
-**Protocol to carry out the audit:**
+**Implementation Protocol**
 
 1. The official conducting the audit should establish contact with the voter through an appropriate channel, usually a phone-call
 
@@ -54,7 +60,7 @@ Considering that only a small proportion of the total number of votes need to be
 
 It is crucial that the protocol adopted does not compromise the sanctity of the secret ballot. In particular, the following approach should be avoided — the election official must not inquire about the specifics of the voter's choice, and the voter must not be asked to show evidence or otherwise disclose the candidate they voted for.
 
-## Proving the integrity of an RLA
+## Proving the Integrity of an RLA
 
 _Zero-Knowledge Proof that a device cast a SIV vote_
 
