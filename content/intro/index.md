@@ -26,7 +26,7 @@ Participating in our democratic process becomes far faster and easier, as we sim
 
 ## Implementation Alongside The Paper System
 
-Although SIV is designed to exceed paper across all relevant criteria, it need not be forced upon any voter. It acts an additional option to the choice between In-Person & Vote-by-Mail. Any voter who prefers traditional paper methods can still use them.
+Although SIV is designed to exceed paper across all relevant criteria, it need not be forced upon any voter. It acts as an additional option to the choice between In-Person & Vote-by-Mail. Any voter who prefers traditional paper methods can still use them.
 
 ## Ready For Use
 

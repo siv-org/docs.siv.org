@@ -47,7 +47,7 @@ The status quo is that every year, billions of taxpayer dollars are funneled int
 
 ## Limited Forensic and Remediation Options
 
-Because of election's strong privacy requirements, once paper ballots are accepted and mixed in with all others, there is limited ability to review or correct any issues that effect individual or specific ballots. When faced with legal challenges to election's accuracy, judges' only option is to ignore the issue or to throw out the entire jurisdiction's ballots and require a completely new election.
+Because of election's strong privacy requirements, once paper ballots are accepted and mixed in with all others, there is limited ability to review or correct any issues that affect individual or specific ballots. When faced with legal challenges to election's accuracy, judges' only option is to ignore the issue or to throw out the entire jurisdiction's ballots and require a completely new election.
 
 ## Dominance of a Handful of Closed-Source Corporations
 

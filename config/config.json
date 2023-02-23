@@ -44,6 +44,9 @@
       "chapters": [{ "title": "Security Requirements", "path": "/security" }]
     },
     {
+      "chapters": [{ "title": "30 Second Overview", "path": "/30sec-overview" }]
+    },
+    {
       "chapters": [{ "title": "Authentication", "path": "/authentication" }]
     },
     {
@@ -81,7 +84,7 @@
           "path": "/verifiability/print-ballots"
         },
         {
-          "title": "Multiple Devices Verification",
+          "title": "Multiple Device Verification",
           "path": "/verifiability/multiple-devices"
         },
         {
@@ -94,9 +97,7 @@
         }
       ]
     },
-    {
-      "chapters": [{ "title": "30 Second Overview", "path": "/30sec-overview" }]
-    },
+
     {
       "chapters": [{ "title": "15 Minute Overview", "path": "/15min-overview" }]
     },

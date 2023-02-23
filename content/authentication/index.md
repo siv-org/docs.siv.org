@@ -59,7 +59,7 @@ Before an election begins, unique Authentication Tokens are created, one for eac
 
 Whenever an encrypted vote is submitted by a voter's device, the voter's Auth Token is checked against the election's Voter Roll to ensure that it is valid and has not already been used. In this way, while all submitted votes' contents are protected by strong cryptography, the author of the encrypted vote is still identifiable. An analogy is how Vote by Mail votes are submitted within a Sealed Envelope, but with the Voter's Name, Address, and Signature visible on the outside.
 
-To perform this audit, the voter corresponding to each used auth token can be publicly published. SIV does not automatically publish this list, but it is up to each election administrator and jurisdiction's requirements whether this is published, shared with a select group such as the candidates, or not at all.
+To perform this audit, the voter corresponding to each used auth token can be published. SIV does not automatically publish this list, but it is up to each election administrator and jurisdiction's requirements whether this is published, shared with a select group (such as the candidates & their political parties), or not at all.
 
 When a voter's device takes part in a SIV election, it generates & stores new private cryptographic key material, which can later be verified by independent auditors without compromising vote privacy.
 
@@ -71,7 +71,9 @@ When using SIV, a new more powerful, precise, and flexible level of remediation 
 
 The election administrator has the ability to revoke voter credentials at any stage of the election, including after voting and tallying. This process leaves an extensive written trail and cannot be secretly abused.
 
-This is possible because encrypted votes, still linked to voter's identities can be corrected at any point, and then the updated set re-anonymized and re-tallied as necessary. One analogy is the difference between writing on a classical typewriter vs modern digital writing tools, which offer a simple backspace key.
+This is possible because encrypted votes — still linked to voter's identities — can be corrected at any point. The then updated set can continue to be re-anonymized and re-tallied as necessary.
+
+One analogy is the difference between writing on a classical typewriter vs. modern digital writing tools, which offer a simple `Backspace` key.
 
 ## Further Reading
 
