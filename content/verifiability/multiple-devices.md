@@ -43,7 +43,7 @@ where encoded vote data is derived from the JSON object:
 
 - store in DB with timestamp
 - update the original vote confirmation page with "checked with 1 separate device - iPhone iOS 15.3, Safari 11.3"
-- invite voter to SMS confirm, to ensure a live human is doing the 2nd device check, not malware from the original device. Alteratively invite voters to provide Anti-malware Confirmation Codes for 2nd Devices, if provided on their physical voter invitation.
+- invite voter to SMS confirm, to ensure a live human is doing the 2nd device check, not malware from the original device. Alternatively invite voters to provide Anti-malware Confirmation Codes for 2nd Devices, if provided on their physical voter invitation.
 - tell voter they can now close the 2nd device's window.
 
 **If voter says _"No”_:**
