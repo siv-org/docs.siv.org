@@ -15,13 +15,17 @@ At the end of the election when the list of votes is published, you can use your
 
 <img src="/images/verification-num-list.png" style={{width: "50%" }} class="ml-5 shadow-lg shadow-sky-900/30 my-7"/>
 
-## This Check Doesn't Require Any Computation
+## Manual Verification
 
-This check can be made without requiring any correct computation from your device.
+This is a method of verifying election results that does not require correct computation from your own device.
 
-It works with other people's devices, which have little ability to know which vote is yours, which provides additional resistance to malware.
+"Correct computation" refers to your device accurately processing data. In the context of election results, it means that your device accurately records your vote and processes it correctly. However, using your own device to verify election results can be vulnerable to malware or other security threats, which may compromise the accuracy of the computation.
 
-It also works with paper printouts of the election's votes, which can be made accessible in public locations such as at the Department of Elections, a local library, or brought to voters by people conducting Risk Limiting Audits. Although this may appear to require more effort, only a small number of people verifying in this analog way can be used to calibrate the much more accessible digital verification methods.
+Instead, manual verification works by double checking with other people's devices or paper printouts. Verifying the accuracy of your vote selections on other people’s devices provides additional resistance because both devices would need to be compromised by coordinating malware. Additionally, the second device would need to know specifically which vote is yours, which is an additional challenge.
+
+Paper printouts of election’s votes can be made accessible in public locations such as at the Department of Elections, a local library, or brought to voters by people conducting Risk Limiting Audits. This way voters can check in person with their Verification # if their vote selections are accurately reflected.
+
+Although using other people's devices or paper printouts may seem more time-consuming, only a small number of people verifying in this analog way can be used to calibrate the more accessible digital verification methods.
 
 ## Quicker Multi-Device Checks for Malware
 
