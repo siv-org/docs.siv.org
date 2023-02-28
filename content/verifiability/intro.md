@@ -7,7 +7,7 @@ title: Ensuring Legitimate Election Results
 
 As a voter, being able to verify the legitimacy of our cities' or country's election results is crucial to prevent corruption, loss of public trust, and civil unrest.
 
-Throughout history, contested elections have led to violence and system breakdowns. For example, contested results in the 2007 presidential election in Kenya resulted in over 1,300 people killed and over 500,000 displaced. A similar scenario is documented in 2009 Iran, Ivory Coast 2010, Kenya 2017, or Bolivia 2019.
+Throughout history, contested elections have led to violence and system breakdowns. For example, contested results in the 2007 presidential election in Kenya resulted in over 1,300 people killed and over 500,000 displaced. A similar scenario is documented in 2009 Iran, 2010 Ivory Coast, 2017 Kenya, or 2019 Bolivia.
 
 In the United States, the 2000 Presidential election between George Bush and Al Gore led to violence due to disputed results. In 2020, the Biden vs Trump election also saw great violence, with millions of people not trusting the election results and some even storming the Capitol.
 
