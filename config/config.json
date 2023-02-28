@@ -86,10 +86,6 @@
         {
           "title": "Multiple Device Verification",
           "path": "/verifiability/multiple-devices"
-        },
-        {
-          "title": "Automated Reward For Lost Votes",
-          "path": "/verifiability/automated-reward"
         }
       ]
     },
@@ -220,8 +216,13 @@
       ]
     },
     {
+      "part": "Further Areas of Study",
       "chapters": [
-        { "title": "Further Areas of Study", "path": "/further-areas" }
+        { "title": "List", "path": "/further-areas/list" },
+        {
+          "title": "Automated Reward For Lost Votes",
+          "path": "/further-areas/automated-reward"
+        }
       ]
     },
     {
