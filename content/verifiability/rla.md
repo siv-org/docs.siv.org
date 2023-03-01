@@ -38,7 +38,7 @@ The mathematical principles underlying Risk Limiting Audits allow for efficient 
 
 The SIV Risk-Limiting Audit resembles a Ballot-level RLA, however, unlike the latter, it does not involve the election department conducting a self-examination of their own machines.
 
-Conducting an RLA is a redundant step, as voters have the ability to personally verify the accuracy of their own vote and results. However, an RLA can be a prudent measure in cases where it is not desired to rely solely on individual voter’s self-verification. This audit can be an additional anti-malware test, as all other stages of a SIV election already provide 100% verification.
+Conducting an RLA is an additional measure, as voters have the ability to personally verify the accuracy of their own vote and results. However, an RLA can be a prudent measure in cases where it is not desired to rely solely on individual voter’s self-verification. This audit can be an additional anti-malware test, as all other stages of a SIV election already provide 100% verification.
 
 The underlying method behind the Risk-Limiting Audit is one of statistical confidence, which poses the question of how many individuals must be audited in order to achieve a satisfactory level of assurance in the results.
 
