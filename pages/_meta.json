@@ -1,5 +1,18 @@
 {
   "index": "Introduction",
+  "weaknesses": "Paper's Weaknesses",
+  "security": "Security Requirements",
+  "30sec-overview": "30 Second Overview",
+  "authentication": "Authentication",
+  "privacy": "Privacy",
+  "verifiability/intro": "Introduction",
+  "15min-overview": "15 Minute Overview",
+  "spec/before-election": "Before The Election",
+  "mitigating-attacks/authentication": "Authentication Attacks",
+  "compare": "Comparison of Voting Methods",
+  "benefits/turnout": "Voter Turnout",
+  "conclusion/strong-security": "Are computers inherently less secure than paper?",
+  "further-areas/list": "List",
   "contact": {
     "title": "Contact ↗",
     "type": "page",
