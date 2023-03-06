@@ -5,3 +5,4 @@ pnpm-lock.yaml
 .DS_Store
 yarn.lock
 .vscode/
+package-lock.json
