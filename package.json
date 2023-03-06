@@ -1,0 +1,30 @@
+{
+  "name": "siv-book",
+  "version": "0.0.1",
+  "description": "How Secure Internet Voting (siv.org) elections work",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dsernst/siv-book.git"
+  },
+  "author": "Secure Internet Voting Inc.",
+  "bugs": {
+    "url": "https://github.com/dsernst/siv-book/issues"
+  },
+  "homepage": "https://siv.org",
+  "dependencies": {
+    "next": "^13.0.6",
+    "nextra": "latest",
+    "nextra-theme-docs": "latest",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "18.11.10",
+    "typescript": "^4.9.3"
+  }
+}
