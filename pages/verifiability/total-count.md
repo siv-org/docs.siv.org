@@ -1,0 +1,16 @@
+---
+part: Security Requirements → Verifiability
+title: Verify Total Vote Count
+---
+
+## A New Level of Transparency In The Counting Process
+
+In SIV elections, the full list of anonymized votes is published at the end of the election, offering a level of transparency not found in traditional paper elections, which only provide vote totals.
+
+With this information easily accessible and with freely available spreadsheet tools, independent recounts are quick and straightforward to conduct.
+
+<img src="/images/all-votes.png" style={{width: "50%" }} class="mx-auto"/>
+
+## Automatic Recounts
+
+In addition, every device that accesses the public election status page automatically conducts its own recount, instantly, creating thousands of independent verifications at no additional cost. Any discrepancies can be discovered quickly for investigation.

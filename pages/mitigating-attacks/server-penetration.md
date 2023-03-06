@@ -1,0 +1,14 @@
+---
+part: Mitigating Attacks
+title: Server Penetration Attacks
+---
+
+The SIV Protocol is designed so that nobody needs to trust the election server for accurate results or confidentiality.
+
+All results are completely verifiable and any mistakes can be independently detected. This provides far greater assurance than traditional election infrastructure where tallying is done behind closed doors.
+
+Written auditable evidence is available for successful completion of each of the 5 steps of the SIV Protocol. Each and every step can and should be independently checked and verified to justify as much confidence in election outcomes as possible.
+
+SIV has developed [Zero-Knowledge Proofs](https://www.youtube.com/clip/UgkxqM23U7EUgdW2C3zGGqO9-ujxi8D9EsAg) that provide Universal Verification against tampered election results. These proofs only need to be run once, rather than requiring all voters to verify.
+
+In both paper-only elections and Secure Internet Voting, compromising election administrators or their computers could lead to inaccurate results being published. The difference is that SIV makes it much harder for these types of inaccuracies to pass undetected.

@@ -1,0 +1,25 @@
+---
+part: Mitigating Attacks
+title: Privacy Violations
+---
+
+Historically, ensuring both authenticated and private votes has been very hard. SIV was specifically designed to solve this problem, ensuring voters' right to a free and fair election.
+
+SIV leverages strong Multi-Party Encryption and Verifiable Cryptographic Shuffles so that no one can see how anyone else votes. This includes keeping vote contents anonymous from election administrators and the SIV infrastructure itself.
+
+At a high level, SIV ensures vote privacy by:
+
+<div style={{ marginLeft: 30}}>
+a. Using strong encryption to lock votes inside sealed digital encryption before submission.
+
+b. Shuffling up the encrypted votes many times for strong anonymization, by multiple independent parties ("Verifying Observers"). This design creates multiple fail-safes. Even if some Verifying Observers' devices are compromised, vote privacy can still be protected. Verifying Observers do not need to trust each other, and thanks to strong cryptographic proofs, cannot possibly tamper with votes.
+
+c. Only after the votes have been thoroughly anonymized, the Verifying Observers work together to unlock the encryption and verifiably tally up the final results.
+
+</div>
+
+The technical details are available above under Technical Specifications. SIV allows for vote privacy to be verified mathematically: all encryption takes place on the voter's own device. For even stronger confidence that no plaintext information can leak out, all the encryption work (Step 2 of the SIV Protocol) can be performed in an Incognito browser window, with the device's internet disabled. This effectively airgaps the plaintext data, with only the encrypted ciphertext copied out at the end.
+
+This cryptographic privacy offered by SIV is an improvement over the implicit trust required in paper elections, where for example, a single postal worker could surveil and potentially dispose of votes they dislike. Even ballots given out in-person often have unique voter-linked tracking numbers, and voters have little ability to verify for themselves how strongly their privacy is being protected.
+
+Paper elections do have potential mitigation strategies, such as including independent election observers. But at scale, this requires huge numbers of people's time. SIV offers even higher assurances of privacy and accuracy, at orders of magnitude cheaper costs.
