@@ -3,30 +3,34 @@ part: Security Requirements → Verifiability
 title: Zero-Knowledge Proofs
 ---
 
-## What are Zero-Knowledge Proofs?
+### What are Zero-Knowledge Proofs?
 
-In cryptography, a Zero-Knowledge Proof allows one party to demonstrate to another that a certain statement is true, without revealing any additional information apart from the fact that the statement is indeed true. This means that the verifier can verify the validity of the proof, without learning any additional information about the statement itself.
+A Zero-Knowledge Proof is a type of cryptographic tool that allows someone to prove that a mathematical operation was carried out correctly without revealing any private information involved in the mathematical operation.
 
-In other words, zero-knowledge proofs enable a prover to prove the authenticity of a statement to a verifier, without revealing any secret information to the verifier. This property is particularly useful in situations where the prover has some sensitive information that they don't want to share, but still want to demonstrate the validity of the information to the verifier.
+This property is particularly useful in situations where the prover has some sensitive information that they don't want to share, but still want to demonstrate the validity of the information to the verifier.
 
-Zero-knowledge proofs are used in various areas, such as cryptography and computer science, where they are used to protect privacy and secure transactions.
+### SIV's Zero-Knowledge Proofs
 
-## Zero-Knowledge Proofs in Voting
+SIV uses multiple Zero-Knowledge Proofs (ZKPs) to prove that an election is correctly conducted, that every vote was counted, and it all added up to one person winning with a particular total.
 
-SIV provides multiple Zero-Knowledge Proofs (ZKPs) to prove that an election is correctly conducted, that every vote was counted, and it all added up to one person winning with a particular total. ZKPs give the power of not having to give up the actual votes of any person, and yet, everyone can see that it was done correctly.
+SIV's two Zero Knowledge Proofs are:
 
-[Video of Amit Sahai](https://www.youtube.com/clip/UgkxqM23U7EUgdW2C3zGGqO9-ujxi8D9EsAg), Computer Science PhD, is asked to explain the concept of zero-knowledge proofs to 5 different people.
+- Step 4: Zero Knowledge Proof of a Valid Shuffle
+- Step 5: Zero Knowledge Proof of a Valid Partial Decryption
 
-## SIV ZKPs
+These ZK Proofs, in particular the Shuffle Proof, come from Dr. Andrew Neff's 2001 paper "[A Verifiable Secret Shuffle and its Application to E-Voting](https://www.freehaven.net/anonbib/cache/shuffle:ccs01.pdf)". They are used to safely implement a cryptographic mixnet, so that votes can be anonymized by multiple indepedent parties, without risk that any of the parties could have possibly switched out or modified any of the underlying vote content.
 
-<span style={{color: "red"}}>INSERT ILLUSTRATION</span>
+### Usage
 
-ZKPs are provided in order to verify the correctness of Stage 4: Votes Shuffled for Anonymization and Stage 5: Votes Unlocked & Tallied.
+During Steps 4 and 5, every election Privacy Protector who takes part in the cryptographic shuffle generates their own ZK Proof. All of these proofs are automatically verified by SIV itself and all of the other Privacy Protectors.
 
-Privacy Protectors, independent auditors, and voters can re-run the Zero Knowledge Proofs for Valid Shuffles and Valid Partial Decryptions, to ensure none of the encrypted votes were tampered with after they were received.
+### Defense in Depth
 
-For further study please see:
+Although these Zero Knowledge Proofs are incredibly powerful, and allow indepedent verifiers to confirm the entire set of all votes at once, we must also acknolwedge they are highly technical and involve a high barrier for understanding. For this reason, they are intentionally not the only method to confirm that SIV results are correct. SIV also provides the far simpler [Personal Voter Verification methods](/verifiability/personal-vote), based on _Verification #s_, that are quick to check and easy to understand, and widely accessible for all voters to gain confidence.
 
-- 15 Min Overview —> Voting Period Ends
-- Technical Specification —> Voting Period Ends
-- Privacy Protectors
+### Further Reading
+
+For further study of Steps 4 & 5 of a SIV election:
+
+- 15 Min Overview → [Verifiable Shuffle](https://siv.org/protocol#4) & [Votes Unlocked](https://siv.org/protocol#5)
+- Technical Specification → [Voting Period Ends](/spec/voting-ends)
