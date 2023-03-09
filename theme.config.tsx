@@ -20,7 +20,7 @@ const config: DocsThemeConfig = {
     return (
       <>
         {config.title && (
-          <h1 className='text-3xl my-2 mb-4 font-bold'>{config.title}</h1>
+          <h1 className='my-2 mb-4 text-3xl font-bold'>{config.title}</h1>
         )}
         <main {...props} />
       </>

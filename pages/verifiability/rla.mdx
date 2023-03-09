@@ -3,19 +3,23 @@ part: Security Requirements → Verifiability
 title: Risk Limiting Audits
 ---
 
-You know that you have verified your vote, but are other voters also sufficiently verifying that their votes were counted correctly?
+### Why RLAs?
 
-It is worth noting that even without Risk Limiting Audits, there is already strong basis for voters to trust that other voters will verify their vote using the Verification \#. Once an election outcome does not go their preferred way, supporters of the losing candidate have a strong incentive to verify that their vote was tallied correctly using their Verification #. SIV automatically stores all necessary verification materials on voters' device, so that they can still easily check their vote at any time without any prior preparation. If anything did go wrong, they have all the evidence needed to fully prove that their vote was not cast correctly.
+Risk Limiting Audits (RLAs) can provide an additional safeguard for election results, giving you the confidence that election results are accurate.
 
-However, using Risk Limiting Audits, we can achieve an even higher level of assurance of correct results. They can provide a safeguard for election results, giving you the confidence that election results are accurate.
+It is worth noting that even without RLAs, there is already strong basis for voters to trust that other voters will verify their vote using the Verification \#. Once an election outcome does not go their preferred way, supporters of the losing candidate have a strong incentive to verify that their vote was tallied correctly using their Verification #. SIV automatically stores all necessary verification materials on voters' device, so that they can still easily check their vote at any time without any prior preparation. If anything did go wrong, they have all the evidence needed to fully prove that their vote was not cast correctly.
 
-## An Example Election
+However, using Risk Limiting Audits, we can achieve an even higher level of assurance of correct results.
+
+### The Math Behind RLAs
 
 Let's examine a concrete example. Imagine you participate in an election where you had the chance to cast your vote for one of two candidates: George Washington or Abraham Lincoln. You vote for Abraham Lincoln. But the final results show George Washington received 10 votes and Abraham Lincoln only 5.
 
 Because your preferred candidate lost, you feel strongly motivated to confirm that the election results are accurate. What do you need to do to gain strong confidence?
 
 You start by checking that the list of anonymized votes indeed adds up to 10 for Washington and 5 for Lincoln. Then you [check that your own Verification #](/verifiability/personal-vote) is in the list of anonymized votes, with your correct selection alongside it, and [confirm your own device wasn't manipulated by malware](/verifiability/multiple-devices). This tells you that at least 1 out of the 15 total votes is correct, but what about the other 14?
+
+#### An Unoptimized Process
 
 **Do all of them need to be checked, or how many confirmations are needed to gain full confidence in the outcome?**
 
@@ -26,7 +30,7 @@ You start by checking that the list of anonymized votes indeed adds up to 10 for
 
 Effectively, this approach requires approximately 75% of voters, rounded up, to be confident that no more than 25% of votes were flipped (the margin of error), and the winner truly had > 50% of the votes cast. This is a sort of "[naive](https://stackoverflow.com/questions/5700575/what-is-a-naive-algorithm-and-what-is-a-closed-form-solution)", unoptimized solution.
 
-#### Using Statistical Sampling Math (aka RLA)
+#### Optimizing With Statistical Sampling Math
 
 Rather than needing to check 13 out of 15 votes, if we use random statistical sampling, we can gain quite high confidence in the outcome, far more efficiently.
 
@@ -62,11 +66,7 @@ Here is the basic formula continued for all 15 votes:
 
 The power of an Risk Limiting Audit (RLA) is that you don't need to check all 15 votes. This RLA math shows that in this sample 15-vote election, just 3 random checks alone gives over 51% confidence, 6 checks gives over 81% confidence, and 8 checks give over 91% confidence.
 
-### A Larger Example
-
-Now that we have looked at how the math can work for this small 15 vote election, how does it scale for much larger elections?
-
-#### Deriving a Closed Form Solution
+#### Deriving A General Formula
 
 First, we'll note the specific closed form equation to make calculations much easier. Given an election's `total_votes_cast` & `margin_of_error` (difference between winner's votes & runner up's votes, divided by two), what % confidence is gained from confirming X randomly-sampled votes?
 
@@ -78,7 +78,9 @@ This can be generalized for any election as:
 
 The confidence % is `1 - false_positive` rate.
 
-#### The 2020 US Presidential Election in Georgia
+### A Larger Example: The 2020 US Presidential Election in Georgia
+
+Now that we have looked at how the math can work for this small 15 vote election, how does it scale for much larger elections?
 
 The 2020 US Presidential Election in Georgia was remarkable for its razor-thin margin. The [certified final count](https://en.wikipedia.org/wiki/2020_United_States_presidential_election_in_Georgia) was:
 
@@ -107,20 +109,18 @@ If individual ballots had been verifiable, as SIV allows, we can apply the close
 | 7500      | 0.15%              | 99.986%             |
 | 10000     | 0.20%              | 99.9992%            |
 
-<p className='text-sm'>
+<span className='text-sm'>
   [Code to re-calculate this table
   yourself](https://replit.com/@dsernst/RLAMath?v=1#index.ts)
-</p>
+</span>
 
 As shown above, despite the razor thin margin, confirming only 5,000 randomly sampled votes out of the 4,999,958 total cast (about 1 in 1000) can provide 99.72% confidence that the final winner was correct. Doubling the amount checked to 10,000 out of the approximately 5,000,000 total votes results in 99.9992% confidence in correct outcomes.
 
-This means that despite razor-thin margins, this form of individual ballot sampling can achieve very confidence with high efficiency.
+This means that despite razor-thin margins, this form of individual ballot sampling can achieve very high confidence with high efficiency.
 
-## How to Conduct a SIV RLA
+### How to Conduct a SIV RLA
 
-A SIV Risk-Limiting Audit has the power to greatly reduce the likelihood of suspected fraud and increase voter satisfaction.
-
-The mathematical principles underlying Risk Limiting Audits allow for efficient sampling. A small sample size can be selected and reviewed by independent 3rd party civil groups and official representatives, who can confirm with voters the integrity of the votes, without compromising the privacy of individual voters.
+The mathematical principles underlying Risk Limiting Audits allow for efficient sampling. A small sample size can be selected and reviewed by independent 3rd party civil groups and official representatives, who can confirm with voters the integrity of the votes, without compromising the privacy of individual voters' selections.
 
 The SIV Risk-Limiting Audit resembles a Ballot-level RLA, however, unlike the latter, it does not involve the election department conducting a self-examination of their own machines.
 
@@ -146,7 +146,7 @@ Considering that only a small proportion of the total number of votes need to be
 
 It is crucial that the protocol adopted does not compromise the sanctity of the secret ballot. In particular, the following approach should be avoided — the election official must not inquire about the specifics of the voter's choice, and the voter must not be asked to show evidence or otherwise disclose the candidate they voted for.
 
-## Proving the Integrity of an RLA
+### Proving the Integrity of an RLA
 
 _Zero-Knowledge Proof that a device cast a SIV vote_
 
