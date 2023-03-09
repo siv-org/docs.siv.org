@@ -3,7 +3,7 @@ part: Security Requirements → Verifiability
 title: Risk Limiting Audits
 ---
 
-### Why RLAs?
+## Why RLAs?
 
 Risk Limiting Audits (RLAs) can provide an additional safeguard for election results, giving you the confidence that election results are accurate.
 
@@ -11,7 +11,7 @@ It is worth noting that even without RLAs, there is already strong basis for vot
 
 However, using Risk Limiting Audits, we can achieve an even higher level of assurance of correct results.
 
-### The Math Behind RLAs
+## The Math Behind RLAs
 
 Let's examine a concrete example. Imagine you participate in an election where you had the chance to cast your vote for one of two candidates: George Washington or Abraham Lincoln. You vote for Abraham Lincoln. But the final results show George Washington received 10 votes and Abraham Lincoln only 5.
 
@@ -19,7 +19,7 @@ Because your preferred candidate lost, you feel strongly motivated to confirm th
 
 You start by checking that the list of anonymized votes indeed adds up to 10 for Washington and 5 for Lincoln. Then you [check that your own Verification #](/verifiability/personal-vote) is in the list of anonymized votes, with your correct selection alongside it, and [confirm your own device wasn't manipulated by malware](/verifiability/multiple-devices). This tells you that at least 1 out of the 15 total votes is correct, but what about the other 14?
 
-#### An Unoptimized Process
+### An Unoptimized Process
 
 **Do all of them need to be checked, or how many confirmations are needed to gain full confidence in the outcome?**
 
@@ -30,7 +30,7 @@ You start by checking that the list of anonymized votes indeed adds up to 10 for
 
 Effectively, this approach requires approximately 75% of voters, rounded up, to be confident that no more than 25% of votes were flipped (the margin of error), and the winner truly had > 50% of the votes cast. This is a sort of "[naive](https://stackoverflow.com/questions/5700575/what-is-a-naive-algorithm-and-what-is-a-closed-form-solution)", unoptimized solution.
 
-#### Optimizing With Statistical Sampling Math
+### Optimizing With Statistical Sampling Math
 
 Rather than needing to check 13 out of 15 votes, if we use random statistical sampling, we can gain quite high confidence in the outcome, far more efficiently.
 
@@ -66,7 +66,7 @@ Here is the basic formula continued for all 15 votes:
 
 The power of an Risk Limiting Audit (RLA) is that you don't need to check all 15 votes. This RLA math shows that in this sample 15-vote election, just 3 random checks alone gives over 51% confidence, 6 checks gives over 81% confidence, and 8 checks give over 91% confidence.
 
-#### Deriving A General Formula
+### Deriving A General Formula
 
 First, we'll note the specific closed form equation to make calculations much easier. Given an election's `total_votes_cast` & `margin_of_error` (difference between winner's votes & runner up's votes, divided by two), what % confidence is gained from confirming X randomly-sampled votes?
 
@@ -118,9 +118,9 @@ As shown above, despite the razor thin margin, confirming only 5,000 randomly sa
 
 This means that despite razor-thin margins, this form of individual ballot sampling can achieve very high confidence with high efficiency.
 
-### How to Conduct a SIV RLA
+## Carrying Out a SIV RLA
 
-The mathematical principles underlying Risk Limiting Audits allow for efficient sampling. A small sample size can be selected and reviewed by independent 3rd party civil groups and official representatives, who can confirm with voters the integrity of the votes, without compromising the privacy of individual voters' selections.
+A small sample size can be selected and reviewed by independent 3rd-party civil groups and official representatives, who can confirm with voters the integrity of the votes, without compromising the privacy of individual voters' selections.
 
 The SIV Risk-Limiting Audit resembles a Ballot-level RLA, however, unlike the latter, it does not involve the election department conducting a self-examination of their own machines.
 
@@ -146,7 +146,7 @@ Considering that only a small proportion of the total number of votes need to be
 
 It is crucial that the protocol adopted does not compromise the sanctity of the secret ballot. In particular, the following approach should be avoided — the election official must not inquire about the specifics of the voter's choice, and the voter must not be asked to show evidence or otherwise disclose the candidate they voted for.
 
-### Proving the Integrity of an RLA
+## Proving the Integrity of an RLA
 
 _Zero-Knowledge Proof that a device cast a SIV vote_
 
