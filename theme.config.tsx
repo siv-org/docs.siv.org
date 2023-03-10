@@ -1,0 +1,31 @@
+import React from 'react'
+import { DocsThemeConfig, useConfig } from 'nextra-theme-docs'
+
+const config: DocsThemeConfig = {
+  logo: <span>SIV</span>,
+  project: {
+    link: 'https://github.com/dsernst/siv-book'
+  },
+  docsRepositoryBase: 'https://github.com/dsernst/siv-book',
+  footer: {
+    text: 'Secure Internet Voting Inc.'
+  },
+  components: {
+    ol: (props) => (
+      <ol className='nx-list-decimal ltr:nx-ml-6 rtl:nx-mr-6' {...props} />
+    )
+  },
+  main: (props) => {
+    const config = useConfig()
+    return (
+      <>
+        {config.title && (
+          <h1 className='text-3xl my-2 mb-4 font-bold'>{config.title}</h1>
+        )}
+        <main {...props} />
+      </>
+    )
+  }
+}
+
+export default config

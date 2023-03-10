@@ -1,0 +1,13 @@
+---
+title: Further Areas of Study
+---
+
+- [ ] Information Theoretic Security: Quantum-resistant Cryptography
+
+- [ ] [Using Smart Contracts for Additional Financial Guarantees of Vote Integrity](/further-areas/automated-reward)
+
+- [ ] Air-gapping Verifying Observer Devices
+
+- [ ] Air-gapping SIV Vote Interface
+
+- [ ] Highly Redundant Real-time Data Backups

@@ -1,18 +1,8 @@
-const colors = require('tailwindcss/colors')
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    './pages/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
-    './layouts/**/*.{js,ts,jsx,tsx}',
-    './content/**/*.md'
-  ],
-  darkMode: 'class', // remove for 'media'
+  content: ['./pages/**/*.mdx', './theme.config.tsx'],
   theme: {
-    colors: {
-      transparent: 'transparent',
-      gray: colors.slate,
-      sky: colors.sky
-    },
     extend: {}
-  }
+  },
+  plugins: []
 }

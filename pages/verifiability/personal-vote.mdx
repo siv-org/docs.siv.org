@@ -1,0 +1,32 @@
+---
+part: Security Requirements → Verifiability
+title: Personally Verify Your Vote Is Accurately Submitted & Counted In The Final Tally
+---
+
+## Verification Number
+
+When you submit your vote, your device generates a unique, randomly generated secret Verification Number. This number acts as a personal tool that allows you to confirm, with complete certainty, that your vote was properly recorded and counted.
+
+This method provides a higher level of assurance than paper elections, where you have limited opportunities for first-hand verification after casting your ballot. This is sometimes referred to as “End-to-End Voter Verifiability”.
+
+After casting your ballot, your device continues to store your personal Verification \# in the browser memory: <img src="/images/verification-num.png" style={{width: "50%" }} class="ml-5 shadow-lg shadow-sky-900/30 my-7"/>
+
+At the end of the election when the list of votes is published, you can use your Verification \# to verify if your vote is in the list and if it accurately reflects your choices:
+
+<img src="/images/verification-num-list.png" style={{width: "50%" }} class="ml-5 shadow-lg shadow-sky-900/30 my-7"/>
+
+## Manual Verification
+
+This is a method of verifying election results that does not require correct computation from your own device.
+
+"Correct computation" refers to your device accurately processing data. In the context of election results, it means that your device accurately records your vote and processes it correctly. However, using your own device to verify election results can be vulnerable to malware or other security threats, which may compromise the accuracy of the computation.
+
+Instead, manual verification works by double checking with other people's devices or paper printouts. Verifying the accuracy of your vote selections on other people’s devices provides additional resistance because both devices would need to be compromised by coordinating malware. Additionally, the second device would need to know specifically which vote is yours, which is an additional challenge.
+
+Paper printouts of election’s votes can be made accessible in public locations such as at the Department of Elections, a local library, or brought to voters by people conducting Risk Limiting Audits. This way voters can check in person with their Verification # if their vote selections are accurately reflected.
+
+Although using other people's devices or paper printouts may seem more time-consuming, only a small number of people verifying in this analog way can be used to calibrate the more accessible digital verification methods.
+
+## Quicker Multi-Device Checks for Malware
+
+In order to provide another layer of security against malware threats, SIV also provides a process you can quickly use on a second device to confirm your selections, which can be initiated right at the time of vote, without waiting for election results to be unlocked. See: [Using Multiple Devices to Detect Malware](/verifiability/multiple-devices).

@@ -1,0 +1,22 @@
+{
+  "index": "Introduction",
+  "weaknesses": "Paper's Weaknesses",
+  "security": "Security Requirements",
+  "30sec-overview": "30 Second Overview",
+  "authentication": "Authentication",
+  "privacy": "Privacy",
+  "verifiability": "Verifiability",
+  "15min-overview": "15 Minute Overview",
+  "spec": "Technical Specifications",
+  "mitigating-attacks": "Mitigating Attacks",
+  "compare": "Comparison of Voting Methods",
+  "benefits": "Benefits",
+  "conclusion": "Conclusion",
+  "further-areas": "Further Areas of Study",
+  "contact": {
+    "title": "Contact ↗",
+    "type": "page",
+    "href": "mailto:team@siv.org",
+    "newWindow": true
+  }
+}
