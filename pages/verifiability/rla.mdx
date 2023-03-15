@@ -126,29 +126,6 @@ An election official and/or civil organizations should contact the selected vote
 
 It is important to ensure that the protocol adopted for a SIV RLA does not compromise the privacy of the individual voters' selections. Therefore, the election official must not ask about the specifics of the voter's choice, and the voter must not be asked to show evidence or disclose who they voted for.
 
-## Proving the Integrity of an RLA
+Carrying out a Risk Limiting Audit can be vastly more efficient when combined with [Anti-Malware Codes](/verifiability/proving-confirmation). This is because using the Anti-Malware proof confirmation is an asynchronous process: all randomly sampled voters can perform it in parallel, rather than auditors needing to walk each voter through their confirmation one at a time.
 
-_Zero-Knowledge Proof that a device cast a SIV vote_
-
-If any particular device casts a vote in a SIV election, and that vote was accepted by the admin, the encrypted vote itself can now serve as a public key for the device, with any of the Randomizers generated on device as private keys.
-
-This allows a device to prove to anyone else that it has the key material that successfully voted in a particular election (e.g. already vetted by the election admin), and without revealing the underlying randomizers: i.e. create a signature to prove in Zero Knowledge.
-
-For example, the voters participating in the Risk Limiting Audit will have clear proof that they are authenticated voters in that election and can show proof to the auditor who then can prove the integrity of the audit.
-
-Technical Specification:
-
-```
-The encrypted vote is a series of ciphertexts, one for each votable item (e.g. Governor, mayor, Prop_2), each made up of two sub-parts.One of those two sub parts is named “lock”:
-
-Lock = (Generator * randomizer)
-
-Where:
-
-- generator is the publicly known generator of the Ristretto group,
-- randomizer is the random key material the device created, and
-- * is elliptic curve point multiplication (a one way function)
-
-This is enough of a public key to use for EdDSA or ECDSA signatures.
-
-```
+People carrying out an RLA may also want to [collect cryptographic signatures from voters that prove their device participated in the election](/authentication#zero-knowledge-proof-that-a-device-cast-a-siv-vote), to prevent the RLA itself from being vulnerable to fraud.

@@ -13,13 +13,19 @@ SIV conforms and can exceed the standards of the paper-based voting system.
 
 In a SIV election, every voter receives a unique Voter Authentication Token (Auth Token), prior to the beginning of the election. The Auth Token is a short hexadecimal number.
 
-<div class="text-xs">
-Please note, "[Authentication tokens](https://en.wikipedia.org/wiki/Access_token)" are standard in computer security, and should not be confused with blockchains or cryptocurrencies.
+<div class='text-xs'>
+  Please note, "[Authentication
+  tokens](https://en.wikipedia.org/wiki/Access_token)" are standard in computer
+  security, and should not be confused with blockchains or cryptocurrencies.
 </div>
 
-<div class="text-xs">
-<img src="/images/auth-token.png" width="250px" class="border border-gray-600 " />
-Example of a Voter Authentication Token from an invitation email
+<div class='text-xs'>
+  <img
+    src='/images/auth-token.png'
+    width='250px'
+    class='border border-gray-600 '
+  />
+  Example of a Voter Authentication Token from an invitation email
 </div>
 
 The Voter Authentication Token serves to ensure the integrity of the election process by ensuring that each voter is only able to submit a single vote. The token can be revoked, reissued, and audited, as needed. Additionally, tokens can be invalidated when a vote is recorded from another channel, to prevent voters from casting two ballots.
@@ -74,6 +80,30 @@ The election administrator has the ability to revoke voter credentials at any st
 This is possible because encrypted votes — still linked to voter's identities — can be corrected at any point. The then updated set can continue to be re-anonymized and re-tallied as necessary.
 
 One analogy is the difference between writing on a classical typewriter vs. modern digital writing tools, which offer a simple `Backspace` key.
+
+## Zero-Knowledge Proof That A Device Cast A SIV Vote
+
+If any particular device casts a vote in a SIV election, and that vote was accepted by the admin, the encrypted vote itself can now serve as a public key for the device, with any of the Randomizers generated on device as private keys.
+
+This allows a device to prove to anyone else that it has the key material that successfully voted in a particular election (e.g. already vetted by the election admin), and without revealing the underlying randomizers: i.e. create a signature to prove in Zero Knowledge.
+
+For example, voters participating in a Risk Limiting Audit can provide clear proof that they cast a vote in that election, thus auditors can prove the integrity of the audit.
+
+### Technical Specification
+
+The encrypted vote is a series of ciphertexts, one for each votable item (e.g. Governor, Mayor, Prop_12), each made up of two sub-parts. One of those two sub parts is named “lock”:
+
+```
+Lock = (Generator * randomizer)
+
+Where:
+
+- generator is the publicly known generator of the Ristretto group,
+- randomizer is the random key material the device created, and
+- * is elliptic curve point multiplication (a one way function)
+```
+
+This is enough of a public key to use for EdDSA or ECDSA signatures.
 
 ## Further Reading
 
