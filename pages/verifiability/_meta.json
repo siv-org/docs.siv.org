@@ -1,9 +1,10 @@
 {
   "personal-vote": "Personal Vote Counted Correctly",
   "total-count": "Total Vote Count",
-  "multiple-devices": "Accurate Submission",
+  "detecting-malware": "Detecting Malware",
   "zero-knowledge": "Zero Knowledge Proofs",
   "rla": "Risk Limiting Audits",
+  "proving-confirmation": "Proving Voter Confirmation",
   "print-ballots": "Paper Trail",
   "voter-roll": "Voter Roll Audit"
 }

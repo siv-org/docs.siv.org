@@ -120,30 +120,17 @@ This means that despite razor-thin margins, this form of individual ballot sampl
 
 ## Carrying Out a SIV RLA
 
-A small sample size can be selected and reviewed by independent 3rd-party civil groups and official representatives, who can confirm with voters the integrity of their votes, without compromising the privacy of individual voters' selections.
+Conducting a SIV Risk Limiting Audit involves selecting a random sample of votes and verifying their accuracy.
 
-notes:
+An election official and/or civil organizations should contact the selected voters through an appropriate channel, such as a phone-call and/or email. The voter will be asked to self-verify the accuracy of their vote using the necessary tools, such as a verification number and, if desired, a second device check. The voter will be guided through the process and upon completion, should inform the official of the outcome without disclosing their specific vote. A statement confirming that there are or are not any discrepancies would be sufficient.
 
-- important to have a random sample
-- using anti-malware codes
-- add additional considerations: not everyone will answer the call, what are implications(not that many have to reply, so that's a positive aspect)
-- how is the math impacted if you do find votes that were tampered with 
-
-**Implementation Protocol**
-
-1. The official conducting the audit should establish contact with the voter through an appropriate channel, usually a phone-call
-
-1. The voter will be asked to self-verify the accuracy of their vote using the necessary tools — Verification # and if wanted a 2nd Device check — the voter will be guided through the process.
-
-1. Upon completion of the verification process, the voter should inform the election official of the outcome, without disclosing the specifics of their vote. A statement such as "I have verified and confirmed that there are/are not any discrepancies" would suffice.
-
-It is crucial that the protocol adopted does not compromise the sanctity of the secret ballot. In particular, the following approach should be avoided — the election official must not inquire about the specifics of the voter's choice, and the voter must not be asked to show evidence or otherwise disclose the candidate they voted for.
+It is important to ensure that the protocol adopted for a SIV RLA does not compromise the privacy of the individual voters' selections. Therefore, the election official must not ask about the specifics of the voter's choice, and the voter must not be asked to show evidence or disclose who they voted for.
 
 ## Proving the Integrity of an RLA
 
 _Zero-Knowledge Proof that a device cast a SIV vote_
 
-If any particular device casts a vote in a SIV election, and that vote was accepted by the admin, the encrypted vote itself can now serve as a sort of public key for the device, with any of the Randomizers generated on device as private keys.
+If any particular device casts a vote in a SIV election, and that vote was accepted by the admin, the encrypted vote itself can now serve as a public key for the device, with any of the Randomizers generated on device as private keys.
 
 This allows a device to prove to anyone else that it has the key material that successfully voted in a particular election (e.g. already vetted by the election admin), and without revealing the underlying randomizers: i.e. create a signature to prove in Zero Knowledge.
 
