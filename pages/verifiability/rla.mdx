@@ -66,6 +66,28 @@ Here is the basic formula continued for all 15 votes:
 
 The power of an Risk Limiting Audit (RLA) is that you don't need to check all 15 votes. This RLA math shows that in this sample 15-vote election, just 3 random checks alone gives over 51% confidence, 6 checks gives over 81% confidence, and 8 checks give over 91% confidence.
 
+Note that "confidence" is shorthand for "If there had been enough compromised votes to flip the election's winner, we've now manually reconfirmed enough votes that we would have detected it this % of this time".
+
+### Handling Non-Confirmatory Cases
+
+When checking individual votes, there three possible scenarios:
+
+1. Voter successfully confirms vote was correctly tallied
+1. Confirmation is inconclusive (e.g. voter can't be reached, refuses to cooperate, or necessary key material was lost)
+1. Voter discovers the vote is incorrectly tallied (e.g. due to malware, compromised election server, voter credentials stolen such as by a housemate, etc.)
+
+We've already covered the **confirmatory case (#1)** above.
+
+An **inconclusive confirmation (#2)** doesn't tell us any information positive nor negative about the overall confidence. The statistical implication is as if that individual case was skipped. An illustrative example:
+
+> a. If our first 2 checks were confirmatory, that gives us (12/15) \* (11/14) total uncaught chance ~= 62.9% total uncaught chance, and 37.1% total confidence.
+>
+> b. Then if the 3rd case is inconclusive, we remain at 62.9% total uncaught chance.
+>
+> c. If then our fourth case is confirmatory, it will skip a decrementing factor, and contribute 9/12 total uncaught change (having skipped the 10/13 case), for an overall uncaught chance of 47.1% rather than 48.4%. This means the overall confidence is slightly higher, 52.9% rather than 51.6%.
+
+A discovery of an **incorrectly tallied vote (#3)** does negatively affect the overall confidence.
+
 ### Deriving A General Formula
 
 First, we'll note the specific closed form equation to make calculations much easier. Given an election's `total_votes_cast` & `margin_of_error` (difference between winner's votes & runner up's votes, divided by two), what % confidence is gained from confirming X randomly-sampled votes?
