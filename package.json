@@ -12,15 +12,18 @@
     "url": "git+https://github.com/dsernst/siv-book.git"
   },
   "author": "Secure Internet Voting Inc.",
+  "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/dsernst/siv-book/issues"
   },
   "homepage": "https://siv.org",
   "dependencies": {
+    "chart.js": "^4.2.1",
     "next": "^13.0.6",
     "nextra": "latest",
     "nextra-theme-docs": "latest",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {

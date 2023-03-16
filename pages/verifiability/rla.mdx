@@ -3,6 +3,8 @@ part: Security Requirements → Verifiability
 title: Risk Limiting Audits
 ---
 
+import { Calculator } from '../../components/rla-calculator/Calculator'
+
 ## Why RLAs?
 
 Risk Limiting Audits (RLAs) can provide an additional safeguard for election results, giving you the confidence that election results are accurate.
@@ -151,3 +153,7 @@ It is important to ensure that the protocol adopted for a SIV RLA does not compr
 Carrying out a Risk Limiting Audit can be vastly more efficient when combined with [Anti-Malware Codes](/verifiability/proving-confirmation). This is because using the Anti-Malware proof confirmation is an asynchronous process: all randomly sampled voters can perform it in parallel, rather than auditors needing to walk each voter through their confirmation one at a time.
 
 People carrying out an RLA may also want to [collect cryptographic signatures from voters that prove their device participated in the election](/authentication#zero-knowledge-proof-that-a-device-cast-a-siv-vote), to prevent the RLA itself from being vulnerable to fraud.
+
+## RLA Calculator
+
+<Calculator />
