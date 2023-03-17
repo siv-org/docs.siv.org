@@ -1,4 +1,4 @@
-import { expect } from './expect'
+import { expect, testCases } from './expect'
 import { memoize } from './memoize'
 
 function binomialCoefficient(n: number, k: number) {
@@ -15,12 +15,14 @@ function binomialCoefficient(n: number, k: number) {
 
   return res
 }
-expect(binomialCoefficient(5, 0), 1)
-expect(binomialCoefficient(5, 1), 5)
-expect(binomialCoefficient(5, 2), 10)
-expect(binomialCoefficient(5, 3), 10)
-expect(binomialCoefficient(5, 4), 5)
-expect(binomialCoefficient(5, 5), 1)
+testCases(binomialCoefficient, [
+  [[5, 0], 1],
+  [[5, 1], 5],
+  [[5, 2], 10],
+  [[5, 3], 10],
+  [[5, 4], 5],
+  [[5, 5], 1]
+])
 
 /** Also called PMF, Probability Mass Function */
 export function binomialProbability(n: number, k: number, p: number) {
@@ -39,11 +41,17 @@ export function cumulativeBinomialProbability(n: number, k: number, p: number) {
 
   return cumulativeProbability
 }
-expect(cumulativeBinomialProbability(10, 3, 0.5), 0.171875)
-expect(cumulativeBinomialProbability(20, 10, 0.3), 0.9828551835687405)
-expect(cumulativeBinomialProbability(50, 20, 0.7), 0.000010589331832354874)
-expect(cumulativeBinomialProbability(100, 50, 0.5), 0.5397946186935892)
-expect(cumulativeBinomialProbability(10, 10, 0.1), 1)
+testCases(
+  cumulativeBinomialProbability,
+  [
+    [[10, 3, 0.5], 0.171875],
+    [[20, 10, 0.3], 0.9828551835687405],
+    [[50, 20, 0.7], 0.000010589331832354874],
+    [[100, 50, 0.5], 0.5397946186935892],
+    [[10, 10, 0.1], 1]
+  ],
+  1e-12
+)
 
 export function highestKAboveConfidence(
   n: number,
@@ -57,8 +65,10 @@ export function highestKAboveConfidence(
 
   return k - 1
 }
-expect(highestKAboveConfidence(80, 0.1, 0.99), 1)
-expect(highestKAboveConfidence(100, 0.1, 0.99), 3)
+testCases(highestKAboveConfidence, [
+  [[80, 0.1, 0.99], 1],
+  [[100, 0.1, 0.99], 3]
+])
 
 // // Example usage:
 // const n = 5000
