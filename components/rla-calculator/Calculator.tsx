@@ -75,9 +75,9 @@ export const Calculator = () => {
       <div className='flex justify-between'>
         <form className='flex flex-col space-y-1'>
           <label>
-            <div className='inline-block w-32'>Winner's Total:</div>
+            <div className='inline-block w-32 '>Winner's Total:</div>
             <input
-              className='w-[6.8rem] px-2 ml-3 hover:bg-gray-300/20'
+              className='w-[6.8rem] px-2 ml-3 bg-gray-200/70 dark:bg-[#1b1b1b] dark:hover:bg-gray-300/10 hover:bg-gray-200'
               type='number'
               value={winnerTotal}
               onChange={(e) => setWinnerTotal(+e.target.value)}
@@ -89,7 +89,7 @@ export const Calculator = () => {
           <label>
             Runner-Up's Total:
             <input
-              className='px-2 ml-1 w-[6.8rem] hover:bg-gray-300/20'
+              className='px-2 ml-1 w-[6.8rem] bg-gray-200/70 dark:bg-[#1b1b1b] dark:hover:bg-gray-300/10 hover:bg-gray-200'
               type='number'
               value={runnerUpTotal}
               onChange={(e) => setRunnerUpTotal(+e.target.value)}
@@ -101,35 +101,15 @@ export const Calculator = () => {
           <label>
             <div className='inline-block w-32'>Total Votes Cast:</div>
             <input
-              className='px-2 ml-3 w-[6.8rem] hover:bg-gray-300/20'
+              className='px-2 ml-3 w-[6.8rem] bg-gray-200/70 dark:bg-[#1b1b1b] dark:hover:bg-gray-300/10 hover:bg-gray-200'
               type='number'
               value={totalVotesCast}
               onChange={(e) => setTotalVotesCast(+e.target.value)}
             />
           </label>
-          {error && false && (
-            <>
-              <label>
-                Confidence Percentage:
-                <input
-                  className='px-2 ml-1'
-                  type='number'
-                  value={confidence}
-                  onChange={(e) => setConfidence(+e.target.value)}
-                />
-              </label>
-              <label>
-                Samples Taken:
-                <input
-                  className='px-2 ml-1'
-                  type='number'
-                  value={samples}
-                  onChange={(e) => setSamples(+e.target.value)}
-                />
-              </label>
-            </>
-          )}
         </form>
+
+        {/* Margins */}
         <div className='flex flex-col items-end w-48'>
           <i className='flex justify-between w-full opacity-75'>
             <span>Margin of Victory:</span>
@@ -143,11 +123,13 @@ export const Calculator = () => {
       </div>
 
       {error && <div className='mt-3 text-red-400'>{error}</div>}
+
+      {/* Paragraph answer */}
       <>
         <div className='mt-3'>
           To achieve{' '}
           <span
-            className='p-1 border rounded cursor-pointer border-gray-300/40 hover:bg-gray-300/20'
+            className='p-1 border rounded cursor-pointer border-gray-300/40 bg-gray-200/70 dark:bg-[#1b1b1b] dark:hover:bg-gray-300/10 hover:bg-gray-300/90'
             onClick={() => {
               const result = prompt(
                 'Enter desired confidence % between 0 and 100:'
@@ -161,7 +143,7 @@ export const Calculator = () => {
           {totalVotesCast.toLocaleString()} total votes were compromised ("the
           correct winner won"), a sample of{' '}
           <span
-            className='p-1 border rounded cursor-pointer border-gray-300/40 hover:bg-gray-300/20'
+            className='p-1 border rounded cursor-pointer border-gray-300/40 bg-gray-200/70 dark:bg-[#1b1b1b] dark:hover:bg-gray-300/10 hover:bg-gray-300/90'
             onClick={() => {
               const result = prompt('Enter # of Samples:')
               if (result) setSamples(+result)
@@ -169,8 +151,9 @@ export const Calculator = () => {
           >
             {samples.toLocaleString()}
           </span>{' '}
-          random votes must have no more than:{' '}
+          random votes must have no more than:
           <div className='mt-2 italic font-semibold'>
+            {/* Exact answer */}
             {result === null ? (
               'Loading...'
             ) : result === -1 ? (
@@ -196,7 +179,7 @@ export const Calculator = () => {
             <label>
               Compromised Seen:
               <input
-                className='px-2 ml-1 w-[6.8rem] hover:bg-gray-300/20'
+                className='px-2 ml-1 w-[6.8rem] bg-gray-200/70 dark:bg-[#1b1b1b] dark:hover:bg-gray-300/10 hover:bg-gray-200'
                 type='number'
                 value={compromisedSeen}
                 onChange={(e) => {
@@ -210,6 +193,7 @@ export const Calculator = () => {
                 }}
               />
             </label>
+
             {!error && (
               <Graph
                 k={compromisedSeen}
