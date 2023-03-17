@@ -80,15 +80,11 @@ When checking individual votes, there three possible scenarios:
 
 We've already covered the **confirmatory case (#1)** above.
 
-An **inconclusive confirmation (#2)** doesn't tell us any information positive nor negative about the overall confidence. The statistical implication is as if that individual case was skipped. An illustrative example:
-
-> a. If our first 2 checks were confirmatory, that gives us (12/15) \* (11/14) total uncaught chance ~= 62.9% total uncaught chance, and 37.1% total confidence.
->
-> b. Then if the 3rd case is inconclusive, we remain at 62.9% total uncaught chance.
->
-> c. If then our fourth case is confirmatory, it will skip a decrementing factor, and contribute 9/12 total uncaught change (having skipped the 10/13 case), for an overall uncaught chance of 47.1% rather than 48.4%. This means the overall confidence is slightly higher, 52.9% rather than 51.6%.
+An **inconclusive confirmation (#2)** doesn't tell us any information positive nor negative about the overall confidence. The statistical implication is as if that vote was not checked.
 
 A discovery of an **incorrectly tallied vote (#3)** does negatively affect the overall confidence.
+
+If a vote cannot be confirmed, the standard SIV protocol for [Remediating Compromised Votes](/verifiability/remediating-compromised-votes) can be used, so that the voter can submit their replacement selections.
 
 ### Deriving A General Formula
 

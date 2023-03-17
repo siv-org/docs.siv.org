@@ -1,0 +1,15 @@
+---
+title: Protocol for Remediating Compromised Votes
+---
+
+If a voter detects a tampered vote — whether using [Verification #](/verifiability/personal-vote), a [2nd-Device Check](/verifiability/detecting-malware), or during a [Risk Limiting Audit](/verifiability/rla) — election administrators have the ability to invalidate the vote and permit the voter to submit a new one.
+
+This process necessitates written documentation, in which the voter explicitly requests their vote to be revoked, ensuring a comprehensive audit trail. The remediation process can be conducted in person, via mail, or through other communication channels. The specific details will vary depending on the election requirements.SIV can accommodate and adapt to the necessary protocols.
+
+### Transparent Remediation Record
+
+In the rare circumstance where a vote must be invalidated after it has already been submitted and accepted, SIV prioritizes security and transparency.
+
+Everyone will be able to see that the original encrypted vote was invalidated, ensuring voters can have confidence that legitimate submitted votes cannot be secretly removed.
+
+The list of votes is backed by a [Merkle Tree](https://en.wikipedia.org/wiki/Merkle_tree), a powerful cryptographic data structure similar to a blockchain, but faster, environmentally-friendly, and requiring no cryptocurrency.
