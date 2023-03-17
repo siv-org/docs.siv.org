@@ -9,7 +9,7 @@ import {
   Plugin
 } from 'chart.js'
 
-import { binomialProbability, cumulativeBinomialProbability } from './math'
+import { memoizedBinomialProbability } from './math'
 
 type HorizontalLinePluginOptions = {
   yValue: number
@@ -50,7 +50,9 @@ ChartJS.register(
 
 export const Graph = ({ n, k, total, confidence }) => {
   const [chartData, setChartData] = useState(null)
-  const pmf = [...Array(n + 1)].map((_, i) => binomialProbability(n, i, k / n))
+  const pmf = [...Array(n + 1)].map((_, i) =>
+    memoizedBinomialProbability(n, i, k / n)
+  )
   let memo = 0
 
   const scaled = true

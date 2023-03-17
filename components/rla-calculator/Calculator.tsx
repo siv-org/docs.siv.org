@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
-import { cumulativeBinomialProbability } from './math'
+import { highestKAboveConfidence } from './math'
 import { Graph } from './Graph'
 import { round } from './round'
 import { debounce } from './debounce'
+import { SampleSizesTable } from './SampleSizesTable'
 
 // const defaults = {
 //   winner: 2_473_633,
@@ -30,10 +31,12 @@ export const Calculator = () => {
   const [compromisedSeen, setCompromisedSeen] = useState<number | ''>(2)
   const [result, setResult] = useState(null)
   const [showGraph, setShowGraph] = useState(false)
+  const [showSampleSizes, setShowSampleSizes] = useState(false)
   const [error, setError] = useState(null)
 
   const marginOfVictory = winnerTotal - runnerUpTotal
   const marginOfError = Math.floor(marginOfVictory / 2)
+  const p = marginOfError / totalVotesCast
 
   function calculate() {
     setError(null)
@@ -46,21 +49,7 @@ export const Calculator = () => {
     if (winnerTotal < 0 || runnerUpTotal < 0)
       return setError("Winner's Total and Runner-Up's Total both must be > 0")
 
-    const p = marginOfError / totalVotesCast
-    let k = 0
-    // console.log('starting calculation for', samples, k, p, confidence)
-    while (cumulativeBinomialProbability(samples, k, p) < 1 - confidence) {
-      k++
-
-      if (k > totalVotesCast) {
-        alert('Triggered endless loop')
-        k = -1
-        break
-      }
-    }
-    // console.log('finished calculation. k =', k)
-
-    setResult(k - 1)
+    setResult(highestKAboveConfidence(samples, p, confidence))
   }
 
   const debouncedCalculate = debounce(calculate, 500)
@@ -204,6 +193,13 @@ export const Calculator = () => {
             )}
           </>
         )}
+
+        <p className='mt-4 text-sm text-blue-400 cursor-pointer hover:underline'>
+          <a onClick={() => setShowSampleSizes(!showSampleSizes)}>
+            {showSampleSizes ? 'Hide' : 'Show'} sample sizes table
+          </a>
+        </p>
+        {showSampleSizes && <SampleSizesTable {...{ p, confidence }} />}
       </>
     </div>
   )
