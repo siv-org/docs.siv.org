@@ -1,4 +1,4 @@
-import { testCases } from './expect'
+import { testCases, expect } from './expect'
 import { memoize } from './memoize'
 
 function binomialCoefficient(n: number, k: number) {
@@ -51,6 +51,19 @@ testCases(
     [[10, 10, 0.1], 1]
   ],
   1e-12
+)
+// Increasing n should result in a lower confidence level
+expect(
+  cumulativeBinomialProbability(5, 2, 0.5) -
+    cumulativeBinomialProbability(6, 2, 0.5) >
+    0,
+  true
+)
+expect(
+  cumulativeBinomialProbability(5, 4, 0.5) -
+    cumulativeBinomialProbability(6, 4, 0.5) >
+    0,
+  true
 )
 
 export function highestKAboveConfidence(
