@@ -1,3 +1,4 @@
+import { testCases } from './expect'
 import { cumulativeBinomialProbability } from './math'
 
 function binarySearch(
@@ -34,7 +35,7 @@ export function findMinN(
   confidenceLevel: number,
   maxK: number
 ): number[] {
-  const maxN = 10000 // Set an upper bound for n to avoid infinite loop
+  const maxN = 10000 // Upper bound to avoid infinite loop
 
   console.log(
     'called findMinN with p=',
@@ -49,7 +50,7 @@ export function findMinN(
     binarySearch(i, p, confidenceLevel, i, maxN)
   )
 }
-
+testCases(findMinN, [[[0.1, 0.99, 1], [1]]])
 // // Example usage:
 // const p = 0.1
 // const confidenceLevel = 0.99
