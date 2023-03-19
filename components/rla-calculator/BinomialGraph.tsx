@@ -48,7 +48,7 @@ ChartJS.register(
   horizontalLinePlugin
 )
 
-export const Graph = ({ n, k, total, confidence }) => {
+export const BinomialGraph = ({ n, k, total, confidence }) => {
   const [chartData, setChartData] = useState(null)
   const pmf = [...Array(n + 1)].map((_, i) =>
     memoizedBinomialProbability(n, i, k / n)

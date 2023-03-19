@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react'
 import { highestKAboveConfidence } from './math'
-import { Graph } from './Graph'
+import { BinomialGraph } from './BinomialGraph'
 import { round } from './round'
 import { debounce } from './debounce'
 import { SampleSizesTable } from './SampleSizesTable'
 
 // const defaults = {
 //   winner: 2_473_633,
-//   // runnerUp: 2_461_854,
-//   runnerUp: 2_463_632,
-//   // total: 4_999_958,
-//   total: 5_000_000,
+//   runnerUp: 2_461_854,
+//   total: 4_999_958,
 //   confidence: 0.99,
 //   samples: 10000
+//   // runnerUp: 2_463_632, // For exactly 5k margin of error
+//   // total: 5_000_000,
 // }
 const defaults = {
   winner: 55_000,
@@ -99,12 +99,12 @@ export const Calculator = () => {
         </form>
 
         {/* Margins */}
-        <div className='flex flex-col items-end w-48'>
+        <div className='flex flex-col items-end w-48 text-sm'>
           <i className='flex justify-between w-full opacity-75'>
             <span>Margin of Victory:</span>
             <span>{marginOfVictory.toLocaleString()}</span>
           </i>
-          <i className='flex justify-between w-full opacity-75'>
+          <i className='flex justify-between w-full mt-1 opacity-75'>
             Margin of Error:{' '}
             <div className=''>{marginOfError.toLocaleString()}</div>
           </i>
@@ -175,7 +175,8 @@ export const Calculator = () => {
                   setError(null)
                   const val = e.target.value
                   const v = val === '' ? '' : +val
-                  if (v < 0) setError("Compromised Seen can't be less than 0")
+                  if (v < 0) return
+                  if (!Number.isInteger(v)) return
                   if (v > samples)
                     setError("Compromised Seen can't be more than Samples")
                   setCompromisedSeen(v)
@@ -184,7 +185,7 @@ export const Calculator = () => {
             </label>
 
             {!error && (
-              <Graph
+              <BinomialGraph
                 k={compromisedSeen}
                 n={samples}
                 total={totalVotesCast}

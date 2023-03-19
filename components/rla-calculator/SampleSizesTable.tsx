@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { findMinN } from './find-min-n'
+import { SampleSizesGraph } from './SampleSizesGraph'
 
 export const SampleSizesTable = ({ p, confidence, totalVotesCast }) => {
   const [minK, setMinK] = useState<number>(0)
@@ -12,8 +13,8 @@ export const SampleSizesTable = ({ p, confidence, totalVotesCast }) => {
       <p className='text-sm text-white/60'>
         If Margin of Error ={' '}
         <span className='text-white/90'>
-          {p * totalVotesCast} <span className='opacity-70'>of</span>{' '}
-          {totalVotesCast}
+          {Math.round(p * totalVotesCast)}{' '}
+          <span className='opacity-70'>of</span> {totalVotesCast}
         </span>
         , & Target Confidence ={' '}
         <span className='text-white/90'>{confidence * 100}%</span>:
@@ -82,6 +83,7 @@ export const SampleSizesTable = ({ p, confidence, totalVotesCast }) => {
           </tr>
         </tbody>
       </table>
+      <SampleSizesGraph {...{ minK, maxK, sampleSizes }} />
     </>
   )
 }
