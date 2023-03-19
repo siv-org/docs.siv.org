@@ -199,7 +199,9 @@ export const Calculator = () => {
             {showSampleSizes ? 'Hide' : 'Show'} sample sizes table
           </a>
         </p>
-        {showSampleSizes && <SampleSizesTable {...{ p, confidence }} />}
+        {showSampleSizes && (
+          <SampleSizesTable {...{ p, confidence, totalVotesCast }} />
+        )}
       </>
     </div>
   )

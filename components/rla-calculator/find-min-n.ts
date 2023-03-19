@@ -1,4 +1,4 @@
-import { testCases } from './expect'
+import { expect, testCases } from './expect'
 import { cumulativeBinomialProbability } from './math'
 
 function binarySearch(
@@ -13,14 +13,14 @@ function binarySearch(
     const currentConfidence = cumulativeBinomialProbability(mid, k, p)
 
     if (
-      currentConfidence >= confidenceLevel &&
+      1 - currentConfidence >= confidenceLevel &&
       (mid === 0 ||
-        cumulativeBinomialProbability(mid - 1, k, p) < confidenceLevel)
+        1 - cumulativeBinomialProbability(mid - 1, k, p) < confidenceLevel)
     ) {
       return mid
     }
 
-    if (currentConfidence < confidenceLevel) {
+    if (1 - currentConfidence < confidenceLevel) {
       low = mid + 1
     } else {
       high = mid - 1
@@ -33,26 +33,57 @@ function binarySearch(
 export function findMinN(
   p: number,
   confidenceLevel: number,
-  maxK: number
+  maxK: number,
+  maxN: number
 ): number[] {
-  const maxN = 10000 // Upper bound to avoid infinite loop
-
-  console.log(
-    'called findMinN with p=',
-    p,
-    'confidenceLevel=',
-    confidenceLevel,
-    'maxK=',
-    maxK
-  )
-
   return [...Array(maxK + 1)].map((_, i) =>
     binarySearch(i, p, confidenceLevel, i, maxN)
   )
 }
-testCases(findMinN, [[[0.1, 0.99, 1], [1]]])
-// // Example usage:
-// const p = 0.1
-// const confidenceLevel = 0.99
-// const minNValues = findMinN(p, 1 - confidenceLevel)
-// console.log('example', minNValues)
+expect(findMinN(7 / 25, 0.99, 0, 25)[0], 15)
+testCases(findMinN, [
+  [
+    [3 / 10, 0.99, 6, 100],
+    [13, 20, 25, 30, 35, 40, 44]
+  ]
+])
+
+export function findMinNSlow(p: number, confidenceLevel: number, maxK = 0) {
+  const minNValues = []
+  let currentConfidence: number
+
+  for (let k = 0; k <= maxK; k++) {
+    let n = k
+
+    do {
+      currentConfidence = cumulativeBinomialProbability(n, k, p)
+      // console.log('k=', k, 'n=', n, 'currentConfidence=', currentConfidence)
+      n++
+      if (n > 10000) break
+    } while (1 - currentConfidence < confidenceLevel)
+
+    minNValues.push(n - 1)
+  }
+
+  return minNValues
+}
+// Increasing n should result in a lower confidence level
+expect(
+  cumulativeBinomialProbability(5, 2, 0.5) -
+    cumulativeBinomialProbability(6, 2, 0.5) >
+    0,
+  true
+)
+expect(
+  cumulativeBinomialProbability(5, 4, 0.5) -
+    cumulativeBinomialProbability(6, 4, 0.5) >
+    0,
+  true
+)
+expect(findMinNSlow(7 / 25, 0.99)[0], 15)
+testCases(findMinNSlow, [
+  [
+    [3 / 10, 0.99, 6],
+    [13, 20, 25, 30, 35, 40, 44]
+  ]
+])

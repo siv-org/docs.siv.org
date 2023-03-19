@@ -1,4 +1,4 @@
-import { expect, testCases } from './expect'
+import { testCases } from './expect'
 import { memoize } from './memoize'
 
 function binomialCoefficient(n: number, k: number) {

@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { findMinN } from './find-min-n'
 
-export const SampleSizesTable = ({ p, confidence }) => {
+export const SampleSizesTable = ({ p, confidence, totalVotesCast }) => {
   const [maxK, setMaxK] = useState<number>(0)
-  const sampleSizes = findMinN(p, 1 - confidence, maxK)
+  const sampleSizes = findMinN(p, confidence, maxK, totalVotesCast)
 
   return (
     <>
