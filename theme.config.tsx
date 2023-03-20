@@ -15,6 +15,9 @@ const config: DocsThemeConfig = {
       <ol className='nx-list-decimal ltr:nx-ml-6 rtl:nx-mr-6' {...props} />
     )
   },
+  useNextSeoProps: () => ({
+    titleTemplate: '%s · SIV'
+  }),
   main: (props) => {
     const config = useConfig()
     return (
