@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react'
-import { cumulativeBinomialProbability } from './math'
-import { Graph } from './Graph'
+import { highestKAboveConfidence } from './math'
+import { BinomialGraph } from './BinomialGraph'
 import { round } from './round'
 import { debounce } from './debounce'
+import { SampleSizesTable } from './SampleSizesTable'
 
 // const defaults = {
 //   winner: 2_473_633,
-//   // runnerUp: 2_461_854,
-//   runnerUp: 2_463_632,
-//   // total: 4_999_958,
-//   total: 5_000_000,
+//   runnerUp: 2_461_854,
+//   total: 4_999_958,
 //   confidence: 0.99,
 //   samples: 10000
+//   // runnerUp: 2_463_632, // For exactly 5k margin of error
+//   // total: 5_000_000,
 // }
 const defaults = {
   winner: 55_000,
@@ -30,10 +31,12 @@ export const Calculator = () => {
   const [compromisedSeen, setCompromisedSeen] = useState<number | ''>(2)
   const [result, setResult] = useState(null)
   const [showGraph, setShowGraph] = useState(false)
+  const [showSampleSizes, setShowSampleSizes] = useState(false)
   const [error, setError] = useState(null)
 
   const marginOfVictory = winnerTotal - runnerUpTotal
   const marginOfError = Math.floor(marginOfVictory / 2)
+  const p = marginOfError / totalVotesCast
 
   function calculate() {
     setError(null)
@@ -46,21 +49,7 @@ export const Calculator = () => {
     if (winnerTotal < 0 || runnerUpTotal < 0)
       return setError("Winner's Total and Runner-Up's Total both must be > 0")
 
-    const p = marginOfError / totalVotesCast
-    let k = 0
-    // console.log('starting calculation for', samples, k, p, confidence)
-    while (cumulativeBinomialProbability(samples, k, p) < 1 - confidence) {
-      k++
-
-      if (k > totalVotesCast) {
-        alert('Triggered endless loop')
-        k = -1
-        break
-      }
-    }
-    // console.log('finished calculation. k =', k)
-
-    setResult(k - 1)
+    setResult(highestKAboveConfidence(samples, p, confidence))
   }
 
   const debouncedCalculate = debounce(calculate, 500)
@@ -75,9 +64,9 @@ export const Calculator = () => {
       <div className='flex justify-between'>
         <form className='flex flex-col space-y-1'>
           <label>
-            <div className='inline-block w-32'>Winner's Total:</div>
+            <div className='inline-block w-32 '>Winner's Total:</div>
             <input
-              className='w-[6.8rem] px-2 ml-3 hover:bg-gray-300/20'
+              className='w-[6.8rem] px-2 ml-3 bg-gray-200/70 dark:bg-[#1b1b1b] dark:hover:bg-gray-300/10 hover:bg-gray-200'
               type='number'
               value={winnerTotal}
               onChange={(e) => setWinnerTotal(+e.target.value)}
@@ -89,7 +78,7 @@ export const Calculator = () => {
           <label>
             Runner-Up's Total:
             <input
-              className='px-2 ml-1 w-[6.8rem] hover:bg-gray-300/20'
+              className='px-2 ml-1 w-[6.8rem] bg-gray-200/70 dark:bg-[#1b1b1b] dark:hover:bg-gray-300/10 hover:bg-gray-200'
               type='number'
               value={runnerUpTotal}
               onChange={(e) => setRunnerUpTotal(+e.target.value)}
@@ -101,41 +90,21 @@ export const Calculator = () => {
           <label>
             <div className='inline-block w-32'>Total Votes Cast:</div>
             <input
-              className='px-2 ml-3 w-[6.8rem] hover:bg-gray-300/20'
+              className='px-2 ml-3 w-[6.8rem] bg-gray-200/70 dark:bg-[#1b1b1b] dark:hover:bg-gray-300/10 hover:bg-gray-200'
               type='number'
               value={totalVotesCast}
               onChange={(e) => setTotalVotesCast(+e.target.value)}
             />
           </label>
-          {error && false && (
-            <>
-              <label>
-                Confidence Percentage:
-                <input
-                  className='px-2 ml-1'
-                  type='number'
-                  value={confidence}
-                  onChange={(e) => setConfidence(+e.target.value)}
-                />
-              </label>
-              <label>
-                Samples Taken:
-                <input
-                  className='px-2 ml-1'
-                  type='number'
-                  value={samples}
-                  onChange={(e) => setSamples(+e.target.value)}
-                />
-              </label>
-            </>
-          )}
         </form>
-        <div className='flex flex-col items-end w-48'>
+
+        {/* Margins */}
+        <div className='flex flex-col items-end w-48 text-sm'>
           <i className='flex justify-between w-full opacity-75'>
             <span>Margin of Victory:</span>
             <span>{marginOfVictory.toLocaleString()}</span>
           </i>
-          <i className='flex justify-between w-full opacity-75'>
+          <i className='flex justify-between w-full mt-1 opacity-75'>
             Margin of Error:{' '}
             <div className=''>{marginOfError.toLocaleString()}</div>
           </i>
@@ -143,11 +112,13 @@ export const Calculator = () => {
       </div>
 
       {error && <div className='mt-3 text-red-400'>{error}</div>}
+
+      {/* Paragraph answer */}
       <>
         <div className='mt-3'>
           To achieve{' '}
           <span
-            className='p-1 border rounded cursor-pointer border-gray-300/40 hover:bg-gray-300/20'
+            className='p-1 border rounded cursor-pointer border-gray-300/40 bg-gray-200/70 dark:bg-[#1b1b1b] dark:hover:bg-gray-300/10 hover:bg-gray-300/90'
             onClick={() => {
               const result = prompt(
                 'Enter desired confidence % between 0 and 100:'
@@ -161,7 +132,7 @@ export const Calculator = () => {
           {totalVotesCast.toLocaleString()} total votes were compromised ("the
           correct winner won"), a sample of{' '}
           <span
-            className='p-1 border rounded cursor-pointer border-gray-300/40 hover:bg-gray-300/20'
+            className='p-1 border rounded cursor-pointer border-gray-300/40 bg-gray-200/70 dark:bg-[#1b1b1b] dark:hover:bg-gray-300/10 hover:bg-gray-300/90'
             onClick={() => {
               const result = prompt('Enter # of Samples:')
               if (result) setSamples(+result)
@@ -169,8 +140,9 @@ export const Calculator = () => {
           >
             {samples.toLocaleString()}
           </span>{' '}
-          random votes must have no more than:{' '}
+          random votes must have no more than:
           <div className='mt-2 italic font-semibold'>
+            {/* Exact answer */}
             {result === null ? (
               'Loading...'
             ) : result === -1 ? (
@@ -196,22 +168,24 @@ export const Calculator = () => {
             <label>
               Compromised Seen:
               <input
-                className='px-2 ml-1 w-[6.8rem] hover:bg-gray-300/20'
+                className='px-2 ml-1 w-[6.8rem] bg-gray-200/70 dark:bg-[#1b1b1b] dark:hover:bg-gray-300/10 hover:bg-gray-200'
                 type='number'
                 value={compromisedSeen}
                 onChange={(e) => {
                   setError(null)
                   const val = e.target.value
                   const v = val === '' ? '' : +val
-                  if (v < 0) setError("Compromised Seen can't be less than 0")
+                  if (v < 0) return
+                  if (!Number.isInteger(v)) return
                   if (v > samples)
                     setError("Compromised Seen can't be more than Samples")
                   setCompromisedSeen(v)
                 }}
               />
             </label>
+
             {!error && (
-              <Graph
+              <BinomialGraph
                 k={compromisedSeen}
                 n={samples}
                 total={totalVotesCast}
@@ -219,6 +193,15 @@ export const Calculator = () => {
               />
             )}
           </>
+        )}
+
+        <p className='mt-4 text-sm text-blue-400 cursor-pointer hover:underline'>
+          <a onClick={() => setShowSampleSizes(!showSampleSizes)}>
+            {showSampleSizes ? 'Hide' : 'Show'} sample sizes table
+          </a>
+        </p>
+        {showSampleSizes && (
+          <SampleSizesTable {...{ p, confidence, totalVotesCast }} />
         )}
       </>
     </div>
