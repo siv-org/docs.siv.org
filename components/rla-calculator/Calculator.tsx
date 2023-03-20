@@ -31,6 +31,7 @@ export const Calculator = () => {
   const [compromisedSeen, setCompromisedSeen] = useState<number | ''>(2)
   const [result, setResult] = useState(null)
   const [showGraph, setShowGraph] = useState(false)
+  const [scaleGraph, setScaleGraph] = useState(true)
   const [showSampleSizes, setShowSampleSizes] = useState(false)
   const [error, setError] = useState(null)
 
@@ -159,43 +160,6 @@ export const Calculator = () => {
         </div>
 
         <p className='mt-4 text-sm text-blue-400 cursor-pointer hover:underline'>
-          <a onClick={() => setShowGraph(!showGraph)}>
-            {showGraph ? 'Hide' : 'Show'} binomial graph
-          </a>
-        </p>
-        {showGraph && (
-          <>
-            <label>
-              Compromised Seen:
-              <input
-                className='px-2 ml-1 w-[6.8rem] bg-gray-200/70 dark:bg-[#1b1b1b] dark:hover:bg-gray-300/10 hover:bg-gray-200'
-                type='number'
-                value={compromisedSeen}
-                onChange={(e) => {
-                  setError(null)
-                  const val = e.target.value
-                  const v = val === '' ? '' : +val
-                  if (v < 0) return
-                  if (!Number.isInteger(v)) return
-                  if (v > samples)
-                    setError("Compromised Seen can't be more than Samples")
-                  setCompromisedSeen(v)
-                }}
-              />
-            </label>
-
-            {!error && (
-              <BinomialGraph
-                k={compromisedSeen}
-                n={samples}
-                total={totalVotesCast}
-                confidence={confidence}
-              />
-            )}
-          </>
-        )}
-
-        <p className='mt-4 text-sm text-blue-400 cursor-pointer hover:underline'>
           <a onClick={() => setShowSampleSizes(!showSampleSizes)}>
             {showSampleSizes ? 'Hide' : 'Show'} sample sizes table
           </a>
@@ -204,6 +168,56 @@ export const Calculator = () => {
           <SampleSizesTable {...{ p, confidence, totalVotesCast }} />
         )}
       </>
+
+      <p className='mt-4 text-sm text-blue-400 cursor-pointer hover:underline'>
+        <a onClick={() => setShowGraph(!showGraph)}>
+          {showGraph ? 'Hide' : 'Show'} binomial graph
+        </a>
+      </p>
+      {showGraph && (
+        <>
+          <label>
+            Compromised Seen:
+            <input
+              className='px-2 ml-1 w-[6.8rem] bg-gray-200/70 dark:bg-[#1b1b1b] dark:hover:bg-gray-300/10 hover:bg-gray-200'
+              type='number'
+              value={compromisedSeen}
+              onChange={(e) => {
+                setError(null)
+                const val = e.target.value
+                const v = val === '' ? '' : +val
+                if (v < 0) return
+                if (!Number.isInteger(v)) return
+                if (v > samples)
+                  setError("Compromised Seen can't be more than Samples")
+                setCompromisedSeen(v)
+              }}
+            />
+          </label>
+
+          <label className='ml-5 text-sm'>
+            <input
+              type='checkbox'
+              className='mr-2'
+              checked={scaleGraph}
+              onChange={() => setScaleGraph(!scaleGraph)}
+            />
+            Scale graph
+          </label>
+
+          {!error && (
+            <BinomialGraph
+              {...{
+                k: compromisedSeen,
+                n: samples,
+                total: totalVotesCast,
+                confidence,
+                scaleGraph
+              }}
+            />
+          )}
+        </>
+      )}
     </div>
   )
 }

@@ -10,11 +10,12 @@ export const SampleSizesTable = ({ p, confidence, totalVotesCast }) => {
 
   return (
     <>
-      <p className='text-sm text-black/50 dark:text-white/60'>
+      <p className='mt-2 text-sm text-center text-black/50 dark:text-white/60'>
         If Margin of Error ={' '}
         <span className='text-black/90 dark:text-white/90'>
-          {Math.round(p * totalVotesCast)}{' '}
-          <span className='opacity-70'>of</span> {totalVotesCast}
+          {Math.round(p * totalVotesCast).toLocaleString()}{' '}
+          <span className='opacity-70'>of</span>{' '}
+          {totalVotesCast.toLocaleString()}
         </span>
         , & Target Confidence ={' '}
         <span className='text-black/90 dark:text-white/90'>

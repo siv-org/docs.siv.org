@@ -13,6 +13,28 @@ It is worth noting that even without RLAs, there is already strong basis for vot
 
 However, using Risk Limiting Audits, we can achieve an even higher level of assurance of correct results.
 
+## Carrying Out a SIV RLA
+
+Conducting a SIV Risk Limiting Audit involves selecting a random sample of votes and verifying their accuracy.
+
+An election official and/or civil organizations should contact the selected voters through an appropriate channel, such as a phone-call and/or email. The voter will be asked to self-verify the accuracy of their vote using the necessary tools, such as a verification number and, if desired, a second device check. The voter will be guided through the process and upon completion, should inform the official of the outcome without disclosing their specific vote. A statement confirming that there are or are not any discrepancies would be sufficient.
+
+It is important to ensure that the protocol adopted for a SIV RLA does not compromise the privacy of the individual voters' selections. Therefore, the election official must not ask about the specifics of the voter's choice, and the voter must not be asked to show evidence or disclose who they voted for.
+
+Carrying out a Risk Limiting Audit can be vastly more efficient when combined with [Anti-Malware Codes](/verifiability/proving-confirmation). This is because using Anti-Malware Codes is an asynchronous process: all randomly sampled voters can perform it in parallel, rather than auditors needing to walk each voter through their confirmation one at a time.
+
+People carrying out an RLA may also want to [collect cryptographic signatures from voters that prove their device participated in the election](/authentication#zero-knowledge-proof-that-a-device-cast-a-siv-vote), to prevent the RLA itself from being vulnerable to fraud.
+
+## RLA Calculator
+
+You can adjust these numbers to see how different Margins of Victory, Samples Sizes, and # of Compromised Votes found all affect the implied statistical confidence.
+
+<p className='text-sm mt-2 opacity-70'>
+  The underlying mathematics is explained below.
+</p>
+
+<Calculator />
+
 ## The Math Behind RLAs
 
 Let's examine a concrete example. Imagine you participate in an election where you had the chance to cast your vote for one of two candidates: George Washington or Abraham Lincoln. You vote for Abraham Lincoln. But the final results show George Washington received 10 votes and Abraham Lincoln only 5.
@@ -70,22 +92,6 @@ The power of an Risk Limiting Audit (RLA) is that you don't need to check all 15
 
 Note that "confidence" is shorthand for "If there had been enough compromised votes to flip the election's winner, we've now manually reconfirmed enough votes that we would have detected it this % of this time".
 
-### Handling Non-Confirmatory Cases
-
-When checking individual votes, there three possible scenarios:
-
-1. Voter successfully confirms vote was correctly tallied
-1. Confirmation is inconclusive (e.g. voter can't be reached, refuses to cooperate, or necessary key material was lost)
-1. Voter discovers the vote is incorrectly tallied (e.g. due to malware, compromised election server, voter credentials stolen such as by a housemate, etc.)
-
-We've already covered the **confirmatory case (#1)** above.
-
-An **inconclusive confirmation (#2)** doesn't tell us any information positive nor negative about the overall confidence. The statistical implication is as if that vote was not checked.
-
-A discovery of an **incorrectly tallied vote (#3)** does negatively affect the overall confidence.
-
-If a vote cannot be confirmed, the standard SIV protocol for [Remediating Compromised Votes](/verifiability/remediating-compromised-votes) can be used, so that the voter can submit their replacement selections.
-
 ### Deriving A General Formula
 
 First, we'll note the specific closed form equation to make calculations much easier. Given an election's `total_votes_cast` & `margin_of_error` (difference between winner's votes & runner up's votes, divided by two), what % confidence is gained from confirming X randomly-sampled votes?
@@ -138,18 +144,110 @@ As shown above, despite the razor thin margin, confirming only 5,000 randomly sa
 
 This means that despite razor-thin margins, this form of individual ballot sampling can achieve very high confidence with high efficiency.
 
-## Carrying Out a SIV RLA
+### Handling Non-Confirmatory Cases
 
-Conducting a SIV Risk Limiting Audit involves selecting a random sample of votes and verifying their accuracy.
+So far, we have only examined the implied statistical probability when an audit comes back 100% confirmatory. But when checking individual votes, there are three possible scenarios:
 
-An election official and/or civil organizations should contact the selected voters through an appropriate channel, such as a phone-call and/or email. The voter will be asked to self-verify the accuracy of their vote using the necessary tools, such as a verification number and, if desired, a second device check. The voter will be guided through the process and upon completion, should inform the official of the outcome without disclosing their specific vote. A statement confirming that there are or are not any discrepancies would be sufficient.
+1. Voter successfully confirms vote was correctly tallied
+1. Confirmation is inconclusive (e.g. voter can't be reached, refuses to cooperate, or necessary key material was lost)
+1. Voter discovers the vote is incorrectly tallied (e.g. due to malware, compromised election server, voter credentials stolen such as by a housemate, etc.)
 
-It is important to ensure that the protocol adopted for a SIV RLA does not compromise the privacy of the individual voters' selections. Therefore, the election official must not ask about the specifics of the voter's choice, and the voter must not be asked to show evidence or disclose who they voted for.
+We have covered the **confirmatory case (#1)** above.
 
-Carrying out a Risk Limiting Audit can be vastly more efficient when combined with [Anti-Malware Codes](/verifiability/proving-confirmation). This is because using the Anti-Malware proof confirmation is an asynchronous process: all randomly sampled voters can perform it in parallel, rather than auditors needing to walk each voter through their confirmation one at a time.
+An **inconclusive confirmation (#2)** doesn't tell us any information positive nor negative about the overall confidence. The statistical implication is as if that vote was not checked.
 
-People carrying out an RLA may also want to [collect cryptographic signatures from voters that prove their device participated in the election](/authentication#zero-knowledge-proof-that-a-device-cast-a-siv-vote), to prevent the RLA itself from being vulnerable to fraud.
+A discovery of an **incorrectly tallied vote (#3)** does negatively affect the overall confidence.
 
-## RLA Calculator
+Note that if a vote is discovered to have been compromised, the standard SIV protocol for [Remediating Compromised Votes](/verifiability/remediating-compromised-votes) can always be used, so voters can submit their correct replacement selections.
 
-<Calculator />
+But how do these discoveries affect the implied confidence in an election's overall accuracy?
+
+### Employing a Binomial Distribution
+
+A [Binomial Distribution](https://en.wikipedia.org/wiki/Binomial_distribution) is a standard statistical tool to model the number of successes in a fixed number of independent trials, where each trial has only two possible outcomes (success or failure), and the probability of success is independent between trials. For example, if you flip a fair coin 10 times, the number of heads you get could be modeled by a binomial distribution with n=10 and p=0.5.
+
+<div className='text-lg mt-5'>**Binomial Distribution Formulas**</div>
+
+1\. The **Probability Mass Function (PMF)** of a binomial distribution gives the probability of getting exactly $k$ successes in $n$ independent trials, where each trial has a probability $p$ of success.
+
+<img src='/images/PMF.png' width='450px' className='mx-auto mt-3' />
+
+This can be calculated as:
+
+$$
+PMF(k,n,p) = {n \choose k} p^{k} (1-p)^{n-k}
+$$
+
+where $n$ is the number of trials, $k$ is the number of successes, $p$ is the probability of success in each trial, and $n \choose k$ is the binomial coefficient, which is equal to $\frac{n!}{k!(n-k)!}$.
+
+This formula can be used to say something like: "If I flipped a coin 20 times, and I saw 10 heads, what is the % chance that if I flipped it another 20 times, I would see exactly $k$ heads."
+
+2\. The **Cumulative Distribution Function (CDF)** of a binomial distribution gives the probability of getting no more than $k$ successes in $n$ independent trials. In other words, this is the sum of adding up each of the successive PMFs.
+
+<img src='/images/CDF.png' width='450px' className='mx-auto mt-3' />
+
+This can be calculated as:
+
+$$
+CDF(k,n,p) = \sum_{i=0}^{k} PMF(i,n,p)
+$$
+
+where $PMF$ is the Probability Mass Function given above.
+
+<div className='text-lg mt-5'>**Using a Binomial Distribution for RLAs**</div>
+
+In Post-Election Risk Limiting Audits, we have:
+
+- A Margin of Victory = $winners\_votes - runner\_up\_votes$
+- and Margin of Error $= margin\_of\_victory/2$, rounded up
+
+This Margin of Error is the minimum number of compromised votes to change the winner.
+
+In order for the election results to be accurate, the overall % of compromised votes must be no higher than:
+
+$$
+\frac{Margin\ of\ Error}{Total\ Votes\ Cast}
+$$
+
+By examining random samples of votes, and recording the rate of successful confirmations vs discovered compromises, we establish statistical trends about the overall set, until we have achieved at least $C$ % statistical confidence in the correct winner.
+
+We can use the Cumulative Distribution Function to calculate any implied Confidence in correct results. For our use-case, we will use $k$ and $p$ to track _failures_, rather than successes (i.e. the complementary probabilities), which can be done by plugging in:
+
+- k = Margin of Error rate per Sample size
+- n = Samples taken
+- p = rate of Compromises discovered in the Samples taken
+
+$$
+CDF(\frac{margin\_of\_error}{samples\_taken}, samples\_taken, \frac{compromises\_discovered}{samples\_taken})
+$$
+
+<br />
+
+<div className='text-lg'>**Binomial Distribution Examples**</div>
+
+If we were to sample 1000 votes, discovering 2 compromised votes and 998 confirmed ones, the implied PMF would look like:
+
+<img src='/images/example-PMF.png' className='mx-auto mt-3' />
+
+And the CDF would look like:
+
+<img src='/images/example-CDF.png' className='mx-auto mt-3' />
+
+Note that the blue cumulative bar marked 4 (representing the probability that 4 or less compromised votes are present in each successive set of 1000 samples) has crossed the 90% threshold.
+
+That is to say, if this hypothetical election had a Margin of Error of at least 4 votes per 1000 (0.4%), for a Margin of Victory of just 0.8%, discovering only 2 compromised votes in the initial 1000 sampled implies over 90% confidence that the whole election has less than 0.4% compromised, and thus "the correct winner won". Specifically, this $CDF(4,1000,2/1000)$ implies ~94.8%.
+
+We can extend this approach one step farther and calculate the various minimum Sample Sizes needed to achieve a particular $C$% Confidence level, given different #s of Compromised votes discovered.
+
+To illustrate, we will apply this approach to the 2020 U.S. Presidential Election in Georgia, with its razor-thin Margin of Error of only 0.12%:
+
+<img
+  src='/images/georgia-samples.png'
+  className='shadow-lg mt-4 max-w-xl mx-auto'
+/>
+
+We see similar results as calculated using the initial approach above, where we saw that 5000 confirmations resulted in ~99.7% confidence, just shy of the 5862 needed to cross the 99.9% threshold. But now, by using a Binomial Distribution, we can also factor in the discovery of compromised votes.
+
+In this way, we can achieve very high statistical confidence in elections' accuracy (> 99.9%), despite razor thin margins (0.2%), while only needing to sample a tiny fraction of votes.
+
+All of these statistical tools can be easily applied to any election by using the interactive RLA Calculator at the top of this page.

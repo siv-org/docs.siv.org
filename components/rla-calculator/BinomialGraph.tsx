@@ -48,19 +48,17 @@ ChartJS.register(
   horizontalLinePlugin
 )
 
-export const BinomialGraph = ({ n, k, total, confidence }) => {
+export const BinomialGraph = ({ n, k, total, confidence, scaleGraph }) => {
   const [chartData, setChartData] = useState(null)
   const pmf = [...Array(n + 1)].map((_, i) =>
     memoizedBinomialProbability(n, i, k / n)
   )
   let memo = 0
 
-  const scaled = true
-
   useEffect(() => {
     setChartData({
       labels: [...Array(n + 1)].map((_, i) =>
-        scaled ? Math.round(i * (total / n)) : i
+        scaleGraph ? Math.round(i * (total / n)) : i
       ),
       datasets: [
         {
@@ -79,7 +77,7 @@ export const BinomialGraph = ({ n, k, total, confidence }) => {
         }
       ]
     })
-  }, [n, k])
+  }, [n, k, scaleGraph])
 
   if (!chartData) return null
 
@@ -95,7 +93,11 @@ export const BinomialGraph = ({ n, k, total, confidence }) => {
               max: (k + 2) * 4,
               title: {
                 display: true,
-                text: 'Estimated Total # of Compromised Votes'
+                text: `Estimated # of Compromised Votes ${
+                  scaleGraph
+                    ? `in ${total.toLocaleString()} Total`
+                    : `per ${n} sampled`
+                }`
               }
             },
             y: {
@@ -109,8 +111,8 @@ export const BinomialGraph = ({ n, k, total, confidence }) => {
             // @ts-expect-error
             horizontalLine: {
               yValue: confidence, // The y-axis value where you want to draw the horizontal line
-              color: 'hsla(120, 100%, 60%, 0.3)',
-              lineWidth: 1
+              color: 'hsla(120, 100%, 40%, 0.5)',
+              lineWidth: 2
             }
           }
         }}
