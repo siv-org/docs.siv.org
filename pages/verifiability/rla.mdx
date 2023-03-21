@@ -47,20 +47,20 @@ You start by checking that the list of anonymized votes indeed adds up to 10 for
 
 **Do all of them need to be checked, or how many confirmations are needed to gain full confidence in the outcome?**
 
-1. Because there were 15 votes, the majority needed to win is 8 votes (`round_up(15/2)`).
-2. Considering the outcome was 10-to-5, if any 3 of the 10 Washington votes had been flipped from originally-Lincoln, the "true count" would have been 8 Lincoln to 7 Washington, changing the winner.
-3. Thus, the margin of error is that 2 votes could have been flipped, without changing the final winner.
-4. Therefore, I could be fully sure that the "true winner" won after **_confirmation from at least 13 voters_** (15 minus 2), who would confirm that they checked their vote was counted correctly, all without needing to compromise their privacy to know _how_ they voted.
+1. If the outcome was 10-to-5, that means the "Margin of Victory" was 5 votes (10 minus 5).
+2. So if any 3 of the 10 Washington votes had been flipped from originally-Lincoln, the "true count" would have been 8 Lincoln to 7 Washington, changing the winner.
+3. Thus, the Margin of Error is that 2 votes could have been flipped, without changing the final winner.
+4. Therefore, you could be fully sure that the "true winner" won after **_confirmation from at least 13 voters_** (15 minus 2), who would confirm that they checked their vote was counted correctly, all without needing to compromise their privacy to know _how_ they voted.
 
 This is a sort of "[naive](https://stackoverflow.com/questions/5700575/what-is-a-naive-algorithm-and-what-is-a-closed-form-solution)", unoptimized solution.
 
 ### Optimizing With Statistical Sampling Math
 
-Rather than needing to check 13 out of 15 votes, if we use random statistical sampling, we can gain quite high confidence in the outcome, far more efficiently.
+Rather than needing to confirm 13 out of 15 votes, if we use random statistical sampling, we can gain quite high confidence in the outcome, far more efficiently.
 
 Continuing with our 10 Washington to 5 Lincoln example...
 
-1. Our margin of error, as above, remains that at least 3 votes must have been flipped to change the final winner: `(winners_votes - runner_ups_votes) / 2`
+1. Our Margin of Error remains 2, so at least 3 votes must have been flipped to change the final winner. `(winners_votes - runner_ups_votes) / 2`
 2. Let us randomly sample just 1 out of the 15 voters, and confirm with the voter that their vote was included correctly in the final tally, without needing to learn _how_ they voted.
 3. If the election was fraudulent, at least 3 of the votes must have been flipped, & 12 could remain as originally cast. So testing this first voter to confirm their vote was correct should "detect" if the election was fraudulent with probability 3 out of 15, or 20% of the time. In other words, just this single test can bring our confidence in a "correct" winner from 0% to 20%.
 4. If we then randomly sample another voter, and they confirm their vote was counted correctly, this could have detected a cheating election with probability 3 out of 14: each test decreases the denominator by one.
@@ -88,7 +88,7 @@ Here is the basic formula continued for all 15 votes:
 | 14 | 3 | 2 | 100% | 0% | 0.0% | 100.0% |
 | 15 | 3 | 1 | 100% | 0% | 0.0% | 100.0% |
 
-The power of an Risk Limiting Audit (RLA) is that you don't need to check all 15 votes. This RLA math shows that in this sample 15-vote election, just 3 random checks alone gives over 51% confidence, 6 checks gives over 81% confidence, and 8 checks give over 91% confidence.
+The power of a Risk Limiting Audit (RLA) is that you don't need to check all 15 votes. This RLA math shows that in this sample 15-vote election, just 3 random checks alone gives over 51% confidence, 6 checks gives over 81% confidence, and 8 checks give over 91% confidence.
 
 Note that "confidence" is shorthand for "If there had been enough compromised votes to flip the election's winner, we've now manually reconfirmed enough votes that we would have detected it this % of this time".
 
@@ -156,7 +156,7 @@ We have covered the **confirmatory case (#1)** above.
 
 An **inconclusive confirmation (#2)** doesn't tell us any information positive nor negative about the overall confidence. The statistical implication is as if that vote was not checked.
 
-A discovery of an **incorrectly tallied vote (#3)** does negatively affect the overall confidence.
+The discovery of an **incorrectly tallied vote (#3)** does negatively affect the overall confidence.
 
 Note that if a vote is discovered to have been compromised, the standard SIV protocol for [Remediating Compromised Votes](/verifiability/remediating-compromised-votes) can always be used, so voters can submit their correct replacement selections.
 
