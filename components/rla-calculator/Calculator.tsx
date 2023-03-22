@@ -195,7 +195,7 @@ export const Calculator = () => {
             />
           </label>
 
-          <label className='ml-5 text-sm'>
+          <label className='block text-sm sm:inline-block sm:ml-5'>
             <input
               type='checkbox'
               className='mr-2'
