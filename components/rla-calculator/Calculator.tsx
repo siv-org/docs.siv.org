@@ -50,6 +50,9 @@ export const Calculator = () => {
     if (winnerTotal < 0 || runnerUpTotal < 0)
       return setError("Winner's Total and Runner-Up's Total both must be > 0")
 
+    if (winnerTotal < runnerUpTotal)
+      return setError("Winner can't be less than Runner-Up")
+
     setResult(highestKAboveConfidence(samples, p, confidence))
   }
 
@@ -112,7 +115,11 @@ export const Calculator = () => {
         </div>
       </div>
 
-      {error && <div className='mt-3 text-red-400'>{error}</div>}
+      {error && (
+        <div className='mt-3 text-red-400'>
+          <b>Error</b>: {error}
+        </div>
+      )}
 
       {/* Paragraph answer */}
       <>
@@ -145,7 +152,11 @@ export const Calculator = () => {
           <div className='mt-2 italic font-semibold'>
             {/* Exact answer */}
             {result === null ? (
-              'Loading...'
+              !!error ? (
+                'Fix error above'
+              ) : (
+                'Loading...'
+              )
             ) : result === -1 ? (
               <span className='text-purple-300'>
                 Not possible with this sample size
