@@ -243,9 +243,10 @@ We can extend this approach one step farther and calculate the various minimum S
 
 To illustrate, we will apply this approach to the 2020 U.S. Presidential Election in Georgia, with its razor-thin Margin of Error of only 0.12%:
 
+{' '}
 <img
   src='/images/georgia-samples.png'
-  className='shadow-lg mt-4 max-w-xl mx-auto'
+  className='shadow-lg mt-4 xl:max-w-xl mx-auto'
 />
 
 We see similar results as calculated using the initial approach above, where we saw that 5000 confirmations resulted in ~99.7% confidence, just shy of the 5862 needed to cross the 99.9% threshold. But now, by using a Binomial Distribution, we can also factor in the discovery of compromised votes.
