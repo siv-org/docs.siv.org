@@ -50,8 +50,8 @@ ChartJS.register(
 
 export const BinomialGraph = ({ n, k, total, confidence, scaleGraph }) => {
   const [chartData, setChartData] = useState(null)
-  const pmf = [...Array(n + 1)].map((_, i) =>
-    memoizedBinomialProbability(n, i, k / n)
+  const pmf = [...Array(n + 1)].map(
+    (_, i) => memoizedBinomialProbability(n, i, k / n) * 100
   )
   let memo = 0
 
@@ -62,7 +62,7 @@ export const BinomialGraph = ({ n, k, total, confidence, scaleGraph }) => {
       ),
       datasets: [
         {
-          label: 'Binomial Probability Density',
+          label: 'Binomial Probability',
           data: pmf,
           backgroundColor: 'rgba(75, 192, 192, 0.6)',
           borderColor: 'rgba(75, 192, 192, 1)',
@@ -103,16 +103,34 @@ export const BinomialGraph = ({ n, k, total, confidence, scaleGraph }) => {
             y: {
               title: {
                 display: true,
-                text: 'Probability'
+                text: 'Probability %'
               }
             }
           },
           plugins: {
             // @ts-expect-error
             horizontalLine: {
-              yValue: confidence, // The y-axis value where you want to draw the horizontal line
+              yValue: confidence * 100,
               color: 'hsla(120, 100%, 40%, 0.5)',
               lineWidth: 2
+            },
+            tooltip: {
+              callbacks: {
+                title: ([point]) => {
+                  const kValue = point.label
+                  const isCumulative =
+                    point.dataset.label === 'Cumulative Binomial Probability'
+                  return `${isCumulative ? '' : 'Exactly '}${kValue}${
+                    isCumulative ? ' or less' : ''
+                  } Compromised Votes ${
+                    scaleGraph
+                      ? `in ${total.toLocaleString()} Total`
+                      : `per ${n} sampled`
+                  }`
+                },
+                label: (point) =>
+                  `${point.dataset.label}: ${point.formattedValue}%`
+              }
             }
           }
         }}
