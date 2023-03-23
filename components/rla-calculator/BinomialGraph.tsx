@@ -59,7 +59,8 @@ export const BinomialGraph = ({
   scaleGraph
 }) => {
   const [chartData, setChartData] = useState(null)
-  const pmf = [...Array(n + 1)].map(
+  const maxX = (k + 3) * 3
+  const pmf = [...Array(Math.min(n + 1, maxX))].map(
     (_, i) => memoizedBinomialProbability(n, i, k / n) * 100
   )
   let memo = 0
@@ -103,7 +104,7 @@ export const BinomialGraph = ({
             maintainAspectRatio: false,
             scales: {
               x: {
-                max: (k + 2) * 4,
+                max: maxX,
                 title: {
                   display: true,
                   text: `Estimated # of Compromised Votes ${

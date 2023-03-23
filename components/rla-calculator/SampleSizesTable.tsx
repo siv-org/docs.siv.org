@@ -4,7 +4,7 @@ import { SampleSizesGraph } from './SampleSizesGraph'
 
 export const SampleSizesTable = ({ p, confidence, totalVotesCast }) => {
   const [minK, setMinK] = useState<number>(0)
-  const [maxK, setMaxK] = useState<number>(0)
+  const [maxK, setMaxK] = useState<number>(2)
   const sampleSizes =
     minK > maxK ? null : findMinN(p, confidence, minK, maxK, totalVotesCast)
 
