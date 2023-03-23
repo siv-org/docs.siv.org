@@ -21,6 +21,13 @@ const defaults = {
   confidence: 0.999,
   samples: 400
 }
+// const defaults = {
+//   winner: 550,
+//   runnerUp: 430,
+//   total: 1000,
+//   confidence: 0.9,
+//   samples: 200
+// }
 
 export const Calculator = () => {
   const [winnerTotal, setWinnerTotal] = useState(defaults.winner)
@@ -223,7 +230,8 @@ export const Calculator = () => {
                 n: samples,
                 total: totalVotesCast,
                 confidence,
-                scaleGraph
+                scaleGraph,
+                marginOfError
               }}
             />
           )}

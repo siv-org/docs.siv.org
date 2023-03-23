@@ -24,7 +24,6 @@ const horizontalLinePlugin: Plugin<'bar', HorizontalLinePluginOptions> = {
     const { yValue, color, lineWidth } = options
 
     const yAxis = scales.y
-
     if (!yAxis) return
 
     const y = yAxis.getPixelForValue(yValue)
@@ -48,7 +47,17 @@ ChartJS.register(
   horizontalLinePlugin
 )
 
-export const BinomialGraph = ({ n, k, total, confidence, scaleGraph }) => {
+const safeColor = 'hsla(222, 100%, 60%, 0.6)'
+const unsafeColor = 'hsla(222, 100%, 30%, 0.8)'
+
+export const BinomialGraph = ({
+  n,
+  k,
+  total,
+  confidence,
+  marginOfError,
+  scaleGraph
+}) => {
   const [chartData, setChartData] = useState(null)
   const pmf = [...Array(n + 1)].map(
     (_, i) => memoizedBinomialProbability(n, i, k / n) * 100
@@ -71,8 +80,10 @@ export const BinomialGraph = ({ n, k, total, confidence, scaleGraph }) => {
         {
           label: 'Cumulative Binomial Probability',
           data: pmf.map((p) => (memo += p)),
-          backgroundColor: 'hsla(222, 100%, 60%, 0.6)',
-          borderColor: 'hsl(222, 100%, 60%)',
+          backgroundColor: pmf.map((_, i) =>
+            i <= (marginOfError * n) / total ? safeColor : unsafeColor
+          ),
+          borderColor: 'hsla(222, 100%, 70%, 60%)',
           borderWidth: 1
         }
       ]
@@ -83,58 +94,74 @@ export const BinomialGraph = ({ n, k, total, confidence, scaleGraph }) => {
 
   return (
     <div>
-      <Bar
-        height={300}
-        data={chartData}
-        options={{
-          maintainAspectRatio: false,
-          scales: {
-            x: {
-              max: (k + 2) * 4,
-              title: {
-                display: true,
-                text: `Estimated # of Compromised Votes ${
-                  scaleGraph
-                    ? `in ${total.toLocaleString()} Total`
-                    : `per ${n} sampled`
-                }`
-              }
-            },
-            y: {
-              title: {
-                display: true,
-                text: 'Probability %'
-              }
-            }
-          },
-          plugins: {
-            // @ts-expect-error
-            horizontalLine: {
-              yValue: confidence * 100,
-              color: 'hsla(120, 100%, 40%, 0.5)',
-              lineWidth: 2
-            },
-            tooltip: {
-              callbacks: {
-                title: ([point]) => {
-                  const kValue = point.label
-                  const isCumulative =
-                    point.dataset.label === 'Cumulative Binomial Probability'
-                  return `${isCumulative ? '' : 'Exactly '}${kValue}${
-                    isCumulative ? ' or less' : ''
-                  } Compromised Votes ${
+      <div>
+        <Bar
+          height={300}
+          data={chartData}
+          options={{
+            elements: { bar: { borderWidth: 20 } },
+            maintainAspectRatio: false,
+            scales: {
+              x: {
+                max: (k + 2) * 4,
+                title: {
+                  display: true,
+                  text: `Estimated # of Compromised Votes ${
                     scaleGraph
                       ? `in ${total.toLocaleString()} Total`
                       : `per ${n} sampled`
                   }`
-                },
-                label: (point) =>
-                  `${point.dataset.label}: ${point.formattedValue}%`
+                }
+              },
+              y: {
+                title: {
+                  display: true,
+                  text: 'Probability %'
+                }
+              }
+            },
+            plugins: {
+              // @ts-expect-error
+              horizontalLine: {
+                yValue: confidence * 100,
+                color: 'hsla(120, 100%, 40%, 0.5)',
+                lineWidth: 2
+              },
+              tooltip: {
+                callbacks: {
+                  title: ([point]) => {
+                    const kValue = point.label
+                    const isCumulative =
+                      point.dataset.label === 'Cumulative Binomial Probability'
+                    return `${isCumulative ? '' : 'Exactly '}${kValue}${
+                      isCumulative ? ' or less' : ''
+                    } Compromised Votes ${
+                      scaleGraph
+                        ? `in ${total.toLocaleString()} Total`
+                        : `per ${n} sampled`
+                    }`
+                  },
+                  label: (point) =>
+                    `${point.dataset.label}: ${point.formattedValue}%`
+                }
               }
             }
-          }
-        }}
-      />
+          }}
+        />
+      </div>
+
+      <p className='mt-2 text-xs text-center text-black/50 dark:text-white/60'>
+        <span
+          className='w-[8px] h-[8px] inline-block mb-px mr-1'
+          style={{ backgroundColor: safeColor }}
+        />
+        Within Margin of Error
+        <span
+          className='w-[8px] h-[8px] inline-block mb-px ml-3 mr-1'
+          style={{ backgroundColor: unsafeColor }}
+        />
+        Exceeded Margin of Error
+      </p>
     </div>
   )
 }
