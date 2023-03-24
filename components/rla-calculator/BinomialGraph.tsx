@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import { Bar } from 'react-chartjs-2'
 import {
   Chart as ChartJS,
@@ -8,16 +7,12 @@ import {
   Tooltip,
   Plugin
 } from 'chart.js'
-
 import { memoizedBinomialProbability } from './math'
 
-type HorizontalLinePluginOptions = {
-  yValue: number
-  color?: string
-  lineWidth?: number
-}
-
-const horizontalLinePlugin: Plugin<'bar', HorizontalLinePluginOptions> = {
+const horizontalLinePlugin: Plugin<
+  'bar',
+  { yValue: number; color?: string; lineWidth?: number }
+> = {
   id: 'horizontalLine',
   afterDraw: (chart, _, options) => {
     const { ctx, scales } = chart
@@ -47,8 +42,8 @@ ChartJS.register(
   horizontalLinePlugin
 )
 
-const safeColor = 'hsla(222, 100%, 60%, 0.6)'
-const unsafeColor = 'hsla(222, 100%, 30%, 0.8)'
+const withinMarginColor = 'hsla(222, 100%, 60%, 0.6)'
+const exceededMarginColor = 'hsla(222, 100%, 30%, 0.8)'
 
 export const BinomialGraph = ({
   n,
@@ -58,48 +53,43 @@ export const BinomialGraph = ({
   marginOfError,
   scaleGraph
 }) => {
-  const [chartData, setChartData] = useState(null)
   const maxX = (k + 3) * 3
   const pmf = [...Array(Math.min(n + 1, maxX))].map(
     (_, i) => memoizedBinomialProbability(n, i, k / n) * 100
   )
-  let memo = 0
   const Xs = [...Array(n + 1)].map((_, i) =>
     scaleGraph ? Math.round(i * (total / n)) : i
   )
-
-  useEffect(() => {
-    setChartData({
-      labels: Xs,
-      datasets: [
-        {
-          label: 'Binomial Probability',
-          data: pmf,
-          backgroundColor: 'rgba(75, 192, 192, 0.6)',
-          borderColor: 'rgba(75, 192, 192, 1)',
-          borderWidth: 1
-        },
-        {
-          label: 'Cumulative Binomial Probability',
-          data: pmf.map((p) => (memo += p)),
-          backgroundColor: pmf.map((_, i) =>
-            i <= (marginOfError * n) / total ? safeColor : unsafeColor
-          ),
-          borderColor: 'hsla(222, 100%, 70%, 60%)',
-          borderWidth: 1
-        }
-      ]
-    })
-  }, [n, k, scaleGraph])
-
-  if (!chartData) return null
+  let memo = 0
 
   return (
     <div>
       <div>
         <Bar
           height={300}
-          data={chartData}
+          data={{
+            labels: Xs,
+            datasets: [
+              {
+                label: 'Binomial Probability',
+                data: pmf,
+                backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+              },
+              {
+                label: 'Cumulative Binomial Probability',
+                data: pmf.map((p) => (memo += p)),
+                backgroundColor: pmf.map((_, i) =>
+                  i <= (marginOfError * n) / total
+                    ? withinMarginColor
+                    : exceededMarginColor
+                ),
+                borderColor: 'hsla(222, 100%, 70%, 60%)',
+                borderWidth: 1
+              }
+            ]
+          }}
           options={{
             elements: { bar: { borderWidth: 20 } },
             maintainAspectRatio: false,
@@ -116,6 +106,7 @@ export const BinomialGraph = ({
                 }
               },
               y: {
+                max: 100,
                 title: {
                   display: true,
                   text: 'Probability %'
@@ -152,15 +143,16 @@ export const BinomialGraph = ({
         />
       </div>
 
+      {/* Legend: Margin of Error Cutoff */}
       <p className='mt-2 text-xs text-center text-black/50 dark:text-white/60'>
         <span
           className='w-[8px] h-[8px] inline-block mb-px mr-1'
-          style={{ backgroundColor: safeColor }}
+          style={{ backgroundColor: withinMarginColor }}
         />
         Within Margin of Error
         <span
           className='w-[8px] h-[8px] inline-block mb-px ml-3 mr-1'
-          style={{ backgroundColor: unsafeColor }}
+          style={{ backgroundColor: exceededMarginColor }}
         />
         Exceeded Margin of Error
       </p>
