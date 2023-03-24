@@ -64,12 +64,13 @@ export const BinomialGraph = ({
     (_, i) => memoizedBinomialProbability(n, i, k / n) * 100
   )
   let memo = 0
+  const Xs = [...Array(n + 1)].map((_, i) =>
+    scaleGraph ? Math.round(i * (total / n)) : i
+  )
 
   useEffect(() => {
     setChartData({
-      labels: [...Array(n + 1)].map((_, i) =>
-        scaleGraph ? Math.round(i * (total / n)) : i
-      ),
+      labels: Xs,
       datasets: [
         {
           label: 'Binomial Probability',
@@ -104,7 +105,7 @@ export const BinomialGraph = ({
             maintainAspectRatio: false,
             scales: {
               x: {
-                max: maxX,
+                max: Xs[maxX],
                 title: {
                   display: true,
                   text: `Estimated # of Compromised Votes ${
