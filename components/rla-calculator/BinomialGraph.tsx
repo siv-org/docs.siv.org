@@ -62,6 +62,15 @@ export const BinomialGraph = ({
   )
   let memo = 0
 
+  if (k === 0 || k === n)
+    return (
+      <div className='mt-2 text-sm italic opacity-60'>
+        <b>Warning:</b> With Compromises Seen = {k === 0 ? '0' : 'Samples'}, the
+        binomial distribution graph is 100% concentrated on one end and cannot
+        provide meaningful insights.
+      </div>
+    )
+
   return (
     <div>
       <div>
