@@ -1,0 +1,9 @@
+{
+  "authentication": "Voter Authentication Attacks",
+  "malware": "Malware On Voter's Devices",
+  "dos": "Denial Of Service",
+  "server-penetration": "Server Penetration",
+  "spoofing": "Spoofing",
+  "privacy": "Privacy Violations",
+  "vote-selling": "Vote Selling"
+}
