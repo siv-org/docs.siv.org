@@ -2,16 +2,12 @@
 title: Voter Authentication Attacks
 ---
 
-The SIV Protocol is intentionally flexible about voter authentication methods. The specific process is up to each jurisdiction's and election's requirements.
+The SIV Protocol is purposefully designed to be adaptable with regard to voter authentication methods, allowing each jurisdiction and election to tailor the process according to their specific requirements. SIV is capable of replicating existing voting protocols, such as the use of unique codes distributed via postal mail or provided in person.
 
-SIV can recreate the existing voting protocols, such as requiring unique codes sent via postal mail or given out in person.
+Essentially, SIV's authentication can be as robust as, if not more so than, traditional paper-based methods. Moreover, it allows for the integration of supplementary authentication techniques, including verified email delivery, SMS, drawn e-signatures, time-based one-time passwords, IP address geolocation, government ID photos, and cryptographic key pairs.
 
-In other words, SIV's authentication can be at least as strong as existing paper approaches.
+It is crucial that the entire SIV voter authentication process remains independently auditable. Additionally, the system permits the revocation of voter credentials at any stage of the election, including post-voting and tallying phases. Consequently, even in cases where credentials are compromised, remedial action remains feasible.
 
-But we can also layer additional authentication methods, such as verified email delivery, SMS, drawn e-signatures, time-based one-time passwords, IP address geolocation, photos of government ID, or using cryptographic key pairs.
+It is important to note that such capabilities are unavailable in paper elections. SIV's innovative approach offers election administrators and legal court orders a powerful, precise remediation toolkit, eliminating the need for unfair precinct-wide vote discarding or costly re-elections.
 
-Importantly, the entire SIV voter authentication process should be independently auditable.
-
-Additionally, all voter credentials can be revoked at any point of the election, including after voting and tallying. This means even if credentials are compromised, the issue can still be fixed.
-
-Note that this is simply not possible with paper elections. It opens up powerful new precision remediation abilities for election administrators and legal court orders, who currently can only unfairly throw out entire precinct's votes or expensively require a new election.
+For a comprehensive explanation of voter authentication and auditing processes, please refer to the section on [Authentication](/authentication).
