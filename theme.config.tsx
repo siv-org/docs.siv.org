@@ -2,7 +2,13 @@ import React from 'react'
 import { DocsThemeConfig, useConfig } from 'nextra-theme-docs'
 
 const config: DocsThemeConfig = {
-  logo: <img className='w-12' src='/images/logo.png' alt='logo' />,
+  logo: (
+    <img
+      className='w-12 cursor-pointer dark:brightness-[50]'
+      src='/images/logo.png'
+      alt='logo'
+    />
+  ),
   project: {
     link: 'https://github.com/dsernst/siv-book'
   },
