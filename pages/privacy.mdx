@@ -19,7 +19,11 @@ Using [Threshold Key Cryptography](https://en.wikipedia.org/wiki/Threshold_crypt
 
 Once a voter makes their selections, all their choices are encrypted on their voting device using Elliptic Curve Cryptography, which is infeasible to brute-force computationally. The plaintext of how they vote never leaves their device.
 
-<img src="/images/encrypted-vote.png" style={{width: "75%" }} class="ml-5 shadow-lg shadow-sky-900/30 my-7" />
+<img
+  src='/images/encrypted-vote.png'
+  style={{ width: '75%' }}
+  class='ml-5 shadow-lg shadow-sky-900/30 my-7'
+/>
 
 This scrambled vote can only be unlocked by a single private key, which is infeasible to guess (only one out of 10^77 possibilities — takes more energy than the sun will produce in its lifetime). The private key itself is split among multiple parties: each one adding an additional layer of privacy against compromise.
 
@@ -36,6 +40,6 @@ The SIV design also allows voters to prepare their encrypted vote submission on 
 This page is a high-level summary of how SIV privacy is achieved. For detailed explanations, read further:
 
 - 15 Minute Overview → [Verifiable Shuffle](https://siv.org/protocol#4), [Votes Unlocked and Tallied](https://siv.org/protocol#5)
-- Technical Specifications → Before Election: [Registering Privacy Protectors](/spec/before-election), [Election Begins](spec/election-begins), [Voting Period Ends](/spec/voting-ends)
+- Technical Specifications → Before Election: [Registering Verifyng Observers](/technical-specifications#c-register-verifying-observers), [Election Begins](/technical-specifications#election-begins), [Voting Period Ends](/technical-specifications#voting-period-ends)
 - Mitigating Attacks → [Privacy Violations](/mitigating-attacks/privacy)
 - Mitigating Attacks → [Vote Selling](/mitigating-attacks/vote-selling)
