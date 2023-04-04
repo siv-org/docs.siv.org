@@ -2,40 +2,41 @@
 title: Vote Selling
 ---
 
-In this section, we will explore multiple arguments on the current status of vote selling and propose a potential solution.
+In this section, we will explore multiple arguments on the current status of vote selling, and then propose a potential solution.
 
 ## The Status Quo Is Already Coercible
 
 1. Mail-in ballots can be easily coerced in person by spouses, bosses, or religious congregation leaders, who can simply ask the voter to sign a blank ballot and hand it over.
-1. Both mail-in and in-person voting are vulnerable to smartphone video recording proofs, which can be used to confirm a vote has been cast in a certain way. It is difficult for voting facilities to detect and enforce against this practice.
-1. Elected representatives are already susceptible to coercion through bribes or indirect "revolving door" appointments, which can have a far more significant impact on constituents than a single coerced vote (e.g. one representative sells out all their constituents, approx. one million in the case of a US Congressional Rep, compared to a single voter selling their vote).
+2. Both mail-in and in-person voting are vulnerable to smartphone video recording proofs, which can be used to confirm a vote has been cast in a certain way. It is difficult for voting facilities to detect and enforce against this practice. We estimate that reviewing such videos at scale could be reliably outsourced for less than $1 each.
+3. According to [The Federal Voting Assistance Program](https://www.fvap.gov/info/reports-surveys/overseas-citizen-population-analysis) there are approx. 3 million US voters abroad, including military personnel. Many such voters already submit votes through plaintext email attachments [or other digital means](https://siv.org/evoting-compared), yet there is no evidence of widespread vote buying or selling.
+4. Elected representatives are already susceptible to coercion through bribes or indirect "revolving door" appointments, which can have a far more significant impact on constituents than a single coerced vote (e.g. one representative sells out all their constituents, approx. one million in the case of a US Congressional Rep, compared to a single voter selling their vote).
+5. Politicians often make promises that have specific monetary value to specific subsets of voters, such as free or subsidized healthcare, education, or specific industry benefits. Such promises often come as "Vote for me and you will get X". This practice can be viewed as a form of vote buying, yet is widely accepted within the political process.
+6. Even without internet voting, there have already been cryptocurrency tokens created that have value if and only if a particular candidate wins, such as the infamous $7.4m TRUMPLOSE tokens revealed in the 2022 FTX bankruptcy. Whether or not internet voting is allowed, conditional financial instruments like these can already be given to persuadable voters, at little cost to would-be bribers if their preferred candidate doesn't win.
 
-## Voter Coercion Is Currently A Theoretical Problem
+## Existing Laws and Their Implications
 
-1. According to [The Federal Voting Assistance Program](https://www.fvap.gov/) there are approx. 4.8 millions US voters abroad, including military personnel. Many such voters already submit votes through plaintext email attachments, with no evidence of widespread vote buying or selling.
-1. There is a lack of clarity regarding the market value of a vote and no concrete evidence that vote buying or selling is currently occurring.
-1. If Secure Internet Voting were to enable widespread coercion, it could always be repealed and replaced with paper-only voting systems.
+7. Current laws impose strong criminal penalties for both briber and bribee, including imprisonment, fines, and the potential loss of voting rights. This has already been in the US criminal code for over 70 years [18 U.S.C. §597](https://www.govinfo.gov/content/pkg/USCODE-2020-title18/html/USCODE-2020-title18-partI-chap29-sec597.htm), carrying up to 2 years jail time and a $10k fine for a single willful instance, for both buyer & seller.
 
-## Existing Laws And Their Implications
+## Voter Coercion Is Hypothetical, not Observed
 
-1. Current laws impose strong criminal penalties for both briber and bribee, including imprisonment, fines, and the potential loss of voting rights. This has already been in the US criminal code for over 70 years [18 U.S.C. §597](https://www.google.com/url?q=https://www.govinfo.gov/content/pkg/USCODE-2020-title18/html/USCODE-2020-title18-partI-chap29-sec597.htm&sa=D&source=docs&ust=1673928068116540&usg=AOvVaw1-AAyNYclRb7Bj1iYXTVbb), carrying up to 2 years jail time and a $10k fine for a single willful instance, for both buyer & seller.
-
-1. The phenomenon of competing bribes could potentially neutralize each other's influence on voters. For instance, if a voter is offered $50 to vote for Candidate A and $35 for Candidate B, the net financial incentive favoring Candidate A over B is a mere $15. Consequently, the corrupting effect may be less significant than it initially seems, especially when considering the inherent risks associated with engaging in such activities, which include the possibility of being caught and facing legal consequences.
+8. Because there is little-to-no existing evidence of voting selling, there is a lack of clarity regarding the market value of a vote.
+9. Even if hypothesized vote selling were to spread, competing bribes would neutralize each other's influence on voters. For instance, if a voter is offered $50 to vote for Candidate A but only $35 for Candidate B (their original favorite), the net financial incentive favoring A over B is $15, not $50. Thus, close races could have far less of a corrupting effect than it would initially seem.
+10. We believe that Secure Internet Voting's many benefits make it well worth it. But if it were to enable widespread coercion, it can still be repealed. Even in a worst-case scenario in which electronic voting is entirely compromised by voting selling, a repeal can still be achieved by legislators, or by citizens in a paper-only referendum.
 
 ## Tradeoff With Verification
 
 There is a fundamental trade-off between receipt-freeness and verifiability in digital voting systems.
 
-MACI is a common example given as a potential solution. However, MACI prioritize coercion resistance over verification against on-device malware or vote privacy. This tradeoff raises questions about which value should be prioritized.
+11. In digital voting settings, MACI ("Minimal Anti-Collusion Infrastructure"), or similar designs, are a common example given as a potential solution to Vote Selling. These are based on the principle of allowing voters to submit multiple times, to trick would-be coercers. Unfortunately, these designs are still not immune to vote selling (e.g. handing over HSM devices, live streaming from the start of the election), and they compromise other security properties. In particular, MACI allows election administrators to see the contents of individual votes, completely sacrifices any protection against on-device malware, and makes verification far more technically complex.
 
-Thousands of voters, candidates, and election officials have been consulted on this matter, and the prevailing consensus is a strong preference for verifiability. This preference demonstrates the value placed on significant improvements in the election process, even if it comes at the expense of receipt-freeness.
+12. Although computer scientists have spent decades writing about the problem and possible solutions to vote selling, there is a fundamental disconnect with other election stakeholders. We have consulted with countless voters, election officials, and candidates (both victorious and not). The vast majority — when presented this fundamental tradeoff between Coercion Resistance & Verifiability — express a strong preference for Verifiability, as well as the other benefits Secure Internet Voting offers. While we are thankful that brilliant Computer Scientists have correctly identified the increased potential of Vote Selling from digital elections, we must point out that the specific judgement of whether the increased risk is acceptable or not is a question for all election stakeholders and not fundamentally a question of Computer Science.
 
-## Political Promises & Their Monetary Value
+## A Stronger Solution
 
-Politicians often make promises that have specific monetary value to voters, such as free healthcare, student debt forgiveness, or industry subsidies. Such promises often come as "Vote for me and you will get X". This practice can be viewed as a form of vote buying, yet is widely accepted within the political process.
+Building upon the current criminal penalties against vote selling, SIV has developed an even stronger potential legal solution that addresses vote selling while preserving voter verifiability, named ["The Vote Seller's Dilemma"](/further-areas/vote-seller-dilemma).
 
-## Potential Solution
+This method rewards defectors (seller or buyer) who reports the vote selling or buying. As a result, trust between the two parties is destroyed, given the always-higher likelihood of one party betraying the other for the offered reward.
 
-Following the current legal solution to criminalize vote selling, SIV developed a potential legal solution that addresses vote selling while preserving voter verifiability named ["Vote Seller's Dilemma"](/further-areas/vote-seller-dilemma).
+With this legal change adopted, internet voting can become even more resistant to vote selling than Vote-by-Mail, because handing over a signed mail ballot creates less evidence for defectors to use than digital coercion creates.
 
-This method rewards the defector (seller or buyer) who reports the vote selling or buying proposition. As a result, the trust between the two parties is destroyed, given the heightened likelihood of one party betraying the other in pursuit of the offered reward.
+For further explanation, see ["The Vote Seller's Dilemma"](/further-areas/vote-seller-dilemma).
