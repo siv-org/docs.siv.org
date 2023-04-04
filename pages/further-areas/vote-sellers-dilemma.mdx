@@ -1,0 +1,105 @@
+---
+title: Vote Sellers Dilemma
+---
+
+Although vote selling is illegal, it is currently hard to detect without one of the two parties revealing the scheme, and therefore hard to enforce laws against it.
+
+If we can make vote selling easier to detect, we can enforce accountability and deter it in the first place. One key insight we can leverage is from Game Theory, specifically based on the two-party Prisoner's Dilemma:
+
+<img
+  src='/images/prisoner-dilemma.png'
+  style={{ width: '50%', margin: 'auto' }}
+/>
+
+The Prisoner’s Dilemma illustrates how each player’s individual interest — the “Nash equilibrium” — can be to always defect, no matter what action the other party takes. As in Prisoner’s Dilemma, our two sides, vote buyer and vote seller, do not know if they can trust each other. Either side can defect, blowing the whistle on the existence of the vote selling arrangement.
+
+We propose to leverage significant criminal penalties to create a strong incentive for either side to defect. In addition to jail time if caught, governments can establish a fine of 100x the agreed-upon vote sale price. This creates outsized risk to any would-be vote buyer or seller.
+
+Additionally, some of the collected fine can be offered as a bounty reward to the defecting party. For example, if buyer & seller agree to a price of $100, the fine could be $10,000, and the bounty could be $500.
+
+**One Proposal:**
+
+    _Agreed price = X_
+
+    _Fine if Caught = X \* 100_
+
+    _Bounty for Reporting = X \* 5_
+
+<img src='/images/voter-dilemma.png' style={{ width: '90%', margin: 'auto' }} />
+
+As with Prisoner’s Dilemma, it is always better for each side to defect. Each side knows it is always better for the other side to defect against them too. This disrupts the two sides’ ability to trust each other.
+
+Any voter who may be hopeful about selling their vote now faces large risks to be caught in a honeypot.
+
+Even if the buyer is outside the jurisdiction, and so harder to catch, the seller does not necessarily know this for sure: it could still be a honeypot operation. Even if the buyer can prove they are outside the jurisdiction, they may still want to simply collect the bounty reward. Therefore, it is always better for the seller to defect than to risk getting defected upon.
+
+The SIV Voting software itself can warn voters about the criminal consequences for participating in a vote-selling scheme, and instruct participants how to report any solicitations:
+
+<img
+  src='/images/mockup-vote-selling.png'
+  style={{ width: '25%', margin: 'auto' }}
+/>
+
+In conclusion, we propose a combination of a strong legal framework — incentivizing both parties to defect, alongside a voting interface that educates all voters about the consequences, rewards for reporting, and how to take action. Together, this can strongly disrupt vote-selling attempts and increase trust in SIV election outcomes.
+
+The above covers the core of the proposal. Below we explore a number of deeper implications.
+
+**1. Government Elections Only**
+
+This Game Theoretic defense against Vote Buying is specifically designed for government elections with a criminal justice mechanism to enforce these rules and collect fines. For non-government elections, it may be possible to recreate a Nash equilibrium towards defecting if voters are required to make a large financial deposit in order to vote, which can be confiscated if vote selling is caught.
+
+**2. SIV’s Remediation Abilities**
+
+SIV has strong forensic and remedial abilities. If or when corruption is discovered, individual votes can still be corrected at any point, whether the corruption is due to vote selling or any other method (e.g. malware). Whether the vote is identified as compromised before the election results are tallied or after, the vote can still be invalidated, the final results retallied, and (if applicable) the voter issued a new vote to cast.
+
+**3. Strengthens Voting by Mail and In-Person Too**
+
+As already mentioned, vote-by-mail and in-person voting are already not completely secure against vote selling attempts. vote-by-mail votes can be trivially transferred by signing a blank ballot and handing it over, or sending it through the mail. In-person is more difficult, but still feasible for voters to prove how they voted with a smartphone camera, by recording a video of a marked ballot being dropped in a ballot box.
+
+The proposed solution incentivizing both parties to defect has the power not only to mitigate vote selling attacks against Internet Voting, but also benefits vote-by-mail and in-person voting too.
+
+**4. Digital Creates More Evidence of Vote Selling**
+
+If one wanted to sell their vote-by-mail ballot, it’s easy to imagine how the corruption may not create any tangible evidence. The seller hands a blank signed ballot in exchange for cash from the buyer. Both parties go their separate ways with little evidence documenting the transaction.
+
+In a SIV election, on the other hand, if a voter tries to sell their vote over some digital channel, there should be sufficient digital evidence for either side to use to report the violation. This means that SIV, in combination with the above proposed strong enforcement framework, can actually achieve even higher resistance to vote selling than vote-by-mail.
+
+**5. Self-Funding Mechanism**
+
+One appealing aspect of the proposed framework is that bounty rewards are effectively self-funding: the 5x reward comes out of the 100x fine collected from the side that gets caught. The remaining 95x should be more than enough to fund enforcement and investigation. Therefore, this system is cost-effective.
+
+**6. Responsive To Need**
+
+If vote selling is rare, there is very little enforcement cost. If vote buying starts becoming more prominent, that creates a financial incentive for people to create more honeypots to catch vote sellers. In other words, this system is self-correcting.
+
+**7. Examining Deniability & Foreign Interference**
+
+Part of the enforcement action comes from the ambiguity to would-be sellers about whether or not the buyer is actually a honeypot operation. For example, some would-be seller visits a website that claims to be based in a foreign jurisdiction and offers to buy votes, but is in fact a local honeypot set up by their neighbors. One possible extreme is if the would-be buyer could somehow prove that they are completely immune from the voting jurisdiction. Perhaps the would-be buyer gives up all deniability, e.g. the voter has some way to be 100% sure the person they are talking to is some stated enemy of the jurisdiction, such as a dictator of a rogue nation. But a few things to note here:
+
+<div style={{ marginLeft: 30}}>
+    a) Even a leader of a rogue nation can still defect to collect the larger bounty.
+
+    b) In order to do this, they would have to give up all possible deniability, which doesn’t match the current paradigm of global cyberattacks, and entails horrible PR.
+
+    c) Doing something like this is nearly at the level of a declaration of war against the voting country’s sovereignty: an extreme act, not taken lightly, with its own methods of deterrence.
+
+</div>
+
+**8. Considering “Iterated” Games**
+
+People familiar with Prisoner’s Dilemma might see a weakness in this approach if the problem is reframed as an Iterated Prisoner’s Dilemma. Although both sides benefit more from defecting in any single round, if they could successfully cooperate for 6 rounds straight, they could earn more financial reward than they would by defecting in the first round. With that said, there are a few arguments to mitigate this threat:
+
+<div style={{ marginLeft: 30}}>
+    a) Neither side necessarily knows they are in the clear after the first round. Their counterparty could be storing and building up more evidence, and can still defect on them later, all at once.
+
+    The criminal statute of limitations can include vulnerability to all past violations, such that multiple 100x fines can easily overwhelm any financial reward they’ve received. In other words, even though it may look like both sides cooperated, they are still accumulating greater and greater liability and counterparty risk. Similarly, each counterparty is accumulating greater and greater possible bounty rewards for revealing the scheme.
+
+    There is an implementation question whether defections far after an election should still pay out bounties. We recommend a reduced bounty for this case, such as 2x rather than 5x, because it is strongly preferred to catch violations before an election is certified, but still valuable to maintain an incentive for either side to defect in the long-term.
+
+    b) Another consideration is that a counterparty could be cooperating in early rounds to establish a positive reputation. This allows them to attract a larger and larger number of victims to be defected upon later.
+
+</div>
+
+In summary, a counterparty cooperating in the past is not strong evidence they will cooperate in the future. Their incentive remains to feign cooperation at first, only to defect later when the potential payoff is even higher. There is always a potential of a “long con”.
+
+Fear of vote selling has been a main blocker for providing citizens with the option of Secure Internet Voting. Now we can implement a strong solution that disrupts any attempts by incentivizing both parties to always defect.
