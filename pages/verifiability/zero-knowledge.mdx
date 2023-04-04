@@ -13,16 +13,16 @@ This property is particularly useful in situations where the prover has some sen
 
 SIV uses multiple Zero-Knowledge Proofs (ZKPs) to prove that an election is correctly conducted, that every vote was counted, and it all added up to one person winning with a particular total.
 
-SIV's two Zero Knowledge Proofs are:
+SIV's two main Zero Knowledge Proofs are:
 
-- Step 4: Zero Knowledge Proof of a Valid Shuffle
-- Step 5: Zero Knowledge Proof of a Valid Partial Decryption
+1. In [Step 4](/technical-specifications#step-4-votes-are-anonymized): Zero Knowledge Proof of a Valid Shuffle
+2. In [Step 5](/technical-specifications#step-5-encrypted-votes-are-unlocked-and-tallied): Zero Knowledge Proof of a Valid Partial Decryption
 
 These ZK Proofs, in particular the Shuffle Proof, come from Dr. Andrew Neff's 2001 paper "[A Verifiable Secret Shuffle and its Application to E-Voting](https://www.freehaven.net/anonbib/cache/shuffle:ccs01.pdf)". They are used to safely implement a cryptographic mixnet, so that votes can be anonymized by multiple indepedent parties, without risk that any of the parties could have possibly switched out or modified any of the underlying vote content.
 
-### Usage
+During Steps 4 and 5, every election Privacy Protector who takes part in the cryptographic shuffle generates their own ZK Proofs. All of these proofs are automatically verified by SIV itself and all of the other Privacy Protectors.
 
-During Steps 4 and 5, every election Privacy Protector who takes part in the cryptographic shuffle generates their own ZK Proof. All of these proofs are automatically verified by SIV itself and all of the other Privacy Protectors.
+SIV also enables a third ZK Proof: [Proof of Voting in a SIV Election](/authentication#zero-knowledge-proof-that-a-device-cast-a-siv-vote), without revealing the underlying vote. This proof is not required to carry out a SIV election, but it can be used to [strengthen Post-Election Audits](/verifiability/rla#carrying-out-a-siv-rla), as well as enabling further civic participation with strong authentication.
 
 ### Defense in Depth
 
