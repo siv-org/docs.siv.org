@@ -2,15 +2,21 @@
 title: The Vote Seller's Dilemma
 ---
 
+Despite common misconceptions, vote selling is already feasible with paper voting. For example, it is trivially easy to sign a blank vote-by-mail ballot and hand it over to a vote buyer. But this concern is magnified by internet voting because potential vote buyers can now more easily be located far away, outside law enforcement’s jurisdiction, and automated.
+
+In the context of public government elections, vote selling is already a serious crime and has been in the US criminal code for over 70 years ([18 U.S.C. §597](https://www.govinfo.gov/content/pkg/USCODE-2020-title18/html/USCODE-2020-title18-partI-chap29-sec597.htm)), carrying up to 2 years jail time and a $10k fine for a single willful instance, for both buyer & seller.
+
+With that said, although vote selling is illegal, it is hard to detect without one of the two parties revealing the scheme, and therefore hard to enforce laws against it.
+
+If we can make vote selling easier to detect, we can enforce accountability and deter it in the first place.
+
 ## Proposed Approach
 
-While vote selling is prohibited, detecting such activity without one of the involved parties exposing the scheme proves challenging, making the enforcement of laws against it difficult.
-
-By enhancing the detection of vote selling, accountability and deterrence can be promoted. A pivotal strategy that can be employed is rooted in Game Theory, specifically drawing from the two-party Prisoner's Dilemma:
+One key insight we can leverage is from Game Theory, specifically drawing from the two-party Prisoner’s Dilemma:
 
 <img
   src='/images/prisoner-dilemma.png'
-  className='w-1/2 mx-auto dark:invert p-3'
+  className='w-1/2 mx-auto dark:invert p-3 my-8'
 />
 
 The Prisoner's Dilemma demonstrates that each player's individual interest, represented by the "Nash equilibrium", may lead to constant defection, irrespective of the other party's actions. Similarly, in the context of vote selling, the two parties involved — the vote buyer and the vote seller — face uncertainty regarding mutual trust. Consequently, both parties can be given a strong incentive to betray the other, disclosing the existence of the vote selling arrangement.
