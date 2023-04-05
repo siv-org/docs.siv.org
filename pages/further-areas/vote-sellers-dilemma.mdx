@@ -2,7 +2,7 @@
 title: The Vote Seller's Dilemma
 ---
 
-Despite common misconceptions, vote selling is already feasible with paper voting. For example, it is trivially easy to sign a blank vote-by-mail ballot and hand it over to a vote buyer. But this concern is magnified by internet voting because potential vote buyers can now more easily be located far away, outside law enforcement’s jurisdiction, and automated.
+Despite common misconceptions, vote selling is already feasible with paper voting. For example, it is trivially easy to sign a blank vote-by-mail ballot and hand it over to a vote buyer. But this concern is magnified by internet voting because potential vote buyers can now more easily be located far away, outside law enforcement's jurisdiction, and automated.
 
 In the context of public government elections, vote selling is already a serious crime and has been in the US criminal code for over 70 years ([18 U.S.C. §597](https://www.govinfo.gov/content/pkg/USCODE-2020-title18/html/USCODE-2020-title18-partI-chap29-sec597.htm)), carrying up to 2 years jail time and a \$10k fine for a single willful instance, for both buyer & seller.
 
@@ -12,52 +12,56 @@ If we can make vote selling easier to detect, we can enforce accountability and 
 
 ## Proposed Approach
 
-One key insight we can leverage is from Game Theory, specifically drawing from the two-party Prisoner’s Dilemma:
+One key insight we can leverage is from Game Theory, specifically drawing from the two-party Prisoner's Dilemma:
 
 <img
   src='/images/prisoner-dilemma.png'
   className='w-1/2 mx-auto dark:invert p-3 my-8'
 />
 
-The Prisoner's Dilemma demonstrates that each player's individual interest, represented by the "Nash equilibrium", may lead to constant defection, irrespective of the other party's actions. Similarly, in the context of vote selling, the two parties involved — the vote buyer and the vote seller — face uncertainty regarding mutual trust. Consequently, both parties can be given a strong incentive to betray the other, disclosing the existence of the vote selling arrangement.
+The Prisoner's Dilemma illustrates how each player's individual interest — the “Nash equilibrium” — can be to always defect, no matter what action the other party takes.
 
-This proposal suggests capitalizing on substantial criminal penalties to generate a powerful incentive for either party to betray the other. Alongside jail time, governments could impose a fine equal to 100 times the agreed-upon vote sale price. Such a measure introduces an enormous risk for potential vote buyers and sellers, effectively deterring their engagement in vote selling schemes.
+### Applicability to Vote Selling
 
-Furthermore, a portion of the collected fine can be designated as a bounty reward for the party that exposes the vote-selling scheme. For instance, if the buyer and seller agree to a price of \$100, a fine of \$10,000 could be imposed, with a \$500 bounty offered to the defector who reports the illicit transaction.
+Similarly, in the context of vote selling, the two parties involved — the vote buyer and the vote seller — face uncertainty regarding mutual trust. Consequently, both parties can be given a strong incentive to betray the other, disclosing the existence of the vote selling arrangement.
+
+This proposal suggests leveraging the substantial criminal penalties to generate a powerful incentive for either party to betray the other. Alongside jail time, governments could impose a fine equal to 100 times the agreed-upon vote sale price.
+
+Critically, a portion of the collected fine can be designated as a bounty reward for the party that exposes the vote-selling scheme. For instance, if the buyer and seller agree to a price of \$50, a fine of \$5,000 could be imposed, with a \$250 reward offered to the defector who reports the illicit transaction, if it leads to successful prosecution.
+
+Such a setup introduces enormous risk for potential vote buyers and sellers, effectively deterring their engagement in vote selling schemes.
 
 **Example Incentive Scheme:**
 
-    _Agreed price = X_
-
-    _Fine if Caught = X \* 100_
-
-    _Bounty for Reporting = X \* 5_
+_Agreed Upon Price = \$P_  
+_Punishment if Caught = Fined \$P × 100 + Jail time_  
+_Reward for Reporting = \$P × 5_
 
 <img
   src='/images/voter-dilemma.png'
-  className='w-[90%] mx-auto dark:invert p-3'
+  className='w-[90%] mx-auto my-5 dark:invert p-3'
 />
 
-In a situation akin to the Prisoner's Dilemma, it is consistently more advantageous for each party to betray the other. Given this understanding, both sides are aware that defection is also the preferable choice for their counterpart. Consequently, the ability of the two parties to trust each other is significantly undermined.
+In a situation akin to the Prisoner's Dilemma, it is consistently more advantageous for each party to betray the other. Given this understanding, both sides are aware that defection is also the preferable choice for their counterpart. Consequently, the ability of the two parties to trust each other is destroyed.
 
 Voters who might have considered selling their votes now confront considerable risks of being ensnared in a trap, as the potential for deception and exposure is substantially heightened.
 
-Even when the buyer is located outside the jurisdiction and may be more difficult to apprehend, the seller cannot be certain of this fact, as they could still be caught in a honeypot operation. Even in cases where the buyer can demonstrate their location outside the jurisdiction, they might be motivated to collect the bounty reward instead. As a result, it is consistently more advantageous for the seller to betray the agreement rather than risk being betrayed themselves.
+Even when the buyer is located outside the jurisdiction and may be more difficult to apprehend, the seller cannot be certain of this fact, as they could still be caught in a honeypot operation. Even in cases where the buyer can demonstrate their location outside the jurisdiction, they might still be motivated to collect the bounty reward instead. As a result, it is consistently more advantageous for the seller to betray the agreement rather than risk being betrayed themselves.
 
-The Secure Internet Voting (SIV) software can serve as a tool to inform voters about the legal ramifications of engaging in vote-selling schemes. By providing clear warnings and instructions on how to report any solicitations, the software can actively discourage participation in such activities and promote a more transparent voting process.
+The SIV voting software can serve as a tool to inform voters about the legal ramifications of engaging in vote-selling schemes. By providing clear warnings and instructions on how to report any solicitations, the software can actively discourage participation in such activities and promote a more honest voting process.
 
 <img
   src='/images/mockup-vote-selling.png'
-  className='w-1/2 mx-auto dark:invert'
+  className='w-1/2 mx-auto my-5 dark:invert'
 />
 
-In conclusion, a dual approach is proposed to combat vote selling. This involves establishing a robust legal framework that incentivizes both parties to betray one another and implementing a voting interface that educates voters about the consequences, reporting rewards, and methods for taking action. By integrating these strategies, the likelihood of vote-selling attempts can be significantly reduced, resulting in greater trust in Secure Internet Voting election outcomes.
+In conclusion, a dual approach is proposed to combat vote selling. This involves establishing a robust legal framework that incentivizes both parties to betray one another, and implementing a voting interface that educates voters about the consequences, reporting rewards, and methods for taking action. By integrating these strategies, the likelihood of vote-selling attempts can be significantly reduced, resulting in greater trust in election outcomes.
 
 ## Further Considerations
 
 In the following sections, we delve into several additional implications and aspects of the proposal:
 
-### Optimal Solution for Government Elections
+### A Solution for Government Elections
 
 The game-theoretic defense against vote buying is tailored specifically for government elections, relying on the criminal justice system to enforce rules and collect fines.
 
@@ -65,7 +69,7 @@ For non-government elections, establishing a Nash equilibrium that favors defect
 
 ### Forensic and Remedial Capabilities of SIV
 
-Secure Internet Voting (SIV) possesses robust forensic and remedial capabilities. In the event of corruption, whether due to vote selling or other methods such as malware, individual votes can be corrected at any stage. Compromised votes can be invalidated, and the final results retallied, regardless of whether the issue is identified before or after tallying the election results. If necessary, affected voters can be issued new ballots to recast their votes.
+Secure Internet Voting (SIV) has robust forensic and [remedial capabilities](/verifiability/remediating-compromised-votes). In the event of corruption, whether due to vote selling or otherwise, individual votes can be corrected at any stage. Compromised votes can be invalidated, and the final results retallied, regardless of whether the issue is identified before or after tallying the election results. If necessary, affected voters can be issued new ballots to recast their votes.
 
 ### Enhancing Security for Mail-In and In-Person Voting
 
@@ -73,19 +77,19 @@ As mentioned in the [Vote Selling](/mitigating-attacks/vote-selling) section, bo
 
 The proposed strategy, which incentivizes both parties to defect, has the potential to not only mitigate vote selling attacks on internet voting systems but also improve the security of mail-in and in-person voting methods.
 
-### Increased Evidence of Vote Selling in Digital Transactions
+### SIV Creates More Evidence of Vote Selling
 
 In the case of selling a mail-in ballot, it is plausible that the corruption may not leave any tangible evidence. The seller could hand over a blank signed ballot in exchange for cash from the buyer, and both parties could part ways without leaving any trace of the transaction.
 
-Conversely, in a Secure Internet Voting (SIV) election, if a voter attempts to sell their vote through a digital channel, there should be ample digital evidence available for either party to report the violation. Consequently, SIV, in conjunction with the aforementioned strong enforcement framework, can potentially achieve even greater resistance to vote selling compared to mail-in voting systems.
+Conversely, for SIV, if a voter attempts to sell their vote through a digital channel, there should be ample digital evidence available for either party to report the violation. Thus SIV — when combined with the proposed strong incentives for reporting — can achieve even greater resistance to vote selling than mail-in voting.
 
 ### Self-Sustaining Enforcement Mechanism
 
-An attractive feature of the proposed framework is its self-sustaining nature: the 5x reward is derived from the 100x fine imposed on the party caught violating the rules. The remaining 95x should be more than sufficient to finance enforcement and investigative efforts. As a result, this system offers a cost-effective approach to combating vote selling.
+An attractive feature of the proposed framework is its self-sustaining nature: the 5x reward is derived from the 100x fine imposed on the party caught violating the rules. The remaining 95x should be sufficient to fund enforcement efforts. As a result, this framework offers a cost-effective approach to combating vote selling.
 
-### Adaptive Enforcement Approach
+### Auto-Adaptive Enforcement
 
-The proposed framework is responsive to the prevalence of vote selling. If vote selling is a rare occurrence, the enforcement costs remain minimal. However, if vote buying becomes more widespread, it generates a financial incentive for individuals to set up honeypots to capture vote sellers. In essence, this system possesses a self-correcting mechanism that adapts to the current situation.
+The proposed framework is responsive to the prevalence of vote selling. If vote selling is a rare occurrence, enforcement costs remain minimal. However, if vote buying becomes more common, it generates a financial incentive for individuals to set up honeypots to capture vote sellers. In essence, this system is a self-correcting mechanism that adapts to the current situation.
 
 ### Investigating Deniability and Foreign Interference
 
@@ -114,3 +118,7 @@ In summary, a counterparty's history of cooperation does not guarantee their con
 ## Opportunity
 
 The apprehension surrounding vote selling has posed a significant obstacle to the implementation of Secure Internet Voting for citizens. By implementing a comprehensive strategy, we can effectively deter vote selling endeavors through promoting continuous defection among both participating parties.
+
+### Further Reading
+
+- An Overview of [Mitigating Vote Selling](/mitigating-attacks/vote-selling)
