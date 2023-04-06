@@ -21,9 +21,19 @@ const config: DocsThemeConfig = {
       <ol className='nx-list-decimal ltr:nx-ml-6 rtl:nx-mr-6' {...props} />
     )
   },
-  useNextSeoProps: () => ({
-    titleTemplate: '%s · SIV'
-  }),
+  useNextSeoProps: () => {
+    const { frontMatter } = useConfig()
+
+    return {
+      titleTemplate: '%s · SIV',
+      description: 'How to run a secure online election',
+
+      openGraph: {
+        title: `${frontMatter.title} · SIV`,
+        description: 'How to run a secure online election'
+      }
+    }
+  },
   main: (props) => {
     const config = useConfig()
     return (
