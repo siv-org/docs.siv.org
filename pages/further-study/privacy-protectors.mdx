@@ -2,62 +2,60 @@
 title: Election Privacy Protectors
 ---
 
-## Limitations of Verifying Observers
+## Limitations of "Verifying Observers" Design
 
-Currently SIV requires a fixed number of Verifying Observers, picked by the election administrator at the beginning of the election. This design introduces 3 issues:
+In the current SIV system, a predetermined number of [Verifying Observers](/verifiability/verifying-observers) are chosen by the election administrator at the beginning of the election. This design presents three notable challenges:
 
-1. It is unclear who to pick exactly as Verifying Observers. And will they accept? Do they understand what's being asked of them?
+1. It is challenging to decide who to pick as a Verifying Observer, and it is uncertain whether the chosen individuals will accept the responsibility or comprehend the expectations associated with their role.
 
-2. Having a small # of Verifying Observers means the privacy of the entire election depends upon just those people and the security of their devices. It would offer a lot greater assurance if there were a larger #, with the same framework that all, or nearly all, need to be compromised to violate the election's privacy. Thorough Defense In Depth.
+2. The small number of Verifying Observers required means that the privacy of the votes depends on these few individuals and the security of their devices. A larger pool of Verifying Observers would significantly enhance the election's privacy protection, operating under the principle that compromising all or nearly all observers would be required to violate the election's confidentiality. This aligns with the concept of Defense in Depth.
 
-3. Yet aside from the difficulty of knowing who to ask to be Verifying Observers, there is always a risk they could lose their key material, one way or another, and all the votes end up getting stuck and unable to decrypt.
+3. Apart from the inherent difficulty in determining whom to invite as Verifying Observers, there is an ever-present risk of these individuals losing their key material for various reasons. This could result in votes becoming irretrievable and undecryptable, causing disruption to the election process.
 
-## Solution
+## Proposed Solution
 
-Real-time, auto-repairing network of Election Privacy Protectors.
+Updating SIV's "Verifying Observers" design to a real-time, auto-repairing network of Election Privacy Protectors.
 
-This could look like a mash-up of the volunteers who run the Tor Network, with the volunteer poll workers who keep elections running smoothly.
+This solution can resemble a hybrid of the volunteer-driven [Tor Network](<https://en.wikipedia.org/wiki/Tor_(network)>) and the dedicated poll workers who ensure a smooth operation of elections.
 
-The goal is that we can make it a far lower barrier to entry to become an additional privacy protector, while also keeping the network able to auto-respond and auto-heal when individual nodes drop offline.
+The objective is to significantly lower the barrier to entry for individuals to become Privacy Protectors, while simultaneously maintaining a network capable of autonomously adapting and recovering when individual nodes drop offline.
 
-## What this looks like
+## Implementation
 
-All the privacy protectors would need to do is open a single webpage, eg siv.org/protector/[election_id] and leave it open. We could also provide an installable executable to run in the background.
+Privacy Protectors would simply need to access a dedicated webpage, such as _https://siv.org/protector/[election_id]_, and keep it open. Alternatively, an installable executable could be provided to run in the background.
 
-Under the hood, this would run regular pings for liveness, automatically perform DKG's initially and again whenever needed, and once enough votes have been received to meet a sufficient anonymization set, the active protectors would each do a shuffle and then provide partial decryptions, all with Zero Knowledge Proofs.
+The system would conduct regular liveness checks, automatically performing Distributed Key Generation (DKG) initially and as needed. Once enough votes have been received to meet a sufficient anonymization set, the active Privacy Protectors would each do a shuffle and then provide partial decryptions, all with Zero Knowledge Proofs. It is important that the DKG employs a t < n threshold key to maintain a buffer in case Privacy Protectors become unreachable.
 
-The DKG would definitely need to be a t < n threshold key, to provide some buffer in case Privacy Protectors become unreachable.
+All Privacy Protectors could be pre-registered with contact information, enabling communication in case their intervention is required. A "log off soon" button could be incorporated to allow automatic opt-out from the next DKG round, with each round sized according to the anonymization set.
 
-Nonetheless, all Privacy Protectors could be pre-registered, with contact information etc, so if really necessary they can be contacted to finish up.
-
-They could even have a “log off soon” button to automatically opt-out of the next DKG round. Each round sized to the anonymization set.
-
-From a voter's point of view, their submitted vote is not totally in the clear until the round has finished and partials provided. Their software can be notified if there was a decryption failure, and resubmit their ballot if necessary. This may require them to be pinged via email to reopen their SIV page.
+From a voter's perspective, their submitted vote would not be fully secure until the round concludes and partial decryptions are provided. In case of decryption failure, the voter's software would be notified, and the ballot could be resubmitted if necessary. This may entail contacting the voter via email to reopen their SIV page.
 
 Key ideas:
 
-1. Recruit privacy protectors via a url, instead of pre-selecting them via email
-2. Split up [vote shuffles](/technical-specifications#step-4-votes-are-anonymized) into smaller rounds.
-3. Voter's software can look up the currently active DKG public key, and retry submission using a new key if needed. “We need to resubmit your vote. All you have to do is reopen your voter link on the same device you originally voted from.”
+1. Utilize a URL to recruit Privacy Protectors instead of pre-selecting them through email.
 
-This allows the privacy protectors to work in shifts, coming online and offline, while keeping the election running smoothly.
+2. Divide [vote shuffles](/technical-specifications#step-4-votes-are-anonymized) into smaller rounds.
 
-Variables to tweak:
+3. Enable the voter's software to look up the currently active DKG public key, allowing for resubmission using a new key if necessary. Voters can be prompted to reopen their voting link on the same device they initially voted from.
+
+This approach facilitates Privacy Protectors working in shifts, allowing them to come online and offline while ensuring a seamless election process.
+
+Parameters to adjust:
 
 - n: total number of key holders
 - t: threshold number of key holders needed to decrypt
-- anonymization set size: will lead to different round lengths. Too small and votes aren't private enough. In theory, the voter themselves could even choose if they want fast-but-small or more-private-but-slower, especially if expected wait times are shown. And “fast” vs “slow” is just a question of when the voter will find out if they need to resubmit. It's still always recoverable! Would expect “slow” to also have bit higher needs to resubmit, though, if more of the nodes dropped off. For really fancy could do a slider with e.g. 5 different options, all dynamically generated on the fly.
+- anonymization set size: will lead to different round lengths — smaller sizes may compromise privacy, while larger sizes can delay results; The voter could potentially choose between faster, smaller sets or slower, more private sets, particularly if estimated wait times are displayed. A slider with multiple options could be implemented for added flexibility.
 
-As far as we know, t & n can be set hierarchically, eg set a small # of very reliable protectors for ~90% threshold requirements, and then a much larger set of less reliable, yet still additive protectors, with 65% threshold requirements. Decrypting would require meeting _both_ thresholds. Then people could graduate from one category to a higher one as they prove their reliability over time.
+It is possible to establish hierarchical settings for t & n, with a smaller number of highly reliable protectors for approximately 90% threshold requirements and a larger group of less reliable, but still valuable protectors with 65% threshold requirements. To decrypt, both thresholds must be met. Over time, individuals could be promoted from one category to a higher one as they demonstrate reliability.
 
-Also, (could use review), this is all still compatible with Information Theoretic Security for Quantum Resistance.
+To the best of our current knowledge, this approach remains compatible with Information Theoretic Security for Quantum Resistance.
 
-It does make Selective Deanonimization a bit more difficult, though, with many more shufflers to get onboard. (Which is sort of the point, privacy becomes harder to break!) But again, all of them can be pre-registered and contacted later, and it's always visible to election admin which Privacy Protectors have not yet cooperated.
+Selective Deanonymization might become more challenging with an increased number of shufflers. However, this also means that privacy is harder to breach. Pre-registering all Privacy Protectors and maintaining contact information for later use allows for streamlined cooperation, and election administrators can easily identify non-cooperative protectors.
 
 ## Comparing to Paper Status Quo:
 
-1. In vote-by-mail, there are various places my vote privacy can be compromised: the postal worker, or people picking up a drop box full of votes, or the election worker separating out signed envelops from marked ballots.
+1. **Vote-by-mail** presents multiple opportunities for privacy breaches, such as postal workers handling the ballots, individuals collecting votes from drop boxes, or election workers separating signed envelopes from marked ballots.
 
-2. In-person, especially with lots of precincts, I have little insight into what happens to my ballot inside the ballot box once I leave. Likewise as people drive the votes to the polling center, and again as the votes are being tabulated. (This all assumes the ballots have an identifiable ID number upon them, which mine always have had).
+2. **In-Person voting**, particularly with numerous precincts, offers limited insight into the handling and security of ballots once they are placed in the ballot box. Concerns also arise during transportation to the polling center and the subsequent tabulation process. (This assumes that ballots have identifiable ID numbers, as is often the case).
 
-3. With this SIV system, although I may not know or trust individual privacy protectors, I have much higher trust that at least some of them are still honest. If the system is easy enough to onboard into, I may even be able to become a temporary privacy protector myself, for say the half hour or so in which I want to cast my vote. Then I do not need to trust anyone else to provide privacy! I can inspect & verify the basic algorithm myself, take part in the shuffle of my vote, and trust the size of the anonymization set.
+3. With **SIV**, voters can have greater confidence in the integrity of the process even if they do not personally know or trust individual Privacy Protectors. If the onboarding process is straightforward enough, a voter could become a temporary Privacy Protector during the time they cast their vote. This eliminates the need to rely on others for privacy assurance. Voters can inspect and verify the basic algorithm themselves, participate in shuffling their vote, and trust in the size of the anonymization set to ensure their vote remains private.
