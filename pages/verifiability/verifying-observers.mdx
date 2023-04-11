@@ -8,7 +8,7 @@ SIV Verifying Observers resemble current election observers, but can greatly enh
 
 Verifying Observers play a crucial role in specific steps of the [SIV protocol](/technical-specifications), particularly [Steps 4 & 5](/technical-specifications#voting-period-ends), which involve the anonymization and subsequent verifiable shuffle of encrypted votes.
 
-As a summary, in Step 4, Verifying Observers help de-link voters' identities from their encrypted votes by first removing the Voter Auth Tokens from the list of encrypted votes. Observer #1 then shuffles the votes, randomizing their order to anonymize them. However, since encryption data is still distinguishable, Observer #1 proceeds to generate new Randomizer integers for each encrypted field and re-encrypts the shuffled votes.
+As a summary, in Step 4, voters' identities are de-linked from their encrypted votes by first removing the Voter Auth Tokens from the list of encrypted votes. Observer #1 then shuffles the votes, randomizing their order to anonymize them. However, since encryption data is still distinguishable, Observer #1 proceeds to generate new Randomizer integers for each encrypted field and re-encrypts the shuffled votes.
 
 As a non-technical explanation, this re-encryption process can be compared to painting over the outside of a locked safe to make it unrecognizable. This ensures that the encrypted votes are fully anonymized and cannot be distinguished or linked back to the voter's identity.
 
@@ -28,4 +28,4 @@ Given the technological nature of this process, only a small number of Verifying
 
 ## Further Study
 
-Under [Further Areas of Study](/further-study/research-in-progress) we talk about transitioning from Verifying Observers to Privacy Protectors, as a way to make it a far lower barrier-to-entry to become an additional Privacy Protector, instead of election officials having the burden to pick a few. All while also keeping the network able to auto-respond and auto-heal when individual nodes drop offline.
+Under [Further Areas of Study](/further-study/privacy-protectors) we talk about transitioning from Verifying Observers to Privacy Protectors, as a way to make it a far lower barrier-to-entry to become an additional Privacy Protector, instead of election officials having the burden to pick a few Verifying Observers. All while also keeping the network able to auto-respond and auto-heal when individual nodes drop offline.
