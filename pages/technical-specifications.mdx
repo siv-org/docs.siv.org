@@ -4,15 +4,15 @@ Three essential pre-election steps, labeled as a, b, and c, must be completed in
 
 ### a. Compile Voter Roll
 
-The Election Administrator is responsible for defining a list of eligible voters. Each voter is assigned a unique Authorization Token ("Voter Auth Token").
+The Election Administrator is responsible for defining a list of eligible voters. Each voter is assigned a unique Voter Authorization Token ("Auth Token").
 
-Auth Tokens, which can only be used once, are necessary for casting a vote. They are designed to be infeasible to guess and are only valid for a single election. The SIV Admin Software automatically generates these tokens with cryptographically secure randomness when an Admin adds a new voter.
+Auth Tokens, which can only be used once, are necessary for casting a vote. They are designed to be infeasible to guess and are only valid for a single election. The SIV Admin Software automatically generates these Auth Tokens with cryptographically secure randomness when an Admin adds a new voter.
 
-These tokens are currently 10-character hexadecimal strings (e.g., 2378bf376d), resulting in $16^{10}$ (= $2^{40}$) or slightly over a trillion possible combinations. Brute force attempts to crack auth tokens are not a significant risk, as IP-address-based validation logging and rate-limiting are in place.
+These Auth Tokens are currently 10-character hexadecimal strings (e.g., 2378bf376d), resulting in $16^{10}$ (= $2^{40}$) or slightly over a trillion possible combinations. Brute force attempts to crack Auth Tokens are not a significant risk, as IP-address-based validation logging and rate-limiting are in place.
 
-Election Administrators have knowledge of all assigned Voter Auth Tokens. When the election begins, each Voter Auth Token is shared with its designated voter. These tokens function like traditional API Authorization Tokens and must be kept confidential.
+Election Administrators have knowledge of all assigned Voter Auth Tokens. When the election begins, each Voter Auth Token is shared with its designated voter. These Auth Tokens function like traditional API Authorization Tokens and must be kept confidential.
 
-Election Administrators have the authority to invalidate individual Auth Tokens and generate new ones as needed, such as in cases where a voter accidentally leaks or loses their token.
+Election Administrators have the authority to invalidate individual Auth Tokens and generate new ones as needed, such as in cases where a voter accidentally leaks or loses their Auth Token.
 
 After the election, all used Auth Tokens can be audited.
 
@@ -54,9 +54,9 @@ SIV's Observer software can be run entirely in the browser, from any relatively 
 
 ### Step 1. Invitations sent to Voters
 
-The Election begins with Administrators delivering to each voter their `Voter Auth Tokens`.
+The election begins with Administrators delivering to each voter their `Voter Auth Tokens`.
 
-The specific process for issuing Voter Tokens is up to Election Administrators.
+The specific process for issuing Auth Tokens is up to Election Administrators.
 
 This can include any combination of:
 
@@ -74,9 +74,9 @@ Each has their own trade-offs in terms of (a) speed, (b) cost, (c) ease-of-use, 
 
 SIV is intentionally flexible and non-prescriptive on this point, to accommodate different elections' and jurisdictions' requirements.
 
-For some voters, such as Overseas voters who already receive invitations to vote via email, sticking with email alone might be sufficient. This can be augmented by also requiring additional factors like drawn signatures, to improve upon existing processes.
+For some voters, such as Overseas Voters who already receive invitations to vote via email, sticking with email alone might be sufficient. This can be augmented by also requiring additional factors like drawn signatures, to improve upon existing processes.
 
-For other voters that are easier to reach via physical mail, Admins can elect to continue to send them physical letters with unique codes per voter to verify their receipt.
+For other voters that are easier to reach via physical mail, Election Administrators can elect to continue to send them physical letters with unique codes per voter to verify their receipt.
 
 In this way, SIV can match the Voter Authentication requirements of existing processes, while upgrading the return ballot process to be faster, more accessible, and fully verifiable.
 
@@ -207,7 +207,7 @@ If it passes, the vote is added to a public list of all votes received so far.
 
 The voter is sent a confirmation email that their encrypted vote has been received and accepted.
 
-This lets the voter know their job is done. It also alerts them in case someone else somehow gained access to their auth token. And it serves as a written receipt that the vote was accepted, to allow for auditing.
+This lets the voter know their job is done. It also alerts them in case someone else somehow gained access to their Auth Token. And it serves as a written receipt that the vote was accepted, to allow for auditing.
 
 Because of the strong encryption, the election administrator still has no way to know how individual voters choose to vote.
 
