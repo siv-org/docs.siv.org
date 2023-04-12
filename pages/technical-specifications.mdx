@@ -185,7 +185,7 @@ None of this data other than their encrypted ciphertexts leaves their device.
 
 ### Step 3. Voters Submit Encrypted Votes
 
-After the voter has reviewed their selections, they can press "Submit" to send their encrypted vote data, along with their unique Voter Auth Token, to the election administrator via the siv.org server.
+After the voter has reviewed their selections, they can press "Submit" to send their encrypted vote data, along with their unique Voter Auth Token, to the Election Administrator via the siv.org server.
 
 This looks like a standard POST request to https://siv.org/submit-vote, with a JSON body like:
 
@@ -209,7 +209,7 @@ The voter is sent a confirmation email that their encrypted vote has been receiv
 
 This lets the voter know their job is done. It also alerts them in case someone else somehow gained access to their Auth Token. And it serves as a written receipt that the vote was accepted, to allow for auditing.
 
-Because of the strong encryption, the election administrator still has no way to know how individual voters choose to vote.
+Because of the strong encryption, the Election Administrator still has no way to know how individual voters choose to vote.
 
 ## Voting Period Ends
 
