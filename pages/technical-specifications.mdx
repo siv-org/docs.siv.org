@@ -1,44 +1,44 @@
 ## Before Election
 
-These three pre-election steps — labeled `a`, `b`, & `c` — can be completed in any order, but are required before the election can begin.
+Three essential pre-election steps, labeled as a, b, and c, must be completed in any order before the election can begin.
 
 ### a. Compile Voter Roll
 
-The Election Administrator must define a list of who is an eligible voter. Every Voter gets assigned a unique Authorization Token ("`Voter Auth Token`").
+The Election Administrator is responsible for defining a list of eligible voters. Each voter is assigned a unique Authorization Token ("Voter Auth Token").
 
-Auth Tokens are required to cast a vote and can only be used once. They are intentionally infeasible to guess, and only valid for a single election. The SIV Admin Software automatically generates them, using cryptographically secure randomness, whenever an Admin adds a new Voter.
+Auth Tokens, which can only be used once, are necessary for casting a vote. They are designed to be infeasible to guess and are only valid for a single election. The SIV Admin Software automatically generates these tokens with cryptographically secure randomness when an Admin adds a new voter.
 
-Currently, they are strings of 10 hexadecimal characters (e.g. `2378bf376d`), which creates $16^{10}$ (= $2^{40}$), a little over a trillion possibilities. Attempting to brute force auth tokens is not currently a risk, because validating them is logged per IP address, and can be rate-limited.
+These tokens are currently 10-character hexadecimal strings (e.g., 2378bf376d), resulting in $16^{10}$ (= $2^{40}$) or slightly over a trillion possible combinations. Brute force attempts to crack auth tokens are not a significant risk, as IP-address-based validation logging and rate-limiting are in place.
 
-All assigned Voter Auth Tokens are known to the Election Administrator. When the election begins, they will be shared with the specific Voter they are assigned to. They act like a traditional API Authorization Token, and should be kept secret from everyone else.
+Election Administrators have knowledge of all assigned Voter Auth Tokens. When the election begins, each Voter Auth Token is shared with its designated voter. These tokens function like traditional API Authorization Tokens and must be kept confidential.
 
-Election Administrators can invalidate individual Auth Tokens & generate new ones, as necessary, such as if a Voter accidentally leaks or loses theirs.
+Election Administrators have the authority to invalidate individual Auth Tokens and generate new ones as needed, such as in cases where a voter accidentally leaks or loses their token.
 
-All used Auth Tokens can be audited after the election.
+After the election, all used Auth Tokens can be audited.
 
 ### b. Finalize Ballot Content
 
-As with traditional paper elections, the Administrator must finalize the questions and options that appear on the ballot.
+Similar to traditional paper elections, the Election Administrator must finalize the questions and options that appear on the ballot.
 
-The SIV Admin software provides both a simple Point-and-Click Ballot Designer interface, as well as a machine-readable JSON Schema interface for advanced editing.
+The SIV Admin software offers a user-friendly Point-and-Click Ballot Designer interface and a machine-readable JSON Schema interface for advanced editing.
 
-Every ballot item should have a unique key, such as "president", "governor", "mayor", "proposition_3".
+Each ballot item should have a unique key, such as "president", "governor", "mayor", or "proposition_3".
 
-SIV is fully compatible with alternative voting methods such as Ranked Choice Voting and Approval Voting. SIV makes it easier to adopt these less common methods because SIV provides real-time user-interface feedback, and can prevent Voters from accidentally invalidating their ballot.
+SIV is fully compatible with alternative voting methods like Ranked Choice Voting and Approval Voting. Real-time user-interface feedback and invalid ballot prevention features make it easier to adopt these less common methods with SIV.
 
 ### c. Register Verifying Observers
 
-The Election Administrator can enroll "Verifying Observers". Each Verifying Observer adds additional assurance for voter privacy.
+The Election Administrator can enroll "Verifying Observers", each adding additional assurance for voter privacy.
 
 Election Administrators choose who to invite, and Verifying Observers must also opt-in by accepting the invitation.
 
-Verifying Observers main role arrives later, after all votes have been submitted, but they must be registered before the election can begin. Later, they individually anonymize all the votes themselves, and verify the SIV Universal Zero-Knowledge Proofs to ensure all votes' integrity. Only after these two vital steps are completed, they work together to unlock the vote's encryption for final tallying.
+Verifying Observers play a crucial role after all votes have been submitted, but they must be registered before the election starts. They individually anonymize votes and verify the SIV Universal Zero-Knowledge Proofs to ensure vote integrity. Only after completing these vital steps do they collaborate to unlock the encrypted votes for the final tally.
 
-To ensure neutrally-credible acceptance of an election's fairness, Observers can be chosen to have competing interests. They are a more powerful version of the traditional concept of Election Observers from in-person elections. Similarly, a reasonable choice would be one Verifying Observer nominated by each candidate's political party, plus the Election Administrator themselves.
+To maintain the neutrality and credibility of election fairness, Observers with competing interests can be chosen. One reasonable choice would be having one Verifying Observer nominated by each candidate's political party, plus the Election Administrator themselves.
 
-Verifying Observers do not need to trust each other, and cannot possibly tamper with votes.
+Verifying Observers do not need to trust each other and cannot tamper with votes.
 
-Once all the Verifying Observers have been selected and accepted their invitation, they together preform a joint Decentralized Key Generation Ceremony to create a $t$-of-$n$ Threshold Public Key, with each of them holding a fractional share of the corresponding Private Key, where $n$ is the number of total trustees, and $t$ is the configured threshold — chosen by the election administrator — required to successfully use the private key.
+After all Verifying Observers have been selected and accepted their invitations, they collectively perform a Decentralized Key Generation Ceremony to create a $t$-of-$n$ Threshold Public Key, each holding a fractional share of the corresponding Private Key. Here, $n$ is the total number of trustees, and $t$ is the configured threshold required to successfully use the private key, as chosen by the election administrator.
 
 Vote privacy is protected even if individual Observers are malicious or compromised, as long as no more than $t$ Observers are compromised. For example, if the key is 4-of-5, up to 3 Observers can be compromised, and privacy is still protected.
 
