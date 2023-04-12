@@ -215,19 +215,17 @@ Because of the strong encryption, the Election Administrator still has no way to
 
 ### Step 4. Votes Are Anonymized
 
-Although the anonymization step is conceptually simple, it involves some strong cryptography.
+The anonymization process, although conceptually straightforward, employs robust cryptographic techniques. Essentially, the objective is to shuffle the list of encrypted votes.
 
-Conceptually, we're simply going to shuffle the list of encrypted votes.
+To prevent traceability during the shuffle, each vote undergoes re-encryption in a manner that maintains the original value but obscures any association with the initial encrypted vote. However, this alone does not guarantee anonymity, as the shuffler would still possess knowledge of the vote permutations.
 
-If we just shuffled the encrypted votes, people could see where they were permuted, so the person shuffling them is also going to re-encrypt each vote in such a way that it cannot be matched with the original, and yet decrypts to the same value.
+To address this concern, each Verifying Observer performs a sequential shuffle, ensuring that no single party can discern the complete shuffling process.
 
-However, this still allows the shuffler to know where the votes went, so we will have each Verifying Observer perform a shuffle sequentially. This way, no single Verifying Observer will know how the votes were shuffled, and neither will anyone else.
+This procedure necessitates an operation that accepts a list of encrypted votes as input and generates a shuffled list of re-encrypted votes as output. Crucially, this operation must enable external observers to verify the integrity of the shuffle via a zero-knowledge proof, confirming that the output list is a valid re-encryption of the input list.
 
-To accomplish this step, we need an operation that takes a list of encrypted votes as input, and outputs a shuffled list of re-encrypted votes, in such a way that external observers can verify that this is what happened, i.e., a zero-knowledge proof that the output list is a re-encrypted shuffle of the input list.
+We employ an algorithm derived from Dr. Andrew Neff's 2004 paper ["Verifiable Mixing (Shuffling) of ElGamal Pairs"](https://people.csail.mit.edu/rivest/voting/papers/Neff-2004-04-21-ElGamalShuffles.pdf). The primary modification involves substituting modular exponentiation with Elliptic Curve Point Multiplication.
 
-We use an algorithm based on Dr. Andrew Neff's 2004 paper ["Verifiable Mixing (Shuffling) of ElGamal Pairs"](https://people.csail.mit.edu/rivest/voting/papers/Neff-2004-04-21-ElGamalShuffles.pdf), with the only difference being that we replace modular exponentiation with Elliptic Curve Point Multiplication.
-
-The proofs of completeness, soundness and zero-knowledge remain the same in the case of Elliptic Curve Point Multiplication, and we get the benefit of a higher ratio of encryption strength to key-size.
+The proofs of completeness, soundness, and zero-knowledge remain valid in the context of Elliptic Curve Point Multiplication, while this adaptation offers the advantage of a higher encryption strength-to-key-size ratio.
 
 ### Step 5. Encrypted Votes Are Unlocked and Tallied
 
