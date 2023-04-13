@@ -1,0 +1,23 @@
+---
+title: Ultra Redundant Data Backups
+---
+
+## What if someone rm -rf's all the votes, screwing up the election?
+
+Implementing a highly secure and redundant storage system is essential for ensuring the integrity and reliability of Secure Internet Voting. A storage solution with no-single-point of failure can protect election data from tampering or loss, while also maintaining accessibility and transparency.
+
+One such promising solution is [Storj](https://www.storj.io), a decentralized, open-source cloud storage platform that leverages peer-to-peer networking to provide ultra-redundant backups.
+
+Using Storj for Secure Internet Voting provides a robust and ultra-redundant backup solution to address concerns about data loss, such as someone attempting to delete all the votes with a command like "rm -rf." Storj can achieve 80x redundancy, ensuring the integrity of the election data as soon as votes enter the system.
+
+The following are some key arguments in favor of using Storj for this purpose:
+
+1. **Decentralized storage**: Storj's decentralized approach eliminates single points of failure and distributes data across numerous nodes in the network. This makes it extremely difficult for an attacker to target and delete all the votes simultaneously.
+
+2. **Data sharding and encryption**: When a vote is cast, it is encrypted and split into smaller pieces called shards. These shards are stored across multiple nodes, adding further redundancy and security. An attacker would need to compromise a significant portion of the network to affect the election data.
+
+3. **Real-time redundancy**: Storj's architecture allows for real-time redundancy, meaning that as soon as a vote is cast and stored on the network, the 80x redundancy is achieved instantaneously. This ensures that even in the event of an attack or data loss, the system can quickly recover and maintain the integrity of the election data.
+
+4. **Network health monitoring**: Storj constantly monitors the health of the network, identifying and replacing any failed or unresponsive nodes. This ensures that the desired redundancy level is maintained and that any potential weaknesses are addressed promptly.
+
+In summary, Storj's decentralized storage solution, combined with data sharding, encryption, real-time redundancy, and network health monitoring, can provide a robust and ultra-redundant backup system for Secure Internet Voting, effectively mitigating the risk of data loss or tampering.
