@@ -39,10 +39,10 @@ export const CompareTable = (): JSX.Element => {
                   <tr className={i == 0 ? 'category-first' : ''} key={i}>
                     {i === 0 && (
                       <td className='no-hover' rowSpan={cat.rows.length}>
-                        {cat.name}
+                        {cat.name}&nbsp;&nbsp;
                       </td>
                     )}
-                    <td className='xs-text-xs'>{row.desc}</td>
+                    <td className='text-sm xs-text-xs'>{row.desc}</td>
                     <td className='text-center'>{row.d_name}</td>
                     {[...row.scores].reverse().map((s, j) => (
                       <td
@@ -99,7 +99,6 @@ export const CompareTable = (): JSX.Element => {
           padding: 0 1rem;
         }
 
-        h1,
         h2 {
           text-align: center;
         }
