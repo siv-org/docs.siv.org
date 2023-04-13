@@ -10,11 +10,6 @@ const methods = ['SIV', 'By Mail', 'In Person']
 export const CompareTable = (): JSX.Element => {
   return (
     <main>
-      <h2>
-        Secure Internet Voting (SIV) <i>vs</i> Vote-By-Mail <i>&amp;</i>{' '}
-        In&#8209;Person
-      </h2>
-
       <section className='landscape-reminder'>
         <RotateRightOutlined /> &nbsp; <b>Tip:</b> Looks better in Landscape
         orientation
