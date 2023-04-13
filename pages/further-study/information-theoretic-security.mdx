@@ -1,0 +1,51 @@
+---
+title: Information Theoretic Security
+---
+
+## Enhancing Security and Quantum-Resistant Cryptography
+
+Can we allow voters to submit their votes, and have strong cryptographic confirmation that it was received, without ever revealing the links between encrypted votes & auth tokens?
+
+This would give the election data published by SIV "information-theoretic security", on top of its existing "computational security" (discrete log hardness).
+
+This makes SIV resistent to future improvements in computation, including theoretical quantum attacks (the communication channel also needs upgrading to a quantum-resistent key exchange cryptosystem like NTRU).
+
+## Simultaneous Security Goals
+
+1. Accuracy: Every voter can be confident that their vote was received & included correctly in the final count.
+
+2. Authentication: Anyone reviewing the election can still be confident that only approved voters are able to cast a single vote.
+
+3. Privacy: Everyone's vote is private.
+
+## Proposed Protocol
+
+1. Admin picks fractional keyholders ("Verifying Observers") to participate in shuffling mixnet, and does a Distributed Threshold Key Generation ceremony to generate a Public key for the election.
+
+2. Admin compiles a list of approved voters, and issues secret auth tokens `A` to each.
+
+3. Each voter makes their selections `V`, encrypts their vote `E(V)`, and submits their vote along w/ their secret auth token to admin `A & E(V)`.
+
+   - For easy Voter Verification, the voter includes a random secret `Verification #` with their plaintext vote, before encrypting.
+
+4. As each vote is received, the admin validates the auth token. If valid, the admin:
+
+   a. keeps a private copy of the encrypted vote `E(V)`;
+
+   b. sends the voter a signed confirmation message that their vote has been received, including a hash of their encrypted vote `H(E(V))`;
+
+   c. Unlike in SIV V1, the admin can now safely publish an updating list, if desired, of who has cast a vote, so observers can follow along as votes are cast, without risking the encrypted votes being linked to individual voters.
+
+5. When the admin is ready, they initiate the unlocking & tally stage:
+
+   a. They publish all of the encrypted votes `E(V)` and accompanying `H(E(V))`. It's important that these be in a different order than received, such as sorted ascending, to not leak the links between the identities posted in 4c.
+
+   b. The Verifying Observers then perform the same v1 cryptographic shuffles + partial decryptions, all published w/ accompanying ZK Proofs.
+
+6. The admin publishes the decrypted votes, w/ easy `Verification #`s, for all to see, tally, & verify.
+
+In summarize, instead of publish encrypted votes in real time as they come in, wait until [Shuffling/Unlocking stage](/technical-specifications#voting-period-ends) to remove the Auth Tokens, re-sort them (breaking links to voters' identities), then publish.
+
+## Complementary Study
+
+This topic is also related to [Automated Reward For Lost Votes](/automated-reward), since the financial guarantee can help people feel more confident that their encrypted vote will be in the final posting.
