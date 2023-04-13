@@ -5,7 +5,7 @@ import { Score, tableData } from './compare-data'
 
 const getScore = (s: Score): number => (typeof s === 'number' ? s : s[0])
 
-const methods = ['SIV', 'By Mail', 'In Person']
+const methods = ['SIV', 'Mail', 'In Person']
 
 export const CompareTable = (): JSX.Element => {
   return (
