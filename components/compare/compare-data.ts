@@ -1,6 +1,11 @@
 export type Score = number | [number, { adv?: string; disadv: string }]
 
-type Row = { d_name: string; desc: string; scores: [Score, Score, Score] }
+type Row = {
+  d_name: string
+  desc: string
+  scores: [Score, Score, Score]
+  scores_with_bounty?: [Score, Score, Score]
+}
 type Category = { name: string; rows: Row[] }
 
 export const tableData: Category[] = [
@@ -19,19 +24,19 @@ Can limit to resident's unique precinct
 Can require photo ID`,
               disadv: `Vulnerable to ballot stuffing: all ballot boxes must be watched at all times by multiple observers
 Limited post-election auditability
-Once ballots accepted, limited remediation options`,
-            },
+Once ballots accepted, limited remediation options`
+            }
           ],
           5,
-          7,
-        ],
+          7
+        ]
       },
       {
         d_name: 'Verifiable results',
         desc: 'How sure are we that the votes were tallied up correctly, without any votes lost or modified?',
-        scores: [5, 3, 9],
-      },
-    ],
+        scores: [5, 3, 9]
+      }
+    ]
   },
   {
     name: 'Honest Vote Selections',
@@ -44,19 +49,20 @@ Once ballots accepted, limited remediation options`,
             6,
             {
               disadv: `Many elections often give ballot unique tracking numbers, making voter selections linkable back to voter's identity by administrators
-Voters are not in control of the space they vote in, and have limited time to inspect or test security`,
-            },
+Voters are not in control of the space they vote in, and have limited time to inspect or test security`
+            }
           ],
           4,
-          8,
-        ],
+          8
+        ]
       },
       {
         d_name: 'Coercion resistance',
         desc: 'How protected are voters against attempts to threaten or purchase their vote selections?',
         scores: [7, 5, 4],
-      },
-    ],
+        scores_with_bounty: [8, 6, 7]
+      }
+    ]
   },
   {
     name: 'Voter Experience',
@@ -64,19 +70,19 @@ Voters are not in control of the space they vote in, and have limited time to in
       {
         d_name: 'Accessibility',
         desc: 'How accessible is the voting process for all members of the electorate, especially those with disabilities?',
-        scores: [5, 6, 8],
+        scores: [5, 6, 8]
       },
       {
         d_name: 'Speed of voting',
         desc: 'How quickly can individual voters participate?',
-        scores: [2, 7, 8],
+        scores: [2, 7, 8]
       },
       {
         d_name: 'Speed of tallying',
         desc: 'How quickly can results be tallied?',
-        scores: [4, 2, 9],
-      },
-    ],
+        scores: [4, 2, 9]
+      }
+    ]
   },
   {
     name: 'Costs',
@@ -84,8 +90,8 @@ Voters are not in control of the space they vote in, and have limited time to in
       {
         d_name: 'Affordability to administer',
         desc: 'How affordable are the total costs to administer a secure election?',
-        scores: [2, 4, 8],
-      },
-    ],
-  },
+        scores: [2, 4, 8]
+      }
+    ]
+  }
 ]

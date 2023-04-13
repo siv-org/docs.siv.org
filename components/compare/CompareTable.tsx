@@ -1,5 +1,6 @@
 import { RotateRightOutlined } from '@ant-design/icons'
-import { Fragment } from 'react'
+import { Switch } from './Switch'
+import { Fragment, useReducer } from 'react'
 
 import { Score, tableData } from './compare-data'
 
@@ -8,13 +9,19 @@ const getScore = (s: Score): number => (typeof s === 'number' ? s : s[0])
 const methods = ['SIV', 'Mail', 'In Person']
 
 export const CompareTable = (): JSX.Element => {
+  const [bountyEnabled, toggleBounty] = useReducer((t) => !t, true)
+
   return (
     <main>
+      <Switch
+        checked={bountyEnabled}
+        onClick={toggleBounty}
+        label='With Vote Seller Bounty Rewards'
+      />
       <section className='landscape-reminder'>
         <RotateRightOutlined /> &nbsp; <b>Tip:</b> Looks better in Landscape
         orientation
       </section>
-
       <section className='table'>
         <table>
           <thead>
@@ -39,47 +46,53 @@ export const CompareTable = (): JSX.Element => {
                     )}
                     <td className='text-sm xs-text-xs'>{row.desc}</td>
                     <td className='!pr-3 text-center'>{row.d_name}</td>
-                    {[...row.scores].reverse().map((s, j) => (
-                      <td
-                        className='text-center tooltip'
-                        key={j}
-                        style={{
-                          backgroundColor: {
-                            1: '#ef4444',
-                            2: '#f87171',
-                            3: '#fca5a5',
-                            4: '#fecaca',
-                            5: '' && 'white',
-                            6: '#bbf7d0',
-                            7: '#86efac',
-                            8: '#4ade80',
-                            9: '#22c55e'
-                          }[getScore(s)]
-                        }}
-                      >
-                        {getScore(s)}
-                        {typeof s !== 'number' && (
-                          <span className='tooltip-text'>
-                            {methods[j]} - {row.d_name}: {s[0]} / 10
-                            <br />
-                            <br />
-                            <i>Advantages:</i> <br />
-                            {!!s[1].adv &&
-                              s[1].adv
+                    {[
+                      ...(bountyEnabled && row.scores_with_bounty
+                        ? row.scores_with_bounty
+                        : row.scores)
+                    ]
+                      .reverse()
+                      .map((s, j) => (
+                        <td
+                          className='text-center tooltip'
+                          key={j}
+                          style={{
+                            backgroundColor: {
+                              1: '#ef4444',
+                              2: '#f87171',
+                              3: '#fca5a5',
+                              4: '#fecaca',
+                              5: '' && 'white',
+                              6: '#bbf7d0',
+                              7: '#86efac',
+                              8: '#4ade80',
+                              9: '#22c55e'
+                            }[getScore(s)]
+                          }}
+                        >
+                          {getScore(s)}
+                          {typeof s !== 'number' && (
+                            <span className='tooltip-text'>
+                              {methods[j]} - {row.d_name}: {s[0]} / 10
+                              <br />
+                              <br />
+                              <i>Advantages:</i> <br />
+                              {!!s[1].adv &&
+                                s[1].adv
+                                  .split('\n')
+                                  .map((l) => ` + ${l}`)
+                                  .join('\n')}
+                              <br />
+                              <br />
+                              <i>Disadvantages:</i> <br />
+                              {s[1].disadv
                                 .split('\n')
-                                .map((l) => ` + ${l}`)
+                                .map((l) => ` - ${l}`)
                                 .join('\n')}
-                            <br />
-                            <br />
-                            <i>Disadvantages:</i> <br />
-                            {s[1].disadv
-                              .split('\n')
-                              .map((l) => ` - ${l}`)
-                              .join('\n')}
-                          </span>
-                        )}
-                      </td>
-                    ))}
+                            </span>
+                          )}
+                        </td>
+                      ))}
                   </tr>
                 ))}
               </Fragment>
@@ -87,11 +100,9 @@ export const CompareTable = (): JSX.Element => {
           </tbody>
         </table>
       </section>
-
       <style jsx>{`
         main {
           margin-top: 2rem;
-          padding: 0 1rem;
         }
 
         h2 {
