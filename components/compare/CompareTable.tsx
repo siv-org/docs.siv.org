@@ -43,7 +43,7 @@ export const CompareTable = (): JSX.Element => {
                       </td>
                     )}
                     <td className='text-sm xs-text-xs'>{row.desc}</td>
-                    <td className='text-center'>{row.d_name}</td>
+                    <td className='!pr-3 text-center'>{row.d_name}</td>
                     {[...row.scores].reverse().map((s, j) => (
                       <td
                         className='text-center tooltip'
