@@ -33,7 +33,7 @@ export const CompareTable = (): JSX.Element => {
       <section className='table'>
         <table>
           <thead>
-            <tr>
+            <tr className='border-white border-[3px] border-b-0'>
               <th>Category</th>
               <th style={{ minWidth: 120 }}>Description</th>
               <th>Name</th>
@@ -46,7 +46,12 @@ export const CompareTable = (): JSX.Element => {
             {tableData.map((cat, c_i) => (
               <Fragment key={c_i}>
                 {cat.rows.map((row, i) => (
-                  <tr className={i == 0 ? 'category-first' : ''} key={i}>
+                  <tr
+                    className={
+                      i == 0 && 'border-t-[#e4e4e4] border-t-4 first:border-t'
+                    }
+                    key={i}
+                  >
                     {i === 0 && (
                       <td className='no-hover' rowSpan={cat.rows.length}>
                         {cat.name}&nbsp;&nbsp;
@@ -170,20 +175,6 @@ export const CompareTable = (): JSX.Element => {
 
         .xs-text-xs {
           color: #555;
-        }
-
-        tr {
-          border: 3px solid #fff;
-          border-bottom-width: 0;
-        }
-
-        tr.category-first {
-          border-top-color: #e4e4e4;
-          border-top-width: 4px;
-        }
-
-        tr.category-first:first-child {
-          border-top-width: 1px;
         }
 
         tbody tr:hover {
