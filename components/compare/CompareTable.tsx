@@ -13,11 +13,19 @@ export const CompareTable = (): JSX.Element => {
 
   return (
     <main>
-      <Switch
-        checked={bountyEnabled}
-        onClick={toggleBounty}
-        label='With Vote Seller Bounty Rewards'
-      />
+      <div>
+        <Switch
+          checked={bountyEnabled}
+          onClick={toggleBounty}
+          label='With Vote Seller Bounty Rewards'
+        />{' '}
+        <a
+          className='text-blue-500 hover:underline'
+          href='/further-study/vote-sellers-dilemma'
+        >
+          (learn more)
+        </a>
+      </div>
       <section className='landscape-reminder'>
         <RotateRightOutlined /> &nbsp; <b>Tip:</b> Looks better in Landscape
         orientation
