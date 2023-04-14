@@ -33,7 +33,7 @@ export const CompareTable = (): JSX.Element => {
       <section className='table'>
         <table>
           <thead>
-            <tr className='border-white border-[3px] border-b-0'>
+            <tr className='border-white border-[3px] dark:border-white/20 border-b-0'>
               <th>Category</th>
               <th style={{ minWidth: 120 }}>Description</th>
               <th>Name</th>
@@ -48,7 +48,8 @@ export const CompareTable = (): JSX.Element => {
                 {cat.rows.map((row, i) => (
                   <tr
                     className={
-                      i == 0 && 'border-t-[#e4e4e4] border-t-4 first:border-t'
+                      i == 0 &&
+                      'border-t-[#e4e4e4] dark:border-t-white/20 border-t-4 first:border-t'
                     }
                     key={i}
                   >
