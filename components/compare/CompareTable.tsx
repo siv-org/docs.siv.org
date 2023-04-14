@@ -54,7 +54,10 @@ export const CompareTable = (): JSX.Element => {
                     key={i}
                   >
                     {i === 0 && (
-                      <td className='no-hover' rowSpan={cat.rows.length}>
+                      <td
+                        className='bg-white text-[#555] dark:bg-[rgb(17,17,17)] dark:text-white/70'
+                        rowSpan={cat.rows.length}
+                      >
                         {cat.name}&nbsp;&nbsp;
                       </td>
                     )}
@@ -180,11 +183,6 @@ export const CompareTable = (): JSX.Element => {
 
         tbody tr:hover {
           background-color: #f5f5f5;
-        }
-
-        .no-hover {
-          background-color: white !important;
-          color: #555;
         }
 
         @media (max-width: 700px) {
