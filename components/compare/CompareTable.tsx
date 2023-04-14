@@ -61,7 +61,7 @@ export const CompareTable = (): JSX.Element => {
                         {cat.name}&nbsp;&nbsp;
                       </td>
                     )}
-                    <td className='text-sm xs-text-xs'>{row.desc}</td>
+                    <td className='text-sm opacity-70'>{row.desc}</td>
                     <td className='!pr-3 text-center'>{row.d_name}</td>
                     {[
                       ...(bountyEnabled && row.scores_with_bounty
@@ -177,10 +177,6 @@ export const CompareTable = (): JSX.Element => {
           font-weight: 600;
         }
 
-        .xs-text-xs {
-          color: #555;
-        }
-
         tbody tr:hover {
           background-color: #f5f5f5;
         }
@@ -192,12 +188,6 @@ export const CompareTable = (): JSX.Element => {
 
           th {
             padding: 0 5px;
-          }
-
-          @media (orientation: portrait) {
-            .xs-text-xs {
-              font-size: 12px;
-            }
           }
         }
 
