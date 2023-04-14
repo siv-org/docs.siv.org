@@ -33,7 +33,7 @@ export const CompareTable = (): JSX.Element => {
       <section className='table mt-4'>
         <table>
           <thead>
-            <tr className='border-white border-[3px] dark:border-white/20 border-b-0'>
+            <tr className='border-white border-[3px] dark:border-white/20 border-b-0 '>
               <th>Category</th>
               <th style={{ minWidth: 120 }}>Description</th>
               <th>Name</th>
@@ -49,7 +49,7 @@ export const CompareTable = (): JSX.Element => {
                   <tr
                     className={
                       i == 0 &&
-                      'border-t-[#e4e4e4] dark:border-t-white/20 border-t-4 first:border-t'
+                      'border-t-[#e4e4e4] dark:border-t-white/20 border-t-4 first:border-t '
                     }
                     key={i}
                   >
@@ -175,10 +175,6 @@ export const CompareTable = (): JSX.Element => {
 
         .bold {
           font-weight: 600;
-        }
-
-        tbody tr:hover {
-          background-color: #f5f5f5;
         }
 
         @media (max-width: 700px) {
