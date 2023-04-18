@@ -30,17 +30,17 @@ SIV is fully compatible with alternative voting methods like Ranked Choice Votin
 
 ### c. Register Verifying Observers
 
-The Election Administrator can enroll "Verifying Observers". Each Verifying Observer adds additional assurance for voter privacy.
+The Election Administrator can enroll "Verifying Observers", each adding additional assurance for voter privacy.
 
 Election Administrators choose who to invite, and Verifying Observers must also opt-in by accepting the invitation.
 
-Verifying Observers main role arrives later, after all votes have been submitted, but they must be registered before the election can begin. Later, they individually anonymize all the votes themselves, and verify the SIV Universal Zero-Knowledge Proofs to ensure all votes' integrity. Only after these two vital steps are completed, they work together to unlock the vote's encryption for final tallying.
+Verifying Observers play a crucial role after all votes have been submitted, but they must be registered before the election starts. They individually anonymize votes and verify the SIV Zero-Knowledge Proofs to ensure vote integrity. Only after completing these vital steps do they collaborate to unlock the encrypted votes for the final tally.
 
-To ensure neutrally-credible acceptance of an election's fairness, Observers can be chosen to have competing interests. They are a more powerful version of the traditional concept of Election Observers from in-person elections. Similarly, a reasonable choice would be one Verifying Observer nominated by each candidate's political party, plus the Election Administrator themselves.
+To maintain the neutrality and credibility of election fairness, Observers with competing interests can be chosen. One reasonable choice would be having one Verifying Observer nominated by each candidate's political party, plus the Election Administrator themselves.
 
-Verifying Observers do not need to trust each other, and cannot possibly tamper with votes.
+Verifying Observers do not need to trust each other and cannot secretly tamper with votes.
 
-Once all the Verifying Observers have been selected and accepted their invitation, they together preform a joint Decentralized Key Generation Ceremony to create a $t$-of-$n$ Threshold Public Key, with each of them holding a fractional share of the corresponding Private Key, where $n$ is the number of total trustees, and $t$ is the configured threshold — chosen by the election administrator — required to successfully use the private key.
+After all Verifying Observers have been selected and accepted their invitations, they collectively perform a Decentralized Key Generation Ceremony to create a $t$-of-$n$ Threshold Public Key, each holding a fractional share of the corresponding Private Key. Here, $n$ is the total number of trustees, and $t$ is the configured threshold required to successfully use the private key, as chosen by the election administrator.
 
 Vote privacy is protected even if individual Observers are malicious or compromised, as long as no more than $t$ Observers are compromised. For example, if the key is 4-of-5, up to 3 Observers can be compromised, and privacy is still protected.
 
