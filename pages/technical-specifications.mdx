@@ -54,13 +54,11 @@ SIV's Observer software can be run entirely in the browser, from any relatively 
 
 ## Election Begins
 
-### Step 1. Invitations sent to Voters
+### Step 1. Invitations Sent to Voters
 
-The Election begins with Administrators delivering to each voter their `Voter Auth Tokens`.
+The election begins with Administrators delivering to each voter their `Voter Auth Tokens`.
 
-The specific process for issuing Voter Tokens is up to Election Administrators.
-
-This can include any combination of:
+The specific process for issuing Auth Tokens is up to Election Administrators and can include any combination of the following methods:
 
 1. Verified email
 2. Verified SMS messages
@@ -72,19 +70,21 @@ This can include any combination of:
 8. Cryptographic public keys
 9. Time-based One-Time Passwords
 
-Each has their own trade-offs in terms of (a) speed, (b) cost, (c) ease-of-use, (d) difficulty to attack, and (e) accessibility.
+Each method has its own trade-offs in terms of (a) speed, (b) cost, (c) ease-of-use, (d) difficulty to attack, and (e) accessibility.
 
 SIV is intentionally flexible and non-prescriptive on this point, to accommodate different elections' and jurisdictions' requirements.
 
-For some voters, such as Overseas voters who already receive invitations to vote via email, sticking with email alone might be sufficient. This can be augmented by also requiring additional factors like drawn signatures, to improve upon existing processes.
+For some voters, such as Overseas Voters who already receive invitations to vote via email, sticking with email alone might be sufficient. This can be augmented by also requiring additional factors like drawn signatures to improve upon existing processes.
 
-For other voters that are easier to reach via physical mail, Admins can elect to continue to send them physical letters with unique codes per voter to verify their receipt.
+For other voters that are easier to reach via physical mail, Election Administrators can choose to continue sending physical letters with unique codes per voter to verify their identity.
 
 In this way, SIV can match the Voter Authentication requirements of existing processes, while upgrading the return ballot process to be faster, more accessible, and fully verifiable.
 
-No matter which methods are chosen, the entire process leaves a written audit trail, for independent verification.
+Regardless of the verification method used, the entire process should leave as much of a written audit trail as possible, for independent verification.
 
-As already mentioned in Pre-A, Election Administrators can invalidate individual Auth Tokens & generate new ones, as necessary for remediation, such as if a voter accidentally leaks or loses theirs.
+As already mentioned in Pre-A "[Compile Voter Roll](/technical-specifications#a-compile-voter-roll)", Election Administrators have the ability to invalidate individual Voter Auth Tokens and generate new ones for remediation purposes, such as if a voter accidentally leaks or loses theirs.
+
+The remediation process is designed to be flexible and adaptable to different situations and requirements, while maintaining the same level of security and verifiability as the initial voter authentication process.
 
 ### Step 2. Voters Make Selections & Encrypt Their Vote
 
