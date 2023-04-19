@@ -191,31 +191,32 @@ None of this data — other than their encrypted ciphertexts — leaves voters' 
 
 ### Step 3. Voters Submit Encrypted Votes
 
-After the voter has reviewed their selections, they can press "Submit" to send their encrypted vote data, along with their unique Voter Auth Token, to the election administrator via the siv.org server.
+After the voter has reviewed their selections, they can press "Submit" to send their encrypted vote data, along with their unique Voter Auth Token, to the Election Administrator via the [siv.org](https://siv.org) server.
 
-This looks like a standard POST request to https://siv.org/submit-vote, with a JSON body like:
+This looks like a standard POST request to https://siv.org/api/submit-vote, with a JSON body like:
 
 ```
 {
   auth: "20bc371dc4",
   election_id: "1658271670580",
-  mayor:
-    {
+  encrypted_vote: {
+    mayor: {
       encrypted: "fc88a5d7e3996bb26c59ea99101571c377e2a4dbb0834f22d30d35ebf990997c",
       lock: "28cb5650c9d9c3c3a93dac60d46702219ddd1f4c301287df7d6cbf6b27fdcc1a"
     }
+  }
 }
 ```
 
-The SIV server automatically checks that the Voter Auth Token matches an eligible voter, and that it hasn't already been used.
+The SIV server automatically checks that the Voter Auth Token matches an eligible voter for that election, and that it hasn't already been used.
 
 If it passes, the vote is added to a public list of all votes received so far.
 
 The voter is sent a confirmation email that their encrypted vote has been received and accepted.
 
-This lets the voter know their job is done. It also alerts them in case someone else somehow gained access to their auth token. And it serves as a written receipt that the vote was accepted, to allow for auditing.
+This lets the voter know their job is done. It also alerts them in case someone else somehow gained access to their Auth Token. And it serves as a written receipt that the vote was accepted, to allow for auditing.
 
-Because of the strong encryption, the election administrator still has no way to know how individual voters choose to vote.
+Because of the strong encryption, the Election Administrator still has no way to know how individual voters choose to vote.
 
 ## Voting Period Ends
 
