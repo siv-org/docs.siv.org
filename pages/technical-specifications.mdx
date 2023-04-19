@@ -1,30 +1,32 @@
 ## Before Election
 
-Three essential pre-election steps, labeled as a, b, and c, must be completed in any order before the election can begin.
+Three essential pre-election steps — labeled `a`, `b`, & `c` — must be completed (in any order) before the election can begin.
 
 ### a. Compile Voter Roll
 
-The Election Administrator is responsible for defining a list of eligible voters. Each voter is assigned a unique Voter Authorization Token ("Auth Token").
+The Election Administrator is responsible for defining a list of eligible voters. Each voter is assigned a unique Voter Authentication Token ("Auth Token").
 
 Auth Tokens, which can only be used once, are necessary for casting a vote. They are designed to be infeasible to guess and are only valid for a single election. The SIV Admin Software automatically generates these Auth Tokens with cryptographically secure randomness when an Admin adds a new voter.
 
-These Auth Tokens are currently 10-character hexadecimal strings (e.g., 2378bf376d), resulting in $16^{10}$ (= $2^{40}$) or slightly over a trillion possible combinations. Brute force attempts to crack Auth Tokens are not a significant risk, as IP-address-based validation logging and rate-limiting are in place.
+These Auth Tokens are currently 10-character hexadecimal strings (e.g. `2378bf376d`), which creates slightly over a trillion possibilities ($16^{10}$ = $2^{40}$). Attempting to brute force auth tokens is not currently a risk, because validating them is logged per IP address, and can be rate-limited.
 
-Election Administrators have knowledge of all assigned Voter Auth Tokens. When the election begins, each Voter Auth Token is shared with its designated voter. These Auth Tokens function like traditional API Authorization Tokens and must be kept confidential.
+All assigned Voter Auth Tokens are known to the Election Administrator. When the election begins, each Voter Auth Token will be shared with its designated voter. These Auth Tokens function like traditional API Authentication Tokens and should be kept confidential.
 
-Election Administrators have the authority to invalidate individual Auth Tokens and generate new ones as needed, such as in cases where a voter accidentally leaks or loses their Auth Token.
+Election Administrators have the ability to invalidate individual Auth Tokens and generate new ones as necessary, such as in cases where a voter accidentally leaks or loses their Auth Token.
 
-After the election, all used Auth Tokens can be audited.
+All used Auth Tokens can be audited after the election. SIV does not automatically publish the list of Auth Tokens and their corresponding voters, but it is up to each election administrator and jurisdiction's requirements whether this is published, shared with a select group (such as candidates & their political parties), or not at all.
+
+Using random statistical sampling, as part of a "Risk Limiting Audit", only a small number of submitted votes need to be individually audited to achieve overwhelmingly high confidence that the outcome of an election was not changed due to attacks on auth tokens.
 
 ### b. Finalize Ballot Content
 
-Similar to traditional paper elections, the Election Administrator must finalize the questions and options that appear on the ballot.
+As with traditional paper elections, the Election Administrator must finalize the questions and options that appear on the ballot.
 
-The SIV Admin software offers a user-friendly Point-and-Click Ballot Designer interface and a machine-readable JSON Schema interface for advanced editing.
+The SIV Admin software provides both a user-friendly Point-and-Click Ballot Designer interface and a machine-readable JSON Schema interface for advanced editing.
 
 Each ballot item should have a unique key, such as "president", "governor", "mayor", or "proposition_3".
 
-SIV is fully compatible with alternative voting methods like Ranked Choice Voting and Approval Voting. Real-time user-interface feedback and invalid ballot prevention features make it easier to adopt these less common methods with SIV.
+SIV is fully compatible with alternative voting methods like Ranked Choice Voting and Approval Voting. Real-time user-interface feedback and invalid ballot prevention features make it easier to adopt these less familiar voting methods.
 
 ### c. Register Verifying Observers
 
@@ -32,11 +34,11 @@ The Election Administrator can enroll "Verifying Observers", each adding additio
 
 Election Administrators choose who to invite, and Verifying Observers must also opt-in by accepting the invitation.
 
-Verifying Observers play a crucial role after all votes have been submitted, but they must be registered before the election starts. They individually anonymize votes and verify the SIV Universal Zero-Knowledge Proofs to ensure vote integrity. Only after completing these vital steps do they collaborate to unlock the encrypted votes for the final tally.
+Verifying Observers play a crucial role after all votes have been submitted, but they must be registered before the election starts. They individually anonymize votes and verify the SIV Zero-Knowledge Proofs to ensure vote integrity. Only after completing these vital steps do they collaborate to unlock the encrypted votes for the final tally.
 
 To maintain the neutrality and credibility of election fairness, Observers with competing interests can be chosen. One reasonable choice would be having one Verifying Observer nominated by each candidate's political party, plus the Election Administrator themselves.
 
-Verifying Observers do not need to trust each other and cannot tamper with votes.
+Verifying Observers do not need to trust each other and cannot secretly tamper with votes.
 
 After all Verifying Observers have been selected and accepted their invitations, they collectively perform a Decentralized Key Generation Ceremony to create a $t$-of-$n$ Threshold Public Key, each holding a fractional share of the corresponding Private Key. Here, $n$ is the total number of trustees, and $t$ is the configured threshold required to successfully use the private key, as chosen by the election administrator.
 
@@ -74,27 +76,29 @@ SIV is intentionally flexible and non-prescriptive on this point, to accommodate
 
 For some voters, such as Overseas Voters who already receive invitations to vote via email, sticking with email alone might be sufficient. This can be augmented by also requiring additional factors like drawn signatures to improve upon existing processes.
 
-For other voters that are easier to reach via physical mail, Election Administrators can elect to continue to send them physical letters with unique codes per voter to verify their receipt.
+For other voters that are easier to reach via physical mail, Election Administrators can choose to continue sending physical letters with unique codes per voter to verify their identity.
 
 In this way, SIV can match the Voter Authentication requirements of existing processes, while upgrading the return ballot process to be faster, more accessible, and fully verifiable.
 
-Regardless of the verification method used, the entire process leaves a written audit trail for independent verification.
+Regardless of the verification method used, the entire process should leave as much of a written audit trail as possible, for independent verification.
 
 As already mentioned in Pre-A "[Compile Voter Roll](/technical-specifications#a-compile-voter-roll)", Election Administrators have the ability to invalidate individual Voter Auth Tokens and generate new ones for remediation purposes, such as if a voter accidentally leaks or loses theirs.
 
 The remediation process is designed to be flexible and adaptable to different situations and requirements, while maintaining the same level of security and verifiability as the initial voter authentication process.
 
-### Step 2. Voters Make Selections & Vote Encryption
+### Step 2. Voters Make Selections & Encrypt Their Vote
 
 Once voters have been successfully authenticated, they can view their blank ballot.
 
-They can make their selections with a simple point-and-click interface, similar to the ease of filling out online forms such as Google Form.
+They can make their selections with a simple point-and-click interface, similar to the ease of filling out a Google Form.
+
+SIV seamlessly adds powerful security features for 1-person-1-vote authentication, cryptographic privacy, and end-to-end voter verifiability.
 
 #### Encryption Overview
 
-The Secure Interactive Voting (SIV) Voter software automatically encrypts each vote selection using Elliptic Curve ElGamal Encryption over the Ristretto255 prime-order subgroup of Curve25519 (IETF RFC 8031), offering a NIST-recommended security level of 128 bits and classified as a "SafeCurve."
+The SIV Voter software automatically encrypts each vote selection using Elliptic Curve ElGamal Encryption over the Ristretto255 prime-order subgroup of Curve25519 ([IETF RFC 8031](https://www.rfc-editor.org/rfc/rfc8031)), offering a NIST-recommended security level of 128 bits and classified as a "SafeCurve".
 
-The Public Key used, which SIV calls the "Encryption Address", is the Threshold Public Key generated by the Verifying Observers in the [Pre-C Ceremony](/technical-specifications#c-register-verifying-observers).
+The encryption's public key, which SIV calls the "Encryption Address", is the Threshold Public Key generated by the Verifying Observers in the [Pre-C Ceremony](/technical-specifications#c-register-verifying-observers).
 
 The following sections outline the steps involved in generating encrypted ciphertexts for each vote:
 
@@ -104,9 +108,9 @@ Before encryption, the SIV Voter software automatically generates a cryptographi
 
 This number is distinct from the `Voter Auth Token`. It is intentionally not known which voter any individual Verification # belongs to, other than to that voter themselves. This includes the Election Administrator and the SIV server.
 
-It is used later, for Post Election Voter Verification, but is necessary to include inside the encrypted ciphertext.
+It is used later, for Post Election Voter Verification, but is necessary to generate now so it can be included inside the encrypted ciphertext.
 
-The SIV Voter software automatically stores the Verification # on the voter's device in the browser LocalStorage, so it can be retrieved later.
+The SIV Voter software automatically stores the Verification # on the voter's device in the [browser LocalStorage](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API), so it can be retrieved later.
 
 #### Aside on Verification # Collisions
 
@@ -127,9 +131,9 @@ The SIV software then reversibly encodes the string to a point in the Ristretto2
 1. Generating a random array of 32 bytes
 2. Overriding the first byte with the length `l` of the encoded string as a single 8-bit byte
 3. Overriding bytes 2 through `l + 1` with a UTF-8 byte encoding of the string.
-4. Converting this `length + encoded string + random bits` to a hexadecimal string, and then checking if it is a valid Ristretto point. If it is not, the embed function loops back again to Step 1 to generate new random bits to try again until it succeeds, which is approximately 1/16th of the time.
+4. Converting this `length + encoded string + random bits` to a hexadecimal string, and then checking if it is a valid Ristretto point. If it is not, the encode function loops back again to Step 1 to generate new random bits to try again until it succeeds, which is approximately 1/16th of the time.
 
-This entire process of finding a valid embedding point can be completed in a single digit number of milliseconds.
+This entire process of finding a valid encoding point can be completed in a single digit number of milliseconds.
 
 #### ElGamal Encryption
 
@@ -144,6 +148,8 @@ and
 ```
 Lock = (Generator * RandomNonce)
 ```
+
+where:
 
 - `+` is Elliptic Curve Point Addition
 - `*` is Elliptic Curve Point Multiplication, a cryptographically hard one-way function
@@ -162,7 +168,7 @@ To avoid leaking which items a voter chose to vote on or not, which could accide
 
 Although a lot happens under the hood, the complex privacy and verification pieces are handled automatically for the voter by the SIV Voter software.
 
-This entire Selection & Encryption step can be completed in a web browser, using any desktop, laptop, or smartphone made in the last few years, without requiring any installations. If necessary, voters can even make use of borrowed devices.
+This entire Selection & Encryption step can be completed in a web browser, using any desktop, laptop, or smartphone made in the last decade, without requiring any installations. If necessary, voters can even make use of borrowed devices.
 
 #### All Vote Data Is Stored On the Voter's Device
 
@@ -179,29 +185,30 @@ This includes:
 - the resulting encrypted ciphertexts
 - a timestamp of when everything was encrypted
 
-Voters can delete this data if they want, but SIV defaults to storing it, to help with later verification, which can done by the voter or via larger Risk-Limiting Audits.
+Voters can delete this data if they want, but SIV defaults to storing it, to help with later verification, which can be done by the voter or via larger Risk-Limiting Audits.
 
-None of this data other than their encrypted ciphertexts leaves their device.
+None of this data — other than their encrypted ciphertexts — leaves voters' devices.
 
 ### Step 3. Voters Submit Encrypted Votes
 
-After the voter has reviewed their selections, they can press "Submit" to send their encrypted vote data, along with their unique Voter Auth Token, to the Election Administrator via the siv.org server.
+After the voter has reviewed their selections, they can press "Submit" to send their encrypted vote data, along with their unique Voter Auth Token, to the Election Administrator via the [siv.org](https://siv.org) server.
 
-This looks like a standard POST request to https://siv.org/submit-vote, with a JSON body like:
+This looks like a standard POST request to https://siv.org/api/submit-vote, with a JSON body like:
 
 ```
 {
   auth: "20bc371dc4",
   election_id: "1658271670580",
-  mayor:
-    {
+  encrypted_vote: {
+    mayor: {
       encrypted: "fc88a5d7e3996bb26c59ea99101571c377e2a4dbb0834f22d30d35ebf990997c",
       lock: "28cb5650c9d9c3c3a93dac60d46702219ddd1f4c301287df7d6cbf6b27fdcc1a"
     }
+  }
 }
 ```
 
-The SIV server automatically checks that the Voter Auth Token matches an eligible voter, and that it hasn't already been used.
+The SIV server automatically checks that the Voter Auth Token matches an eligible voter for that election, and that it hasn't already been used.
 
 If it passes, the vote is added to a public list of all votes received so far.
 
@@ -215,26 +222,26 @@ Because of the strong encryption, the Election Administrator still has no way to
 
 ### Step 4. Votes Are Anonymized
 
-The anonymization process, although conceptually straightforward, employs robust cryptographic techniques. Essentially, the objective is to shuffle the list of encrypted votes.
+The anonymization process, although conceptually straightforward, employs strong cryptographic techniques. Essentially, the objective is to shuffle the list of encrypted votes.
 
-To prevent traceability during the shuffle, each vote undergoes re-encryption in a manner that maintains the original value but obscures any association with the initial encrypted vote. However, this alone does not guarantee anonymity, as the shuffler would still possess knowledge of the vote permutations.
+If the encrypted votes' order was simply permuted, anyone could easily see where the new ciphertext had moved to. To prevent this traceability, each vote undergoes re-encryption in a manner that provably decrypts to the same plaintext value but obscures any association with the initial encrypted vote.
 
-To address this concern, each Verifying Observer performs a sequential shuffle, ensuring that no single party can discern the complete shuffling process.
+However, this alone does not guarantee anonymity, as the shuffler would still possess knowledge of the vote permutations. To address this, multiple Verifying Observer each perform a sequential shuffle, ensuring that no single party can know the complete shuffling order.
 
-This procedure necessitates an operation that accepts a list of encrypted votes as input and generates a shuffled list of re-encrypted votes as output. Crucially, this operation must enable external observers to verify the integrity of the shuffle via a zero-knowledge proof, confirming that the output list is a valid re-encryption of the input list.
+This cryptographic shuffle takes a list of encrypted votes as input and generates a shuffled list of re-encrypted votes as output. Crucially, this shuffle must enable external observers to verify the integrity of the shuffle. This is accomplished with a Zero-knowledge Proof, which confirms that the output list is a valid re-encryption of the input list, i.e. none of the underlying plaintexts were lost or modified.
 
-We employ an algorithm derived from Dr. Andrew Neff's 2004 paper ["Verifiable Mixing (Shuffling) of ElGamal Pairs"](https://people.csail.mit.edu/rivest/voting/papers/Neff-2004-04-21-ElGamalShuffles.pdf). The primary modification involves substituting modular exponentiation with Elliptic Curve Point Multiplication.
+We employ an algorithm derived from Dr. Andrew Neff's 2004 paper ["Verifiable Mixing (Shuffling) of ElGamal Pairs"](https://people.csail.mit.edu/rivest/voting/papers/Neff-2004-04-21-ElGamalShuffles.pdf). The primary modification is replacing modular exponentiation with Elliptic Curve Point Multiplication.
 
-The proofs of completeness, soundness, and zero-knowledge remain valid in the context of Elliptic Curve Point Multiplication, while this adaptation offers the advantage of a higher encryption strength-to-key-size ratio.
+The proofs of completeness, soundness, and zero-knowledge remain the same in the context of Elliptic Curve Point Multiplication, while this adaptation offers a [far higher encryption strength](https://en.wikipedia.org/wiki/Security_level#Typical_levels) even with fast and concise key-sizes.
 
 ### Step 5. Encrypted Votes Are Unlocked and Tallied
 
-Now that the encrypted votes have been shuffled and re-encrypted, it is ok to decrypt them without anyone knowing whose vote is whose.
+Now that the encrypted votes have been shuffled and re-encrypted, they can be safely decrypted without anyone knowing whose vote is whose.
 
-We need to decrypt them without leaking the secret key, because then it could be used to decrypt the original encrypted votes, before they were shuffled.
+But they need to be decrypted without leaking the secret key. Otherwise it could be used to decrypt the original encrypted votes, before they were shuffled.
 
-This decryption is done in another decentralized ceremony, involving a sufficient threshold number of Verifying Observers, whereby each Verifying Observer submits a partial decryption of each vote, but the information is useless beyond that.
+This decryption is done in another decentralized ceremony, involving a sufficient threshold number of Verifying Observers, with each Verifying Observer submitting a partial decryption of each vote.
 
-Note that this decryption is also provable — meaning parties cannot cheat in such a way as to make the vote decrypt to something else without people knowing. These ZK Proofs of a Valid Shuffle are verifiable by everyone, and automatically checked by all the other Verifying Observers & SIV Admin Server.
+Note that this decryption is also provable — meaning parties cannot cheat in such a way as to make the vote decrypt to something else without people knowing. These ZK Proofs of a Valid Partial Decryption are verifiable by everyone, and automatically checked by all the other Verifying Observers & SIV Admin Server.
 
 Once the votes are decrypted, their complete contents are shown to everyone, and it is trivial to tally them. The tally totals can be independently recounted, for confirmation.
