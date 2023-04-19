@@ -236,12 +236,12 @@ The proofs of completeness, soundness, and zero-knowledge remain the same in the
 
 ### Step 5. Encrypted Votes Are Unlocked and Tallied
 
-Now that the encrypted votes have been shuffled and re-encrypted, it is ok to decrypt them without anyone knowing whose vote is whose.
+Now that the encrypted votes have been shuffled and re-encrypted, they can be safely decrypted without anyone knowing whose vote is whose.
 
-We need to decrypt them without leaking the secret key, because then it could be used to decrypt the original encrypted votes, before they were shuffled.
+But they need to be decrypted without leaking the secret key. Otherwise it could be used to decrypt the original encrypted votes, before they were shuffled.
 
-This decryption is done in another decentralized ceremony, involving a sufficient threshold number of Verifying Observers, whereby each Verifying Observer submits a partial decryption of each vote, but the information is useless beyond that.
+This decryption is done in another decentralized ceremony, involving a sufficient threshold number of Verifying Observers, with each Verifying Observer submitting a partial decryption of each vote.
 
-Note that this decryption is also provable -- meaning parties cannot cheat in such a way as to make the vote decrypt to something else without people knowing. These ZK Proofs of a Valid Shuffle are verifiable by everyone, and automatically checked by all the other Verifying Observers & SIV Admin Server.
+Note that this decryption is also provable — meaning parties cannot cheat in such a way as to make the vote decrypt to something else without people knowing. These ZK Proofs of a Valid Partial Decryption are verifiable by everyone, and automatically checked by all the other Verifying Observers & SIV Admin Server.
 
 Once the votes are decrypted, their complete contents are shown to everyone, and it is trivial to tally them. The tally totals can be independently recounted, for confirmation.
