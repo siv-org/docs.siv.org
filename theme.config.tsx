@@ -1,6 +1,8 @@
 import React from 'react'
 import { DocsThemeConfig, useConfig } from 'nextra-theme-docs'
 
+const metaDescription = 'How to run a secure online election'
+
 const config: DocsThemeConfig = {
   logo: (
     <img
@@ -26,13 +28,33 @@ const config: DocsThemeConfig = {
 
     return {
       titleTemplate: '%s · SIV',
-      description: 'How to run a secure online election',
+      description: metaDescription,
 
       openGraph: {
         title: `${frontMatter.title} · SIV`,
-        description: 'How to run a secure online election'
+        description: metaDescription
       }
     }
+  },
+  head: function useHead() {
+    const { title } = useConfig()
+
+    return (
+      <>
+        <meta name='msapplication-TileColor' content='#fff' />
+        <meta name='theme-color' content='#fff' />
+        <meta name='robots' content='index,follow' />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <meta httpEquiv='Content-Language' content='en' />
+        <meta name='description' content={metaDescription} />
+        <meta name='og:description' content={metaDescription} />
+        <meta name='twitter:card' content='summary_large_image' />
+        <meta name='twitter:site:domain' content='book.siv.org' />
+        <meta name='twitter:url' content='https://book.siv.org' />
+        <meta name='og:title' content={title ? title + ' · SIV' : 'SIV'} />
+        <meta name='apple-mobile-web-app-title' content='SIV Book' />
+      </>
+    )
   },
   main: (props) => {
     const config = useConfig()
