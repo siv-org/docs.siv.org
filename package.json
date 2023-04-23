@@ -20,7 +20,7 @@
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
     "chart.js": "^4.2.1",
-    "next": "^13.0.6",
+    "next": "13.3.0",
     "nextra": "latest",
     "nextra-theme-docs": "latest",
     "react": "^18.2.0",

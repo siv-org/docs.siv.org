@@ -6,7 +6,7 @@ SIV Verifying Observers resemble current election observers, but can greatly enh
 
 ## Verifying Observers' Roles
 
-Verifying Observers play a crucial role in specific steps of the [SIV protocol](/15min-overview), particularly [Steps 4 & 5](/spec/voting-ends), which involve the anonymization and subsequent verifiable shuffle of encrypted votes.
+Verifying Observers play a crucial role in specific steps of the [SIV protocol](/15min-overview), particularly [Steps 4 & 5](/technical-specifications#voting-period-ends), which involve the anonymization and subsequent verifiable shuffle of encrypted votes.
 
 As a summary, in Step 4, Verifying Observers help de-link voters' identities from their encrypted votes by first removing the Voter Auth Tokens from the list of encrypted votes. Observer #1 then shuffles the votes, randomizing their order to anonymize them. However, since encryption data is still distinguishable, Observer #1 proceeds to generate new Randomizer integers for each encrypted field and re-encrypts the shuffled votes.
 
