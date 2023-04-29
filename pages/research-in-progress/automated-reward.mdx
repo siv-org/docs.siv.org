@@ -3,63 +3,122 @@ part: Further Areas of Study
 title: Financially Guaranteeing Vote Integrity
 ---
 
-Imagine that once your election administrators confirmed that your vote was successfully received, you have the confidence that it will be in the final tally, and their claim is backed by automatic financial guarantees. This means if you vote on Day 6 of a 30 day voting period, you can have strong confidence that once your vote has been confirmed (on Day 6), you don't need to return back again two weeks later when the voting period ends (on Day 30).
+Imagine that once your election administrator confirmed your vote was successfully received, you have the confidence that it will be in the final tally, and their claim is backed by significant financial guarantees.
 
-Here's how it works at a high level: After you cast your vote, you receive a signed vote submission receipt via email. If for any reason your vote does not make it into the final tally, you can automatically claim a large financial payoff. Because these are cryptographic claims, paying out rewards can even be automatically enforced and executed with smart contract escrows.
+This means if you vote on Day 1 of a 7 day voting period, you can have strong confidence that once your vote has been confirmed on Day 1, you don't need to return back again a week later when the voting period ends on Day 7.
 
-This can create a strong incentive for voters to report any issues and can fund technical assistance for those who need it. And, if no claims are made within 30 days, the money is returned to the voting system.
+### Proposed Design
 
-If the pot is large enough and well advertised, the lack of any valid reports serves as further indication that voters did not have trouble finding their vote in the final tally.
+After you cast your vote, you receive an unforgeably-signed Vote Submission Receipt. This is stored in the browser LocalStorage on your voting device, and also emailed to your address on file as an additional backup. If, for any reason, your vote does not make it into the final tally, you can use this signed receipt to claim a large financial payoff.
 
-This system can be implemented by posting full Merkle Tree of all submitted votes to blockchain and using a smart contract to hold bounty money in escrow. You can send your signed submission receipt to the smart contract. If the submission receipt is validly signed, and the vote doesn't appear in the final Merkle Tree, you can automatically collect the bounty. If no one claims the bounty in 30 days, the bounty is returned to SIV.
+#### Protocol Coverage
+
+This mechanism specifically protects [SIV Protocol Step 3: Submitting Encrypted Votes](/technical-specifications#step-3-voters-submit-encrypted-votes). It can serve as an additional layer of a strong Defense-in-Depth strategy.
+
+It's important to note that this mechanism cannot help if a vote is corrupted _before_ it is submitted, such as by [malware on a voter's devices](/mitigating-attacks/malware). For this reason, each SIV Protocol Step has its own specialized defenses.
+
+### Impact
+
+Initially, at small amounts, this acts as a bounty incentive to identify and strengthen SIV.
+
+This can create a stronger incentive for voters to report any issues, and fund deeper technical assistance for those who need it.
+
+Many people wonder if other voters will take the time to verify their vote. Even without this, they should if they're upset about the election outcome. But if they truly think there was an issue, especially regarding their own vote, this mechanism serves as a strong incentive for them to provide evidence. Likewise, it helps to dispel any potentially false claims. "If your vote was truly lost, you can claim your large $ reward. Why aren't you?"
+
+As the pot grows larger and is well-advertised, the lack of any valid reports serves as further indication that voters did not have trouble finding their vote in the final tally.
+
+#### Supporting Multiple Claimers
+
+The simplest implementation is for the first person to successfully claim to get the entire bounty amount. But it is useful to get more information on whether there was just a single issue, or a handful, or a large number. To encourage this, rather than paying out 100% of the pot to the first successful claim, they could receive a smaller % between 0 and 100. The 2nd would receive that smaller % of the remainder, and so on.
+
+E.g. for a hypothetical $10k pot, with a 70% reward, the first 3 would be:
+
+| #   | % of Original | $     | $ remaining |
+| --- | ------------- | ----- | ----------- |
+| 1   | 70%           | $7000 | $3000       |
+| 2   | 21%           | $2100 | $900        |
+| 3   | 6.3%          | $630  | $270        |
+
+### Legally-Backed Enforcement
+
+Such a financial guarantee can be offered with the backing of the traditional legal system.
+
+This is familiar, easy to understand, and relatively easy to get started with.
+
+## Automatic Enforcement Using Smart Contract Escrows
+
+Because these are cryptographic claims, paying out rewards can be upgraded for automatic enforcement executed in seconds by Smart Contract escrows.
+
+This would mean:
+
+1. The funds are set aside upfront.
+1. It's much harder for the guarantor to fail to uphold their promise.
+1. The per-election transaction costs, whether a successful claim is made or not, can be vastly lower.
+1. Successfully claiming the funds can quickly be done at home, rather than involving any sort of lengthy court process.
+1. Everyone is able to transparently see if and when funds are ever successfully claimed.
+
+### High-level Summary
+
+This system can be implemented by:
+
+1. Using a smart contract to put bounty money in escrow.
+1. Posting the full Merkle Tree of all submitted votes.
+1. Voters can send their signed submission receipt to the smart contract.
+1. If the submission receipt is validly signed, and the vote doesn't appear in the final Merkle Tree, the bounty reward is automatically paid out to them.
+1. If no one claims the bounty in X days after the votes were posted, the bounty is returned to the original guarantor.
 
 ### Technical details:
 
-Requires 3 transactions:
+The main transactions:
 
-#### #1. At the start of the election, SIV posts:
+#### #1. At the start of the election, SIV puts bounty funds into escrow
 
 An initial transaction with:
 
-a) the election_id  
-b) the committed bounty claim amount (in a USD stablecoin like USDC)  
+a) the committed bounty amount (in a USD stablecoin like USDC)  
+b) the election_id  
 c) the public key that will sign submission receipts of accepted votes
 
-#### #2. At the end of the election, SIV posts:
+#### #2. At the end of the election, SIV posts hashes of all the submitted votes
 
-a) election_id (should match 1a)  
-b) a Merkle Tree of all the accepted votes.
+a) a Merkle Tree of all the accepted votes  
+b) election_id (should match 1b)
 
-- Size estimate: 256 bits for each hash \* num of votes \* 2 (for Merkle Tree height)
-- So for an election with 100k voters => ~51 megabits or 6MB.
+**Size estimate:**  
+256 bits for each hash \* num of votes \* 2 (for Merkle Tree height)  
+So an election with 100k votes => ~51 megabits or 6MB.
 
-#### #3. Anyone can then post a "bounty claim transaction":
+#### #3. Anyone can then post a "bounty claim transaction"
 
 This requires their signed vote confirmation receipt.
 
 In response to Transaction 3, the smart contract checks:
 
-1. Does the election_id match 1a?
+1. Does the election_id match 1b?
+1. Does this confirmation receipt have a valid signature, from the key in 1c?
+1. Is the hash of the vote in the confirmation receipt truly missing from the Merkle tree posted in 2a?
 
-2. Does this confirmation receipt have a valid signature, from the key in 1c?
+If all 3 checks pass, send the bounty from 1a to the address that posted transaction 3.
 
-3. Is the hash of the vote in the confirmation receipt truly missing from the Merkle tree posted in 2b?
+### Other Design Considerations:
 
-If all 3 checks pass, send the bounty from 1b to the address that posted transaction 3.
+#### MEV Defense
 
-#### Anti-MEV
+To prevent front-running, transaction #3 should be separated into two separate blocks: commit then reveal.
 
-To prevent front-running, separate transaction #3 into 2 separate blocks:
+**3a**: Submit hash of the signed receipt + claimer's address.  
+**3b**: Reveal the full valid signed receipt, matching the 3a hash.
 
-- 3a is a hash of the signed receipt
-- then 3b is a post of the full signed receipt.
+This is important to ensure the bounty isn't stolen by block validators.
 
 #### Expirations
 
-If it's been x days (e.g. 45) since Transaction 1 was posted without a matching Transaction 2 (Merkle tree), any transaction can automatically claim.
+If it's been x days (e.g. 45) since Transaction 2 (Merkle tree) was posted without any successful claims, the funds are returned back to the address who posted Transaction 1.
 
-If it's been y days (e.g. 45) since Transaction 2 was posted without any successful claims, the money is returned back to the address who posted Transaction 1.
+_Only if needed, to make sure Transaction 2 is posted without delay:_ If it's been y days (e.g. 45) since Transaction 1 was posted (funds put into escrow) without a matching Transaction 2 (Merkle tree), anyone can claim the reward, without needing a signed submission receipt.
 
 ---
 
-Based on preliminary research and feedback, this seems to be a promising solution. However, this model is currently under further study. We are open to feedback and collaboration.
+Based on preliminary research and feedback, this seems to be a promising solution.
+
+However, this model is currently under further study. We are open to feedback and collaboration.
