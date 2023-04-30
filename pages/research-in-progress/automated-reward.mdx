@@ -3,6 +3,8 @@ part: Further Areas of Study
 title: Financially Guaranteeing Vote Integrity
 ---
 
+import { MultipleBountyClaimersTable } from '../../components/MultipleBountyClaimers/Table'
+
 Imagine that once your election administrator confirmed your vote was successfully received, you have the confidence that it will be in the final tally, and their claim is backed by significant financial guarantees.
 
 This means if you vote on Day 1 of a 7 day voting period, you can have strong confidence that once your vote has been confirmed on Day 1, you don't need to return back again a week later when the voting period ends on Day 7.
@@ -31,13 +33,9 @@ As the pot grows larger and is well-advertised, the lack of any valid reports se
 
 The simplest implementation is for the first person to successfully claim to get the entire bounty amount. But it is useful to get more information on whether there was just a single issue, or a handful, or a large number. To encourage this, rather than paying out 100% of the pot to the first successful claim, they could receive a smaller % between 0 and 100. The 2nd would receive that smaller % of the remainder, and so on.
 
-E.g. for a hypothetical $10k pot, with a 70% reward, the first 3 would be:
+E.g. for a hypothetical $10k pot, with a 70% reward, the first 4 would be:
 
-| #   | % of Original | $     | $ remaining |
-| --- | ------------- | ----- | ----------- |
-| 1   | 70%           | $7000 | $3000       |
-| 2   | 21%           | $2100 | $900        |
-| 3   | 6.3%          | $630  | $270        |
+<MultipleBountyClaimersTable />
 
 ### Legally-Backed Enforcement
 
@@ -85,7 +83,7 @@ a) a Merkle Tree of all the accepted votes
 b) election_id (should match 1b)
 
 **Size estimate:**  
-256 bits for each hash \* num of votes \* 2 (for Merkle Tree height)  
+`(256 bits for each hash) * (num of votes) * (2 for Merkle Tree height)`  
 So an election with 100k votes => ~51 megabits or 6MB.
 
 #### #3. Anyone can then post a "bounty claim transaction"

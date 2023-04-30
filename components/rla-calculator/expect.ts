@@ -59,5 +59,10 @@ export function testCases<T extends any[], R>(
         index + 1
       }: Expected ${expected} · Got ${result}`
     )
+    // console.error(
+    //   `Test fail: ${funcToTest.name}() #${index + 1}: Expected ${JSON.stringify(
+    //     expected
+    //   )} · Got ${JSON.stringify(result)}`
+    // )
   })
 }
