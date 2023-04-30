@@ -4,7 +4,7 @@ type Cell = [HeaderLabel, Value]
 type Row = Cell[]
 export const MarkdownTable = ({ rows }: { rows: Row[] }) => {
   return (
-    <table className='mt-6'>
+    <table className='mt-6 text-center'>
       <thead>
         <tr>
           {rows[0].map(([headerLabel], i) => (

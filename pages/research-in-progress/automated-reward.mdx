@@ -3,7 +3,7 @@ part: Further Areas of Study
 title: Financially Guaranteeing Vote Integrity
 ---
 
-import { MultipleBountyClaimersTable } from '../../components/MultipleBountyClaimers/Table'
+import { MultipleBountyClaimersTable } from '../../components/MultipleBountyClaimers/RewardsTable'
 
 Imagine that once your election administrator confirmed your vote was successfully received, you have the confidence that it will be in the final tally, and their claim is backed by significant financial guarantees.
 
@@ -32,8 +32,6 @@ As the pot grows larger and is well-advertised, the lack of any valid reports se
 #### Supporting Multiple Claimers
 
 The simplest implementation is for the first person to successfully claim to get the entire bounty amount. But it is useful to get more information on whether there was just a single issue, or a handful, or a large number. To encourage this, rather than paying out 100% of the pot to the first successful claim, they could receive a smaller % between 0 and 100. The 2nd would receive that smaller % of the remainder, and so on.
-
-E.g. for a hypothetical $10k pot, with a 70% reward, the first 4 would be:
 
 <MultipleBountyClaimersTable />
 
