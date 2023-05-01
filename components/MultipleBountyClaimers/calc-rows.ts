@@ -21,7 +21,7 @@ export const calcRows = (
   const data = [firstRow]
   for (let i = 1; i < rows; i++) {
     const prevRow = data[i - 1]
-    const reward = Math.floor(pct * prevRow.dollarsRemaining)
+    const reward = Math.round(pct * prevRow.dollarsRemaining)
     data.push({
       pctOfOrig: reward / initialDollars,
       dollarValue: reward,
