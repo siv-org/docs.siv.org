@@ -2,13 +2,21 @@ type HeaderLabel = string
 type Value = string | number
 type Cell = [HeaderLabel, Value]
 type Row = Cell[]
-export const MarkdownTable = ({ rows }: { rows: Row[] }) => {
+export const MarkdownTable = ({
+  rows,
+  headerClassNames = []
+}: {
+  rows: Row[]
+  headerClassNames?: string[]
+}) => {
   return (
     <table className='mt-6 text-center'>
       <thead>
         <tr>
           {rows[0].map(([headerLabel], i) => (
-            <TH key={i}>{headerLabel}</TH>
+            <TH key={i} className={headerClassNames[i]}>
+              {headerLabel}
+            </TH>
           ))}
         </tr>
       </thead>
@@ -26,10 +34,19 @@ export const MarkdownTable = ({ rows }: { rows: Row[] }) => {
 }
 
 // Adapted to match existing styles from https://github.com/shuding/nextra/blob/main/packages/nextra/src/components/th.tsx and sibling files
-const TH = (props: { children: React.ReactNode }) => (
+const TH = ({
+  children,
+  className = ''
+}: {
+  children: React.ReactNode
+  className?: string
+}) => (
   <th
-    className='px-4 py-2 font-semibold border border-gray-300 dark:border-gray-600'
-    {...props}
+    className={
+      'px-4 py-2 font-semibold border border-gray-300 dark:border-gray-600 ' +
+      className
+    }
+    {...{ children }}
   />
 )
 

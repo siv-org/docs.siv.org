@@ -39,10 +39,11 @@ export const MultipleBountyClaimersTable = () => {
       <MarkdownTable
         rows={calcRows(pot, pct / 100, rows).map((row, i) => [
           ['#', i + 1],
-          ['% of Original', formatPercentage(row.pctOfOrig)],
           ['$ Reward', `$${row.dollarValue.toLocaleString()}`],
+          ['% of Original', formatPercentage(row.pctOfOrig)],
           ['$ Remaining', `$${row.dollarsRemaining.toLocaleString()}`]
         ])}
+        headerClassNames={[, 'bg-green-500/20']}
       />
     </>
   )

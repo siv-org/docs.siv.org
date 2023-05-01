@@ -39,7 +39,7 @@ testCases(calcRows, [
       { pctOfOrig: 0.21, dollarValue: 2100, dollarsRemaining: 900 },
       { pctOfOrig: 0.063, dollarValue: 630, dollarsRemaining: 270 },
       { pctOfOrig: 0.0189, dollarValue: 189, dollarsRemaining: 81 },
-      { pctOfOrig: 0.0056, dollarValue: 56, dollarsRemaining: 25 }
+      { pctOfOrig: 0.0057, dollarValue: 57, dollarsRemaining: 24 }
     ]
   ]
 ])
