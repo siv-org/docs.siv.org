@@ -5,8 +5,8 @@ import { formatPercentage } from './format-percentage'
 
 export const MultipleBountyClaimersTable = () => {
   const [pot, setPot] = useState(5_000)
-  const [pct, setPct] = useState(60)
-  const [rows, setRows] = useState(4)
+  const [pct, setPct] = useState(35)
+  const [rows, setRows] = useState(5)
 
   return (
     <>
