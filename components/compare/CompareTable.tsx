@@ -26,7 +26,7 @@ export const CompareTable = (): JSX.Element => {
           (learn more)
         </a>
       </div>
-      <section className='landscape-reminder'>
+      <section className='hidden py-2 mt-2 mb-4 text-center bg-blue-500/30 portrait:visible'>
         <RotateRightOutlined /> &nbsp; <b>Tip:</b> Looks better in Landscape
         orientation
       </section>
@@ -133,16 +133,8 @@ export const CompareTable = (): JSX.Element => {
           font-weight: 400;
         }
 
-        .landscape-reminder {
-          text-align: center;
-          background: #dfebff;
-          padding: 7px 0;
-          display: none;
-          margin-bottom: 1rem;
-        }
-
         @media (max-width: 515px) and (orientation: portrait) {
-          .landscape-reminder {
+          .portrait\:visible {
             display: block;
           }
         }
