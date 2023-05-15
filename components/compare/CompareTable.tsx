@@ -74,12 +74,13 @@ export const CompareTable = (): JSX.Element => {
                           className='text-center tooltip'
                           key={j}
                           style={{
+                            color: 'black',
                             backgroundColor: {
                               1: '#ef4444',
                               2: '#f87171',
                               3: '#fca5a5',
                               4: '#fecaca',
-                              5: '' && 'white',
+                              5: 'white',
                               6: '#bbf7d0',
                               7: '#86efac',
                               8: '#4ade80',
