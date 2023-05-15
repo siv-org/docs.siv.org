@@ -21,7 +21,7 @@ export const CompareTable = (): JSX.Element => {
         />{' '}
         <a
           className='text-blue-500 hover:underline'
-          href='/further-study/vote-sellers-dilemma'
+          href='/research-in-progress/vote-sellers-dilemma'
         >
           (learn more)
         </a>
