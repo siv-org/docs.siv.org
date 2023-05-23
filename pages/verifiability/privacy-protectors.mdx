@@ -1,0 +1,27 @@
+---
+title: Privacy Protectors
+---
+
+SIV Privacy Protectors resemble current election observers, but can greatly enhance the overall security and trustworthiness of online voting systems.
+
+## Privacy Protectors' Roles
+
+Privacy Protectors play a crucial role in specific steps of the [SIV protocol](/15min-overview), particularly [Steps 4 & 5](/technical-specifications#voting-period-ends), which involve the anonymization and subsequent verifiable shuffle of encrypted votes.
+
+As a summary, in Step 4, Privacy Protectors help de-link voters' identities from their encrypted votes by first removing the Voter Auth Tokens from the list of encrypted votes. Privacy Protector #1 then shuffles the votes, randomizing their order to anonymize them. However, since encryption data is still distinguishable, Privacy Protector #1 proceeds to generate new Randomizer integers for each encrypted field and re-encrypts the shuffled votes.
+
+As a non-technical explanation, this re-encryption process can be compared to painting over the outside of a locked safe to make it unrecognizable. This ensures that the encrypted votes are fully anonymized and cannot be distinguished or linked back to the voter's identity.
+
+## How To Choose Privacy Protectors
+
+The most secure and safest approach is to assign Privacy Protectors with independent interests, such as one nominated by each participating political party.
+
+To be confident that the privacy of the vote is protected, voters need to trust just a single Privacy Protector. Privacy Protectors do not need to trust each other, and cannot possibly tamper with votes.
+
+## Benefits
+
+Privacy Protectors provide an additional layer of security and transparency in online elections.
+
+SIV Privacy Protectors function similarly to election observers in traditional paper-based elections but with some significant enhancements due to the use of strong cryptography.
+
+Given the technological nature of this process, only a small number of Privacy Protectors are needed in comparison to the large number of observers required for traditional paper elections, which can ultimately only offer limited security.

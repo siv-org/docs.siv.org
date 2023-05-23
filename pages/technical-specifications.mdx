@@ -28,29 +28,29 @@ Each ballot item should have a unique key, such as "president", "governor", "may
 
 SIV is fully compatible with alternative voting methods like Ranked Choice Voting and Approval Voting. Real-time user-interface feedback and invalid ballot prevention features make it easier to adopt these less familiar voting methods.
 
-### c. Register Verifying Observers
+### c. Register Privacy Protectors
 
-The Election Administrator can enroll "Verifying Observers", each adding additional assurance for voter privacy.
+The Election Administrator can enroll "Privacy Protectors", each adding additional assurance for voter privacy.
 
-Election Administrators choose who to invite, and Verifying Observers must also opt-in by accepting the invitation.
+Election Administrators choose who to invite, and Privacy Protectors must also opt-in by accepting the invitation.
 
-Verifying Observers play a crucial role after all votes have been submitted, but they must be registered before the election starts. They individually anonymize votes and verify the SIV Zero-Knowledge Proofs to ensure vote integrity. Only after completing these vital steps do they collaborate to unlock the encrypted votes for the final tally.
+Privacy Protectors play a crucial role after all votes have been submitted, but they must be registered before the election starts. They individually anonymize votes and verify the SIV Zero-Knowledge Proofs to ensure vote integrity. Only after completing these vital steps do they collaborate to unlock the encrypted votes for the final tally.
 
-To maintain the neutrality and credibility of election fairness, Observers with competing interests can be chosen. One reasonable choice would be having one Verifying Observer nominated by each candidate's political party, plus the Election Administrator themselves.
+To maintain the neutrality and credibility of election fairness, Privacy Protectors with competing interests can be chosen. One reasonable choice would be having one Privacy Protector nominated by each candidate's political party, plus the Election Administrator themselves.
 
-Verifying Observers do not need to trust each other and cannot secretly tamper with votes.
+Privacy Protectors do not need to trust each other and cannot secretly tamper with votes.
 
-After all Verifying Observers have been selected and accepted their invitations, they collectively perform a Decentralized Key Generation Ceremony to create a $t$-of-$n$ Threshold Public Key, each holding a fractional share of the corresponding Private Key. Here, $n$ is the total number of trustees, and $t$ is the configured threshold required to successfully use the private key, as chosen by the election administrator.
+After all Privacy Protectors have been selected and accepted their invitations, they collectively perform a Decentralized Key Generation Ceremony to create a $t$-of-$n$ Threshold Public Key, each holding a fractional share of the corresponding Private Key. Here, $n$ is the total number of trustees, and $t$ is the configured threshold required to successfully use the private key, as chosen by the election administrator.
 
-Vote privacy is protected even if individual Observers are malicious or compromised, as long as no more than $t$ Observers are compromised. For example, if the key is 4-of-5, up to 3 Observers can be compromised, and privacy is still protected.
+Vote privacy is protected even if individual Privacy Protectors are malicious or compromised, as long as no more than $t$ Privacy Protectors are compromised. For example, if the key is 4-of-5, up to 3 Privacy Protectors can be compromised, and privacy is still protected.
 
 SIV currently uses the Pedersen DKG protocol first described in the 1992 paper ["_Non-Interactive and Information-Theoretic Secure Verifiable Secret Sharing_"](https://reaction.la/security/pedersons_secret_sharing.pdf) by Dr. Torben Pedersen. This protocol avoids ever centralizing the full key in any one location, and verifies that all ceremony members are following the protocol correctly.
 
-SIV provides Observer software to automatically run the ceremony for all participants, using cryptographically secure sources of randomness. Every Observer gets their own complete log of exactly each step taken. All private key material is stored in participants browsers' LocalStorage, as well as displayed visually for them to backup to additional locations.
+SIV provides Privacy Protectors software to automatically run the ceremony for all participants, using cryptographically secure sources of randomness. Every Privacy Protector gets their own complete log of exactly each step taken. All private key material is stored in participants browsers' LocalStorage, as well as displayed visually for them to backup to additional locations.
 
 At the end of the ceremony a test encryption is created and jointly decrypted, to test the ceremony's success.
 
-SIV's Observer software can be run entirely in the browser, from any relatively modern desktop, laptop, or smartphone, without requiring any installations.
+SIV's Privacy Protectors software can be run entirely in the browser, from any relatively modern desktop, laptop, or smartphone, without requiring any installations.
 
 ## Election Begins
 
@@ -98,7 +98,7 @@ SIV seamlessly adds powerful security features for 1-person-1-vote authenticatio
 
 The SIV Voter software automatically encrypts each vote selection using Elliptic Curve ElGamal Encryption over the Ristretto255 prime-order subgroup of Curve25519 ([IETF RFC 8031](https://www.rfc-editor.org/rfc/rfc8031)), offering a NIST-recommended security level of 128 bits and classified as a "SafeCurve".
 
-The encryption's public key, which SIV calls the "Encryption Address", is the Threshold Public Key generated by the Verifying Observers in the [Pre-C Ceremony](/technical-specifications#c-register-verifying-observers).
+The encryption's public key, which SIV calls the "Encryption Address", is the Threshold Public Key generated by the Privacy Protectors in the [Pre-C Ceremony](/technical-specifications#c-register-privacy-protectors).
 
 The following sections outline the steps involved in generating encrypted ciphertexts for each vote:
 
@@ -226,7 +226,7 @@ The anonymization process, although conceptually straightforward, employs strong
 
 If the encrypted votes' order was simply permuted, anyone could easily see where the new ciphertext had moved to. To prevent this traceability, each vote undergoes re-encryption in a manner that provably decrypts to the same plaintext value but obscures any association with the initial encrypted vote.
 
-However, this alone does not guarantee anonymity, as the shuffler would still possess knowledge of the vote permutations. To address this, multiple Verifying Observer each perform a sequential shuffle, ensuring that no single party can know the complete shuffling order.
+However, this alone does not guarantee anonymity, as the shuffler would still possess knowledge of the vote permutations. To address this, multiple Privacy Protectors each perform a sequential shuffle, ensuring that no single party can know the complete shuffling order.
 
 This cryptographic shuffle takes a list of encrypted votes as input and generates a shuffled list of re-encrypted votes as output. Crucially, this shuffle must enable external observers to verify the integrity of the shuffle. This is accomplished with a Zero-knowledge Proof, which confirms that the output list is a valid re-encryption of the input list, i.e. none of the underlying plaintexts were lost or modified.
 
@@ -240,8 +240,8 @@ Now that the encrypted votes have been shuffled and re-encrypted, they can be sa
 
 But they need to be decrypted without leaking the secret key. Otherwise it could be used to decrypt the original encrypted votes, before they were shuffled.
 
-This decryption is done in another decentralized ceremony, involving a sufficient threshold number of Verifying Observers, with each Verifying Observer submitting a partial decryption of each vote.
+This decryption is done in another decentralized ceremony, involving a sufficient threshold number of Privacy Protectors, with each Privacy Protector submitting a partial decryption of each vote.
 
-Note that this decryption is also provable — meaning parties cannot cheat in such a way as to make the vote decrypt to something else without people knowing. These ZK Proofs of a Valid Partial Decryption are verifiable by everyone, and automatically checked by all the other Verifying Observers & SIV Admin Server.
+Note that this decryption is also provable — meaning parties cannot cheat in such a way as to make the vote decrypt to something else without people knowing. These ZK Proofs of a Valid Partial Decryption are verifiable by everyone, and automatically checked by all the other Privacy Protectors & SIV Admin Server.
 
 Once the votes are decrypted, their complete contents are shown to everyone, and it is trivial to tally them. The tally totals can be independently recounted, for confirmation.
