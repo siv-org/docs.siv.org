@@ -12,9 +12,9 @@ At a high level, SIV ensures vote privacy by:
 <div style={{ marginLeft: 30}}>
 a. Using strong encryption to lock votes inside sealed digital encryption before submission.
 
-b. Shuffling up the encrypted votes many times for strong anonymization, by multiple independent parties, named "Verifying Observers". This design creates multiple fail-safes. Even if some Verifying Observers' devices are compromised, vote privacy can still be protected. Verifying Observers do not need to trust each other, and thanks to strong cryptographic proofs, cannot possibly tamper with votes.
+b. Shuffling up the encrypted votes many times for strong anonymization, by multiple independent parties ("Privacy Protectors"). This design creates multiple fail-safes. Even if some Privacy Protectors' devices are compromised, vote privacy can still be protected. Privacy Protectors do not need to trust each other, and thanks to strong cryptographic proofs, cannot possibly tamper with votes.
 
-c. Only after the votes have been thoroughly anonymized, the Verifying Observers work together to unlock the encryption and verifiably tally up the final results.
+c. Only after the votes have been thoroughly anonymized, the Privacy Protectors work together to unlock the encryption and verifiably tally up the final results.
 
 </div>
 
