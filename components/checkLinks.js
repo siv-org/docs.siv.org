@@ -51,12 +51,16 @@ const checkExternalLink = async (url, fileName) => {
 const checkUrlFragment = (filePath, fragment, originalLink, file) => {
   const fileContent = fs.readFileSync(filePath, 'utf-8')
   const headers = fileContent.match(/^#+\s+.+$/gm)
-  const formattedFragment = fragment.toLowerCase().replace(/[\s]+/g, '-')
+  const formattedFragment = fragment
+    .toLowerCase()
+    .replace(/[^a-z0-9\- ]+/g, '') // remove non alphanumeric, non-hyphen, non-space characters
+    .replace(/[\s]+/g, '-') // replace spaces with hyphen
   const exists = headers.some((header) => {
     const formattedHeader = header
-      .replace(/^#+\s+/g, '')
+      .replace(/^#+\s+/g, '') // remove the leading hashes and space
       .toLowerCase()
-      .replace(/[\s]+/g, '-')
+      .replace(/[^a-z0-9\- ]+/g, '') // remove non alphanumeric, non-hyphen, non-space characters
+      .replace(/[\s]+/g, '-') // replace spaces with hyphen
     return formattedHeader === formattedFragment
   })
   if (!exists) {
