@@ -1,9 +1,13 @@
 const fs = require('fs')
 const path = require('path')
 
-// Set the directory you want to start with
-const startDirectory = './pages' // set this to your start directory
+let brokenRelativeLinksCount = 0
+let brokenAbsoluteLinksCount = 0
+let brokenExternalLinksCount = 0
+let brokenFragmentLinksCount = 0
+let linksChecked = 0
 
+/** Build a list recursively of all the mdx files */
 const getFilesInDirectory = (dir) => {
   let results = []
   let list = fs.readdirSync(dir)
@@ -13,11 +17,9 @@ const getFilesInDirectory = (dir) => {
 
     let stat = fs.statSync(file)
 
-    if (stat && stat.isDirectory()) {
-      /* Recurse into a subdirectory */
+    if (stat?.isDirectory()) {
       results = results.concat(getFilesInDirectory(file))
     } else {
-      /* Is a file */
       if (path.extname(file) === '.mdx') {
         results.push(file)
       }
@@ -28,28 +30,90 @@ const getFilesInDirectory = (dir) => {
 }
 
 const checkFileExists = (filePath) => {
-  // Next.js uses the file path (without extension) as the page path.
-  // We need to add .mdx extension for checking if the file exists.
-  return fs.existsSync(filePath + '.mdx')
+  // if filePath starts with /images, prefix with publicDirectory
+  if (filePath.startsWith('/images')) filePath = path.join('./public', filePath)
+
+  return fs.existsSync(filePath)
 }
 
-const parseMarkdownFiles = (files) => {
-  const linkRegex = /\[.*?\]\((.*?)\)/g
-
-  for (let file of files) {
-    const fileContent = fs.readFileSync(file, 'utf-8')
-    let match
-    while ((match = linkRegex.exec(fileContent)) !== null) {
-      const relativePath = match[1]
-      const filePath = path.join(startDirectory, relativePath)
-
-      const exists = checkFileExists(filePath)
-      if (!exists) {
-        console.log(`Missing link found in file ${file}: ${relativePath}`)
-      }
-    }
+const checkExternalLink = async (url, fileName) => {
+  function fail() {
+    console.log(`❌🌐 Broken link found in file ${fileName}: ${url}`)
+    brokenExternalLinksCount++
+  }
+  try {
+    if (!(await fetch(url)).ok) fail()
+  } catch (err) {
+    fail()
   }
 }
 
-const markdownFiles = getFilesInDirectory(startDirectory)
-parseMarkdownFiles(markdownFiles)
+const checkUrlFragment = (filePath, fragment, originalLink, file) => {
+  const fileContent = fs.readFileSync(filePath, 'utf-8')
+  const headers = fileContent.match(/^#+\s+.+$/gm)
+  const formattedFragment = fragment.toLowerCase().replace(/[\s]+/g, '-')
+  const exists = headers.some((header) => {
+    const formattedHeader = header
+      .replace(/^#+\s+/g, '')
+      .toLowerCase()
+      .replace(/[\s]+/g, '-')
+    return formattedHeader === formattedFragment
+  })
+  if (!exists) {
+    console.log(`❌⚓ broken fragment found in file ${file}: ${originalLink}`)
+    brokenFragmentLinksCount++
+  }
+}
+
+const runCheck = async () => {
+  const startDirectory = './pages'
+  const files = getFilesInDirectory(startDirectory)
+
+  const linkRegex = /\[.*?\]\((.*?)\)/g
+
+  await Promise.all(
+    files.map(async (file) => {
+      const fileContent = fs.readFileSync(file, 'utf-8')
+      let match
+      while ((match = linkRegex.exec(fileContent)) !== null) {
+        const link = match[1]
+        linksChecked++
+        const [urlWithoutFragment, fragment] = link.split('#')
+
+        // Is it an external link?
+        if (
+          urlWithoutFragment.startsWith('http://') ||
+          urlWithoutFragment.startsWith('https://')
+        ) {
+          await checkExternalLink(urlWithoutFragment, file)
+          continue
+        }
+
+        const filePath = path.join(startDirectory, urlWithoutFragment) + '.mdx'
+
+        const exists = checkFileExists(filePath)
+        if (!exists) {
+          console.log(
+            `❌ broken inline link found in file ${file}: ${link} -- ${filePath}`
+          )
+          if (link.startsWith('/')) brokenAbsoluteLinksCount++
+          else brokenRelativeLinksCount++
+        } else if (fragment) {
+          checkUrlFragment(filePath, fragment, link, file)
+        }
+      }
+    })
+  )
+
+  // Summarize results
+  console.log(
+    `🟦 Links checked: ${linksChecked}.\n\n Broken links: ${
+      brokenRelativeLinksCount +
+      brokenAbsoluteLinksCount +
+      brokenExternalLinksCount +
+      brokenFragmentLinksCount
+    }, relative: ${brokenRelativeLinksCount}, absolute: ${brokenAbsoluteLinksCount}, external: ${brokenExternalLinksCount}, fragment: ${brokenFragmentLinksCount}`
+  )
+}
+
+runCheck()
