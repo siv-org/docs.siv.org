@@ -42,13 +42,18 @@ const checkExternalLink = async (url, fileName) => {
   if (externalLinkCache[url]) return
   externalLinkCache[url] = true
 
-  function fail() {
-    console.log(`❌🌐 Broken link found in file ${fileName}: ${url}`)
+  function fail(statuscode) {
+    console.log(
+      `❌🌐 Broken link (${
+        statuscode || 'Unknown status code'
+      }) found in file ${fileName}: ${url}`
+    )
     brokenExternalLinksCount++
   }
   try {
     // console.log(`Checking external link: ${url}`)
-    if (!(await fetch(url)).ok) fail()
+    const response = await fetch(url)
+    if (!response.ok) fail(response.status)
   } catch (err) {
     fail()
   }
