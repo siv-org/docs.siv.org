@@ -126,16 +126,20 @@ const runCheck = async () => {
   )
 
   // Summarize results
-  console.log(
-    `🟦 Links checked: ${linksChecked}.\n\n Broken links: ${
-      brokenRelativeLinksCount +
-      brokenAbsoluteLinksCount +
-      brokenExternalLinksCount +
-      brokenFragmentLinksCount
-    }, relative: ${brokenRelativeLinksCount}, absolute: ${brokenAbsoluteLinksCount}, external: ${brokenExternalLinksCount}, fragment: ${brokenFragmentLinksCount}`
-  )
-
-  process.exit()
+  const total =
+    brokenRelativeLinksCount +
+    brokenAbsoluteLinksCount +
+    brokenExternalLinksCount +
+    brokenFragmentLinksCount
+  if (!total) {
+    console.log(`✅ Links checked: ${linksChecked}.`)
+    process.exit()
+  } else {
+    console.log(
+      `🟦 Links checked: ${linksChecked}.\n\n Broken links: ${total}, relative: ${brokenRelativeLinksCount}, absolute: ${brokenAbsoluteLinksCount}, external: ${brokenExternalLinksCount}, fragment: ${brokenFragmentLinksCount}`
+    )
+    process.exit(1)
+  }
 }
 
 runCheck()
