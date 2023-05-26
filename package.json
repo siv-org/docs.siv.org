@@ -4,7 +4,7 @@
   "description": "How Secure Internet Voting (siv.org) elections work",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "yarn test && next build",
     "start": "next start",
     "test": "node check-links.js"
   },
