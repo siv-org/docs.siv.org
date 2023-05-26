@@ -49,7 +49,7 @@ const checkExternalLink = async (url, fileName) => {
     console.log(
       `❌🌐 Broken link (${
         statuscode || 'Unknown status code'
-      }) found in file ${fileName}: ${url}`
+      }) in ${fileName} -> ${url}`
     )
     brokenExternalLinksCount++
   }
@@ -78,7 +78,7 @@ const checkUrlFragment = (filePath, fragment, originalLink, file) => {
     return formattedHeader === formattedFragment
   })
   if (!exists) {
-    console.log(`❌⚓ broken fragment found in file ${file}: ${originalLink}`)
+    console.log(`❌⚓ broken fragment in ${file} -> ${originalLink}`)
     brokenFragmentLinksCount++
   }
 }
@@ -116,9 +116,7 @@ const runCheck = async () => {
 
         const exists = checkFileExists(filePath)
         if (!exists) {
-          console.log(
-            `❌ broken inline link found in file ${file}: ${link} -- ${filePath}`
-          )
+          console.log(`❌ broken inline link in ${file} -> ${link}`)
           if (link.startsWith('/')) brokenAbsoluteLinksCount++
           else brokenRelativeLinksCount++
         } else if (fragment) {
