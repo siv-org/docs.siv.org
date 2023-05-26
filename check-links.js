@@ -73,6 +73,8 @@ const runCheck = async () => {
   const startDirectory = './pages'
   const files = getFilesInDirectory(startDirectory)
 
+  console.log('Found ' + files.length + ' mdx files to review...\n')
+
   const linkRegex = /\[.*?\]\((.*?)\)/g
 
   await Promise.all(
@@ -118,6 +120,8 @@ const runCheck = async () => {
       brokenFragmentLinksCount
     }, relative: ${brokenRelativeLinksCount}, absolute: ${brokenAbsoluteLinksCount}, external: ${brokenExternalLinksCount}, fragment: ${brokenFragmentLinksCount}`
   )
+
+  process.exit()
 }
 
 runCheck()
