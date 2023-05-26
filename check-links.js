@@ -73,8 +73,8 @@ const checkUrlFragment = (filePath, fragment, originalLink, file) => {
     const formattedHeader = header
       .replace(/^#+\s+/g, '') // remove the leading hashes and space
       .toLowerCase()
-      .replace(/[^a-z0-9\- ]+/g, '') // remove non alphanumeric, non-hyphen, non-space characters
       .replace(/[\s]+/g, '-') // replace spaces with hyphen
+      .replace(/[^a-z0-9\- ]+/g, '') // remove non alphanumeric, non-hyphen, non-space characters
     return formattedHeader === formattedFragment
   })
   if (!exists) {
