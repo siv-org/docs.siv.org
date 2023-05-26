@@ -89,14 +89,14 @@ const runCheck = async () => {
 
   console.log('Found ' + files.length + ' mdx files to review...\n')
 
-  const linkRegex = /\[.*?\]\((.*?)\)/g
+  const linkRegex = /\[.*?\]\((<.*?>|.*?)\)/g
 
   await Promise.all(
     files.map(async (file) => {
       const fileContent = fs.readFileSync(file, 'utf-8')
       let match
       while ((match = linkRegex.exec(fileContent)) !== null) {
-        const link = match[1]
+        const link = match[1].replace(/<|>/g, '') // markdown links may have angle brackets in them (to disambiguate multiple parens)
         linksChecked++
         const [urlWithoutFragment, fragment] = link.split('#')
 
