@@ -38,6 +38,9 @@ const checkFileExists = (filePath) => {
 
 const externalLinkCache = {}
 const checkExternalLink = async (url, fileName) => {
+  // Skip these for deployed builds, too unreliable
+  if (process.env.VERCEL) return
+
   // No need to check the same link multiple times
   if (externalLinkCache[url]) return
   externalLinkCache[url] = true
