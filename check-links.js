@@ -97,6 +97,9 @@ const runCheck = async () => {
         linksChecked++
         const [urlWithoutFragment, fragment] = link.split('#')
 
+        // Skip mailto links
+        if (urlWithoutFragment.startsWith('mailto:')) continue
+
         // Is it an external link?
         if (
           urlWithoutFragment.startsWith('http://') ||
