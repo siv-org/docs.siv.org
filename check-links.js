@@ -36,12 +36,18 @@ const checkFileExists = (filePath) => {
   return fs.existsSync(filePath)
 }
 
+const externalLinkCache = {}
 const checkExternalLink = async (url, fileName) => {
+  // No need to check the same link multiple times
+  if (externalLinkCache[url]) return
+  externalLinkCache[url] = true
+
   function fail() {
     console.log(`❌🌐 Broken link found in file ${fileName}: ${url}`)
     brokenExternalLinksCount++
   }
   try {
+    // console.log(`Checking external link: ${url}`)
     if (!(await fetch(url)).ok) fail()
   } catch (err) {
     fail()
