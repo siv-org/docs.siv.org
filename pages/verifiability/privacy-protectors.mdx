@@ -8,7 +8,7 @@ SIV Privacy Protectors resemble current election observers, but can greatly enha
 
 Privacy Protectors play a crucial role in specific steps of the [SIV protocol](/15min-overview), particularly [Steps 4 & 5](/technical-specifications#voting-period-ends), which involve the anonymization and subsequent verifiable shuffle of encrypted votes.
 
-As a summary, in Step 4, Privacy Protectors help de-link voters' identities from their encrypted votes by first removing the Voter Auth Tokens from the list of encrypted votes. Privacy Protector #1 then shuffles the votes, randomizing their order to anonymize them. However, since encryption data is still distinguishable, Privacy Protector #1 proceeds to generate new Randomizer integers for each encrypted field and re-encrypts the shuffled votes.
+As a summary, in [Step 4](/technical-specifications#step-4-votes-are-anonymized), voters' identities are de-linked from their encrypted votes by first removing the Voter Auth Tokens from the list of encrypted votes. Privacy Protector #1 then shuffles the votes, randomizing their order to anonymize them. However, since encryption data is still distinguishable, Privacy Protector #1 proceeds to generate new Randomizer integers for each encrypted field and re-encrypts the shuffled votes.
 
 As a non-technical explanation, this re-encryption process can be compared to painting over the outside of a locked safe to make it unrecognizable. This ensures that the encrypted votes are fully anonymized and cannot be distinguished or linked back to the voter's identity.
 
