@@ -67,50 +67,48 @@ export const CompareTable = (): JSX.Element => {
                       ...(bountyEnabled && row.scores_with_bounty
                         ? row.scores_with_bounty
                         : row.scores)
-                    ]
-                      .reverse()
-                      .map((s, j) => (
-                        <td
-                          className='text-center tooltip'
-                          key={j}
-                          style={{
-                            color: 'black',
-                            backgroundColor: {
-                              1: '#ef4444',
-                              2: '#f87171',
-                              3: '#fca5a5',
-                              4: '#fecaca',
-                              5: 'white',
-                              6: '#bbf7d0',
-                              7: '#86efac',
-                              8: '#4ade80',
-                              9: '#22c55e'
-                            }[getScore(s)]
-                          }}
-                        >
-                          {getScore(s)}
-                          {typeof s !== 'number' && (
-                            <span className='tooltip-text'>
-                              {methods[j]} - {row.d_name}: {s[0]} / 10
-                              <br />
-                              <br />
-                              <i>Advantages:</i> <br />
-                              {!!s[1].adv &&
-                                s[1].adv
-                                  .split('\n')
-                                  .map((l) => ` + ${l}`)
-                                  .join('\n')}
-                              <br />
-                              <br />
-                              <i>Disadvantages:</i> <br />
-                              {s[1].disadv
+                    ].map((s, j) => (
+                      <td
+                        className='text-center tooltip'
+                        key={j}
+                        style={{
+                          color: 'black',
+                          backgroundColor: {
+                            1: '#ef4444',
+                            2: '#f87171',
+                            3: '#fca5a5',
+                            4: '#fecaca',
+                            5: 'white',
+                            6: '#bbf7d0',
+                            7: '#86efac',
+                            8: '#4ade80',
+                            9: '#22c55e'
+                          }[getScore(s)]
+                        }}
+                      >
+                        {getScore(s)}
+                        {typeof s !== 'number' && (
+                          <span className='tooltip-text'>
+                            {methods[j]} - {row.d_name}: {s[0]} / 10
+                            <br />
+                            <br />
+                            <i>Advantages:</i> <br />
+                            {!!s[1].adv &&
+                              s[1].adv
                                 .split('\n')
-                                .map((l) => ` - ${l}`)
+                                .map((l) => ` + ${l}`)
                                 .join('\n')}
-                            </span>
-                          )}
-                        </td>
-                      ))}
+                            <br />
+                            <br />
+                            <i>Disadvantages:</i> <br />
+                            {s[1].disadv
+                              .split('\n')
+                              .map((l) => ` - ${l}`)
+                              .join('\n')}
+                          </span>
+                        )}
+                      </td>
+                    ))}
                   </tr>
                 ))}
               </Fragment>
