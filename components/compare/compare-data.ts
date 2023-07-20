@@ -28,8 +28,18 @@ Strong remediation process allowing admins to revoke voter credentials at any st
           [
             5,
             {
-              adv: `Sending out ballots can ensure that only registered voters receive a ballot.`,
-              disadv: `Errors in the voter registry or delivery process can lead to legitimate voters not receiving their ballots.`
+              adv: `We confirm that the voter is in control of their mailbox. Or that the person casting a vote has access to the voter's mailbox.
+              Election administrators can require signatures that are verified against the signatures on file.`,
+
+              disadv: `Anyone with access to the mailbox, including children, spouses, roommates, can also access the blank ballot.
+              Forging signatures especially with a reference is not that difficult. Schoolchildren sometimes do it for their parents.
+              Verifying a lot of signatures is a relatively costly manual process.
+              Depends on the postal mail system working quickly and without errors.
+              Because of slowness, everything needs to be done and executed far in advance. And registration errors cannot quickly be remediated.
+              Many mail boxes are not locked.
+              Postage costs to send custom ballots ~$1/voter.
+              Voters sometimes fail to update their mailing address when they move.
+              How easy is it to create a bunch of fake votes and add them, without anyone noticing? It is hard to know.`
             }
           ],
           [
