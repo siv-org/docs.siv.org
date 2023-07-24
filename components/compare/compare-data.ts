@@ -95,16 +95,19 @@ Once ballots accepted, limited remediation options`
           [
             4,
             {
-              adv: ``,
-              disadv: ``
+              adv: `There is at least of small amount of effort for vote privacy — vote selections are sealed within an envelope.
+              Because it is a spread-out paper process, it is relatively hard to compromise on a huge scale without whistleblowers.`,
+              disadv: `You're sending your name & vote selections side-by-side through this relatively opaque process. 
+              It is trivially easy to open a letter, read its contents, and reseal it. There have been centuries worth of examples of governments doing this on an industrial scale. E.g. the French "cabinet noir"`
             }
           ],
           [
             6,
             {
-              adv: `Voters are alone in the booth, which gives the perception of privacy`,
-              disadv: `Many elections often give ballot unique tracking numbers, making voter selections linkable back to voter's identity by administrators
-              Voters are not in control of the space they vote in, and have limited time to inspect or test security`
+              adv: `Ballots themselves usually don't have names on them.
+              Voters are provided a private cubicle to mark their ballots.`,
+              disadv: `Many ballots include unique tracking numbers, which can make vote selections linkable back to voter's identity.
+              Voters are not in control of the space they vote in, and have limited time to inspect or test security, such as against cameras watching from overhead.`
             }
           ]
         ]
