@@ -63,22 +63,21 @@ Once ballots accepted, limited remediation options`
           [
             3,
             {
-              disadv: `Zero ability to verify if votes were counted and counted as cast
-            More susceptible to mistakes in filling out the ballots which can lead to a higher rate of rejected votes.
-
-            Ballots can be intercepted, lost, or delivered to the wrong address, which could lead to fraudulent votes.`
+              disadv: `Inherits all the disadvantages of safely verifying tallying of in-person voting, plus introduces new risks:
+              It is hard to know what happens with the ballot once you put your ballot into a mailbox. There are lots of opportunities for it to get tampered with or lost.
+              Because mailboxes are so geographically spread out, it is very difficult to comprehensively monitor.
+              Limited ability to audit after the fact.`
             }
           ],
           [
             5,
             {
-              adv: `You deliver the vote yourself to the ballot box.
-              There are lots of people around at the polling station.`,
-              disadv: `Voters have no insight if their vote was counted or not.
-              Voters do not know if their vote was recorded as they chose to.
-              Reliant on manual counting which can be error-prone
-              Miscounts or fraud can occur at the ballot box
-              Unable to trace errors`
+              adv: `There is a process to get votes to the final tallying without  tampering. That process is not perfect, but it is relatively good. It usually requires a lot of people to be corrupt to facilitate errors.
+              My preferred candidate ideally can send election observers. But there is often so many polling locations and times to vote that is very difficult to get anything close to complete coverage.
+              Electronic tallying machines themselves can be audited using powerful post-election RLA techniques.`,
+              disadv: `I cast a vote but have little-to-no direct evidence whether my vote counted.
+              People carrying out the process are usually strangers, with little way for the vast majority of voters to tell if they're trustworthy.
+              The process is fundamentally an imperfect system that can try its best to mitigate attacks & errors, but at the end of the day can never provide "proof" of correctness, only absence of uncovered attacks. As Carl Sagan famously noted, "Absence of Evidence does not mean Evidence of Absence".`
             }
           ]
         ]
@@ -120,7 +119,8 @@ Once ballots accepted, limited remediation options`
             6,
             {
               disadv: `Potential for vote-by-mail fraud where someone intercepts and alters the ballots.
-            Voter signs the blank ballot and gives it to the buyer.`
+            Voter signs the blank ballot and gives it to the buyer.
+            Family or friends potentially steal or influence the vote choices.`
             }
           ],
           [
@@ -146,8 +146,10 @@ Once ballots accepted, limited remediation options`
             6,
             {
               adv: `Beneficial for elderly, disabled, or remote/rural voters who find it hard to reach polling stations.,
-              Offers convenience as voters can take their time to complete the ballot.`,
-              disadv: ``
+              Offers convenience as voters can take their time to complete the ballot.
+              Reduction in In-Person Voting Issues: Issues such as long lines, malfunctioning machines, or polling place closures can impact the results of in-person voting. Mail-in voting helps alleviate these issues.`,
+              disadv: ` There is a possibility of delivery delays causing votes to arrive too late to be counted.
+              Some people might not receive their mail-in ballot due to issues with their registration status, incorrect mailing address, or other administrative errors. This could unintentionally disenfranchise certain voters.`
             }
           ],
           [
