@@ -229,7 +229,7 @@ Once ballots accepted, limited remediation options`
             2,
             {
               adv: ``,
-              disadv: `Counting mail-in ballots is typically slower due to the verification process for each ballot. The ballots need to be unfolded and uncreased, and sometimes they get rejected by the voting machine. For example, some 2020 results took 3 weeks to count all the mail-in votes. 
+              disadv: `Counting mail-in ballots is typically slower due to the verification process for each ballot, which includes signature verification. The ballots need to be unfolded and uncreased, and sometimes they get rejected by the voting machine. For example, some 2020 results took 3 weeks to count all the mail-in votes. 
             Results can be delayed if there's a large volume of mail-in ballots.
             `
             }
@@ -257,10 +257,9 @@ Once ballots accepted, limited remediation options`
           [
             4,
             {
-              adv: `Can be less expensive as it requires fewer polling stations, less staff on election day, and less security for in-person voting.`,
-              disadv: `The cost of printing, distributing, and returning the mail-in ballots can be high.
+              adv: `Can be less expensive as it requires fewer polling stations, and less staff on election day.`,
+              disadv: `The cost of printing, distributing, and returning the mail-in ballots can be high. And are paid even if voter opts for a different method.
             Increased cost for verification and handling of mail-in ballots.
-            Risk of increased expenditure on dealing with legal disputes over mail-in ballot validity.
             `
             }
           ],
@@ -268,8 +267,7 @@ Once ballots accepted, limited remediation options`
             2,
             {
               disadv: `Requires significant staffing for polling stations.
-            Cost of printing and handling physical ballots.
-            Higher costs due to the need for transportation and storage of physical ballots.`
+            Cost of printing and handling physical ballots.`
             }
           ]
         ]
