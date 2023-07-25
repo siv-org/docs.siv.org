@@ -177,7 +177,8 @@ Once ballots accepted, limited remediation options`
             {
               adv: `Beneficial for elderly, disabled, or remote/rural voters who find it hard to reach polling stations.
               Offers convenience as voters can take their time to complete the ballot.
-              Reduction in In-Person Voting Issues: Issues such as long lines, malfunctioning machines, or polling place closures can impact the results of in-person voting. Mail-in voting helps alleviate these issues.`,
+              Reduction in In-Person Voting Issues: Issues such as long lines, malfunctioning machines, or polling place closures can impact the results of in-person voting. Mail-in voting helps alleviate these issues.
+              Allows voters to research and fill in their ballot at their own pace, without feeling rushed.`,
               disadv: ` Some people might not receive their mail-in ballot due to issues with their registration status, incorrect mailing address, or other administrative errors. This could unintentionally disenfranchise certain voters. This is especially an issue for vote-by-mail because the process takes a while to get the ballot both out to and back from the voter.
               It is not great for vision impaired people.
               Requires getting to a mail drop-off location.
@@ -203,8 +204,8 @@ Once ballots accepted, limited remediation options`
           [
             7,
             {
-              adv: `Allows voters to vote at their own pace without feeling rushed.
-            Eliminates wait times at polling stations.`,
+              adv: `
+            Voter does not need to travel or wait in line at polling stations.`,
               disadv: `Dependent on the postal service speed and reliability.
             Requires voters to plan ahead to ensure their ballot is postmarked in time.
             There is a possibility of delivery delays causing votes to arrive too late to be counted.
@@ -216,7 +217,8 @@ Once ballots accepted, limited remediation options`
             {
               adv: `No need to worry about postal delays`,
               disadv: `Long lines and wait times can occur.
-          Efficiency depends on staffing and organization of the polling station.`
+          Efficiency depends on staffing and organization of the polling station.
+          If i want to review all my options and research them, i cannot do that at the polling station.`
             }
           ]
         ]
