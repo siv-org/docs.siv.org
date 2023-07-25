@@ -120,28 +120,44 @@ Once ballots accepted, limited remediation options`
           [
             5,
             {
-              adv: `Challenging to definitively prove how one voted to a remote coercer, although not impossible, e.g. over a video call or recording.`,
+              adv: `Challenging to definitively prove how one voted to a remote coercer, although not impossible, e.g. over a video call or recording.
+              Main deterrent is heavy criminal penalties.`,
               disadv: `Trivially easy for a voter to sign a blank ballot and hand it to a coercer, or fill it out in front of them.`
             }
           ],
-          7
+          [
+            7,
+            {
+              adv: ` Main deterrent is heavy criminal penalties.`,
+              disadv: `A coercer such as a family member can stand in neighboring voting booth and peek to see how the victim votes.
+            Voters can record a video to show it to their coercer as proof.
+            Many voters, including high-profile celebrities, have taken pictures of their filled-in ballots and posted it on their social media profiles.`
+            }
+          ]
         ],
         scores_with_bounty: [
-          7,
+          [
+            7,
+            {
+              adv: `Especially good for vote seller bounty rewards because selling creates lots of evidence and SIV votes can be cancelled and re-issued.`,
+              disadv: ``
+            }
+          ],
           [
             6,
             {
-              adv: `Challenging to definitively prove how one voted to a remote coercer, although not impossible, e.g. over a video call or recording.`,
+              adv: `Challenging though not impossible for remote vote buyers to automatically verify if the proof is legitimate.
+              Main deterrent is heavy criminal penalties.
+              Also benefits from Vote Seller's bounty reward.`,
               disadv: `Trivially easy for a voter to sign a blank ballot and hand it to a coercer, or fill it out in front of them.`
             }
           ],
           [
             8,
             {
-              adv: ``,
-              disadv: `A coercer such as a family member can stand in neighboring voting booth and peek to see how the victim votes.
-            Voters can record a video to show it to their coercer as proof.
-            Many voters, including high-profile celebrities, have taken pictures of their filled-in ballots and posted it on their social media profiles.`
+              adv: ` Main deterrent is heavy criminal penalties.
+              With Vote Seller's bounty rewards in place, taking photos or videos of how one voted becomes far less attractive.`,
+              disadv: `A coercer such as a family member can stand in neighboring voting booth and peek to see how the victim votes.`
             }
           ]
         ]
