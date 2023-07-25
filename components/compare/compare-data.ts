@@ -204,21 +204,18 @@ Once ballots accepted, limited remediation options`
           [
             7,
             {
-              adv: `
-            Voter does not need to travel or wait in line at polling stations.`,
+              adv: `Voter does not need to travel or wait in line at polling stations.`,
               disadv: `Dependent on the postal service speed and reliability.
-            Requires voters to plan ahead to ensure their ballot is postmarked in time.
-            There is a possibility of delivery delays causing votes to arrive too late to be counted.
-            `
+              Voter needs to find and travel to ballot drop-off location. 
+            Requires voters to plan ahead to ensure their ballot is accepted in time. Different jurisdictions have different postmarked vs delivery deadlines.`
             }
           ],
           [
             2,
             {
-              adv: `No need to worry about postal delays`,
-              disadv: `Long lines and wait times can occur.
-          Efficiency depends on staffing and organization of the polling station.
-          If i want to review all my options and research them, i cannot do that at the polling station.`
+              adv: `No need to worry about postal delays.`,
+              disadv: `You have to get to the polling station, you might need to go through security such as a metal detector, wait in line, check in, and only then you can go into the booth and vote. Then you have to get back home.
+          Efficiency depends on staffing and organization of the polling station.`
             }
           ]
         ]
@@ -231,8 +228,8 @@ Once ballots accepted, limited remediation options`
           [
             2,
             {
-              adv: `Early voting results can be counted before the day of the election, which can speed up the overall results.`,
-              disadv: `Counting mail-in ballots is typically slower due to the verification process for each ballot.
+              adv: ``,
+              disadv: `Counting mail-in ballots is typically slower due to the verification process for each ballot. The ballots need to be unfolded and uncreased, and sometimes they get rejected by the voting machine. For example, some 2020 results took 3 weeks to count all the mail-in votes. 
             Results can be delayed if there's a large volume of mail-in ballots.
             `
             }
@@ -240,9 +237,9 @@ Once ballots accepted, limited remediation options`
           [
             4,
             {
-              adv: `No need to worry about postal delays`,
-              disadv: `Manual counting can be slow and error-prone.
-              Longer wait times for results if recounting is required.`
+              adv: ``,
+              disadv: ` If using a tallying machine, votes need to be manually fed through the machine. 
+              Longer wait times for results if manual recounting is required.`
             }
           ]
         ]
