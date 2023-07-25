@@ -115,22 +115,33 @@ Once ballots accepted, limited remediation options`
       {
         d_name: 'Coercion resistance',
         desc: 'How protected are voters against attempts to threaten or purchase their vote selections?',
-        scores: [4, 5, 7],
+        scores: [
+          4,
+          [
+            5,
+            {
+              adv: `Challenging to definitively prove how one voted to a remote coercer, although not impossible, e.g. over a video call or recording.`,
+              disadv: `Trivially easy for a voter to sign a blank ballot and hand it to a coercer, or fill it out in front of them.`
+            }
+          ],
+          7
+        ],
         scores_with_bounty: [
           7,
           [
             6,
             {
-              disadv: `Potential for vote-by-mail fraud where someone intercepts and alters the ballots.
-            Voter signs the blank ballot and gives it to the buyer.
-            Family or friends potentially steal or influence the vote choices.`
+              adv: `Challenging to definitively prove how one voted to a remote coercer, although not impossible, e.g. over a video call or recording.`,
+              disadv: `Trivially easy for a voter to sign a blank ballot and hand it to a coercer, or fill it out in front of them.`
             }
           ],
           [
             8,
             {
-              disadv: `Voters could potentially be coerced before arriving at the polling station.
-            Voters can record a video to show it to their coercer as proof`
+              adv: ``,
+              disadv: `A coercer such as a family member can stand in neighboring voting booth and peek to see how the victim votes.
+            Voters can record a video to show it to their coercer as proof.
+            Many voters, including high-profile celebrities, have taken pictures of their filled-in ballots and posted it on their social media profiles.`
             }
           ]
         ]
