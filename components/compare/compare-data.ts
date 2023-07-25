@@ -175,11 +175,13 @@ Once ballots accepted, limited remediation options`
           [
             6,
             {
-              adv: `Beneficial for elderly, disabled, or remote/rural voters who find it hard to reach polling stations.,
+              adv: `Beneficial for elderly, disabled, or remote/rural voters who find it hard to reach polling stations.
               Offers convenience as voters can take their time to complete the ballot.
               Reduction in In-Person Voting Issues: Issues such as long lines, malfunctioning machines, or polling place closures can impact the results of in-person voting. Mail-in voting helps alleviate these issues.`,
-              disadv: ` There is a possibility of delivery delays causing votes to arrive too late to be counted.
-              Some people might not receive their mail-in ballot due to issues with their registration status, incorrect mailing address, or other administrative errors. This could unintentionally disenfranchise certain voters.`
+              disadv: ` Some people might not receive their mail-in ballot due to issues with their registration status, incorrect mailing address, or other administrative errors. This could unintentionally disenfranchise certain voters. This is especially an issue for vote-by-mail because the process takes a while to get the ballot both out to and back from the voter.
+              It is not great for vision impaired people.
+              Requires getting to a mail drop-off location.
+              Filling the ballot and drawing a signature can be a challenge if they are motor impaired.`
             }
           ],
           [
@@ -187,7 +189,8 @@ Once ballots accepted, limited remediation options`
             {
               adv: `In-person assistance is available for those who need it.`,
               disadv: `May be difficult for individuals with mobility issues or remote/rural voters to reach polling stations.
-            Limited voting hours may restrict some people from being able to vote.`
+            Limited voting hours may restrict some people from being able to vote.
+            Long lines make it harder for people to vote.`
             }
           ]
         ]
@@ -204,6 +207,7 @@ Once ballots accepted, limited remediation options`
             Eliminates wait times at polling stations.`,
               disadv: `Dependent on the postal service speed and reliability.
             Requires voters to plan ahead to ensure their ballot is postmarked in time.
+            There is a possibility of delivery delays causing votes to arrive too late to be counted.
             `
             }
           ],
