@@ -46,16 +46,24 @@ export const CompareTableModal = (): JSX.Element => {
         <RotateRightOutlined /> &nbsp; <b>Tip:</b> Looks better in Landscape
         orientation
       </section>
-      <section className='pb-4 mt-4 mb-40 overflow-x-scroll'>
+      <section className='pb-4 mt-6 mb-40 overflow-x-scroll'>
         <table>
           <thead>
             <tr className='border-white border-[3px] dark:border-white/20 border-b-0 '>
-              <th>Category</th>
-              <th style={{ minWidth: 120 }}>Description</th>
-              <th>Name</th>
-              <th>{methods[0]}</th>
-              <th>{methods[1]}</th>
-              <th>{methods[2]}</th>
+              <th className='text-xs'>Category</th>
+              <th className='text-xs' style={{ minWidth: 120 }}>
+                Description
+              </th>
+              <th className='text-xs'>Name</th>
+              <th className='text-xs' style={{ width: '12%' }}>
+                {methods[0]}
+              </th>
+              <th className='text-xs' style={{ width: '12%' }}>
+                {methods[1]}
+              </th>
+              <th className='text-xs' style={{ width: '12%' }}>
+                {methods[2]}
+              </th>
             </tr>
           </thead>
           <tbody>
