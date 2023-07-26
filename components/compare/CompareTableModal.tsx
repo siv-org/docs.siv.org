@@ -1,7 +1,7 @@
 import { RotateRightOutlined } from '@ant-design/icons'
 import { Switch } from './Switch'
 import { Fragment, useReducer, useState } from 'react'
-import { useEffect } from 'react'
+import { useEffect, useCallback } from 'react'
 
 import { Score, tableData } from './compare-data'
 
@@ -12,20 +12,42 @@ const methods = ['SIV', 'Mail', 'In Person']
 export const CompareTableModal = (): JSX.Element => {
   const [bountyEnabled, toggleBounty] = useReducer((t) => !t, true)
   const [modalContent, setModalContent] = useState(null)
+  const [openedModalIndex, setOpenedModalIndex] = useState(null)
 
+  const closeModal = () => setModalContent(null)
+  const goToNext = useCallback(() => {
+    setOpenedModalIndex((prevIndex) => {
+      let newIndex = prevIndex + 1
+      if (newIndex >= tableData.length) newIndex = 0 // wrap around to start
+
+      return newIndex
+    })
+  }, [])
+  const goToPrev = useCallback(() => {
+    setOpenedModalIndex((prevIndex) => {
+      let newIndex = prevIndex - 1
+      if (newIndex < 0) newIndex = tableData.length - 1 // wrap around to end
+
+      return newIndex
+    })
+  }, [])
+
+  const handleKeyDown = useCallback(
+    (event) => {
+      if (openedModalIndex) return
+
+      if (event.key === 'ArrowRight') goToNext()
+      if (event.key === 'ArrowLeft') goToPrev()
+    },
+    [openedModalIndex]
+  )
+  // Activate keyboard shortcuts
   useEffect(() => {
-    // If modalContent is not null, the modal is open, so we want to prevent scrolling on the body.
-    if (modalContent) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      // If modalContent is null, the modal is closed, so we restore scrolling on the body.
-      document.body.style.overflow = 'auto'
+    window.addEventListener('keydown', handleKeyDown)
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
     }
-  }, [modalContent])
-
-  const closeModal = () => {
-    setModalContent(null)
-  }
+  }, [handleKeyDown])
 
   return (
     <main>
@@ -152,6 +174,7 @@ export const CompareTableModal = (): JSX.Element => {
 
       {/* Modal */}
       {!!modalContent && (
+        // Outer container
         <div
           className='fixed inset-0 z-10 overflow-y-auto'
           onClick={closeModal}
@@ -164,15 +187,39 @@ export const CompareTableModal = (): JSX.Element => {
               <div className='absolute inset-0 opacity-75 bg-zinc-900/70'></div>
             </div>
             <div
-              className='inline-block overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-20 sm:align-middle sm:max-w-xl sm:w-full'
-              style={{
-                maxHeight: '70vh',
-                overflowY: 'auto',
-                paddingTop: '5px'
-              }}
+              className='inline-block overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-20 sm:align-middle sm:max-w-xl sm:w-full pt-[5px] overflow-y-auto max-h-[70vh]'
               onClick={(e) => e.stopPropagation()}
             >
               <div className='relative px-4 pt-5 pb-4 bg-white sm:p-6 sm:pb-4'>
+                {/* Prev arrow */}
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  className='absolute w-6 h-6 text-gray-500 transform -translate-y-1/2 cursor-pointer left-4 top-1/2 hover:text-gray-700'
+                  onClick={goToPrev}
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth={2}
+                    d='M15 19l-7-7 7-7'
+                  />
+                </svg>
+
+                {/* Next arrow */}
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  className='absolute w-6 h-6 text-gray-500 transform -translate-y-1/2 cursor-pointer right-4 top-1/2 hover:text-gray-700'
+                  onClick={goToNext}
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth={2}
+                    d='M9 5l7 7-7 7'
+                  />
+                </svg>
+
+                {/* Close X btn */}
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'
@@ -188,6 +235,8 @@ export const CompareTableModal = (): JSX.Element => {
                     d='M6 18L18 6M6 6l12 12'
                   />
                 </svg>
+
+                {/* Modal Content */}
                 <div className='sm:flex sm:items-start'>
                   <div className='mt-3 text-left sm:mt-0 sm:ml-4'>
                     <h3
@@ -221,6 +270,8 @@ export const CompareTableModal = (): JSX.Element => {
                   </div>
                 </div>
               </div>
+
+              {/* Modal bottom row */}
               <div className='px-4 py-3 bg-gray-50 sm:px-6 sm:flex sm:flex-row-reverse'>
                 <span className='flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto'>
                   <button
