@@ -153,22 +153,27 @@ export const CompareTableModal = (): JSX.Element => {
                     >
                       {modalContent.title}
                     </h3>
-                    <div className='mt-2'>
-                      <p className='text-sm text-gray-500'>
-                        <i>Advantages:</i> <br />
-                        {modalContent.advantages
-                          .split('\n')
-                          .map((advantage, index) => (
-                            <div key={index}>+ {advantage}</div>
-                          ))}
-                        <br />
-                        <i>Disadvantages:</i> <br />
-                        {modalContent.disadvantages
-                          .split('\n')
-                          .map((disadvantage, index) => (
-                            <div key={index}>- {disadvantage}</div>
-                          ))}
-                      </p>
+                    <div className='mt-2 text-sm text-sky-900'>
+                      <div className='mt-3 mb-1 text-xs text-teal-900/80'>
+                        Advantages:
+                      </div>
+                      {modalContent.advantages
+                        .split('\n')
+                        .map((advantage, index) => (
+                          <div className='mb-2' key={index}>
+                            + {advantage}
+                          </div>
+                        ))}
+                      <div className='mt-3 mb-1 text-xs opacity-60'>
+                        Disadvantages:
+                      </div>
+                      {modalContent.disadvantages
+                        .split('\n')
+                        .map((disadvantage, index) => (
+                          <div className='mb-2' key={index}>
+                            - {disadvantage}
+                          </div>
+                        ))}
                     </div>
                   </div>
                 </div>
