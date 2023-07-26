@@ -23,6 +23,10 @@ export const CompareTableModal = (): JSX.Element => {
     }
   }, [modalContent])
 
+  const closeModal = () => {
+    setModalContent(null)
+  }
+
   return (
     <main>
       <div>
@@ -140,20 +144,17 @@ export const CompareTableModal = (): JSX.Element => {
 
       {/* Modal */}
       {!!modalContent && (
-        <div className='fixed inset-0 z-10 overflow-y-auto'>
+        <div
+          className='fixed inset-0 z-10 overflow-y-auto'
+          onClick={closeModal}
+        >
           <div className='flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0'>
             <div
               className='fixed inset-0 transition-opacity'
               aria-hidden='true'
             >
-              <div className='absolute inset-0 bg-gray-500 opacity-75'></div>
+              <div className='absolute inset-0 opacity-75 bg-zinc-900/70'></div>
             </div>
-            <span
-              className='hidden sm:inline-block sm:align-middle sm:h-screen'
-              aria-hidden='true'
-            >
-              &#8203;
-            </span>
             <div
               className='inline-block overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-20 sm:align-middle sm:max-w-xl sm:w-full'
               style={{
@@ -161,8 +162,24 @@ export const CompareTableModal = (): JSX.Element => {
                 overflowY: 'auto',
                 paddingTop: '5px'
               }}
+              onClick={(e) => e.stopPropagation()}
             >
-              <div className='px-4 pt-5 pb-4 bg-white sm:p-6 sm:pb-4'>
+              <div className='relative px-4 pt-5 pb-4 bg-white sm:p-6 sm:pb-4'>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                  stroke='currentColor'
+                  className='absolute w-6 h-6 cursor-pointer text-zinc-500 top-4 right-4 hover:text-gray-700'
+                  onClick={closeModal}
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth={2}
+                    d='M6 18L18 6M6 6l12 12'
+                  />
+                </svg>
                 <div className='sm:flex sm:items-start'>
                   <div className='mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left'>
                     <h3
