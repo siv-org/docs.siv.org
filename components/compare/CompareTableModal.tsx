@@ -1,6 +1,7 @@
 import { RotateRightOutlined } from '@ant-design/icons'
 import { Switch } from './Switch'
 import { Fragment, useReducer, useState } from 'react'
+import { useEffect } from 'react'
 
 import { Score, tableData } from './compare-data'
 
@@ -11,6 +12,16 @@ const methods = ['SIV', 'Mail', 'In Person']
 export const CompareTableModal = (): JSX.Element => {
   const [bountyEnabled, toggleBounty] = useReducer((t) => !t, true)
   const [modalContent, setModalContent] = useState(null)
+
+  useEffect(() => {
+    // If modalContent is not null, the modal is open, so we want to prevent scrolling on the body.
+    if (modalContent) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      // If modalContent is null, the modal is closed, so we restore scrolling on the body.
+      document.body.style.overflow = 'auto'
+    }
+  }, [modalContent])
 
   return (
     <main>
@@ -143,7 +154,14 @@ export const CompareTableModal = (): JSX.Element => {
             >
               &#8203;
             </span>
-            <div className='inline-block overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full'>
+            <div
+              className='inline-block overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-20 sm:align-middle sm:max-w-xl sm:w-full'
+              style={{
+                maxHeight: '70vh',
+                overflowY: 'auto',
+                paddingTop: '5px'
+              }}
+            >
               <div className='px-4 pt-5 pb-4 bg-white sm:p-6 sm:pb-4'>
                 <div className='sm:flex sm:items-start'>
                   <div className='mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left'>
