@@ -181,7 +181,7 @@ export const CompareTableModal = (): JSX.Element => {
                   />
                 </svg>
                 <div className='sm:flex sm:items-start'>
-                  <div className='mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left'>
+                  <div className='mt-3 text-left sm:mt-0 sm:ml-4'>
                     <h3
                       className='text-lg font-medium leading-6 text-gray-900'
                       id='modal-title'
