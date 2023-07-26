@@ -63,6 +63,7 @@ Once ballots accepted, limited remediation options`
           [
             3,
             {
+              adv: `n/a`,
               disadv: `Inherits all the disadvantages of safely verifying tallying of in-person voting, plus introduces new risks:
               It is hard to know what happens with the ballot once you put your ballot into a mailbox. There are lots of opportunities for it to get tampered with or lost.
               Because mailboxes are so geographically spread out, it is very difficult to comprehensively monitor.
@@ -98,7 +99,7 @@ Once ballots accepted, limited remediation options`
               adv: `There is at least of small amount of effort for vote privacy — vote selections are sealed within an envelope.
               Because it is a spread-out paper process, it is relatively hard to compromise on a huge scale without whistleblowers.`,
               disadv: `You're sending your name & vote selections side-by-side through this relatively opaque process. 
-              It is trivially easy to open a letter, read its contents, and reseal it. There have been centuries worth of examples of governments doing this on an industrial scale. E.g. the French "cabinet noir"`
+              It is trivially easy to open a letter, read its contents, and reseal it. There have been centuries worth of examples of governments doing this on an industrial scale. E.g. the French "cabinet noir".`
             }
           ],
           [
@@ -228,16 +229,15 @@ Once ballots accepted, limited remediation options`
           [
             2,
             {
-              adv: ``,
+              adv: `n/a`,
               disadv: `Counting mail-in ballots is typically slower due to the verification process for each ballot, which includes signature verification. The ballots need to be unfolded and uncreased, and sometimes they get rejected by the voting machine. For example, some 2020 results took 3 weeks to count all the mail-in votes. 
-            Results can be delayed if there's a large volume of mail-in ballots.
-            `
+            Results can be delayed if there's a large volume of mail-in ballots.`
             }
           ],
           [
             4,
             {
-              adv: ``,
+              adv: `n/a`,
               disadv: ` If using a tallying machine, votes need to be manually fed through the machine. 
               Longer wait times for results if manual recounting is required.`
             }
@@ -259,13 +259,13 @@ Once ballots accepted, limited remediation options`
             {
               adv: `Can be less expensive as it requires fewer polling stations, and less staff on election day.`,
               disadv: `The cost of printing, distributing, and returning the mail-in ballots can be high. And are paid even if voter opts for a different method.
-            Increased cost for verification and handling of mail-in ballots.
-            `
+            Increased cost for verification and handling of mail-in ballots.`
             }
           ],
           [
             2,
             {
+              adv: `n/a`,
               disadv: `Requires significant staffing for polling stations.
             Cost of printing and handling physical ballots.`
             }
