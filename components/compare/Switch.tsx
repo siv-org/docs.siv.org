@@ -14,6 +14,7 @@ export const Switch = ({
         type='checkbox'
         role='switch'
         id='flexSwitchCheckDefault'
+        readOnly
         {...{ checked }}
       />
       <label

@@ -9,24 +9,46 @@ const getScore = (s: Score): number => (typeof s === 'number' ? s : s[0])
 
 const methods = ['SIV', 'Mail', 'In Person']
 
+type OpenedModalIndex = [number, number, number] | null
+
 export const CompareTableModal = (): JSX.Element => {
   const [bountyEnabled, toggleBounty] = useReducer((t) => !t, true)
-  const [modalContent, setModalContent] = useState(null)
-  const [openedModalIndex, setOpenedModalIndex] = useState(null)
+  const [openedModalIndex, setOpenedModalIndex] =
+    useState<OpenedModalIndex>(null)
+  function getModalContent(openedModalIndex: OpenedModalIndex) {
+    if (!openedModalIndex) return null
+    const [cat_index, row_index, col_index] = openedModalIndex
 
-  const closeModal = () => setModalContent(null)
+    const cat = tableData[cat_index]
+    const row = cat.rows[row_index]
+    const scores = bountyEnabled
+      ? row.scores_with_bounty || row.scores
+      : row.scores
+    const score = scores[col_index]
+
+    return {
+      title: `${methods[col_index]} - ${row.d_name}: ${getScore(score)} / 10`,
+      advantages: score[1]?.adv || '',
+      disadvantages: score[1]?.disadv || ''
+    }
+  }
+  const modalContent = getModalContent(openedModalIndex)
+
+  const closeModal = () => setOpenedModalIndex(null)
   const goToNext = useCallback(() => {
     setOpenedModalIndex((prevIndex) => {
-      let newIndex = prevIndex + 1
-      if (newIndex >= tableData.length) newIndex = 0 // wrap around to start
+      let newIndex: [number, number, number] = [...prevIndex]
+      newIndex[2]++
+      if (newIndex[2] >= methods.length) return prevIndex // Close if reached right most column
 
       return newIndex
     })
   }, [])
   const goToPrev = useCallback(() => {
     setOpenedModalIndex((prevIndex) => {
-      let newIndex = prevIndex - 1
-      if (newIndex < 0) newIndex = tableData.length - 1 // wrap around to end
+      let newIndex: [number, number, number] = [...prevIndex]
+      newIndex[2]--
+      if (newIndex[2] < 0) return prevIndex // Close if reached left most column
 
       return newIndex
     })
@@ -34,7 +56,7 @@ export const CompareTableModal = (): JSX.Element => {
 
   const handleKeyDown = useCallback(
     (event) => {
-      if (openedModalIndex) return
+      if (!openedModalIndex) return
 
       if (event.key === 'ArrowRight') goToNext()
       if (event.key === 'ArrowLeft') goToPrev()
@@ -71,21 +93,13 @@ export const CompareTableModal = (): JSX.Element => {
       <section className='pb-4 mt-6 mb-40 overflow-x-scroll'>
         <table>
           <thead>
-            <tr className='border-white border-[3px] dark:border-white/20 border-b-0 '>
-              <th className='text-xs'>Category</th>
-              <th className='text-xs' style={{ minWidth: 120 }}>
-                Description
-              </th>
-              <th className='text-xs'>Name</th>
-              <th className='text-xs' style={{ width: '12%' }}>
-                {methods[0]}
-              </th>
-              <th className='text-xs' style={{ width: '12%' }}>
-                {methods[1]}
-              </th>
-              <th className='text-xs' style={{ width: '12%' }}>
-                {methods[2]}
-              </th>
+            <tr className='border-white border-[3px] dark:border-white/20 border-b-0 text-xs'>
+              <th>Category</th>
+              <th style={{ minWidth: 120 }}>Description</th>
+              <th>Name</th>
+              <th style={{ width: '12%' }}>{methods[0]}</th>
+              <th style={{ width: '12%' }}>{methods[1]}</th>
+              <th style={{ width: '12%' }}>{methods[2]}</th>
             </tr>
           </thead>
           <tbody>
@@ -131,37 +145,9 @@ export const CompareTableModal = (): JSX.Element => {
                             9: '#22c55e'
                           }[getScore(s)]
                         }}
-                        onClick={() => {
-                          setModalContent({
-                            title: `${methods[j]} - ${row.d_name}: ${getScore(
-                              s
-                            )} / 10`,
-                            advantages: s[1]?.adv || '',
-                            disadvantages: s[1]?.disadv || ''
-                          })
-                        }}
+                        onClick={() => setOpenedModalIndex([c_i, i, j])}
                       >
                         {getScore(s)}
-                        {typeof s !== 'number' && (
-                          <span className='hidden'>
-                            {methods[j]} - {row.d_name}: {s[0]} / 10
-                            <br />
-                            <br />
-                            <i>Advantages:</i> <br />
-                            {!!s[1].adv &&
-                              s[1].adv
-                                .split('\n')
-                                .map((l) => ` + ${l}`)
-                                .join('\n')}
-                            <br />
-                            <br />
-                            <i>Disadvantages:</i> <br />
-                            {s[1].disadv
-                              .split('\n')
-                              .map((l) => ` - ${l}`)
-                              .join('\n')}
-                          </span>
-                        )}
                       </td>
                     ))}
                   </tr>
@@ -275,7 +261,7 @@ export const CompareTableModal = (): JSX.Element => {
               <div className='px-4 py-3 bg-gray-50 sm:px-6 sm:flex sm:flex-row-reverse'>
                 <span className='flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto'>
                   <button
-                    onClick={() => setModalContent(null)}
+                    onClick={() => setOpenedModalIndex(null)}
                     className='inline-flex justify-center w-full px-4 py-2 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue sm:text-sm sm:leading-5'
                   >
                     Close
