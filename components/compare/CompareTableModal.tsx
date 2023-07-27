@@ -99,15 +99,9 @@ export const CompareTableModal = (): JSX.Element => {
                 Description
               </th>
               <th className='px-4'>Name</th>
-              <th className='px-4' style={{ width: '12%' }}>
-                {methods[0]}
-              </th>
-              <th className='px-4' style={{ width: '12%' }}>
-                {methods[1]}
-              </th>
-              <th className='px-4' style={{ width: '12%' }}>
-                {methods[2]}
-              </th>
+              <th className='px-4 w-[12%]'>{methods[0]}</th>
+              <th className='px-4 w-[12%]'>{methods[1]}</th>
+              <th className='px-4 w-[12%]'>{methods[2]}</th>
             </tr>
           </thead>
           <tbody>
@@ -285,16 +279,6 @@ export const CompareTableModal = (): JSX.Element => {
         @media (max-width: 515px) and (orientation: portrait) {
           .portrait\:visible {
             display: block;
-          }
-        }
-
-        @media (max-width: 700px) {
-          main {
-            padding: 0 5px;
-          }
-
-          th {
-            padding: 0 5px;
           }
         }
       `}</style>
