@@ -72,7 +72,7 @@ export const CompareTableModal = (): JSX.Element => {
   }, [handleKeyDown])
 
   return (
-    <main>
+    <main className='mt-8'>
       <div>
         <Switch
           checked={bountyEnabled}
@@ -87,19 +87,27 @@ export const CompareTableModal = (): JSX.Element => {
         </a>
       </div>
       <section className='hidden py-2 mt-2 mb-4 text-center bg-blue-500/30 portrait:visible'>
-        <RotateRightOutlined /> &nbsp; <b>Tip:</b> Looks better in Landscape
-        orientation
+        <RotateRightOutlined /> &nbsp; <b className='font-bold'>Tip:</b> Looks
+        better in Landscape orientation
       </section>
       <section className='pb-4 mt-6 mb-40 overflow-x-scroll'>
-        <table>
+        <table className='mx-auto border-collapse'>
           <thead>
             <tr className='border-white border-[3px] dark:border-white/20 border-b-0 text-xs'>
-              <th>Category</th>
-              <th style={{ minWidth: 120 }}>Description</th>
-              <th>Name</th>
-              <th style={{ width: '12%' }}>{methods[0]}</th>
-              <th style={{ width: '12%' }}>{methods[1]}</th>
-              <th style={{ width: '12%' }}>{methods[2]}</th>
+              <th className='px-4 pl-3 text-left'>Category</th>
+              <th className='px-4 pl-3 text-left' style={{ minWidth: 120 }}>
+                Description
+              </th>
+              <th className='px-4'>Name</th>
+              <th className='px-4' style={{ width: '12%' }}>
+                {methods[0]}
+              </th>
+              <th className='px-4' style={{ width: '12%' }}>
+                {methods[1]}
+              </th>
+              <th className='px-4' style={{ width: '12%' }}>
+                {methods[2]}
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -274,46 +282,10 @@ export const CompareTableModal = (): JSX.Element => {
       )}
 
       <style jsx>{`
-        main {
-          margin-top: 2rem;
-        }
-
-        h2 {
-          text-align: center;
-        }
-
-        i {
-          opacity: 0.5;
-          padding: 0 1rem;
-          font-weight: 400;
-        }
-
         @media (max-width: 515px) and (orientation: portrait) {
           .portrait\:visible {
             display: block;
           }
-        }
-
-        table {
-          border-collapse: collapse;
-          margin: 0 auto;
-        }
-
-        th {
-          padding: 0 1rem;
-        }
-
-        th:nth-child(-n + 2) {
-          text-align: left;
-          padding-left: 3px;
-        }
-
-        td {
-          padding: 5px 4px;
-        }
-
-        .bold {
-          font-weight: 600;
         }
 
         @media (max-width: 700px) {
