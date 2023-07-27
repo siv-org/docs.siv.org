@@ -95,71 +95,73 @@ export const CompareTableModal = (): JSX.Element => {
       </section>
 
       {/* Table */}
-      <table className='pb-4 mx-auto mt-6 mb-40 overflow-x-scroll border-collapse'>
-        <thead>
-          <tr className='border-white border-[3px] dark:border-white/20 border-b-0 text-xs space-x-4'>
-            <th className='text-left '>Category</th>
-            <th className='text-left min-w-[120px]'>Description</th>
-            <th>Name</th>
-            <th className='w-[12%]'>{methods[0]}</th>
-            <th className='w-[12%]'>{methods[1]}</th>
-            <th className='w-[12%]'>{methods[2]}</th>
-          </tr>
-        </thead>
+      <section className='pb-4 mt-6 mb-40 overflow-x-scroll'>
+        <table className='mx-auto border-collapse'>
+          <thead>
+            <tr className='border-white border-[3px] dark:border-white/20 border-b-0 text-xs space-x-4'>
+              <th className='text-left '>Category</th>
+              <th className='text-left min-w-[120px]'>Description</th>
+              <th>Name</th>
+              <th className='w-[12%]'>{methods[0]}</th>
+              <th className='w-[12%]'>{methods[1]}</th>
+              <th className='w-[12%]'>{methods[2]}</th>
+            </tr>
+          </thead>
 
-        <tbody>
-          {tableData.map((cat, c_i) => (
-            <Fragment key={c_i}>
-              {cat.rows.map((row, i) => (
-                <tr
-                  className={
-                    i == 0 &&
-                    'border-t-[#e4e4e4] dark:border-t-white/20 border-t-4 first:border-t '
-                  }
-                  key={i}
-                >
-                  {i === 0 && (
-                    <td
-                      className='bg-white text-[#555] dark:bg-[rgb(17,17,17)] dark:text-white/70'
-                      rowSpan={cat.rows.length}
-                    >
-                      {cat.name}&nbsp;&nbsp;
-                    </td>
-                  )}
-                  <td className='text-sm opacity-70'>{row.desc}</td>
-                  <td className='!pr-3 text-center'>{row.d_name}</td>
-                  {[
-                    ...(bountyEnabled && row.scores_with_bounty
-                      ? row.scores_with_bounty
-                      : row.scores)
-                  ].map((s, j) => (
-                    <td
-                      className='text-center text-black cursor-pointer hover:opacity-70'
-                      key={j}
-                      style={{
-                        backgroundColor: {
-                          1: '#ef4444',
-                          2: '#f87171',
-                          3: '#fca5a5',
-                          4: '#fecaca',
-                          5: 'white',
-                          6: '#bbf7d0',
-                          7: '#86efac',
-                          8: '#4ade80',
-                          9: '#22c55e'
-                        }[getScore(s)]
-                      }}
-                      onClick={() => setOpenedModalIndex([c_i, i, j])}
-                    >
-                      {getScore(s)}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </Fragment>
-          ))}
-        </tbody>
-      </table>
+          <tbody>
+            {tableData.map((cat, c_i) => (
+              <Fragment key={c_i}>
+                {cat.rows.map((row, i) => (
+                  <tr
+                    className={
+                      i == 0 &&
+                      'border-t-[#e4e4e4] dark:border-t-white/20 border-t-4 first:border-t '
+                    }
+                    key={i}
+                  >
+                    {i === 0 && (
+                      <td
+                        className='bg-white text-[#555] dark:bg-[rgb(17,17,17)] dark:text-white/70'
+                        rowSpan={cat.rows.length}
+                      >
+                        {cat.name}&nbsp;&nbsp;
+                      </td>
+                    )}
+                    <td className='text-sm opacity-70'>{row.desc}</td>
+                    <td className='!pr-3 text-center'>{row.d_name}</td>
+                    {[
+                      ...(bountyEnabled && row.scores_with_bounty
+                        ? row.scores_with_bounty
+                        : row.scores)
+                    ].map((s, j) => (
+                      <td
+                        className='text-center text-black cursor-pointer hover:opacity-70'
+                        key={j}
+                        style={{
+                          backgroundColor: {
+                            1: '#ef4444',
+                            2: '#f87171',
+                            3: '#fca5a5',
+                            4: '#fecaca',
+                            5: 'white',
+                            6: '#bbf7d0',
+                            7: '#86efac',
+                            8: '#4ade80',
+                            9: '#22c55e'
+                          }[getScore(s)]
+                        }}
+                        onClick={() => setOpenedModalIndex([c_i, i, j])}
+                      >
+                        {getScore(s)}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </Fragment>
+            ))}
+          </tbody>
+        </table>
+      </section>
 
       {/* Modal */}
       {!!modalContent && (
@@ -168,6 +170,7 @@ export const CompareTableModal = (): JSX.Element => {
           className='fixed inset-0 z-10 overflow-y-auto'
           onClick={closeModal}
         >
+          {/* Centre contents on small screens */}
           <div className='flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0'>
             <div
               className='fixed inset-0 transition-opacity'
