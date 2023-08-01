@@ -108,7 +108,13 @@ Once ballots accepted, limited remediation options`
           [
             8,
             {
-              adv: `SIV's Privacy Protectors, similar to traditional election observers but enhanced by cryptography, play a crucial role in vote anonymization and shuffling, offering an additional layer of security and transparency in online elections while requiring fewer individuals compared to traditional systems.`,
+              adv: ` Using Threshold Key Cryptography, the SIV system does not allow anyone, including the election administrators and the SIV infrastructure, to see how anyone else voted.
+              Votes get encrypted on the voter's device and the plain text never leaves their device. 
+              Only a private key, infeasible to guess, can decrypt votes. The key is split into pieces and help by different people for extra safety.
+              All the scrambled — "encrypted" — votes are mixed up  — "anonymized" — in a strong cryptographic way, so no one can tell which one is yours. Then the mixed-up votes are unscrambled using the special key and counted. This process provides Zero-Knowledge Proofs to show that votes were not modified or tampered with during this process. 
+              SIV's Privacy Protectors, similar to traditional election observers but enhanced by cryptography, play an important role in vote anonymization and shuffling, offering an additional layer of security and transparency in online elections while requiring fewer individuals compared to traditional systems.
+              For additional safety, there's an option to prepare the vote on a device that's not connected to the internet (air-gapped).
+              `,
               disadv: ``
             }
           ],
