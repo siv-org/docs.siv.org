@@ -318,7 +318,8 @@ Once ballots accepted, limited remediation options`
             {
               adv: `The current average government elections budget is ~$20/voter, no matter if the person votes or not. SIV can reduce that cost to ~$3/voter.
               SIV is priced so there is no charge for voters who opt not to use it.
-              Governments can pilot SIV for free.`,
+              Governments can pilot SIV for free.
+              SIV greatly reduces the amount of work election administrators have to do. In pilots with side-by-side SIV & In-Person voting, the in-person voting required 10x as many people to check-in voters and tally the results.`,
               disadv: `During initial years when SIV is first being offered, election administrators may want to continue providing the same levels of vote-by-mail and in-person infrastructure. So cost savings will take a few transition years to realize.`
             }
           ],
