@@ -316,9 +316,10 @@ Once ballots accepted, limited remediation options`
           [
             8,
             {
-              adv: `The current average budget is ~$20/voter, no matter if the person votes or not.SIV reduces that cost to ~5/voter, and only if the person votes.
-              Can reduce the number of polling stations and staff needed.`,
-              disadv: `If the election admin chooses to send the Authentication codes via mail, this is an additional ~$1/voter.`
+              adv: `The current average government elections budget is ~$20/voter, no matter if the person votes or not. SIV can reduce that cost to ~$3/voter.
+              SIV is priced so there is no charge for voters who opt not to use it.
+              Governments can pilot SIV for free.`,
+              disadv: `During initial years when SIV is first being offered, election administrators may want to continue providing the same levels of vote-by-mail and in-person infrastructure. So cost savings will take a few transition years to realize.`
             }
           ],
           [
