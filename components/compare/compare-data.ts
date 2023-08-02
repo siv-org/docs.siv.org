@@ -209,7 +209,16 @@ Once ballots accepted, limited remediation options`
         d_name: 'Accessibility',
         desc: 'How accessible is the voting process for all members of the electorate, especially those with disabilities?',
         scores: [
-          8,
+          [
+            8,
+            {
+              adv: `No need to visit polling stations or drop boxes.
+              By utilizing their own devices in the comfort of their homes, voters with disabilities can benefit from customized accessibility features such as text-to-speech, larger font sizes, high contrast mode, and various other options tailored to their needs.
+              Allows voters to research and fill in their ballot at their own pace, without feeling rushed.
+              Offers convenience as voters can take their time to complete the ballot.`,
+              disadv: `Not everyone is familiar and comfortable with using digital devices such as laptop, tablet, or phone.`
+            }
+          ],
           [
             6,
             {
