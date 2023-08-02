@@ -283,13 +283,13 @@ Once ballots accepted, limited remediation options`
             9,
             {
               adv: `SIV facilitates the swift and efficient tabulation and publication of voting results. Outcomes can be accessible within mere seconds of the voting period's conclusion.`,
-              disadv: ``
+              disadv: `n/a`
             }
           ],
           [
             2,
             {
-              adv: `n/a`,
+              adv: `Depending on jurisdiction they can start pre-tallying ahead of time.`,
               disadv: `Counting mail-in ballots is typically slower due to the verification process for each ballot, which includes signature verification. The ballots need to be unfolded and uncreased, and sometimes they get rejected by the voting machine. For example, some 2020 results took 3 weeks to count all the mail-in votes. 
             Results can be delayed if there's a large volume of mail-in ballots.`
             }
@@ -297,7 +297,7 @@ Once ballots accepted, limited remediation options`
           [
             4,
             {
-              adv: `n/a`,
+              adv: `Well-vetted data on it.`,
               disadv: ` If using a tallying machine, votes need to be manually fed through the machine. 
               Longer wait times for results if manual recounting is required.`
             }
