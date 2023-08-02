@@ -279,7 +279,13 @@ Once ballots accepted, limited remediation options`
         d_name: 'Speed of tallying',
         desc: 'How quickly can results be tallied?',
         scores: [
-          9,
+          [
+            9,
+            {
+              adv: `SIV facilitates the swift and efficient tabulation and publication of voting results. Outcomes can be accessible within mere seconds of the voting period's conclusion.`,
+              disadv: ``
+            }
+          ],
           [
             2,
             {
@@ -307,7 +313,13 @@ Once ballots accepted, limited remediation options`
         d_name: 'Affordability to administer',
         desc: 'How affordable are the total costs to administer a secure election?',
         scores: [
-          8,
+          [
+            8,
+            {
+              adv: ``,
+              disadv: ``
+            }
+          ],
           [
             4,
             {
