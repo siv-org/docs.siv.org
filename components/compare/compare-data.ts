@@ -22,7 +22,7 @@ export const tableData: Category[] = [
               adv: `Allows for a combination of auth methods: verified email delivery, SMS, drawn e-signatures, time-based one-time passwords, IP address geolocation, government ID photos, and cryptographic key pairs.
 Strong remediation process allowing admins to revoke voter credentials at any stage of the election, including post-voting and tallying phases.`,
 
-              disadv: ``
+              disadv: `SIV is not prescriptive about the authentication methods. The specific choice is up to the election administrators.`
             }
           ],
           [
