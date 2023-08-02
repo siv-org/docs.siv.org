@@ -186,7 +186,7 @@ export const CompareTableModal = (): JSX.Element => {
                 {/* Prev arrow */}
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
-                  className='absolute w-6 h-6 text-gray-500 transform -translate-y-1/2 cursor-pointer left-4 top-1/2 hover:text-gray-700'
+                  className='absolute w-6 h-6 text-gray-500 transform -translate-y-1/2 cursor-pointer left-1 top-1/2 hover:text-gray-700'
                   onClick={goToPrev}
                 >
                   <path
@@ -200,7 +200,7 @@ export const CompareTableModal = (): JSX.Element => {
                 {/* Next arrow */}
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
-                  className='absolute w-6 h-6 text-gray-500 transform -translate-y-1/2 cursor-pointer right-4 top-1/2 hover:text-gray-700'
+                  className='absolute w-6 h-6 text-gray-500 transform -translate-y-1/2 cursor-pointer right-1 top-1/2 hover:text-gray-700'
                   onClick={goToNext}
                 >
                   <path
