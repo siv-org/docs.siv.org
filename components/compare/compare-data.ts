@@ -327,8 +327,8 @@ Once ballots accepted, limited remediation options`
             4,
             {
               adv: `Can be less expensive as it requires fewer polling stations, and less staff on election day.`,
-              disadv: `The cost of printing, distributing, and returning the mail-in ballots can be high. And are paid even if voter opts for a different method.
-            Increased cost for verification and handling of mail-in ballots.`
+              disadv: `The costs of printing, distributing, and returning ballots can add up when there are a lot of voters. Many of these costs are paid even if voter opts for a different method.
+              Increased cost for verification and handling of mail-in ballots.`
             }
           ],
           [
