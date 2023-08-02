@@ -334,9 +334,12 @@ Once ballots accepted, limited remediation options`
           [
             2,
             {
-              adv: `n/a`,
+              adv: `Many people are excited to volunteer.
+              Long history of data about the costs.`,
               disadv: `Requires significant staffing for polling stations.
-            Cost of printing and handling physical ballots.`
+            Cost of printing and handling physical ballots.
+            US elections cost ~$4bn/year.
+            Costs can go up during natural disasters and other unforeseen events — eg. the 2020 election cost an additional $4bn ($8bn total) because of COVID-19.`
             }
           ]
         ]
