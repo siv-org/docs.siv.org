@@ -316,8 +316,9 @@ Once ballots accepted, limited remediation options`
           [
             8,
             {
-              adv: ``,
-              disadv: ``
+              adv: `The current average budget is ~$20/voter, no matter if the person votes or not.SIV reduces that cost to ~5/voter, and only if the person votes.
+              Can reduce the number of polling stations and staff needed.`,
+              disadv: `If the election admin chooses to send the Authentication codes via mail, this is an additional ~$1/voter.`
             }
           ],
           [
