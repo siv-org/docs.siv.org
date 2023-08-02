@@ -247,7 +247,15 @@ Once ballots accepted, limited remediation options`
         d_name: 'Speed of voting',
         desc: 'How quickly can individual voters participate?',
         scores: [
-          8,
+          [
+            8,
+            {
+              adv: ` If the person knows how they want to vote, it takes seconds to vote.
+              Voters don't need to travel or wait in line at polling stations.
+              Easier to click a button, than have to use a pen and maybe make a mistake and then it's messier and harder to fix. `,
+              disadv: `Election administrators have the option to send the unique Authentication codes that allow a voter to vote via mail. This can be slow or encounter issues such as incorrect mailing address.`
+            }
+          ],
           [
             7,
             {
