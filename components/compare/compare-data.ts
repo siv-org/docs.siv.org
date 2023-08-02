@@ -108,13 +108,9 @@ Once ballots accepted, limited remediation options`
           [
             8,
             {
-              adv: ` Using Threshold Key Cryptography, the SIV system does not allow anyone, including the election administrators and the SIV infrastructure, to see how anyone else voted.
+              adv: `Using a cryptographic mixnet, the SIV system does not allow anyone, including the election administrators and the SIV infrastructure, to see how anyone else voted.
               Votes get encrypted on the voter's device and the plain text never leaves their device. 
-              Only a private key, infeasible to guess, can decrypt votes. The key is split into pieces and help by different people for extra safety.
-              All the scrambled — "encrypted" — votes are mixed up  — "anonymized" — in a strong cryptographic way, so no one can tell which one is yours. Then the mixed-up votes are unscrambled using the special key and counted. This process provides Zero-Knowledge Proofs to show that votes were not modified or tampered with during this process. 
-              SIV's Privacy Protectors, similar to traditional election observers but enhanced by cryptography, play an important role in vote anonymization and shuffling, offering an additional layer of security and transparency in online elections while requiring fewer individuals compared to traditional systems.
-              For additional safety, there's an option to prepare the vote on a device that's not connected to the internet (air-gapped).
-              `,
+              SIV's privacy architecture and implementation is fully inspectable by the voters, at their own pace.`,
               disadv: ``
             }
           ],
@@ -142,7 +138,17 @@ Once ballots accepted, limited remediation options`
         d_name: 'Coercion resistance',
         desc: 'How protected are voters against attempts to threaten or purchase their vote selections?',
         scores: [
-          4,
+          [
+            4,
+            {
+              adv: `Vote selling is a serious crime with a hefty financial penalty and jail time.
+              Vote seller loses their right to vote for life.
+              As the vote seller, if you sent your verification number to a smart contract, everyone can see what your Verification # is. Then thanks to SIV's architecture, all SIV Privacy Protectors can work together and can selectively de-anonymize your vote. Then your vote can be cancelled. So if your  sold Verification # gets leaked easily, your vote can be cancelled.
+              Voter Selling is hypothetical, not observed.`,
+              disadv: `Using SIV makes it easier to prove to remote coercers how you voted, because of the Verification # and the vote receipt.
+              The proof also makes it easier to share with someone who's outside of the law enforcement's jurisdiction.`
+            }
+          ],
           [
             5,
             {
@@ -165,8 +171,14 @@ Once ballots accepted, limited remediation options`
           [
             7,
             {
-              adv: `Especially good for vote seller bounty rewards because selling creates lots of evidence and SIV votes can be cancelled and re-issued.`,
-              disadv: ``
+              adv: `With the bounty reward system in place, the proofs that SIV creates turn into benefits. People now have way easier and stronger proof of illegal activity.
+              It is in the best interest of both the seller & buyer to defect. The trust between them diminishes significantly.
+              Vote selling is already serious crime with a hefty financial penalty and jail time. And if caught, vote seller loses their right to vote for life.
+              As the vote seller, if you sent your verification number to a smart contract, everyone can see what your Verification # is. Then thanks to SIV's architecture, all SIV Privacy Protectors can work together and can selectively de-anonymize your vote. Then your vote can be cancelled. So if your  sold Verification # gets leaked easily, your vote can be cancelled.
+              Voter Selling is hypothetical, not observed.`,
+              disadv: `The buyer might be able to stay anonymous, hence it might be hard to prosecute.
+              Using SIV makes it easier to prove to remote coercers how you voted, because of the Verification # and the vote receipt.
+              The proof also makes it easier to share with someone who's outside of the law enforcement's jurisdiction.`
             }
           ],
           [
