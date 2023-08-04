@@ -26,6 +26,7 @@ export const CompareTable = (): JSX.Element => {
           (learn more)
         </a>
       </div>
+
       <section className='hidden py-2 mt-2 mb-4 text-center bg-blue-500/30 portrait:visible'>
         <RotateRightOutlined /> &nbsp; <b>Tip:</b> Looks better in Landscape
         orientation
