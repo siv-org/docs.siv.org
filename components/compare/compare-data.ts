@@ -108,8 +108,7 @@ Once ballots accepted, limited remediation options`
           [
             8,
             {
-              adv: `Using a cryptographic mixnet, the SIV system does not allow anyone, including the election administrators and the SIV infrastructure, to see how anyone else voted.
-              Votes get encrypted on the voter's device and the plain text never leaves their device. 
+              adv: `Using a cryptographic mixnet, the SIV system does not allow anyone, including the election administrators and the SIV infrastructure, to see how anyone else voted. 
               SIV's privacy architecture and implementation is fully inspectable by the voters, at their own pace.`,
               disadv: ``
             }
