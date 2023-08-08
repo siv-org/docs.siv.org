@@ -113,15 +113,21 @@ export const CompareTableModal = (): JSX.Element => {
             {tableData.map((cat, c_i) => (
               <Fragment key={c_i}>
                 <tr>
-                  <div className='w-48 py-1.5 pl-2 font-semibold bg-gray-100'>
+                  <div
+                    className={`w-48 py-1.5 pl-2 font-semibold bg-gray-100 relative top-3 ${
+                      c_i === 0 && '-mt-8'
+                    }`}
+                  >
                     {cat.name}
                   </div>
                 </tr>
                 {cat.rows.map((row, i) => (
                   <tr key={i}>
-                    <td>
+                    <td className='pr-10'>
                       <div className='text-lg font-bold'>{row.d_name}</div>
-                      <div className='font-light opacity-80'>{row.desc}</div>
+                      <div className='font-light text-justify opacity-80'>
+                        {row.desc}
+                      </div>
                     </td>
                     {[
                       ...(bountyEnabled && row.scores_with_bounty
@@ -142,6 +148,9 @@ export const CompareTableModal = (): JSX.Element => {
                             7: '#86efac',
                             8: '#4ade80',
                             9: '#22c55e'
+                          }[getScore(s)],
+                          borderWidth: {
+                            5: 1
                           }[getScore(s)]
                         }}
                         onClick={() => setOpenedModalIndex([c_i, i, j])}
