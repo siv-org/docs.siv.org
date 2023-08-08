@@ -96,39 +96,33 @@ export const CompareTableModal = (): JSX.Element => {
 
       {/* Table */}
       <section className='pb-4 mt-6 mb-40 overflow-x-scroll'>
-        <table className='mx-auto border-collapse'>
+        <table
+          style={{ borderSpacing: '15px 25px' }}
+          className='mx-auto border-separate'
+        >
           <thead>
-            <tr className='border-white border-[3px] dark:border-white/20 border-b-0 text-xs space-x-4'>
-              <th className='text-left '>Category</th>
-              <th className='text-left min-w-[120px]'>Description</th>
-              <th>Name</th>
-              <th className='w-[12%]'>{methods[0]}</th>
-              <th className='w-[12%]'>{methods[1]}</th>
-              <th className='w-[12%]'>{methods[2]}</th>
+            <tr className='border-white border-[3px] dark:border-white/20 border-b-0 space-x-4'>
+              <th className='text-left min-w-[120px]'></th>
+              <th className='w-[12%] bg-gray-100'>{methods[0]}</th>
+              <th className='w-[12%] bg-gray-100'>{methods[1]}</th>
+              <th className='w-[12%] bg-gray-100'>{methods[2]}</th>
             </tr>
           </thead>
 
           <tbody>
             {tableData.map((cat, c_i) => (
               <Fragment key={c_i}>
+                <tr>
+                  <div className='w-48 py-1.5 pl-2 font-semibold bg-gray-100'>
+                    {cat.name}
+                  </div>
+                </tr>
                 {cat.rows.map((row, i) => (
-                  <tr
-                    className={
-                      i == 0 &&
-                      'border-t-[#e4e4e4] dark:border-t-white/20 border-t-4 first:border-t '
-                    }
-                    key={i}
-                  >
-                    {i === 0 && (
-                      <td
-                        className='bg-white text-[#555] dark:bg-[rgb(17,17,17)] dark:text-white/70'
-                        rowSpan={cat.rows.length}
-                      >
-                        {cat.name}&nbsp;&nbsp;
-                      </td>
-                    )}
-                    <td className='text-sm opacity-70'>{row.desc}</td>
-                    <td className='!pr-3 text-center'>{row.d_name}</td>
+                  <tr key={i}>
+                    <td>
+                      <div className='text-lg font-bold'>{row.d_name}</div>
+                      <div className='font-light opacity-80'>{row.desc}</div>
+                    </td>
                     {[
                       ...(bountyEnabled && row.scores_with_bounty
                         ? row.scores_with_bounty
