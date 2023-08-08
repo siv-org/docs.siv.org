@@ -1,9 +1,9 @@
 import { RotateRightOutlined } from '@ant-design/icons'
-import { Switch } from './Switch'
 import { Fragment, useReducer, useState } from 'react'
 import { useEffect, useCallback } from 'react'
 
 import { Score, tableData } from './compare-data'
+import { BountyRewardsSwitch } from './BountyRewardsSwitch'
 
 const getScore = (s: Score): number => (typeof s === 'number' ? s : s[0])
 
@@ -73,21 +73,6 @@ export const CompareTableModal = (): JSX.Element => {
 
   return (
     <main className='mt-8'>
-      {/* Line w/ Bounty Reward Switch */}
-      <div>
-        <Switch
-          checked={bountyEnabled}
-          onClick={toggleBounty}
-          label='With Vote Seller Bounty Rewards'
-        />{' '}
-        <a
-          className='text-blue-500 hover:underline'
-          href='/research-in-progress/vote-sellers-dilemma'
-        >
-          (learn more)
-        </a>
-      </div>
-
       {/* Landscape Orientation tip */}
       <section className='hidden py-2 mt-2 mb-4 text-center bg-blue-500/30 portrait:block'>
         <RotateRightOutlined /> &nbsp; <b className='font-bold'>Tip:</b> Looks
@@ -124,7 +109,14 @@ export const CompareTableModal = (): JSX.Element => {
                 {cat.rows.map((row, i) => (
                   <tr key={i}>
                     <td className='pr-10'>
-                      <div className='text-lg font-bold'>{row.d_name}</div>
+                      <div className='text-lg font-bold'>
+                        {row.d_name}{' '}
+                        {row.d_name === 'Coercion resistance' && (
+                          <BountyRewardsSwitch
+                            {...{ bountyEnabled, toggleBounty }}
+                          />
+                        )}
+                      </div>
                       <div className='font-light text-justify opacity-80'>
                         {row.desc}
                       </div>
