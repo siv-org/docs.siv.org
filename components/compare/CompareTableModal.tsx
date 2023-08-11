@@ -82,7 +82,10 @@ export const CompareTableModal = (): JSX.Element => {
 
       {/* Table */}
       <section className='pb-4 mt-6 mb-40 overflow-x-scroll'>
-        <button onClick={toggleDescription}>
+        <button
+          className='px-3 py-1 text-xs font-bold text-white transition duration-300 ease-in-out rounded-lg bg-blue-500/70 hover:bg-blue-700/80'
+          onClick={toggleDescription}
+        >
           {isDescriptionShown ? 'Show Descriptions' : 'Hide Descriptions'}
         </button>
         <table
@@ -102,13 +105,15 @@ export const CompareTableModal = (): JSX.Element => {
             {tableData.map((cat, c_i) => (
               <Fragment key={c_i}>
                 <tr>
-                  <div
-                    className={`w-48 py-1.5 pl-2 font-semibold bg-gray-100 relative top-3 ${
-                      c_i === 0 && '-mt-8'
-                    }`}
-                  >
-                    {cat.name}
-                  </div>
+                  <td>
+                    <div
+                      className={`w-48 py-1.5 pl-2 font-semibold bg-gray-100 relative top-3 ${
+                        c_i === 0 && '-mt-8'
+                      }`}
+                    >
+                      {cat.name}
+                    </div>
+                  </td>
                 </tr>
                 {cat.rows.map((row, i) => (
                   <tr key={i}>
