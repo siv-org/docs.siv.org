@@ -99,7 +99,9 @@ export const CompareTableModal = (): JSX.Element => {
               <th className='text-left min-w-[120px]'></th>
               <th className='w-[12%] bg-gray-200/50'>{methods[0]}</th>
               <th className='w-[12%] bg-gray-200/50'>{methods[1]}</th>
-              <th className='w-[12%] bg-gray-200/50'>{methods[2]}</th>
+              <th className='w-[12%] bg-gray-200/50 text-[15px] box-border'>
+                {methods[2]}
+              </th>
             </tr>
           </thead>
 
