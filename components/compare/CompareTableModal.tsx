@@ -86,11 +86,13 @@ export const CompareTableModal = (): JSX.Element => {
           className='px-3 py-1 text-xs font-bold text-white transition duration-300 ease-in-out rounded-lg bg-blue-500/70 hover:bg-blue-700/80'
           onClick={toggleDescription}
         >
-          {isDescriptionShown ? 'Show Descriptions' : 'Hide Descriptions'}
+          {!isDescriptionShown ? 'Show Descriptions' : 'Hide Descriptions'}
         </button>
         <table
-          style={{ borderSpacing: '15px 25px' }}
-          className='mx-auto border-separate'
+          style={{
+            borderSpacing: `15px ${isDescriptionShown ? '25px' : '15px'}`
+          }}
+          className='border-separate ml-[-15px]'
         >
           <thead>
             <tr className='border-white border-[3px] dark:border-white/20 border-b-0 space-x-4'>
@@ -126,7 +128,7 @@ export const CompareTableModal = (): JSX.Element => {
                           />
                         )}
                       </div>
-                      {!isDescriptionShown && (
+                      {isDescriptionShown && (
                         <div className='font-light text-justify opacity-80'>
                           {row.desc}
                         </div>
