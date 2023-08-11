@@ -13,6 +13,7 @@ type OpenedModalIndex = [number, number, number] | null
 
 export const CompareTableModal = (): JSX.Element => {
   const [bountyEnabled, toggleBounty] = useReducer((t) => !t, true)
+  const [isDescriptionShown, toggleDescription] = useReducer((t) => !t, false)
   const [openedModalIndex, setOpenedModalIndex] =
     useState<OpenedModalIndex>(null)
   function getModalContent(openedModalIndex: OpenedModalIndex) {
@@ -81,6 +82,9 @@ export const CompareTableModal = (): JSX.Element => {
 
       {/* Table */}
       <section className='pb-4 mt-6 mb-40 overflow-x-scroll'>
+        <button onClick={toggleDescription}>
+          {isDescriptionShown ? 'Show Descriptions' : 'Hide Descriptions'}
+        </button>
         <table
           style={{ borderSpacing: '15px 25px' }}
           className='mx-auto border-separate'
@@ -117,9 +121,11 @@ export const CompareTableModal = (): JSX.Element => {
                           />
                         )}
                       </div>
-                      <div className='font-light text-justify opacity-80'>
-                        {row.desc}
-                      </div>
+                      {!isDescriptionShown && (
+                        <div className='font-light text-justify opacity-80'>
+                          {row.desc}
+                        </div>
+                      )}
                     </td>
                     {[
                       ...(bountyEnabled && row.scores_with_bounty
