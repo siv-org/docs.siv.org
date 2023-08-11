@@ -97,9 +97,9 @@ export const CompareTableModal = (): JSX.Element => {
           <thead>
             <tr className='border-white border-[3px] dark:border-white/20 border-b-0 space-x-4'>
               <th className='text-left min-w-[120px]'></th>
-              <th className='w-[12%] bg-gray-100'>{methods[0]}</th>
-              <th className='w-[12%] bg-gray-100'>{methods[1]}</th>
-              <th className='w-[12%] bg-gray-100'>{methods[2]}</th>
+              <th className='w-[12%] bg-gray-200/50'>{methods[0]}</th>
+              <th className='w-[12%] bg-gray-200/50'>{methods[1]}</th>
+              <th className='w-[12%] bg-gray-200/50'>{methods[2]}</th>
             </tr>
           </thead>
 
@@ -109,7 +109,7 @@ export const CompareTableModal = (): JSX.Element => {
                 <tr>
                   <td>
                     <div
-                      className={`w-48 py-1.5 pl-2 font-semibold bg-gray-100 relative top-3 ${
+                      className={`w-48 py-1.5 pl-2 font-semibold bg-gray-200/50 relative top-3 ${
                         c_i === 0 && '-mt-8'
                       }`}
                     >
