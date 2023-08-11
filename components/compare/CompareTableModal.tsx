@@ -88,18 +88,17 @@ export const CompareTableModal = (): JSX.Element => {
         >
           {!isDescriptionShown ? 'Show Descriptions' : 'Hide Descriptions'}
         </button>
-        <table
-          style={{
-            borderSpacing: `15px ${isDescriptionShown ? '25px' : '15px'}`
-          }}
-          className='border-separate ml-[-15px]'
-        >
+        <table>
           <thead>
-            <tr className='border-white border-[3px] dark:border-white/20 border-b-0 space-x-4'>
+            <tr>
               <th className='text-left min-w-[120px]'></th>
-              <th className='w-[12%] bg-gray-200/50'>{methods[0]}</th>
-              <th className='w-[12%] bg-gray-200/50'>{methods[1]}</th>
-              <th className='w-[12%] bg-gray-200/50 text-[15px] box-border'>
+              <th className='w-[12%] border-x-[14px] border-white bg-gray-200/50'>
+                {methods[0]}
+              </th>
+              <th className='w-[12%] border-x-[14px] border-white  bg-gray-200/50'>
+                {methods[1]}
+              </th>
+              <th className='w-[12%] border-x-[14px] border-white  bg-gray-200/50 text-[15px]'>
                 {methods[2]}
               </th>
             </tr>
@@ -108,20 +107,31 @@ export const CompareTableModal = (): JSX.Element => {
           <tbody>
             {tableData.map((cat, c_i) => (
               <Fragment key={c_i}>
+                {/* Category label */}
                 <tr>
                   <td>
                     <div
-                      className={`w-48 py-1.5 pl-2 font-semibold bg-gray-200/50 relative top-3 ${
-                        c_i === 0 && '-mt-8'
+                      className={`w-48 py-1.5 pl-2 font-semibold bg-gray-200/50 relative top-2 ${
+                        c_i === 0 && '-mt-3'
                       }`}
                     >
                       {cat.name}
                     </div>
                   </td>
                 </tr>
+
                 {cat.rows.map((row, i) => (
-                  <tr key={i}>
-                    <td className='pr-10'>
+                  <tr
+                    key={i}
+                    className={`border-white hover:bg-gray-200/30 ${
+                      isDescriptionShown ? 'border-y-[14px]' : 'border-y-1'
+                    }`}
+                  >
+                    <td
+                      className={`${
+                        isDescriptionShown ? 'py-3' : 'py-0'
+                      } pr-10 pl-2`}
+                    >
                       <div className='text-lg font-bold'>
                         {row.d_name}{' '}
                         {row.d_name === 'Coercion resistance' && (
@@ -141,28 +151,31 @@ export const CompareTableModal = (): JSX.Element => {
                         ? row.scores_with_bounty
                         : row.scores)
                     ].map((s, j) => (
-                      <td
-                        className='text-center text-black cursor-pointer hover:opacity-70'
-                        key={j}
-                        style={{
-                          backgroundColor: {
-                            1: '#ef4444',
-                            2: '#f87171',
-                            3: '#fca5a5',
-                            4: '#fecaca',
-                            5: 'white',
-                            6: '#bbf7d0',
-                            7: '#86efac',
-                            8: '#4ade80',
-                            9: '#22c55e'
-                          }[getScore(s)],
-                          borderWidth: {
-                            5: 1
-                          }[getScore(s)]
-                        }}
-                        onClick={() => setOpenedModalIndex([c_i, i, j])}
-                      >
-                        {getScore(s)}
+                      <td className='p-2 text-center text-black' key={j}>
+                        <div
+                          className={`${
+                            isDescriptionShown ? 'py-4' : 'py-1'
+                          } cursor-pointer hover:opacity-70`}
+                          style={{
+                            backgroundColor: {
+                              1: '#ef4444',
+                              2: '#f87171',
+                              3: '#fca5a5',
+                              4: '#fecaca',
+                              5: 'white',
+                              6: '#bbf7d0',
+                              7: '#86efac',
+                              8: '#4ade80',
+                              9: '#22c55e'
+                            }[getScore(s)],
+                            borderWidth: {
+                              5: 1
+                            }[getScore(s)]
+                          }}
+                          onClick={() => setOpenedModalIndex([c_i, i, j])}
+                        >
+                          {getScore(s)}
+                        </div>
                       </td>
                     ))}
                   </tr>
