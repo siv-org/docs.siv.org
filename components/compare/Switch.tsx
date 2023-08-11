@@ -18,7 +18,7 @@ export const Switch = ({
         {...{ checked }}
       />
       <label
-        className='pl-[0.15rem] hover:cursor-pointer'
+        className='pl-[0.15rem] relative bottom-0.5 hover:cursor-pointer'
         htmlFor='flexSwitchCheckDefault'
         {...{ onClick }}
       >

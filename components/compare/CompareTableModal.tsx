@@ -4,6 +4,7 @@ import { useEffect, useCallback } from 'react'
 
 import { Score, tableData } from './compare-data'
 import { BountyRewardsSwitch } from './BountyRewardsSwitch'
+import { Switch } from './Switch'
 
 const getScore = (s: Score): number => (typeof s === 'number' ? s : s[0])
 
@@ -82,12 +83,13 @@ export const CompareTableModal = (): JSX.Element => {
 
       {/* Table */}
       <section className='pb-4 mt-6 mb-40 overflow-x-scroll'>
-        <button
-          className='px-3 py-1 text-xs font-bold text-white transition duration-300 ease-in-out rounded-lg bg-blue-500/70 hover:bg-blue-700/80'
-          onClick={toggleDescription}
-        >
-          {!isDescriptionShown ? 'Show Descriptions' : 'Hide Descriptions'}
-        </button>
+        <div className='inline-block px-3 py-1 text-sm italic border rounded border-black/5 text-black/70'>
+          <Switch
+            checked={isDescriptionShown}
+            onClick={toggleDescription}
+            label='Show Descriptions'
+          />
+        </div>
         <table>
           <thead>
             <tr>
