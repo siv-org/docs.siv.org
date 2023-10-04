@@ -136,7 +136,11 @@ export const CompareTableModal = (): JSX.Element => {
               <th className='w-[12%] border-x-[14px] border-white dark:border-[rgb(17,17,17)] bg-gray-100 dark:bg-gray-500 sticky top-16'>
                 {methods[1]}
               </th>
-              <th className='w-[12%] border-x-[14px] border-white dark:border-[rgb(17,17,17)] bg-gray-100 dark:bg-gray-500 sticky top-16 text-[15px]'>
+              <th
+                className={`w-[12%] border-x-[14px] border-white dark:border-[rgb(17,17,17)] bg-gray-100 dark:bg-gray-500 sticky top-16 px-1 ${
+                  isDescriptionShown ? 'text-[14px]' : 'text-[12px]'
+                }`}
+              >
                 {methods[2]}
               </th>
             </tr>
