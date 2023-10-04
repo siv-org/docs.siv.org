@@ -125,6 +125,12 @@ export const CompareTableModal = (): JSX.Element => {
             onClick={toggleDescription}
             label='Show Descriptions'
           />
+          <span
+            onClick={toggleDescription}
+            className='relative pl-2 not-italic cursor-pointer bottom-0.5'
+          >
+            &#9432;
+          </span>
         </div>
         <table>
           <thead>
