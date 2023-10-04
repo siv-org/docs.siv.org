@@ -195,23 +195,24 @@ export const CompareTableModal = (): JSX.Element => {
           className='fixed inset-0 z-10 overflow-y-auto'
           onClick={closeModal}
         >
-          {/* Centre contents on small screens */}
+          {/* Center contents on small screens */}
           <div className='flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0'>
             <div
               className='fixed inset-0 transition-opacity'
               aria-hidden='true'
             >
-              <div className='absolute inset-0 opacity-75 bg-zinc-900/70'></div>
+              <div className='absolute inset-0 opacity-50 bg-zinc-900'></div>
             </div>
             <div
-              className='inline-block overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-20 sm:align-middle sm:max-w-xl sm:w-full pt-[5px] overflow-y-auto max-h-[70vh]'
+              className='inline-block overflow-hidden text-left align-bottom transition-all transform bg-white dark:bg-zinc-800 rounded-lg shadow-xl sm:my-20 sm:align-middle sm:max-w-xl sm:w-full pt-[5px] overflow-y-auto max-h-[70vh]'
               onClick={(e) => e.stopPropagation()}
             >
-              <div className='relative px-4 pt-5 pb-4 bg-white sm:p-6 sm:pb-4'>
+              <div className='relative px-4 pt-5 pb-4 bg-white dark:bg-zinc-800 sm:p-6 sm:pb-4'>
                 {/* Prev arrow */}
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   className='absolute w-6 h-6 text-gray-500 transform -translate-y-1/2 cursor-pointer left-1 top-1/2 hover:text-gray-700'
+                  fill='currentColor'
                   onClick={goToPrev}
                 >
                   <path
@@ -227,6 +228,7 @@ export const CompareTableModal = (): JSX.Element => {
                   xmlns='http://www.w3.org/2000/svg'
                   className='absolute w-6 h-6 text-gray-500 transform -translate-y-1/2 cursor-pointer right-1 top-1/2 hover:text-gray-700'
                   onClick={goToNext}
+                  fill='currentColor'
                 >
                   <path
                     strokeLinecap='round'
@@ -256,14 +258,11 @@ export const CompareTableModal = (): JSX.Element => {
                 {/* Modal Content */}
                 <div className='sm:flex sm:items-start'>
                   <div className='mt-3 text-left sm:mt-0 sm:ml-4'>
-                    <h3
-                      className='text-lg font-medium leading-6 text-gray-900'
-                      id='modal-title'
-                    >
+                    <h3 className='text-lg font-medium leading-6 text-gray-900 dark:text-gray-100'>
                       {modalContent.title}
                     </h3>
-                    <div className='mt-2 text-sm text-sky-900'>
-                      <div className='mt-3 mb-1 text-xs text-teal-900/80'>
+                    <div className='mt-2 text-sm text-sky-900 dark:text-sky-200'>
+                      <div className='mt-3 mb-1 text-xs text-teal-900/80 dark:text-teal-100/80'>
                         Advantages:
                       </div>
                       {modalContent.advantages
@@ -273,7 +272,7 @@ export const CompareTableModal = (): JSX.Element => {
                             + {advantage}
                           </div>
                         ))}
-                      <div className='mt-3 mb-1 text-xs opacity-60'>
+                      <div className='mt-3 mb-1 text-xs opacity-60 dark:text-teal-100/80'>
                         Disadvantages:
                       </div>
                       {modalContent.disadvantages
@@ -289,7 +288,7 @@ export const CompareTableModal = (): JSX.Element => {
               </div>
 
               {/* Modal bottom row */}
-              <div className='px-4 py-3 bg-gray-50 sm:px-6 sm:flex sm:flex-row-reverse'>
+              <div className='px-4 py-3 bg-gray-50 dark:bg-zinc-700 sm:px-6 sm:flex sm:flex-row-reverse'>
                 <span className='flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto'>
                   <button
                     onClick={() => setOpenedModalIndex(null)}
