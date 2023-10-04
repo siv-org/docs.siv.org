@@ -118,7 +118,7 @@ export const CompareTableModal = (): JSX.Element => {
       </section>
 
       {/* Table */}
-      <section className='pb-4 mt-6 mb-40 overflow-x-scroll'>
+      <section className='pb-4 mt-6 mb-40'>
         <div className='inline-block px-3 py-1 text-sm italic border rounded border-black/5 text-black/70 dark:border-gray-600 dark:text-white/70'>
           <Switch
             checked={isDescriptionShown}
@@ -130,13 +130,13 @@ export const CompareTableModal = (): JSX.Element => {
           <thead>
             <tr>
               <th className='text-left min-w-[120px]'></th>
-              <th className='w-[12%] border-x-[14px] border-white dark:border-[rgb(17,17,17)] bg-gray-200/50 dark:bg-gray-500'>
+              <th className='w-[12%] border-x-[14px] border-white dark:border-[rgb(17,17,17)] bg-gray-100 dark:bg-gray-500 sticky top-16'>
                 {methods[0]}
               </th>
-              <th className='w-[12%] border-x-[14px] border-white dark:border-[rgb(17,17,17)] bg-gray-200/50 dark:bg-gray-500'>
+              <th className='w-[12%] border-x-[14px] border-white dark:border-[rgb(17,17,17)] bg-gray-100 dark:bg-gray-500 sticky top-16'>
                 {methods[1]}
               </th>
-              <th className='w-[12%] border-x-[14px] border-white dark:border-[rgb(17,17,17)] bg-gray-200/50 dark:bg-gray-500 text-[15px]'>
+              <th className='w-[12%] border-x-[14px] border-white dark:border-[rgb(17,17,17)] bg-gray-100 dark:bg-gray-500 sticky top-16 text-[15px]'>
                 {methods[2]}
               </th>
             </tr>
