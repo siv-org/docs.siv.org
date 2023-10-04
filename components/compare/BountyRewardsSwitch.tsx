@@ -11,7 +11,7 @@ export const BountyRewardsSwitch = ({
     <span className='pl-4 text-base italic font-light'>
       <Switch checked={bountyEnabled} onClick={toggleBounty} label='with' />{' '}
       <a
-        className='text-blue-500 hover:underline relative bottom-0.5'
+        className='text-blue-500 dark:text-blue-400 hover:underline relative bottom-0.5'
         href='/research-in-progress/vote-sellers-dilemma'
         target='_blank'
       >

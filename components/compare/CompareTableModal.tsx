@@ -83,7 +83,7 @@ export const CompareTableModal = (): JSX.Element => {
 
       {/* Table */}
       <section className='pb-4 mt-6 mb-40 overflow-x-scroll'>
-        <div className='inline-block px-3 py-1 text-sm italic border rounded border-black/5 text-black/70'>
+        <div className='inline-block px-3 py-1 text-sm italic border rounded border-black/5 text-black/70 dark:border-gray-600 dark:text-white/70'>
           <Switch
             checked={isDescriptionShown}
             onClick={toggleDescription}
@@ -94,13 +94,13 @@ export const CompareTableModal = (): JSX.Element => {
           <thead>
             <tr>
               <th className='text-left min-w-[120px]'></th>
-              <th className='w-[12%] border-x-[14px] border-white bg-gray-200/50'>
+              <th className='w-[12%] border-x-[14px] border-white dark:border-[rgb(17,17,17)] bg-gray-200/50 dark:bg-gray-500'>
                 {methods[0]}
               </th>
-              <th className='w-[12%] border-x-[14px] border-white  bg-gray-200/50'>
+              <th className='w-[12%] border-x-[14px] border-white dark:border-[rgb(17,17,17)] bg-gray-200/50 dark:bg-gray-500'>
                 {methods[1]}
               </th>
-              <th className='w-[12%] border-x-[14px] border-white  bg-gray-200/50 text-[15px]'>
+              <th className='w-[12%] border-x-[14px] border-white dark:border-[rgb(17,17,17)] bg-gray-200/50 dark:bg-gray-500 text-[15px]'>
                 {methods[2]}
               </th>
             </tr>
@@ -113,7 +113,7 @@ export const CompareTableModal = (): JSX.Element => {
                 <tr>
                   <td>
                     <div
-                      className={`w-48 py-1.5 pl-2 font-semibold bg-gray-200/50 relative top-2 ${
+                      className={`w-48 py-1.5 pl-2 font-semibold bg-gray-200/50 dark:bg-gray-500 relative top-2 ${
                         c_i === 0 && '-mt-3'
                       }`}
                     >
@@ -125,7 +125,7 @@ export const CompareTableModal = (): JSX.Element => {
                 {cat.rows.map((row, i) => (
                   <tr
                     key={i}
-                    className={`border-white hover:bg-gray-200/30 ${
+                    className={`border-white dark:border-[rgb(17,17,17)] hover:bg-gray-200/30 dark:hover:bg-gray-500/30 ${
                       isDescriptionShown ? 'border-y-[14px]' : 'border-y-1'
                     }`}
                   >
