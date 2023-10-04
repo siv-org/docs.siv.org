@@ -153,8 +153,8 @@ export const CompareTableModal = (): JSX.Element => {
                 <tr>
                   <td>
                     <div
-                      className={`w-48 py-1.5 pl-2 font-semibold bg-gray-200/50 dark:bg-gray-500 relative top-2 ${
-                        c_i === 0 && '-mt-3'
+                      className={`w-48 py-1.5 pl-2 font-semibold bg-gray-200/50 dark:bg-gray-500 relative top-3 mb-2 ${
+                        c_i === 0 && '-mt-6'
                       }`}
                     >
                       {cat.name}
@@ -166,7 +166,7 @@ export const CompareTableModal = (): JSX.Element => {
                   <tr
                     key={i}
                     className={`border-white dark:border-[rgb(17,17,17)] hover:bg-gray-200/30 dark:hover:bg-gray-500/30 ${
-                      isDescriptionShown ? 'border-y-[14px]' : 'border-y-1'
+                      isDescriptionShown && 'border-y-[14px]'
                     }`}
                   >
                     <td
@@ -174,7 +174,7 @@ export const CompareTableModal = (): JSX.Element => {
                         isDescriptionShown ? 'py-3' : 'py-0'
                       } pr-10 pl-2`}
                     >
-                      <div className='text-lg font-bold'>
+                      <div className='text-lg font-bold leading-[18px]'>
                         {row.d_name}{' '}
                         {row.d_name === 'Coercion resistance' && (
                           <BountyRewardsSwitch
