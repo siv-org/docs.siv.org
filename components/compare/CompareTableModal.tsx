@@ -37,22 +37,54 @@ export const CompareTableModal = (): JSX.Element => {
   const modalContent = getModalContent(openedModalIndex)
 
   const closeModal = () => setOpenedModalIndex(null)
-  const goToNext = useCallback(() => {
-    setOpenedModalIndex((prevIndex) => {
-      let newIndex: [number, number, number] = [...prevIndex]
-      newIndex[2]++
-      if (newIndex[2] >= methods.length) return prevIndex // Close if reached right most column
+  const goRight = useCallback(() => {
+    setOpenedModalIndex(([catIndex, rowIndex, colIndex]) => {
+      if (colIndex + 1 >= methods.length) return [catIndex, rowIndex, colIndex] // Stop if reached rightmost column
 
-      return newIndex
+      return [catIndex, rowIndex, colIndex + 1]
     })
   }, [])
-  const goToPrev = useCallback(() => {
-    setOpenedModalIndex((prevIndex) => {
-      let newIndex: [number, number, number] = [...prevIndex]
-      newIndex[2]--
-      if (newIndex[2] < 0) return prevIndex // Close if reached left most column
 
-      return newIndex
+  const goLeft = useCallback(() => {
+    setOpenedModalIndex(([catIndex, rowIndex, colIndex]) => {
+      if (colIndex === 0) return [catIndex, rowIndex, colIndex] // Stop if reached leftmost column
+
+      return [catIndex, rowIndex, colIndex - 1]
+    })
+  }, [])
+
+  const goDown = useCallback(() => {
+    setOpenedModalIndex(([catIndex, rowIndex, colIndex]) => {
+      const nextRowIndex = rowIndex + 1
+
+      // Increment rows within category if possible
+      if (nextRowIndex < tableData[catIndex].rows.length)
+        return [catIndex, nextRowIndex, colIndex]
+
+      // Otherwise go to next category
+      if (catIndex + 1 < tableData.length) return [catIndex + 1, 0, colIndex]
+
+      // Stop if we reached the last row
+      return [catIndex, rowIndex, colIndex]
+    })
+  }, [])
+  const goUp = useCallback(() => {
+    setOpenedModalIndex(([catIndex, rowIndex, colIndex]) => {
+      const previousRowIndex = rowIndex - 1
+
+      // Decrement rows within category if possible
+      if (previousRowIndex >= 0) {
+        return [catIndex, previousRowIndex, colIndex]
+      }
+
+      // Otherwise, go to the previous category's last row
+      if (catIndex - 1 >= 0) {
+        const prevCatLastRowIndex = tableData[catIndex - 1].rows.length - 1
+        return [catIndex - 1, prevCatLastRowIndex, colIndex]
+      }
+
+      // Stop if we reached the first row
+      return [catIndex, rowIndex, colIndex]
     })
   }, [])
 
@@ -60,8 +92,12 @@ export const CompareTableModal = (): JSX.Element => {
     (event) => {
       if (!openedModalIndex) return
 
-      if (event.key === 'ArrowRight') goToNext()
-      if (event.key === 'ArrowLeft') goToPrev()
+      event.preventDefault()
+
+      if (event.key === 'ArrowRight') goRight()
+      if (event.key === 'ArrowLeft') goLeft()
+      if (event.key === 'ArrowDown') goDown()
+      if (event.key === 'ArrowUp') goUp()
     },
     [openedModalIndex]
   )
@@ -213,7 +249,7 @@ export const CompareTableModal = (): JSX.Element => {
                   xmlns='http://www.w3.org/2000/svg'
                   className='absolute w-6 h-6 text-gray-500 transform -translate-y-1/2 cursor-pointer left-1 top-1/2 hover:text-gray-700'
                   fill='currentColor'
-                  onClick={goToPrev}
+                  onClick={goLeft}
                 >
                   <path
                     strokeLinecap='round'
@@ -227,7 +263,7 @@ export const CompareTableModal = (): JSX.Element => {
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   className='absolute w-6 h-6 text-gray-500 transform -translate-y-1/2 cursor-pointer right-1 top-1/2 hover:text-gray-700'
-                  onClick={goToNext}
+                  onClick={goRight}
                   fill='currentColor'
                 >
                   <path
