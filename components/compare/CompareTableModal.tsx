@@ -193,7 +193,11 @@ export const CompareTableModal = (): JSX.Element => {
                         <div
                           className={`${
                             isDescriptionShown ? 'py-4' : 'py-1'
-                          } cursor-pointer hover:opacity-70`}
+                          } cursor-pointer hover:opacity-70 ${
+                            openedModalIndex &&
+                            arraysEqual(openedModalIndex, [c_i, i, j]) &&
+                            'ring-2 ring-white'
+                          }`}
                           style={{
                             backgroundColor: {
                               1: '#ef4444',
@@ -340,4 +344,14 @@ export const CompareTableModal = (): JSX.Element => {
       )}
     </main>
   )
+}
+
+function arraysEqual<T>(a: T[], b: T[]): boolean {
+  if (a.length !== b.length) return false
+
+  for (let i = 0; i < a.length; i++) {
+    if (a[i] !== b[i]) return false
+  }
+
+  return true
 }
