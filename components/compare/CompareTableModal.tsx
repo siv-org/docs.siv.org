@@ -196,7 +196,7 @@ export const CompareTableModal = (): JSX.Element => {
                           } cursor-pointer hover:opacity-70 ${
                             openedModalIndex &&
                             arraysEqual(openedModalIndex, [c_i, i, j]) &&
-                            'ring-2 ring-white'
+                            'ring-2 ring-cyan-800 dark:ring-white'
                           }`}
                           style={{
                             backgroundColor: {
