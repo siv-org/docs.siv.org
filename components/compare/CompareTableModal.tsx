@@ -13,7 +13,7 @@ type OpenedModalIndex = [number, number, number] | null
 
 export const CompareTableModal = (): JSX.Element => {
   const [bountyEnabled, toggleBounty] = useReducer((t) => !t, true)
-  const [isDescriptionShown, toggleDescription] = useReducer((t) => !t, false)
+  const [isDescriptionShown, toggleDescription] = useReducer((t) => !t, true)
   const [openedModalIndex, setOpenedModalIndex] =
     useState<OpenedModalIndex>(null)
   function getModalContent(openedModalIndex: OpenedModalIndex) {
@@ -110,8 +110,9 @@ export const CompareTableModal = (): JSX.Element => {
 
   return (
     <main>
-      {/* Table */}
+      {/* Main page (not modal) */}
       <section className='mb-44'>
+        {/* "Intro" box */}
         <div className='inline-block p-3 mt-2 mb-8 rounded bg-blue-400/10 dark:bg-white/10'>
           {/* Show Descriptions toggle */}
           <div
@@ -132,7 +133,7 @@ export const CompareTableModal = (): JSX.Element => {
         </div>
 
         <table>
-          <thead>
+          <thead className='hidden sm:table-header-group'>
             <tr>
               <th className='text-left min-w-[120px]'></th>
               <th className='w-[12%] border-x-[14px] border-white dark:border-[rgb(17,17,17)] bg-gray-100 dark:bg-gray-500 sticky top-16'>
@@ -170,14 +171,14 @@ export const CompareTableModal = (): JSX.Element => {
                 {cat.rows.map((row, i) => (
                   <tr
                     key={i}
-                    className={`border-white dark:border-[rgb(17,17,17)] hover:bg-gray-200/30 dark:hover:bg-gray-500/30 ${
+                    className={`border-white dark:border-[rgb(17,17,17)] sm:hover:bg-gray-200/30 sm:dark:hover:bg-gray-500/30 ${
                       isDescriptionShown && 'border-y-[14px]'
-                    }`}
+                    } sm:table-row flex flex-wrap`}
                   >
                     <td
                       className={`${
                         isDescriptionShown ? 'py-3' : 'py-0'
-                      } pr-10 pl-2`}
+                      } pr-10 pl-2 sm:w-auto w-full`}
                     >
                       <div className='text-lg font-bold leading-[18px]'>
                         {row.d_name}{' '}
@@ -198,7 +199,13 @@ export const CompareTableModal = (): JSX.Element => {
                         ? row.scores_with_bounty
                         : row.scores)
                     ].map((s, j) => (
-                      <td className='p-2 text-center text-black' key={j}>
+                      <td
+                        className='w-24 p-2 text-center text-black sm:w-auto'
+                        key={j}
+                      >
+                        <div className='py-0.5 text-[13px] px-1 font-semibold bg-gray-200/70 text-black/80 sm:hidden'>
+                          {methods[j]}
+                        </div>
                         <div
                           className={`${
                             isDescriptionShown ? 'py-4' : 'py-1'
