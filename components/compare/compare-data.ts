@@ -110,7 +110,8 @@ Once ballots accepted, limited remediation options`
             {
               adv: `Using a cryptographic mixnet, the SIV system does not allow anyone, including the election administrators and the SIV infrastructure, to see how anyone else voted. 
               SIV's privacy architecture and implementation is fully inspectable by the voters, at their own pace.`,
-              disadv: ``
+              disadv: `High learning curve because of advanced cryptography to understand how SIV achieves privacy.
+              Voter's devices themselves could be infected with spyware, with little ability to detect.`
             }
           ],
           [
