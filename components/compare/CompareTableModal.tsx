@@ -117,7 +117,7 @@ export const CompareTableModal = (): JSX.Element => {
           {/* Show Descriptions toggle */}
           <div
             className='inline-block px-3 py-1 text-sm italic border rounded cursor-pointer bg-blue-200/70 border-black/5 text-black/70 dark:border-gray-600 dark:text-white/70'
-            onClick={toggleDescription}
+            // onClick={toggleDescription}
           >
             <Switch
               checked={isDescriptionShown}
@@ -160,7 +160,7 @@ export const CompareTableModal = (): JSX.Element => {
                   <td>
                     <div
                       className={`w-48 py-1.5 pl-2 font-semibold bg-gray-200/50 dark:bg-gray-500 relative top-3 mb-2 ${
-                        c_i === 0 && '-mt-6'
+                        c_i === 0 ? '-mt-6' : 'mt-10 sm:mt-0'
                       }`}
                     >
                       {cat.name}
@@ -177,7 +177,7 @@ export const CompareTableModal = (): JSX.Element => {
                   >
                     <td
                       className={`${
-                        isDescriptionShown ? 'py-3' : 'py-0'
+                        isDescriptionShown ? 'py-3' : 'pt-6 pb-1.5 sm:py-0'
                       } pr-10 pl-2 sm:w-auto w-full`}
                     >
                       <div className='text-lg font-bold leading-[18px]'>
