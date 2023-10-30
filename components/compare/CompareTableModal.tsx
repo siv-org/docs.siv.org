@@ -1,4 +1,3 @@
-import { RotateRightOutlined } from '@ant-design/icons'
 import { Fragment, useReducer, useState } from 'react'
 import { useEffect, useCallback } from 'react'
 
@@ -110,28 +109,28 @@ export const CompareTableModal = (): JSX.Element => {
   }, [handleKeyDown])
 
   return (
-    <main className='mt-8'>
-      {/* Landscape Orientation tip */}
-      <section className='hidden py-2 mt-2 mb-4 text-center bg-blue-500/30 portrait:block'>
-        <RotateRightOutlined /> &nbsp; <b className='font-bold'>Tip:</b> Looks
-        better in Landscape orientation
-      </section>
-
+    <main>
       {/* Table */}
-      <section className='pb-4 mt-6 mb-40'>
-        <div className='inline-block px-3 py-1 text-sm italic border rounded border-black/5 text-black/70 dark:border-gray-600 dark:text-white/70'>
-          <Switch
-            checked={isDescriptionShown}
+      <section className='mb-44'>
+        <div className='inline-block p-3 mt-2 mb-8 rounded bg-blue-400/10 dark:bg-white/10'>
+          {/* Show Descriptions toggle */}
+          <div
+            className='inline-block px-3 py-1 text-sm italic border rounded cursor-pointer bg-blue-200/70 border-black/5 text-black/70 dark:border-gray-600 dark:text-white/70'
             onClick={toggleDescription}
-            label='Show Descriptions'
-          />
-          <span
-            onClick={toggleDescription}
-            className='relative pl-2 not-italic cursor-pointer bottom-0.5'
           >
-            &#9432;
-          </span>
+            <Switch
+              checked={isDescriptionShown}
+              onClick={toggleDescription}
+              label='Show Descriptions'
+            />
+          </div>
+
+          <p className='mt-3 text-sm italic text-black/70 dark:text-white/70'>
+            <span className='pr-1.5 not-italic'>&#9432;</span>
+            Click on scores for explanations.
+          </p>
         </div>
+
         <table>
           <thead>
             <tr>
