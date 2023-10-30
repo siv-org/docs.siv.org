@@ -8,7 +8,7 @@ export const BountyRewardsSwitch = ({
   toggleBounty: () => void
 }) => {
   return (
-    <span className='pl-4 text-base italic font-light'>
+    <div className='mt-1.5 text-base italic font-light sm:pl-4 sm:inline'>
       <Switch checked={bountyEnabled} onClick={toggleBounty} label='with' />{' '}
       <a
         className='text-blue-500 dark:text-blue-400 hover:underline relative bottom-0.5'
@@ -17,6 +17,6 @@ export const BountyRewardsSwitch = ({
       >
         bounty
       </a>
-    </span>
+    </div>
   )
 }
