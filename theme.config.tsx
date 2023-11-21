@@ -66,6 +66,9 @@ const config: DocsThemeConfig = {
         <main {...props} />
       </>
     )
+  },
+  sidebar: {
+    defaultMenuCollapseLevel: 1
   }
 }
 
