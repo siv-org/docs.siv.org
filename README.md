@@ -1,6 +1,6 @@
-# SIV Book
+# SIV Docs
 
-This site is the code for the SIV Book, built using [Nextra](https://nextra.site).
+This site is the code for the [SIV Docs](https://docs.siv.org), built using [Nextra](https://nextra.site).
 
 ## Local Development
 
