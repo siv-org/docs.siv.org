@@ -11,10 +11,7 @@ const config: DocsThemeConfig = {
       alt='logo'
     />
   ),
-  project: {
-    link: 'https://github.com/dsernst/siv-book'
-  },
-  docsRepositoryBase: 'https://github.com/dsernst/siv-book',
+  docsRepositoryBase: 'https://github.com/dsernst/siv-docs/blob/main',
   footer: {
     text: 'Secure Internet Voting Inc.'
   },
