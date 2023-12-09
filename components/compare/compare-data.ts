@@ -27,7 +27,7 @@ const antiCoercionArguments = {
     con: `Trivially easy for a voter to sign a blank ballot and hand it to an in-person coercer, or fill it out in front of them.`
   },
   inPerson: {
-    pro: `In-person voting centers believed to be relatively safe from coercers.`,
+    pro: `In-person voting centers actively watch to prevent coercers.`,
     con: `Coercers can peek from neighboring voting booths.`
   },
   all: {
@@ -49,13 +49,13 @@ const coercionScore = {
     disadv: `${antiCoercionArguments.siv.con}
             Even with bounty rewards, buyers may still be able to stay anonymous, thus hard to prosecute.`
   },
-  paper: {
+  mail: {
     adv: `${antiCoercionArguments.paper.pro}
           ${antiCoercionArguments.all.pro}`,
     disadv: `${antiCoercionArguments.mail.con}
              ${antiCoercionArguments.paper.con}`
   },
-  paper_w_bounty: {
+  mail_w_bounty: {
     adv: `${antiCoercionArguments.paper.pro}
           ${antiCoercionArguments.all.pro}
           ${antiCoercionArguments.paper.withBounty}
@@ -212,12 +212,12 @@ export const tableData: Category[] = [
         desc: 'How protected are voters against attempts to threaten or purchase their vote selections?',
         scores: [
           [5, coercionScore.siv],
-          [6, coercionScore.paper],
+          [6, coercionScore.mail],
           [8, coercionScore.inPerson]
         ],
         scores_with_bounty: [
           [8, coercionScore.siv_w_bounty],
-          [7, coercionScore.paper_w_bounty],
+          [7, coercionScore.mail_w_bounty],
           [9, coercionScore.inPerson_w_bounty]
         ]
       }
