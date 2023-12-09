@@ -92,7 +92,7 @@ export const CompareTableModal = (): JSX.Element => {
     (event) => {
       if (!openedModalIndex) return
 
-      event.preventDefault()
+      if (event.key.startsWith('Arrow')) event.preventDefault()
 
       if (event.key === 'ArrowRight') goRight()
       if (event.key === 'ArrowLeft') goLeft()
