@@ -13,9 +13,15 @@ const config: DocsThemeConfig = {
   ),
   docsRepositoryBase: 'https://github.com/dsernst/siv-docs/blob/main',
   editLink: { component: null },
-  footer: {
-    text: 'Secure Internet Voting Inc.'
+  feedback: {
+    useLink: () => {
+      const { title } = useConfig()
+      return `mailto:team@siv.org?subject=${encodeURI(
+        `Feedback for: "${title}"`
+      )}`
+    }
   },
+  footer: { text: 'Secure Internet Voting Inc.' },
   components: {
     ol: (props) => (
       <ol className='nx-list-decimal ltr:nx-ml-6 rtl:nx-mr-6' {...props} />
