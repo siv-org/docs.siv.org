@@ -29,6 +29,7 @@ export const CompareTableModal = (): JSX.Element => {
     const score = scores[col_index]
 
     return {
+      d_name: row.d_name,
       title: `${methods[col_index]} - ${row.d_name}: ${getScore(score)} / 10`,
       advantages: score[1]?.adv || '',
       disadvantages: score[1]?.disadv || ''
@@ -302,6 +303,11 @@ export const CompareTableModal = (): JSX.Element => {
                   <div className='mt-3 text-left sm:mt-0 sm:ml-4'>
                     <h3 className='text-lg font-medium leading-6 text-gray-900 dark:text-gray-100'>
                       {modalContent.title}
+                      {modalContent.d_name === 'Coercion resistance' && (
+                        <BountyRewardsSwitch
+                          {...{ bountyEnabled, toggleBounty }}
+                        />
+                      )}
                     </h3>
                     <div className='mt-2 text-sm text-sky-900 dark:text-sky-200'>
                       <div className='mt-3 mb-1 text-xs text-teal-900/80 dark:text-teal-100/80'>
