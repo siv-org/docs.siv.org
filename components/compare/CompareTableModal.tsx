@@ -135,14 +135,14 @@ export const CompareTableModal = (): JSX.Element => {
           <thead className='hidden sm:table-header-group'>
             <tr>
               <th className='text-left min-w-[120px]'></th>
-              <th className='w-[12%] border-x-[14px] border-white dark:border-[rgb(17,17,17)] bg-gray-100 dark:bg-gray-500 sticky top-16'>
+              <th className='w-[12%] border-x-[14px] border-white dark:border-[rgb(17,17,17)] bg-gray-100 dark:bg-gray-700 sticky top-16'>
                 {methods[0]}
               </th>
-              <th className='w-[12%] border-x-[14px] border-white dark:border-[rgb(17,17,17)] bg-gray-100 dark:bg-gray-500 sticky top-16'>
+              <th className='w-[12%] border-x-[14px] border-white dark:border-[rgb(17,17,17)] bg-gray-100 dark:bg-gray-700 sticky top-16'>
                 {methods[1]}
               </th>
               <th
-                className={`w-[12%] border-x-[14px] border-white dark:border-[rgb(17,17,17)] bg-gray-100 dark:bg-gray-500 sticky top-16 px-1 ${
+                className={`w-[12%] border-x-[14px] border-white dark:border-[rgb(17,17,17)] bg-gray-100 dark:bg-gray-700 sticky top-16 px-1 ${
                   isDescriptionShown ? 'text-[14px]' : 'text-[12px]'
                 }`}
               >
@@ -158,7 +158,7 @@ export const CompareTableModal = (): JSX.Element => {
                 <tr>
                   <td>
                     <div
-                      className={`w-48 py-1.5 pl-2 font-semibold bg-gray-200/50 dark:bg-gray-500 relative top-3 mb-2 ${
+                      className={`w-48 py-1.5 pl-2 font-semibold bg-gray-200/50 dark:bg-gray-800 relative top-3 mb-2 ${
                         c_i === 0 ? '-mt-6' : 'mt-10 sm:mt-0'
                       }`}
                     >
@@ -202,7 +202,7 @@ export const CompareTableModal = (): JSX.Element => {
                         className='w-24 p-2 text-center text-black sm:w-auto'
                         key={j}
                       >
-                        <div className='py-0.5 text-[13px] px-1 font-semibold bg-gray-200/70 text-black/80 sm:hidden'>
+                        <div className='py-0.5 text-[13px] px-1 font-semibold bg-gray-200/70 dark:bg-gray-700 dark:text-white text-black/80 sm:hidden'>
                           {methods[j]}
                         </div>
                         <div
