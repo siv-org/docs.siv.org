@@ -170,7 +170,7 @@ export const tableData: Category[] = [
             5,
             {
               adv: `${coercionResistance.siv.adv}
-              ${coercionResistance.all.adv}`,
+                    ${coercionResistance.all.adv}`,
               disadv: coercionResistance.siv.disadv
             }
           ],
@@ -178,19 +178,19 @@ export const tableData: Category[] = [
             6,
             {
               adv: `${coercionResistance.paper.adv}
-              ${coercionResistance.all.adv}`,
+                    ${coercionResistance.all.adv}`,
               disadv: `${coercionResistance.mail.disadv}
-              ${coercionResistance.paper.disadv}`
+                       ${coercionResistance.paper.disadv}`
             }
           ],
           [
             8,
             {
               adv: `${coercionResistance.inPerson.adv}
-              ${coercionResistance.paper.adv}
-              ${coercionResistance.all.adv}`,
+                    ${coercionResistance.paper.adv}
+                    ${coercionResistance.all.adv}`,
               disadv: `${coercionResistance.inPerson.disadv}
-              ${coercionResistance.paper.disadv}`
+                       ${coercionResistance.paper.disadv}`
             }
           ]
         ],
@@ -199,22 +199,22 @@ export const tableData: Category[] = [
             8,
             {
               adv: `${coercionResistance.siv.adv}
-              ${coercionResistance.all.adv}
-              With a bounty reward system in place, the unique and unforgeable proofs that SIV creates turn into benefits against vote selling, as strong evidence of prosecutable illegal activity if shared.
-              ${coercionResistance.all.withBounty}`,
+                    ${coercionResistance.all.adv}
+                    With a bounty reward system in place, the unique and unforgeable proofs that SIV creates turn into benefits against vote selling, as strong evidence of prosecutable illegal activity if shared.
+                    ${coercionResistance.all.withBounty}`,
               disadv: `${coercionResistance.siv.disadv}
-              Even with bounty rewards, buyers may still be able to stay anonymous, thus hard to prosecute.`
+                      Even with bounty rewards, buyers may still be able to stay anonymous, thus hard to prosecute.`
             }
           ],
           [
             7,
             {
               adv: `${coercionResistance.paper.adv}
-              ${coercionResistance.all.adv}
-              ${coercionResistance.paper.withBounty}
-              ${coercionResistance.all.withBounty}`,
+                    ${coercionResistance.all.adv}
+                    ${coercionResistance.paper.withBounty}
+                    ${coercionResistance.all.withBounty}`,
               disadv: `${coercionResistance.mail.disadv}
-              ${coercionResistance.paper.disadv}`
+                      ${coercionResistance.paper.disadv}`
             }
           ],
           [
