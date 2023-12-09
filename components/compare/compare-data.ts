@@ -71,9 +71,9 @@ Once ballots accepted, limited remediation options`
               To detect malware on device, voters can use multiple devices to make sure their vote was submitted correctly, much like scanning a QR code. This quick check can be done at the time of voting and it helps identify any errors immediately. 
               Anti-Malware Codes allow voters to check their vote via a secondary device using unique codes provided in a mailed invitation. This system not only offers protection against catching malware on the primary device, but also tracks and validates the number of voters performing secondary device checks, improving the overall integrity of voting results.
               Zero-Knowledge Proofs provide mathematical evidence that SIV's anonymization techniques did not modify or tamper with any of the submitted votes.
-              SIV RLAs can be performed after results are published. Official and independent parties can gain very high statistical confidence in election outcomes by only sampling a small number of random voters and ask them to confirm their votes. 
+              SIV RLAs can be performed after results are published. Official and independent parties can gain very high statistical confidence in election outcomes by sampling only a small number of random voters and asking them to confirm their votes.
               SIV votes can be printed onto paper to be verified manually without depending on any digital computations for accuracy.`,
-              disadv: `SIV is verifiable, but people have to actually do the verification to rely on it. Fortunately, the steps are fast and can be done after the fact.`
+              disadv: `SIV tally is fully verifiable, but people have to actually do the verification to rely on it. Fortunately, the steps are fast and can be done after the fact.`
             }
           ],
           [
