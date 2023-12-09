@@ -17,12 +17,15 @@ export const tableData: Category[] = [
         desc: 'How sure are we that only legitimate voters are voting, and only once each?',
         scores: [
           [
-            7,
+            8,
             {
               adv: `Allows for a combination of auth methods: verified email delivery, SMS, drawn e-signatures, time-based one-time passwords, IP address geolocation, government ID photos, and cryptographic key pairs.
-Strong remediation process allowing admins to revoke voter credentials at any stage of the election, including post-voting and tallying phases.`,
-
-              disadv: `SIV is not prescriptive about the authentication methods. The specific choice is up to the election administrators.`
+Every encrypted vote can be individually audited back to individual submitters.
+By default, every submitter automatically gets a submission receipt in their email (with private data encrypted), so highly likely they will have enough info to carry out audit.
+Any encrypted votes which don't meet standards can be removed, disqualified or re-submitted (as appropriate), and new tallies quickly taken.
+Possible to audit vote submission IP addresses and device user-agents.`,
+              disadv: `SIV is not prescriptive about the authentication methods. The specific choice is up to the election administrators.
+Performing audit on voter roll requires voter contact information, and names for individual encrypted votes, which are not automatically given out.`
             }
           ],
           [
@@ -60,7 +63,7 @@ Once ballots accepted, limited remediation options`
         desc: 'How sure are we that the votes were tallied up correctly, without any votes lost or modified?',
         scores: [
           [
-            9,
+            9.5,
             {
               adv: `Voters and independent parties are able to verify results through various straightforward to complex methods, eliminating reliance on servers or election officials.
               In SIV elections, all votes are anonymously published after the election, which allows voters to use their unique Verification # to check if their vote was recorded correctly. 
@@ -69,14 +72,14 @@ Once ballots accepted, limited remediation options`
               Anti-Malware Codes allow voters to check their vote via a secondary device using unique codes provided in a mailed invitation. This system not only offers protection against catching malware on the primary device, but also tracks and validates the number of voters performing secondary device checks, improving the overall integrity of voting results.
               Zero-Knowledge Proofs provide mathematical evidence that SIV's anonymization techniques did not modify or tamper with any of the submitted votes.
               SIV RLAs can be performed after results are published. Official and independent parties can gain very high statistical confidence in election outcomes by only sampling a small number of random voters and ask them to confirm their votes. 
-              SIV votes can be printed onto paper to be  verified manually without depending on any digital computations for accuracy.`,
-              disadv: ``
+              SIV votes can be printed onto paper to be verified manually without depending on any digital computations for accuracy.`,
+              disadv: `SIV is verifiable, but people have to actually do the verification to rely on it. Fortunately, the steps are fast and can be done after the fact.`
             }
           ],
           [
-            3,
+            4,
             {
-              adv: `n/a`,
+              adv: `Some jurisdictions provide tracking numbers for voters to look up if their vote was received at the polling station. But this is unverifiable.`,
               disadv: `Inherits all the disadvantages of safely verifying tallying of in-person voting, plus introduces new risks:
               It is hard to know what happens with the ballot once you put your ballot into a mailbox. There are lots of opportunities for it to get tampered with or lost.
               Because mailboxes are so geographically spread out, it is very difficult to comprehensively monitor.
@@ -84,9 +87,9 @@ Once ballots accepted, limited remediation options`
             }
           ],
           [
-            5,
+            6,
             {
-              adv: `There is a process to get votes to the final tallying without  tampering. That process is not perfect, but it is relatively good. It usually requires a lot of people to be corrupt to facilitate errors.
+              adv: `Many jurisdictions require at least two people to supervise all votes at all times. So a single corrupt poll worker is more limited in their ability to tamper.
               My preferred candidate ideally can send election observers. But there is often so many polling locations and times to vote that is very difficult to get anything close to complete coverage.
               Electronic tallying machines themselves can be audited using powerful post-election RLA techniques.`,
               disadv: `I cast a vote but have little-to-no direct evidence whether my vote counted.

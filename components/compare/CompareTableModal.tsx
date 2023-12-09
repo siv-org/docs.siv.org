@@ -221,7 +221,8 @@ export const CompareTableModal = (): JSX.Element => {
                               6: '#bbf7d0',
                               7: '#86efac',
                               8: '#4ade80',
-                              9: '#22c55e'
+                              9: '#22c55e',
+                              9.5: '#22c55e'
                             }[getScore(s)],
                             borderWidth: {
                               5: 1
@@ -320,6 +321,8 @@ export const CompareTableModal = (): JSX.Element => {
                       </div>
                       {modalContent.advantages
                         .split('\n')
+                        .map((c) => c.trim())
+                        .filter((c) => c)
                         .map((advantage, index) => (
                           <div className='mb-2' key={index}>
                             + {advantage}
@@ -330,6 +333,8 @@ export const CompareTableModal = (): JSX.Element => {
                       </div>
                       {modalContent.disadvantages
                         .split('\n')
+                        .map((c) => c.trim())
+                        .filter((c) => c)
                         .map((disadvantage, index) => (
                           <div className='mb-2' key={index}>
                             - {disadvantage}
