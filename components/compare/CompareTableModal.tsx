@@ -208,7 +208,7 @@ export const CompareTableModal = (): JSX.Element => {
                         <div
                           className={`${
                             isDescriptionShown ? 'py-4' : 'py-1'
-                          } cursor-pointer hover:opacity-70 ${
+                          } cursor-pointer sm:rounded-none rounded-b-lg hover:opacity-70 font-[500] ${
                             openedModalIndex &&
                             arraysEqual(openedModalIndex, [c_i, i, j]) &&
                             'ring-2 ring-cyan-800 dark:ring-white'
