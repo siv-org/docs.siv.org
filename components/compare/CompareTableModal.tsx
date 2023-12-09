@@ -4,6 +4,7 @@ import { useEffect, useCallback } from 'react'
 import { Score, tableData } from './compare-data'
 import { BountyRewardsSwitch } from './BountyRewardsSwitch'
 import { Switch } from './Switch'
+import { interpolateColor } from './interpolate-color'
 
 const getScore = (s: Score): number => (typeof s === 'number' ? s : s[0])
 
@@ -28,6 +29,7 @@ export const CompareTableModal = (): JSX.Element => {
     const score = scores[col_index]
 
     return {
+      d_name: row.d_name,
       title: `${methods[col_index]} - ${row.d_name}: ${getScore(score)} / 10`,
       advantages: score[1]?.adv || '',
       disadvantages: score[1]?.disadv || ''
@@ -91,7 +93,7 @@ export const CompareTableModal = (): JSX.Element => {
     (event) => {
       if (!openedModalIndex) return
 
-      event.preventDefault()
+      if (event.key.startsWith('Arrow')) event.preventDefault()
 
       if (event.key === 'ArrowRight') goRight()
       if (event.key === 'ArrowLeft') goLeft()
@@ -133,14 +135,14 @@ export const CompareTableModal = (): JSX.Element => {
           <thead className='hidden sm:table-header-group'>
             <tr>
               <th className='text-left min-w-[120px]'></th>
-              <th className='w-[12%] border-x-[14px] border-white dark:border-[rgb(17,17,17)] bg-gray-100 dark:bg-gray-500 sticky top-16'>
+              <th className='w-[12%] border-x-[14px] border-white dark:border-[rgb(17,17,17)] bg-gray-100 dark:bg-gray-700 sticky top-16'>
                 {methods[0]}
               </th>
-              <th className='w-[12%] border-x-[14px] border-white dark:border-[rgb(17,17,17)] bg-gray-100 dark:bg-gray-500 sticky top-16'>
+              <th className='w-[12%] border-x-[14px] border-white dark:border-[rgb(17,17,17)] bg-gray-100 dark:bg-gray-700 sticky top-16'>
                 {methods[1]}
               </th>
               <th
-                className={`w-[12%] border-x-[14px] border-white dark:border-[rgb(17,17,17)] bg-gray-100 dark:bg-gray-500 sticky top-16 px-1 ${
+                className={`w-[12%] border-x-[14px] border-white dark:border-[rgb(17,17,17)] bg-gray-100 dark:bg-gray-700 sticky top-16 px-1 ${
                   isDescriptionShown ? 'text-[14px]' : 'text-[12px]'
                 }`}
               >
@@ -156,7 +158,7 @@ export const CompareTableModal = (): JSX.Element => {
                 <tr>
                   <td>
                     <div
-                      className={`w-48 py-1.5 pl-2 font-semibold bg-gray-200/50 dark:bg-gray-500 relative top-3 mb-2 ${
+                      className={`w-48 py-1.5 pl-2 font-semibold bg-gray-200/50 dark:bg-gray-800 relative top-3 mb-2 ${
                         c_i === 0 ? '-mt-6' : 'mt-10 sm:mt-0'
                       }`}
                     >
@@ -200,32 +202,20 @@ export const CompareTableModal = (): JSX.Element => {
                         className='w-24 p-2 text-center text-black sm:w-auto'
                         key={j}
                       >
-                        <div className='py-0.5 text-[13px] px-1 font-semibold bg-gray-200/70 text-black/80 sm:hidden'>
+                        <div className='py-0.5 text-[13px] px-1 font-semibold bg-gray-200/70 dark:bg-gray-700 dark:text-white text-black/80 sm:hidden'>
                           {methods[j]}
                         </div>
                         <div
                           className={`${
                             isDescriptionShown ? 'py-4' : 'py-1'
-                          } cursor-pointer hover:opacity-70 ${
+                          } cursor-pointer sm:rounded-none rounded-b-lg hover:opacity-70 font-[500] ${
                             openedModalIndex &&
                             arraysEqual(openedModalIndex, [c_i, i, j]) &&
                             'ring-2 ring-cyan-800 dark:ring-white'
                           }`}
                           style={{
-                            backgroundColor: {
-                              1: '#ef4444',
-                              2: '#f87171',
-                              3: '#fca5a5',
-                              4: '#fecaca',
-                              5: 'white',
-                              6: '#bbf7d0',
-                              7: '#86efac',
-                              8: '#4ade80',
-                              9: '#22c55e'
-                            }[getScore(s)],
-                            borderWidth: {
-                              5: 1
-                            }[getScore(s)]
+                            backgroundColor: interpolateColor(getScore(s)),
+                            borderWidth: { 5: 1 }[getScore(s)]
                           }}
                           onClick={() => setOpenedModalIndex([c_i, i, j])}
                         >
@@ -313,6 +303,11 @@ export const CompareTableModal = (): JSX.Element => {
                   <div className='mt-3 text-left sm:mt-0 sm:ml-4'>
                     <h3 className='text-lg font-medium leading-6 text-gray-900 dark:text-gray-100'>
                       {modalContent.title}
+                      {modalContent.d_name === 'Coercion resistance' && (
+                        <BountyRewardsSwitch
+                          {...{ bountyEnabled, toggleBounty }}
+                        />
+                      )}
                     </h3>
                     <div className='mt-2 text-sm text-sky-900 dark:text-sky-200'>
                       <div className='mt-3 mb-1 text-xs text-teal-900/80 dark:text-teal-100/80'>
@@ -320,9 +315,14 @@ export const CompareTableModal = (): JSX.Element => {
                       </div>
                       {modalContent.advantages
                         .split('\n')
+                        .map((c) => c.trim())
+                        .filter((c) => c)
                         .map((advantage, index) => (
                           <div className='mb-2' key={index}>
-                            + {advantage}
+                            <span className='text-[18px] font-bold text-green-700'>
+                              +
+                            </span>{' '}
+                            {advantage}
                           </div>
                         ))}
                       <div className='mt-3 mb-1 text-xs opacity-60 dark:text-teal-100/80'>
@@ -330,9 +330,14 @@ export const CompareTableModal = (): JSX.Element => {
                       </div>
                       {modalContent.disadvantages
                         .split('\n')
+                        .map((c) => c.trim())
+                        .filter((c) => c)
                         .map((disadvantage, index) => (
                           <div className='mb-2' key={index}>
-                            - {disadvantage}
+                            <span className='text-[18px] font-bold text-red-700'>
+                              –
+                            </span>{' '}
+                            {disadvantage}
                           </div>
                         ))}
                     </div>
