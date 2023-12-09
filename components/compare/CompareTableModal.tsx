@@ -4,6 +4,7 @@ import { useEffect, useCallback } from 'react'
 import { Score, tableData } from './compare-data'
 import { BountyRewardsSwitch } from './BountyRewardsSwitch'
 import { Switch } from './Switch'
+import { interpolateColor } from './interpolate-color'
 
 const getScore = (s: Score): number => (typeof s === 'number' ? s : s[0])
 
@@ -212,21 +213,8 @@ export const CompareTableModal = (): JSX.Element => {
                             'ring-2 ring-cyan-800 dark:ring-white'
                           }`}
                           style={{
-                            backgroundColor: {
-                              1: '#ef4444',
-                              2: '#f87171',
-                              3: '#fca5a5',
-                              4: '#fecaca',
-                              5: 'white',
-                              6: '#bbf7d0',
-                              7: '#86efac',
-                              8: '#4ade80',
-                              9: '#22c55e',
-                              9.5: '#22c55e'
-                            }[getScore(s)],
-                            borderWidth: {
-                              5: 1
-                            }[getScore(s)]
+                            backgroundColor: interpolateColor(getScore(s)),
+                            borderWidth: { 5: 1 }[getScore(s)]
                           }}
                           onClick={() => setOpenedModalIndex([c_i, i, j])}
                         >

@@ -118,10 +118,10 @@ Once ballots accepted, limited remediation options`
             }
           ],
           [
-            4,
+            4.5,
             {
-              adv: `There is at least of small amount of effort for vote privacy — vote selections are sealed within an envelope.
-              Because it is a spread-out paper process, it is relatively hard to compromise on a huge scale without whistleblowers.`,
+              adv: `There is some effort for vote privacy — vote selections are sealed within an envelope.
+              Because it is a spread-out paper process, it is relatively hard to compromise on a huge scale without whistleblowers, especially in jurisdictions with strong opposition parties.`,
               disadv: `You're sending your name & vote selections side-by-side through this relatively opaque process. 
               It is trivially easy to open a letter, read its contents, and reseal it. There have been centuries worth of examples of governments doing this on an industrial scale. E.g. the French "cabinet noir".`
             }
