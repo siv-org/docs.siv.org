@@ -8,6 +8,34 @@ type Row = {
 }
 type Category = { name: string; rows: Row[] }
 
+// This one is unique because it appears twice, w/ and w/o bounty.
+const coercionResistance = {
+  siv: {
+    adv: `Vote selling is a serious crime with a hefty financial penalty and jail time.
+          As a felony, caught vote sellers can lose their right to vote for life.
+          If a SIV vote is discovered sold, it can still be cancelled, at any time. SIV Privacy Protectors can also work together to selectively de-anonymize corrupt votes for prosecution.`,
+    disadv: `Digital receipts make it easier to unforgeably prove to a remote coercer how you voted.`
+  },
+  paper: {
+    adv: `Challenging to unquestionably prove how one voted to a remote coercer.
+          As with SIV, biggest deterrent is heavy criminal penalties for both buyer and seller: large fines, jail time, loss of voting-rights.`,
+    disadv: `Can still provide strong-but-not-perfect evidence of voting a particular way to a remote coercer, such as over a video call or recording.
+            Many voters, including high-profile celebrities, have taken pictures of their filled-in ballots and posted it to their social media profiles.`,
+    withBounty: `Also benefits from Vote Selling Bounty Rewards.`
+  },
+  mail: {
+    disadv: `Trivially easy for a voter to sign a blank ballot and hand it to an in-person coercer, or fill it out in front of them.`
+  },
+  inPerson: {
+    adv: `In-person voting centers believed to be relatively safe from coercers.`,
+    disadv: `Coercers can peek from neighboring voting booths.`
+  },
+  all: {
+    adv: `Vote selling is hypothetical, not observed.`,
+    withBounty: `Because it is in the best interest of both buyers & sellers to defect, the trust necessary to carry out illegal vote selling diminishes significantly.`
+  }
+}
+
 export const tableData: Category[] = [
   {
     name: 'Accurate Results',
@@ -20,27 +48,24 @@ export const tableData: Category[] = [
             8,
             {
               adv: `Allows for a combination of auth methods: verified email delivery, SMS, drawn e-signatures, time-based one-time passwords, IP address geolocation, government ID photos, and cryptographic key pairs.
-Every encrypted vote can be individually audited back to individual submitters.
-By default, every submitter automatically gets a submission receipt in their email (with private data encrypted), so highly likely they will have enough info to carry out audit.
-Any encrypted votes which don't meet standards can be removed, disqualified or re-submitted (as appropriate), and new tallies quickly taken.
-Possible to audit vote submission IP addresses and device user-agents.`,
+              Every encrypted vote can be individually audited back to individual submitters.
+              By default, every submitter automatically gets a submission receipt in their email (with private data encrypted), so highly likely they will have enough info to carry out audit.
+              Any encrypted votes which don't meet standards can be removed, disqualified or re-submitted (as appropriate), and new tallies quickly taken.
+              Possible to audit vote submission IP addresses and device user-agents.`,
               disadv: `SIV is not prescriptive about the authentication methods. The specific choice is up to the election administrators.
-Performing audit on voter roll requires voter contact information, and names for individual encrypted votes, which are not automatically given out.`
+              Performing audit on voter roll requires voter contact information, and names for individual encrypted votes, which are not automatically given out.`
             }
           ],
           [
             5,
             {
-              adv: `We confirm that the voter is in control of their mailbox. Or that the person casting a vote has access to the voter's mailbox.
+              adv: `Confirms that the person casting the vote has access to the voter's mailbox.
               Election administrators can require signatures that are verified against the signatures on file.`,
-
               disadv: `Anyone with access to the mailbox, including children, spouses, roommates, can also access the blank ballot.
-              Forging signatures especially with a reference is not that difficult. Schoolchildren sometimes do it for their parents.
+              Forging signatures, especially with a reference, is not that difficult. Schoolchildren sometimes do it for their parents.
               Verifying a lot of signatures is a relatively costly manual process.
-              Depends on the postal mail system working quickly and without errors.
-              Because of slowness, everything needs to be done and executed far in advance. And registration errors cannot quickly be remediated.
+              Because of postal mail delays, everything needs to be done and executed far in advance. And registration errors cannot quickly be remediated.
               Many mail boxes are not locked.
-              Postage costs to send custom ballots ~$1/voter.
               Voters sometimes fail to update their mailing address when they move.
               How easy is it to create a bunch of fake votes and add them, without anyone noticing? It is hard to know.`
             }
@@ -49,11 +74,11 @@ Performing audit on voter roll requires voter contact information, and names for
             7,
             {
               adv: `Have to show up in person
-Can limit to resident's unique precinct
-Can require photo ID`,
+              Can limit to resident's unique precinct
+              Can require photo ID`,
               disadv: `Vulnerable to ballot stuffing: all ballot boxes must be watched at all times by multiple observers
-Limited post-election auditability
-Once ballots accepted, limited remediation options`
+              Limited post-election auditability
+              Once ballots accepted, limited remediation options`
             }
           ]
         ]
@@ -142,63 +167,66 @@ Once ballots accepted, limited remediation options`
         desc: 'How protected are voters against attempts to threaten or purchase their vote selections?',
         scores: [
           [
-            4,
-            {
-              adv: `Vote selling is a serious crime with a hefty financial penalty and jail time.
-              Vote seller loses their right to vote for life.
-              As the vote seller, if you sent your verification number to a smart contract, everyone can see what your Verification # is. Then thanks to SIV's architecture, all SIV Privacy Protectors can work together and can selectively de-anonymize your vote. Then your vote can be cancelled. So if your  sold Verification # gets leaked easily, your vote can be cancelled.
-              Voter Selling is hypothetical, not observed.`,
-              disadv: `Using SIV makes it easier to prove to remote coercers how you voted, because of the Verification # and the vote receipt.
-              The proof also makes it easier to share with someone who's outside of the law enforcement's jurisdiction.`
-            }
-          ],
-          [
             5,
             {
-              adv: `Challenging to definitively prove how one voted to a remote coercer, although not impossible, e.g. over a video call or recording.
-              Main deterrent is heavy criminal penalties.`,
-              disadv: `Trivially easy for a voter to sign a blank ballot and hand it to a coercer, or fill it out in front of them.`
-            }
-          ],
-          [
-            7,
-            {
-              adv: ` Main deterrent is heavy criminal penalties.`,
-              disadv: `A coercer such as a family member can stand in neighboring voting booth and peek to see how the victim votes.
-            Voters can record a video to show it to their coercer as proof.
-            Many voters, including high-profile celebrities, have taken pictures of their filled-in ballots and posted it on their social media profiles.`
-            }
-          ]
-        ],
-        scores_with_bounty: [
-          [
-            7,
-            {
-              adv: `With the bounty reward system in place, the proofs that SIV creates turn into benefits. People now have way easier and stronger proof of illegal activity.
-              It is in the best interest of both the seller & buyer to defect. The trust between them diminishes significantly.
-              Vote selling is already serious crime with a hefty financial penalty and jail time. And if caught, vote seller loses their right to vote for life.
-              As the vote seller, if you sent your verification number to a smart contract, everyone can see what your Verification # is. Then thanks to SIV's architecture, all SIV Privacy Protectors can work together and can selectively de-anonymize your vote. Then your vote can be cancelled. So if your  sold Verification # gets leaked easily, your vote can be cancelled.
-              Voter Selling is hypothetical, not observed.`,
-              disadv: `The buyer might be able to stay anonymous, hence it might be hard to prosecute.
-              Using SIV makes it easier to prove to remote coercers how you voted, because of the Verification # and the vote receipt.
-              The proof also makes it easier to share with someone who's outside of the law enforcement's jurisdiction.`
+              adv: `${coercionResistance.siv.adv}
+              ${coercionResistance.all.adv}`,
+              disadv: coercionResistance.siv.disadv
             }
           ],
           [
             6,
             {
-              adv: `Challenging though not impossible for remote vote buyers to automatically verify if the proof is legitimate.
-              Main deterrent is heavy criminal penalties.
-              Also benefits from Vote Seller's bounty reward.`,
-              disadv: `Trivially easy for a voter to sign a blank ballot and hand it to a coercer, or fill it out in front of them.`
+              adv: `${coercionResistance.paper.adv}
+              ${coercionResistance.all.adv}`,
+              disadv: `${coercionResistance.mail.disadv}
+              ${coercionResistance.paper.disadv}`
             }
           ],
           [
             8,
             {
-              adv: ` Main deterrent is heavy criminal penalties.
-              With Vote Seller's bounty rewards in place, taking photos or videos of how one voted becomes far less attractive.`,
-              disadv: `A coercer such as a family member can stand in neighboring voting booth and peek to see how the victim votes.`
+              adv: `${coercionResistance.inPerson.adv}
+              ${coercionResistance.paper.adv}
+              ${coercionResistance.all.adv}`,
+              disadv: `${coercionResistance.inPerson.disadv}
+              ${coercionResistance.paper.disadv}`
+            }
+          ]
+        ],
+        scores_with_bounty: [
+          [
+            8,
+            {
+              adv: `${coercionResistance.siv.adv}
+              ${coercionResistance.all.adv}
+              With a bounty reward system in place, the unique and unforgeable proofs that SIV creates turn into benefits against vote selling, as strong evidence of prosecutable illegal activity if shared.
+              ${coercionResistance.all.withBounty}`,
+              disadv: `${coercionResistance.siv.disadv}
+              Even with bounty rewards, buyers may still be able to stay anonymous, thus hard to prosecute.`
+            }
+          ],
+          [
+            7,
+            {
+              adv: `${coercionResistance.paper.adv}
+              ${coercionResistance.all.adv}
+              ${coercionResistance.paper.withBounty}
+              ${coercionResistance.all.withBounty}`,
+              disadv: `${coercionResistance.mail.disadv}
+              ${coercionResistance.paper.disadv}`
+            }
+          ],
+          [
+            9,
+            {
+              adv: `${coercionResistance.inPerson.adv}
+              ${coercionResistance.all.adv}
+              ${coercionResistance.paper.adv}
+              ${coercionResistance.paper.withBounty}
+              ${coercionResistance.all.withBounty}`,
+              disadv: `${coercionResistance.inPerson.disadv}
+              ${coercionResistance.paper.disadv}`
             }
           ]
         ]
