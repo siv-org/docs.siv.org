@@ -21,7 +21,7 @@ const antiCoercionArguments = {
           As with SIV, biggest deterrent is heavy criminal penalties for both buyer and seller: large fines, jail time, loss of voting-rights.`,
     con: `Can still provide strong-but-not-perfect evidence of voting a particular way to a remote coercer, such as over a video call or recording.
             Many voters, including high-profile celebrities, have taken pictures of their filled-in ballots and posted it to their social media profiles.`,
-    withBounty: `Also benefits from Vote Selling Bounty Rewards.`
+    withBounty: `With Vote Selling Bounty Rewards:`
   },
   mail: {
     con: `Trivially easy for a voter to sign a blank ballot and hand it to an in-person coercer, or fill it out in front of them.`
@@ -58,8 +58,7 @@ const coercionScore = {
   mail_w_bounty: {
     adv: `${antiCoercionArguments.paper.pro}
           ${antiCoercionArguments.all.pro}
-          ${antiCoercionArguments.paper.withBounty}
-          ${antiCoercionArguments.all.withBounty}`,
+          ${antiCoercionArguments.paper.withBounty} ${antiCoercionArguments.all.withBounty}`,
     disadv: `${antiCoercionArguments.mail.con}
              ${antiCoercionArguments.paper.con}`
   },
@@ -74,8 +73,7 @@ const coercionScore = {
     adv: `${antiCoercionArguments.inPerson.pro}
           ${antiCoercionArguments.all.pro}
           ${antiCoercionArguments.paper.pro}
-          ${antiCoercionArguments.paper.withBounty}
-          ${antiCoercionArguments.all.withBounty}`,
+          ${antiCoercionArguments.paper.withBounty} ${antiCoercionArguments.all.withBounty}`,
     disadv: `${antiCoercionArguments.inPerson.con}
              ${antiCoercionArguments.paper.con}`
   }
