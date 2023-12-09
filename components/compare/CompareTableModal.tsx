@@ -313,7 +313,10 @@ export const CompareTableModal = (): JSX.Element => {
                         .filter((c) => c)
                         .map((advantage, index) => (
                           <div className='mb-2' key={index}>
-                            + {advantage}
+                            <span className='text-[18px] font-bold text-green-700'>
+                              +
+                            </span>{' '}
+                            {advantage}
                           </div>
                         ))}
                       <div className='mt-3 mb-1 text-xs opacity-60 dark:text-teal-100/80'>
@@ -325,7 +328,10 @@ export const CompareTableModal = (): JSX.Element => {
                         .filter((c) => c)
                         .map((disadvantage, index) => (
                           <div className='mb-2' key={index}>
-                            - {disadvantage}
+                            <span className='text-[18px] font-bold text-red-700'>
+                              –
+                            </span>{' '}
+                            {disadvantage}
                           </div>
                         ))}
                     </div>
