@@ -12,6 +12,7 @@ const config: DocsThemeConfig = {
     />
   ),
   docsRepositoryBase: 'https://github.com/dsernst/siv-docs/blob/main',
+  editLink: { component: null },
   footer: {
     text: 'Secure Internet Voting Inc.'
   },
