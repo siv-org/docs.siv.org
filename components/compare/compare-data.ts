@@ -1,4 +1,4 @@
-export type Score = number | [number, { adv?: string; disadv: string }]
+export type Score = [number, { adv: string; disadv: string }]
 
 type Row = {
   d_name: string
@@ -9,30 +9,75 @@ type Row = {
 type Category = { name: string; rows: Row[] }
 
 // This one is unique because it appears twice, w/ and w/o bounty.
-const coercionResistance = {
+const antiCoercionArguments = {
   siv: {
-    adv: `Vote selling is a serious crime with a hefty financial penalty and jail time.
+    pro: `Vote selling is a serious crime with a hefty financial penalty and jail time.
           As a felony, caught vote sellers can lose their right to vote for life.
           If a SIV vote is discovered sold, it can still be cancelled, at any time. SIV Privacy Protectors can also work together to selectively de-anonymize corrupt votes for prosecution.`,
-    disadv: `Digital receipts make it easier to unforgeably prove to a remote coercer how you voted.`
+    con: `Digital receipts make it easier to unforgeably prove to a remote coercer how you voted.`
   },
   paper: {
-    adv: `Challenging to unquestionably prove how one voted to a remote coercer.
+    pro: `Challenging to unquestionably prove how one voted to a remote coercer.
           As with SIV, biggest deterrent is heavy criminal penalties for both buyer and seller: large fines, jail time, loss of voting-rights.`,
-    disadv: `Can still provide strong-but-not-perfect evidence of voting a particular way to a remote coercer, such as over a video call or recording.
+    con: `Can still provide strong-but-not-perfect evidence of voting a particular way to a remote coercer, such as over a video call or recording.
             Many voters, including high-profile celebrities, have taken pictures of their filled-in ballots and posted it to their social media profiles.`,
     withBounty: `Also benefits from Vote Selling Bounty Rewards.`
   },
   mail: {
-    disadv: `Trivially easy for a voter to sign a blank ballot and hand it to an in-person coercer, or fill it out in front of them.`
+    con: `Trivially easy for a voter to sign a blank ballot and hand it to an in-person coercer, or fill it out in front of them.`
   },
   inPerson: {
-    adv: `In-person voting centers believed to be relatively safe from coercers.`,
-    disadv: `Coercers can peek from neighboring voting booths.`
+    pro: `In-person voting centers believed to be relatively safe from coercers.`,
+    con: `Coercers can peek from neighboring voting booths.`
   },
   all: {
-    adv: `Vote selling is hypothetical, not observed.`,
+    pro: `Vote selling is hypothetical, not observed.`,
     withBounty: `Because it is in the best interest of both buyers & sellers to defect, the trust necessary to carry out illegal vote selling diminishes significantly.`
+  }
+}
+const coercionScore = {
+  siv: {
+    adv: `${antiCoercionArguments.siv.pro}
+          ${antiCoercionArguments.all.pro}`,
+    disadv: antiCoercionArguments.siv.con
+  },
+  siv_w_bounty: {
+    adv: `${antiCoercionArguments.siv.pro}
+          ${antiCoercionArguments.all.pro}
+          With a bounty reward system in place, the unique and unforgeable proofs that SIV creates turn into benefits against vote selling, as strong evidence of prosecutable illegal activity if shared.
+          ${antiCoercionArguments.all.withBounty}`,
+    disadv: `${antiCoercionArguments.siv.con}
+            Even with bounty rewards, buyers may still be able to stay anonymous, thus hard to prosecute.`
+  },
+  paper: {
+    adv: `${antiCoercionArguments.paper.pro}
+          ${antiCoercionArguments.all.pro}`,
+    disadv: `${antiCoercionArguments.mail.con}
+             ${antiCoercionArguments.paper.con}`
+  },
+  paper_w_bounty: {
+    adv: `${antiCoercionArguments.paper.pro}
+          ${antiCoercionArguments.all.pro}
+          ${antiCoercionArguments.paper.withBounty}
+          ${antiCoercionArguments.all.withBounty}`,
+    disadv: `${antiCoercionArguments.mail.con}
+             ${antiCoercionArguments.paper.con}`
+  },
+  inPerson: {
+    adv: `${antiCoercionArguments.inPerson.pro}
+          ${antiCoercionArguments.paper.pro}
+          ${antiCoercionArguments.all.pro}`,
+    disadv: `${antiCoercionArguments.inPerson.con}
+             ${antiCoercionArguments.paper.con}`
+  },
+  inPerson_w_bounty: {
+    adv: `${antiCoercionArguments.inPerson.pro}
+          ${antiCoercionArguments.all.pro}
+          ${antiCoercionArguments.paper.pro}
+          ${antiCoercionArguments.paper.withBounty}
+          ${antiCoercionArguments.all.withBounty}`,
+    disadv: `${antiCoercionArguments.inPerson.con}
+             ${antiCoercionArguments.paper.con}`
   }
 }
 
@@ -166,69 +211,14 @@ export const tableData: Category[] = [
         d_name: 'Coercion resistance',
         desc: 'How protected are voters against attempts to threaten or purchase their vote selections?',
         scores: [
-          [
-            5,
-            {
-              adv: `${coercionResistance.siv.adv}
-                    ${coercionResistance.all.adv}`,
-              disadv: coercionResistance.siv.disadv
-            }
-          ],
-          [
-            6,
-            {
-              adv: `${coercionResistance.paper.adv}
-                    ${coercionResistance.all.adv}`,
-              disadv: `${coercionResistance.mail.disadv}
-                       ${coercionResistance.paper.disadv}`
-            }
-          ],
-          [
-            8,
-            {
-              adv: `${coercionResistance.inPerson.adv}
-                    ${coercionResistance.paper.adv}
-                    ${coercionResistance.all.adv}`,
-              disadv: `${coercionResistance.inPerson.disadv}
-                       ${coercionResistance.paper.disadv}`
-            }
-          ]
+          [5, coercionScore.siv],
+          [6, coercionScore.paper],
+          [8, coercionScore.inPerson]
         ],
         scores_with_bounty: [
-          [
-            8,
-            {
-              adv: `${coercionResistance.siv.adv}
-                    ${coercionResistance.all.adv}
-                    With a bounty reward system in place, the unique and unforgeable proofs that SIV creates turn into benefits against vote selling, as strong evidence of prosecutable illegal activity if shared.
-                    ${coercionResistance.all.withBounty}`,
-              disadv: `${coercionResistance.siv.disadv}
-                      Even with bounty rewards, buyers may still be able to stay anonymous, thus hard to prosecute.`
-            }
-          ],
-          [
-            7,
-            {
-              adv: `${coercionResistance.paper.adv}
-                    ${coercionResistance.all.adv}
-                    ${coercionResistance.paper.withBounty}
-                    ${coercionResistance.all.withBounty}`,
-              disadv: `${coercionResistance.mail.disadv}
-                      ${coercionResistance.paper.disadv}`
-            }
-          ],
-          [
-            9,
-            {
-              adv: `${coercionResistance.inPerson.adv}
-              ${coercionResistance.all.adv}
-              ${coercionResistance.paper.adv}
-              ${coercionResistance.paper.withBounty}
-              ${coercionResistance.all.withBounty}`,
-              disadv: `${coercionResistance.inPerson.disadv}
-              ${coercionResistance.paper.disadv}`
-            }
-          ]
+          [8, coercionScore.siv_w_bounty],
+          [7, coercionScore.paper_w_bounty],
+          [9, coercionScore.inPerson_w_bounty]
         ]
       }
     ]
@@ -281,9 +271,9 @@ export const tableData: Category[] = [
           [
             8,
             {
-              adv: ` If the person knows how they want to vote, it takes seconds to vote.
-              Voters don't need to travel or wait in line at polling stations.
-              Easier to click a button, than have to use a pen and maybe make a mistake and then it's messier and harder to fix. `,
+              adv: `If the person knows how they want to vote, it takes seconds to vote.
+                    Voters don't need to travel or wait in line at polling stations.
+                    Easier to click a button, than have to use a pen and maybe make a mistake and then it's messier and harder to fix.`,
               disadv: `Election administrators have the option to send the unique Authentication codes that allow a voter to vote via mail. This can be slow or encounter issues such as incorrect mailing address.`
             }
           ],
@@ -292,8 +282,8 @@ export const tableData: Category[] = [
             {
               adv: `Voter does not need to travel or wait in line at polling stations.`,
               disadv: `Dependent on the postal service speed and reliability.
-              Voter needs to find and travel to ballot drop-off location. 
-            Requires voters to plan ahead to ensure their ballot is accepted in time. Different jurisdictions have different postmarked vs delivery deadlines.`
+                       Voter needs to find and travel to ballot drop-off location.
+                       Requires voters to plan ahead to ensure their ballot is accepted in time. Different jurisdictions have different postmarked vs delivery deadlines.`
             }
           ],
           [
@@ -301,7 +291,7 @@ export const tableData: Category[] = [
             {
               adv: `No need to worry about postal delays.`,
               disadv: `You have to get to the polling station, you might need to go through security such as a metal detector, wait in line, check in, and only then you can go into the booth and vote. Then you have to get back home.
-          Efficiency depends on staffing and organization of the polling station.`
+                      Efficiency depends on staffing and organization of the polling station.`
             }
           ]
         ]
