@@ -336,17 +336,18 @@ export const tableData: Category[] = [
           [
             8,
             {
-              adv: `The current average government elections budget is ~$20/voter, no matter if the person votes or not. SIV can reduce that cost to ~$3/voter.
-              SIV is priced so there is no charge for voters who opt not to use it.
+              adv: `The average government elections budget is around $20 per voter, regardless of participation. SIV could reduce this cost to approximately $3 per voter.
+              There is no charge for voters who choose not to use SIV.
               Governments can pilot SIV for free.
-              SIV greatly reduces the amount of work election administrators have to do. In pilots with side-by-side SIV & In-Person voting, the in-person voting required 10x as many people to check-in voters and tally the results.`,
-              disadv: `During initial years when SIV is first being offered, election administrators may want to continue providing the same levels of vote-by-mail and in-person infrastructure. So cost savings will take a few transition years to realize.`
+              SIV significantly decreases the workload for election administrators. Comparisons of SIV and in-person paper voting in pilots showed that in-person voting required ten times more personnel for voter check-ins and result tallying.`,
+              disadv: `There are initial upfront costs for learning new systems and processes.
+              In the early years of implementing SIV, most jurisdictions will likely maintain existing levels of vote-by-mail and in-person voting infrastructure, delaying the realization of cost savings for several transition years.`
             }
           ],
           [
             4,
             {
-              adv: `Can be less expensive as it requires fewer polling stations, and less staff on election day.`,
+              adv: `Can be less expensive than In-Person as it requires fewer polling stations, and less staff on election day.`,
               disadv: `The costs of printing, distributing, and returning ballots can add up when there are a lot of voters. Many of these costs are paid even if voter opts for a different method.
               Increased cost for verification and handling of mail-in ballots.`
             }
