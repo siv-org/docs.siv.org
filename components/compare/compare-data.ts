@@ -299,16 +299,19 @@ export const tableData: Category[] = [
           [
             9,
             {
-              adv: `SIV facilitates the swift and efficient tabulation and publication of voting results. Outcomes can be accessible within mere seconds of the voting period's conclusion.`,
-              disadv: `n/a`
+              adv: `Thousands of votes can be anonymized, unlocked, and tallied in seconds. Results can be published near instantly.`,
+              disadv: `Signature verification requirements can slow down ballot processing.
+                       Subject to delays if Privacy Protectors are tardy to anonymize and unlock encrypted ballots.`
             }
           ],
           [
-            2,
+            2.5,
             {
-              adv: `Depending on jurisdiction they can start pre-tallying ahead of time.`,
-              disadv: `Counting mail-in ballots is typically slower due to the verification process for each ballot, which includes signature verification. The ballots need to be unfolded and uncreased, and sometimes they get rejected by the voting machine. For example, some 2020 results took 3 weeks to count all the mail-in votes. 
-            Results can be delayed if there's a large volume of mail-in ballots.`
+              adv: `Where allowed, pre-tallying mail-in ballots can start before Election Day, speeding up the announcement of results.`,
+              disadv: `Signature verification requirements can slow down ballot processing.
+              Final election results can be delayed because all mail-in ballots need to be received at Election Centers, sometimes extending well beyond Election Day depending on postmark dates.
+              Mail-in ballots often require physical handling to flatten or uncrease them for machine counting, and may be rejected by voting machines if too bent, similar to bent dollars in a vending machine.
+              To provide a historical perspective, some elections in 2020 took as long as three weeks to count all mail-in votes, highlighting the potential for substantial delays.`
             }
           ],
           [
