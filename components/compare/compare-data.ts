@@ -283,11 +283,11 @@ export const tableData: Category[] = [
             }
           ],
           [
-            2,
+            3,
             {
-              adv: `No need to worry about postal delays.`,
-              disadv: `You have to get to the polling station, find parking, you might need to go through security such as a metal detector, wait in line, check in, and only then you can go into the booth and vote. Then you have to get back home.
-                      Efficiency depends on staffing and organization of the polling station.`
+              adv: `Finalizes your vote without the need or option for follow-up confirmation.`,
+              disadv: `In-person voting can be time-consuming, requiring travel to the polling station, finding parking, passing through security measures like metal detectors, waiting in line, and checking in before casting a vote, followed by the return journey home.
+                       The efficiency and wait time at polling stations can be unpredictable, influenced by both the staffing and organization of the station as well as the number of other voters present.`
             }
           ]
         ]
