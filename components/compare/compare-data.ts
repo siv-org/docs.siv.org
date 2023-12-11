@@ -294,7 +294,7 @@ export const tableData: Category[] = [
       },
       {
         d_name: 'Speed of tallying',
-        desc: 'How quickly can results be tallied?',
+        desc: 'How quickly can results be announced?',
         scores: [
           [
             9,
@@ -305,7 +305,7 @@ export const tableData: Category[] = [
             }
           ],
           [
-            2.5,
+            3,
             {
               adv: `Where allowed, pre-tallying mail-in ballots can start before Election Day, speeding up the announcement of results.`,
               disadv: `Signature verification requirements can slow down ballot processing.
@@ -315,11 +315,11 @@ export const tableData: Category[] = [
             }
           ],
           [
-            4,
+            5,
             {
-              adv: `Well-vetted data on it.`,
-              disadv: ` If using a tallying machine, votes need to be manually fed through the machine. 
-              Longer wait times for results if manual recounting is required.`
+              adv: `Long history and well-vetted data on expected times. Most election results are usually announced late in the evening of election day, or early next day.`,
+              disadv: `Votes need to be processed one-by-one, e.g. fed through vote-counting machines.
+              There may be longer wait times for final results if manual recounting is necessary.`
             }
           ]
         ]
