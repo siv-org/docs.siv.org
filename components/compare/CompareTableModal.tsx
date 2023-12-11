@@ -117,7 +117,7 @@ export const CompareTableModal = (): JSX.Element => {
         {/* "Intro" box */}
         <div className='inline-block p-3 mt-2 mb-8 rounded bg-blue-400/10 dark:bg-white/10'>
           {/* Show Descriptions toggle */}
-          <div className='inline-block px-3 py-1 text-sm italic border rounded cursor-pointer dark:bg-blue-900/50 bg-blue-200/70 border-black/5 text-black/70 dark:border-gray-600 dark:text-white/70'>
+          <div className='inline-block px-3 py-1 text-sm italic border rounded dark:bg-blue-900/50 bg-blue-200/70 border-black/5 text-black/70 dark:border-gray-600 dark:text-white/70'>
             <Switch
               checked={isDescriptionShown}
               onClick={toggleDescription}
