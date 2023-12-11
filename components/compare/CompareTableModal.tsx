@@ -208,14 +208,14 @@ export const CompareTableModal = (): JSX.Element => {
                         <div
                           className={`${
                             isDescriptionShown ? 'py-4' : 'py-1'
-                          } cursor-pointer sm:rounded-none rounded-b-lg hover:opacity-70 font-[500] ${
+                          } cursor-pointer border sm:rounded-none rounded-b-lg hover:opacity-70 font-[500] ${
                             openedModalIndex &&
                             arraysEqual(openedModalIndex, [c_i, i, j]) &&
                             'ring-2 ring-cyan-800 dark:ring-white'
                           }`}
                           style={{
                             backgroundColor: interpolateColor(getScore(s)),
-                            borderWidth: { 5: 1 }[getScore(s)]
+                            borderColor: getScore(s) === 5 ? undefined : '#fff0'
                           }}
                           onClick={() => setOpenedModalIndex([c_i, i, j])}
                         >
