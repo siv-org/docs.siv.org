@@ -265,12 +265,12 @@ export const tableData: Category[] = [
         desc: 'How quickly can individual voters participate?',
         scores: [
           [
-            8,
+            9,
             {
-              adv: `If the person knows how they want to vote, it takes seconds to vote.
-                    Voters don't need to travel or wait in line at polling stations.
-                    Easier to click a button, than have to use a pen and maybe make a mistake and then it's messier and harder to fix.`,
-              disadv: `Election administrators have the option to send the unique Authentication codes that allow a voter to vote via mail. This can be slow or encounter issues such as incorrect mailing address.`
+              adv: `If the person knows how they want to vote, it can be done in seconds.
+                    Voters don't need to travel, wait in line at polling stations, or find mail drop boxes.
+                    Correcting mistakes is quicker and less messy than with a pen.`,
+              disadv: `Before voting, voters must receive their unique Voter Invitations. For public elections, we recommend traditional postal mail, to exceed current Voter Authentication requirements. While this does not directly affect the voting process, potential postal delays could lead to waiting times.`
             }
           ],
           [
