@@ -229,35 +229,33 @@ export const tableData: Category[] = [
         desc: 'How accessible is the voting process for all members of the electorate, especially those with disabilities?',
         scores: [
           [
-            8,
+            8.5,
             {
               adv: `No need to visit polling stations or drop boxes.
-              By utilizing their own devices in the comfort of their homes, voters with disabilities can benefit from customized accessibility features such as text-to-speech, larger font sizes, high contrast mode, and various other options tailored to their needs.
-              Allows voters to research and fill in their ballot at their own pace, without feeling rushed.
-              Offers convenience as voters can take their time to complete the ballot.`,
-              disadv: `Not everyone is familiar and comfortable with using digital devices such as laptop, tablet, or phone.`
+              By utilizing their own devices in the comfort of their homes, voters with disabilities can benefit from customized accessibility features such as larger font sizes, text-to-speech, high contrast mode, and various other well-developed options.
+              Allows voters to research and fill out their ballot at their own pace, without feeling rushed.`,
+              disadv: `Although many people prefer digital options, many other people are not as comfortable and may become frustrated by digital interfaces.`
             }
           ],
           [
-            6,
+            6.5,
             {
-              adv: `Beneficial for elderly, disabled, or remote/rural voters who find it hard to reach polling stations.
-              Offers convenience as voters can take their time to complete the ballot.
-              Reduction in In-Person Voting Issues: Issues such as long lines, malfunctioning machines, or polling place closures can impact the results of in-person voting. Mail-in voting helps alleviate these issues.
+              adv: `Beneficial for elderly, remote/rural, or voters with disabilities who find it hard to reach polling stations.
               Allows voters to research and fill in their ballot at their own pace, without feeling rushed.`,
-              disadv: ` Some people might not receive their mail-in ballot due to issues with their registration status, incorrect mailing address, or other administrative errors. This could unintentionally disenfranchise certain voters. This is especially an issue for vote-by-mail because the process takes a while to get the ballot both out to and back from the voter.
-              It is not great for vision impaired people.
-              Requires getting to a mail drop-off location.
-              Filling the ballot and drawing a signature can be a challenge if they are motor impaired.`
+              disadv: `Some people might not receive their mail-in ballot due to issues with their registration status, incorrect mailing address, or other administrative errors. This could unintentionally disenfranchise certain voters. This is riskier for vote-by-mail because the process takes a while to get the ballot both out to and back from the voter.
+              Can still be challenging for voters with vision impairments.
+              Filling the ballot and drawing a signature can be a challenge if they have difficulty using pens.
+              Requires getting to a mail drop-off location.`
             }
           ],
           [
             5,
             {
-              adv: `In-person assistance is available for those who need it.`,
+              adv: `Many jurisdictions try to provide many nearby polling stations, but this is far from universal.
+              In-person assistance is usually available for those who need it.`,
               disadv: `May be difficult for individuals with mobility issues or remote/rural voters to reach polling stations.
-            Limited voting hours may restrict some people from being able to vote.
-            Long lines make it harder for people to vote.`
+            Limited voting hours may restrict some people from being able to vote, especially those with many other responsibilities and obligations.
+            Standing in long lines can make it even harder for people to vote.`
             }
           ]
         ]
@@ -288,7 +286,7 @@ export const tableData: Category[] = [
             2,
             {
               adv: `No need to worry about postal delays.`,
-              disadv: `You have to get to the polling station, you might need to go through security such as a metal detector, wait in line, check in, and only then you can go into the booth and vote. Then you have to get back home.
+              disadv: `You have to get to the polling station, find parking, you might need to go through security such as a metal detector, wait in line, check in, and only then you can go into the booth and vote. Then you have to get back home.
                       Efficiency depends on staffing and organization of the polling station.`
             }
           ]
