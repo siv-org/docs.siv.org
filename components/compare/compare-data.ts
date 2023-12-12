@@ -229,35 +229,33 @@ export const tableData: Category[] = [
         desc: 'How accessible is the voting process for all members of the electorate, especially those with disabilities?',
         scores: [
           [
-            8,
+            8.5,
             {
               adv: `No need to visit polling stations or drop boxes.
-              By utilizing their own devices in the comfort of their homes, voters with disabilities can benefit from customized accessibility features such as text-to-speech, larger font sizes, high contrast mode, and various other options tailored to their needs.
-              Allows voters to research and fill in their ballot at their own pace, without feeling rushed.
-              Offers convenience as voters can take their time to complete the ballot.`,
-              disadv: `Not everyone is familiar and comfortable with using digital devices such as laptop, tablet, or phone.`
+              By utilizing their own devices in the comfort of their homes, voters with disabilities can benefit from customized accessibility features such as larger font sizes, text-to-speech, high contrast mode, and various other well-developed options.
+              Allows voters to research and fill out their ballot at their own pace, without feeling rushed.`,
+              disadv: `Although many people prefer digital options, many other people are not as comfortable and may become frustrated by digital interfaces.`
             }
           ],
           [
-            6,
+            6.5,
             {
-              adv: `Beneficial for elderly, disabled, or remote/rural voters who find it hard to reach polling stations.
-              Offers convenience as voters can take their time to complete the ballot.
-              Reduction in In-Person Voting Issues: Issues such as long lines, malfunctioning machines, or polling place closures can impact the results of in-person voting. Mail-in voting helps alleviate these issues.
+              adv: `Beneficial for elderly, remote/rural, or voters with disabilities who find it hard to reach polling stations.
               Allows voters to research and fill in their ballot at their own pace, without feeling rushed.`,
-              disadv: ` Some people might not receive their mail-in ballot due to issues with their registration status, incorrect mailing address, or other administrative errors. This could unintentionally disenfranchise certain voters. This is especially an issue for vote-by-mail because the process takes a while to get the ballot both out to and back from the voter.
-              It is not great for vision impaired people.
-              Requires getting to a mail drop-off location.
-              Filling the ballot and drawing a signature can be a challenge if they are motor impaired.`
+              disadv: `Some people might not receive their mail-in ballot due to issues with their registration status, incorrect mailing address, or other administrative errors. This could unintentionally disenfranchise certain voters. This is riskier for vote-by-mail because the process takes a while to get the ballot both out to and back from the voter.
+              Can still be challenging for voters with vision impairments.
+              Filling the ballot and drawing a signature can be a challenge if they have difficulty using pens.
+              Requires getting to a mail drop-off location.`
             }
           ],
           [
             5,
             {
-              adv: `In-person assistance is available for those who need it.`,
+              adv: `Many jurisdictions try to provide many nearby polling stations, but this is far from universal.
+              In-person assistance is usually available for those who need it.`,
               disadv: `May be difficult for individuals with mobility issues or remote/rural voters to reach polling stations.
-            Limited voting hours may restrict some people from being able to vote.
-            Long lines make it harder for people to vote.`
+            Limited voting hours may restrict some people from being able to vote, especially those with many other responsibilities and obligations.
+            Standing in long lines can make it even harder for people to vote.`
             }
           ]
         ]
@@ -267,12 +265,12 @@ export const tableData: Category[] = [
         desc: 'How quickly can individual voters participate?',
         scores: [
           [
-            8,
+            9,
             {
-              adv: `If the person knows how they want to vote, it takes seconds to vote.
-                    Voters don't need to travel or wait in line at polling stations.
-                    Easier to click a button, than have to use a pen and maybe make a mistake and then it's messier and harder to fix.`,
-              disadv: `Election administrators have the option to send the unique Authentication codes that allow a voter to vote via mail. This can be slow or encounter issues such as incorrect mailing address.`
+              adv: `If the person knows how they want to vote, it can be done in seconds.
+                    Voters don't need to travel, wait in line at polling stations, or find mail drop boxes.
+                    Correcting mistakes is quicker and less messy than with a pen.`,
+              disadv: `Before voting, voters must receive their unique Voter Invitations. For public elections, we recommend traditional postal mail, to exceed current Voter Authentication requirements. While this does not directly affect the voting process, potential postal delays could lead to waiting times.`
             }
           ],
           [
@@ -285,40 +283,43 @@ export const tableData: Category[] = [
             }
           ],
           [
-            2,
+            3,
             {
-              adv: `No need to worry about postal delays.`,
-              disadv: `You have to get to the polling station, you might need to go through security such as a metal detector, wait in line, check in, and only then you can go into the booth and vote. Then you have to get back home.
-                      Efficiency depends on staffing and organization of the polling station.`
+              adv: `Finalizes your vote without the need or option for follow-up confirmation.`,
+              disadv: `In-person voting can be time-consuming, requiring travel to the polling station, finding parking, passing through security measures like metal detectors, waiting in line, and checking in before casting a vote, followed by the return journey home.
+                       The efficiency and wait time at polling stations can be unpredictable, influenced by both the staffing and organization of the station as well as the number of other voters present.`
             }
           ]
         ]
       },
       {
         d_name: 'Speed of tallying',
-        desc: 'How quickly can results be tallied?',
+        desc: 'How quickly can results be announced?',
         scores: [
           [
             9,
             {
-              adv: `SIV facilitates the swift and efficient tabulation and publication of voting results. Outcomes can be accessible within mere seconds of the voting period's conclusion.`,
-              disadv: `n/a`
+              adv: `Thousands of votes can be anonymized, unlocked, and tallied in seconds. Results can be published near instantly.`,
+              disadv: `Signature verification requirements can slow down ballot processing.
+                       Subject to delays if Privacy Protectors are tardy to anonymize and unlock encrypted ballots.`
             }
           ],
           [
-            2,
+            3,
             {
-              adv: `Depending on jurisdiction they can start pre-tallying ahead of time.`,
-              disadv: `Counting mail-in ballots is typically slower due to the verification process for each ballot, which includes signature verification. The ballots need to be unfolded and uncreased, and sometimes they get rejected by the voting machine. For example, some 2020 results took 3 weeks to count all the mail-in votes. 
-            Results can be delayed if there's a large volume of mail-in ballots.`
+              adv: `Where allowed, pre-tallying mail-in ballots can start before Election Day, speeding up the announcement of results.`,
+              disadv: `Signature verification requirements can slow down ballot processing.
+              Final election results can be delayed because all mail-in ballots need to be received at Election Centers, sometimes extending well beyond Election Day depending on postmark dates.
+              Mail-in ballots often require physical handling to flatten or uncrease them for machine counting, and may be rejected by voting machines if too bent, similar to bent dollars in a vending machine.
+              To provide a historical perspective, some elections in 2020 took as long as three weeks to count all mail-in votes, highlighting the potential for substantial delays.`
             }
           ],
           [
-            4,
+            5,
             {
-              adv: `Well-vetted data on it.`,
-              disadv: ` If using a tallying machine, votes need to be manually fed through the machine. 
-              Longer wait times for results if manual recounting is required.`
+              adv: `Long history and well-vetted data on expected times. Most election results are usually announced late in the evening of election day, or early next day.`,
+              disadv: `Votes need to be processed one-by-one, e.g. fed through vote-counting machines.
+              There may be longer wait times for final results if manual recounting is necessary.`
             }
           ]
         ]
@@ -335,17 +336,18 @@ export const tableData: Category[] = [
           [
             8,
             {
-              adv: `The current average government elections budget is ~$20/voter, no matter if the person votes or not. SIV can reduce that cost to ~$3/voter.
-              SIV is priced so there is no charge for voters who opt not to use it.
+              adv: `The average government elections budget is around $20 per voter, regardless of participation. SIV can reduce this cost to approximately $3 per voter.
+              There is no charge for voters who choose not to use SIV.
               Governments can pilot SIV for free.
-              SIV greatly reduces the amount of work election administrators have to do. In pilots with side-by-side SIV & In-Person voting, the in-person voting required 10x as many people to check-in voters and tally the results.`,
-              disadv: `During initial years when SIV is first being offered, election administrators may want to continue providing the same levels of vote-by-mail and in-person infrastructure. So cost savings will take a few transition years to realize.`
+              SIV significantly decreases the workload for election administrators. Comparisons of SIV and in-person paper voting in pilots showed that in-person voting required ten times more personnel for voter check-ins and result tallying.`,
+              disadv: `There are initial upfront costs for learning new systems and processes.
+              In the early years of implementing SIV, most jurisdictions will likely maintain existing levels of vote-by-mail and in-person voting infrastructure, delaying the realization of cost savings for several transition years.`
             }
           ],
           [
             4,
             {
-              adv: `Can be less expensive as it requires fewer polling stations, and less staff on election day.`,
+              adv: `Can be less expensive than In-Person as it requires fewer polling stations, and less staff on election day.`,
               disadv: `The costs of printing, distributing, and returning ballots can add up when there are a lot of voters. Many of these costs are paid even if voter opts for a different method.
               Increased cost for verification and handling of mail-in ballots.`
             }

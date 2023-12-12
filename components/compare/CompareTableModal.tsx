@@ -117,7 +117,7 @@ export const CompareTableModal = (): JSX.Element => {
         {/* "Intro" box */}
         <div className='inline-block p-3 mt-2 mb-8 rounded bg-blue-400/10 dark:bg-white/10'>
           {/* Show Descriptions toggle */}
-          <div className='inline-block px-3 py-1 text-sm italic border rounded cursor-pointer dark:bg-blue-900/50 bg-blue-200/70 border-black/5 text-black/70 dark:border-gray-600 dark:text-white/70'>
+          <div className='inline-block px-3 py-1 text-sm italic border rounded dark:bg-blue-900/50 bg-blue-200/70 border-black/5 text-black/70 dark:border-gray-600 dark:text-white/70'>
             <Switch
               checked={isDescriptionShown}
               onClick={toggleDescription}
@@ -208,14 +208,14 @@ export const CompareTableModal = (): JSX.Element => {
                         <div
                           className={`${
                             isDescriptionShown ? 'py-4' : 'py-1'
-                          } cursor-pointer sm:rounded-none rounded-b-lg hover:opacity-70 font-[500] ${
+                          } cursor-pointer border sm:rounded-none rounded-b-lg hover:opacity-70 font-[500] ${
                             openedModalIndex &&
                             arraysEqual(openedModalIndex, [c_i, i, j]) &&
                             'ring-2 ring-cyan-800 dark:ring-white'
                           }`}
                           style={{
                             backgroundColor: interpolateColor(getScore(s)),
-                            borderWidth: { 5: 1 }[getScore(s)]
+                            borderColor: getScore(s) === 5 ? undefined : '#fff0'
                           }}
                           onClick={() => setOpenedModalIndex([c_i, i, j])}
                         >
