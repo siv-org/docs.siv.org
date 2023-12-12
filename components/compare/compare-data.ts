@@ -336,7 +336,7 @@ export const tableData: Category[] = [
           [
             8,
             {
-              adv: `The average government elections budget is around $20 per voter, regardless of participation. SIV could reduce this cost to approximately $3 per voter.
+              adv: `The average government elections budget is around $20 per voter, regardless of participation. SIV can reduce this cost to approximately $3 per voter.
               There is no charge for voters who choose not to use SIV.
               Governments can pilot SIV for free.
               SIV significantly decreases the workload for election administrators. Comparisons of SIV and in-person paper voting in pilots showed that in-person voting required ten times more personnel for voter check-ins and result tallying.`,
