@@ -300,7 +300,7 @@ export const tableData: Category[] = [
           [
             9,
             {
-              adv: `Votes are already digital, so they don't need to be manually fed into counting machines one-by-one.
+              adv: `Votes are already digital, so they do not need to be manually fed into counting machines one-by-one.
               Thousands of votes can be anonymized, unlocked, and tallied in seconds. Results can be published near instantly.`,
               disadv: `Signature verification requirements can slow down ballot processing.
                        Subject to delays if Privacy Protectors are tardy to anonymize and unlock encrypted ballots.`
