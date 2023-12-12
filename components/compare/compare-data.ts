@@ -195,10 +195,11 @@ export const tableData: Category[] = [
             }
           ],
           [
-            6,
+            7,
             {
               adv: `Ballots themselves usually don't have names on them.
-              Voters are provided a private cubicle to mark their ballots.`,
+              Voters are provided a private cubicle to mark their ballots.
+              There are little-to-no public widespread scandals of vote privacy compromised in recent elections.`,
               disadv: `Many ballots include unique tracking numbers, which can make vote selections linkable back to voter's identity.
               Voters are not in control of the space they vote in, and have limited time to inspect or test security, such as against cameras watching from overhead.`
             }
