@@ -347,22 +347,24 @@ export const tableData: Category[] = [
             }
           ],
           [
-            4,
+            5,
             {
               adv: `Can be less expensive than In-Person as it requires fewer polling stations, and less staff on election day.`,
               disadv: `The costs of printing, distributing, and returning ballots can add up when there are a lot of voters. Many of these costs are paid even if voter opts for a different method.
-              Increased cost for verification and handling of mail-in ballots.`
+              Increased cost for verification and handling of mail-in ballots.
+              Although SIV can take the taxpayer costs of elections down drastically, the current costs are not a very widespread concern. On the other hand, if the costs to ask everyone to weigh in on public questions was significantly lower, it could be done much more often, which many people are interested in.`
             }
           ],
           [
-            2,
+            4,
             {
               adv: `Many people are excited to volunteer.
               Long history of data about the costs.`,
               disadv: `Requires significant staffing for polling stations.
             Cost of printing and handling physical ballots.
             US elections cost ~$4bn/year.
-            Costs can go up during natural disasters and other unforeseen events — eg. the 2020 election cost an additional $4bn ($8bn total) because of COVID-19.`
+            Costs can go up during natural disasters and other unforeseen events — eg. the 2020 election cost an additional $4bn ($8bn total) because of COVID-19.
+            Although SIV can take the taxpayer costs of elections down drastically, the current costs are not a very widespread concern. On the other hand, if the costs to ask everyone to weigh in on public questions was significantly lower, it could be done much more often, which many people are interested in.`
             }
           ]
         ]
