@@ -300,7 +300,7 @@ export const tableData: Category[] = [
           [
             9,
             {
-              adv: `Votes are already digital, so they don't need to be manually fed into counting machines one-by-one.
+              adv: `Votes are already digital, so they do not need to be manually fed into counting machines one-by-one.
               Thousands of votes can be anonymized, unlocked, and tallied in seconds. Results can be published near instantly.`,
               disadv: `Signature verification requirements can slow down ballot processing.
                        Subject to delays if Privacy Protectors are tardy to anonymize and unlock encrypted ballots.`
@@ -341,28 +341,31 @@ export const tableData: Category[] = [
               adv: `The average government elections budget is around $20 per voter, regardless of participation. SIV can reduce this cost to approximately $3 per voter.
               There is no charge for voters who choose not to use SIV.
               Governments can pilot SIV for free.
-              SIV significantly decreases the workload for election administrators. Comparisons of SIV and in-person paper voting in pilots showed that in-person voting required ten times more personnel for voter check-ins and result tallying.`,
+              SIV significantly decreases the workload for election administrators. Comparisons of SIV and in-person paper voting in pilots showed that in-person voting required ten times more personnel for voter check-ins and result tallying.
+              If the costs to ask everyone to weigh in on public questions was significantly lower, it can be done much more often, enhancing civic engagement and better reflecting public opinion.`,
               disadv: `There are initial upfront costs for learning new systems and processes.
               In the early years of implementing SIV, most jurisdictions will likely maintain existing levels of vote-by-mail and in-person voting infrastructure, delaying the realization of cost savings for several transition years.`
             }
           ],
           [
-            4,
+            5,
             {
-              adv: `Can be less expensive than In-Person as it requires fewer polling stations, and less staff on election day.`,
+              adv: `Can be less expensive than In-Person as it requires fewer polling stations, and less staff on election day.
+                    Although SIV can take the taxpayer costs of elections down significantly, the current costs are not a very widespread concern.`,
               disadv: `The costs of printing, distributing, and returning ballots can add up when there are a lot of voters. Many of these costs are paid even if voter opts for a different method.
-              Increased cost for verification and handling of mail-in ballots.`
+                       Increased cost for verification and handling of mail-in ballots.`
             }
           ],
           [
-            2,
+            4,
             {
               adv: `Many people are excited to volunteer.
-              Long history of data about the costs.`,
+                    Long history of data about the costs.
+                    Although SIV can take the taxpayer costs of elections down significantly, the current costs are not a very widespread concern.`,
               disadv: `Requires significant staffing for polling stations.
-            Cost of printing and handling physical ballots.
-            US elections cost ~$4bn/year.
-            Costs can go up during natural disasters and other unforeseen events — eg. the 2020 election cost an additional $4bn ($8bn total) because of COVID-19.`
+                       Cost of printing and handling physical ballots.
+                       US elections cost ~$4bn/year.
+                       Costs can go up during natural disasters and other unforeseen events — eg. the 2020 election cost an additional $4bn ($8bn total) because of COVID-19.`
             }
           ]
         ]
