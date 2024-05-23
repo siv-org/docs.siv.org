@@ -1,0 +1,153 @@
+### How To Run A Provably Legitimate Election During War
+
+The following is an outline of how to run an election with the highest-grade security and auditability. Each section links to in-depth explanations for those looking to understand the system thouroughly. If you want to go directly in-depth you can visit [docs.siv.org](https://docs.siv.org) or [review the technical specification](https://docs.siv.org/technical-specifications).
+
+#### Authentication
+
+Authentication ensures that only registered voters can cast a ballot and that each voter can only vote once.
+
+Each voter receives a unique Voter Authentication Token, a short hexadecimal number, via postal mail. Alternatively, this code can be given in-person, sent via SMS, secure digital channels like Signal Messenger, or email. Security is maintained regardless of the delivery method, as voters have full verifiability and election administrators have auditable remediation powers.
+
+Multiple authentication methods can be layered on top of sending codes via postal mail to achieve the highest grade of security:
+
+1. Drawn signature verification
+1. ID + selfie photos
+1. IP address geolocation
+1. Time-based One-Time Passwords
+1. Pre-distributed Cryptographic Public Key Pairs
+
+One relevant capability is that election administrators can revoke voter credentials at any stage of the election, including after voting and tallying. This process leaves an extensive written trail and cannot be secretly abused.
+
+This is possible because encrypted votes, still linked to voter's identities, can be corrected at any point. Then the updated set can continue to be re-anonymized and re-tallied as necessary.
+
+→ [Comprehensive documentation on SIV authentication, methods, auditing processes, remediation capabilities, and zero-knowledge proof of a device vote casting](https://docs.siv.org/authentication)
+
+#### Verifiability
+
+The SIV protocol is designed as Zero-Trust, meaning no one needs to trust the SIV team, the election administrators, or any servers for the legitimacy of the election.
+
+##### 1. Voters personally verify their vote was accurately recorded
+
+When a voter casts a vote, their device generates a unique Verification Number. At the end of the election, a list of all encrypted votes is published without voter identities. The voter uses this number to verify if their vote was counted accurately in the final tally.
+
+If the vote is incorrect, the voter notifies the election administrator to re-submit their selections.
+
+**Example of how Verification # work:**
+
+_After casting votes:_
+
+<img
+  src='/images/verification-num.png'
+  style={{ width: '50%' }}
+  className='ml-5 shadow-lg shadow-sky-900/30 my-7'
+/>
+
+_Once encrypted list is published by the election admin:_
+
+<img
+  src='/images/verification-num-list.png'
+  style={{ width: '50%' }}
+  className='ml-5 mb-20 shadow-lg shadow-sky-900/30 my-7'
+/>
+
+###### Additional Manual & Analog Verification
+
+Verifying election results on a personal device can be vulnerable to malware or other security threats, compromising accuracy. Instead, voters can perform manual verification by double-checking with other people's devices or using paper printouts. Although using such manual verification may seem more time-consuming, a few people verifying this way can calibrate digital verification methods.
+
+→ [Comprehensive documentation on Verification Numbers](https://docs.siv.org/verifiability/personal-vote)
+
+##### 2. Verify Total Vote Count
+
+The full list of anonymized votes is published at the end of the election, offering a great level of transparency. With this information easily accessible and with freely available spreadsheet tools, independent recounts are quick and straightforward to conduct.
+
+<img
+  src='/images/all-votes.png'
+  style={{ width: '50%' }}
+  className='mx-auto mt-5'
+/>
+
+##### 3. Using Multiple Devices to Detect Malware
+
+Voters can use a second or multiple devices with independent malware profiles, such as different operating systems, to confirm their selections. This can be initiated right at the time of voting, without waiting for election results to be unlocked.
+
+These checks can be done in seconds, as quickly as scanning a QR code. No special knowledge is needed.
+
+Additionally, election administrators can maintain a record of device types that successfully pass a 2nd Device Check, allowing election-wide trends to be identified.
+
+→ [Comprehensive documentation on Detecting Malware](https://docs.siv.org/verifiability/detecting-malware)
+
+##### 4. Zero-Knowledge Proofs As Mathematical Proof Against Tampering
+
+SIV uses multiple Zero-Knowledge Proofs (ZKPs) to prove that an election is correctly conducted, that every vote was counted, and it all added up to one person winning with a particular total.
+
+→ [Comprehensive documentation on ZKPs](https://docs.siv.org/verifiability/zero-knowledge)
+
+##### 5. Risk Limiting Audits
+
+RLAs involve randomly sampling ballots and verifying their correctness to statistically confirm the overall accuracy of the election results.
+
+The process is efficient and scalable, requiring only a small sample size to achieve high confidence levels. For example, in a tightly contested election, sampling a small fraction of votes can provide over 99% confidence that the results are accurate.
+
+RLAs allow for verification without compromising voter privacy and can be conducted swiftly and transparently.
+
+→ [Comprehensive documentation on SIV RLAs, math, and calculator](https://docs.siv.org/verifiability/rla)
+
+##### 6. Anti-Malware Codes: How Voters Can Prove They Confirmed Their Vote
+
+The vote invitation letter sent to voters can include a few random numbers labeled as "Anti-Malware Confirmation Codes." These codes will be exclusively used for 2nd (or 3rd or 4th) devices utilized for Post Vote-Submission QR or Verification # confirmation methods. By using these codes, voters can effectively prove that they did a 2nd device check, without the check being falsely claimed by malware from the first device. Since these numbers would never be entered onto the first device, there is strong protection even if the first device is infected.
+
+The combination of voter-autonomous checks (Verification # Check & 2nd Device QR Code Check), and auditor-supervised checks (RLAs) can be scaled effectively to enhance the security of the auditing process.
+
+→ [Comprehensive documentation on Anti-Malware Codes, risks and mitigation options](https://docs.siv.org/verifiability/proving-verification)
+
+##### 7. Remediating Compromised Votes
+
+If a voter detects a tampered vote using any verification method, election administrators can invalidate the vote and allow the voter to submit a new one. This can happen at any stage of the election.
+
+This process necessitates written documentation, in which the voter explicitly requests their vote to be revoked, ensuring a comprehensive audit trail.
+
+→ [Comprehensive documentation on Remediation](https://docs.siv.org/verifiability/remediating-compromised-votes)
+
+#### Privacy
+
+For a truly "Free and Fair Election", voters must be able to make their choices freely, without anyone learning how they voted, including election officials and technology providers.
+
+SIV is built upon Multi-Party Encryption and Verifiable Cryptographic Shuffles to ensure that no one, including election administrators and SIV infrastructure, can see how anyone else votes. At a high level, SIV ensures vote privacy by:
+
+**a.** Using strong encryption to lock votes inside sealed digital encryption before submission.
+
+**b.** Shuffling up the encrypted votes many times for strong anonymization, by multiple independent parties, named "Privacy Protectors". This design creates multiple fail-safes. Even if some Privacy Protectors' devices are compromised, vote privacy can still be protected. Privacy Protectors do not need to trust each other, and thanks to strong cryptographic proofs, cannot possibly tamper with votes.
+
+**c.** Only after the votes have been thoroughly anonymized, the Privacy Protectors unlock the encryption and verifiably tally up the final results.
+
+→ [Comprehensive documentation on how Privacy is assured](https://docs.siv.org/privacy) & [enrolling Privacy Protectors for highest-grade security](https://docs.siv.org/privacy/privacy-protectors)
+
+#### Approach to Attacks
+
+One of the main security approaches for ensuring a provably legitimate election is to enable everyone to notice attacks and allow election administrators to quickly and audibly remediate any tampered votes.
+
+SIV does not claim to be bullet-proof. However, it enables numerous verification methods and remediation capabilities at any point in the election process.
+
+One of the powerful features of the SIV Protocol is that it not only allows voters to personally check for tampering but also provides mathematical proof against hacking, tampering, cheating, or foul play.
+
+Such approach will create a glass-window into the legitimacy of the Ukrainan election.
+
+**Examples of Attacks & Mitigation Strategies:**
+
+#### Malware on Device
+
+The SIV protocol acknowledges that malware will always be a concern, and it focuses on providing mechanisms to identify and rectify such corruptions.
+
+1. Voters can personally verify their vote, even without the need for a computer, ensuring accurate tabulation.
+
+2. Multiple-Device Verification: Voters can use secondary devices with different malware profiles to verify their vote quickly and easily.
+
+3. Risk Limiting Audits: Facilitating efficient RLAs by allowing 3rd parties to check if voters verified their vote, ensuring high statistical confidence even in close elections.
+
+4. Remediation Abilities: Preliminary results allow for a challenge period where voters can check and report discrepancies, enabling vote revocation and recalculations as necessary.
+
+#### Authentication Attacks
+
+The SIV system permits the revocation of voter credentials at any stage of the election, including post-voting and tallying phases. Because of this, even in cases where credentials are compromised, remedial action remains feasible.
+
+This protocol replicates existing voting methods, such as the use of unique codes distributed via postal mail. And it also enables integration of additional authentication techniques, including verified email delivery, SMS, drawn e-signatures, time-based one-time passwords, IP address geolocation, government ID photos, and cryptographic key pairs.
