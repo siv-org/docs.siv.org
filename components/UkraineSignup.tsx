@@ -7,7 +7,7 @@ export const UkraineSignup = () => {
     <div>
       <label>Get updates:</label>
       <input
-        className='px-1 mx-2 border rounded border-black/30'
+        className='px-2 py-1 mx-2 border rounded border-black/30'
         placeholder='you@email.com'
         type='email'
         ref={$input}
