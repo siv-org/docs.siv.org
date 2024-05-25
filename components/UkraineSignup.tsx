@@ -4,10 +4,10 @@ export const UkraineSignup = () => {
   const $input = useRef(null)
   const [buttonText, setButtonText] = useState('Submit')
   return (
-    <div>
+    <div className='flex flex-wrap items-center justify-between max-w-lg'>
       <label>Get updates:</label>
       <input
-        className='px-2 py-1 mx-2 border rounded border-black/30 dark:border-white/10'
+        className='flex-1 min-w-0 px-2 py-1 mx-2 border rounded border-black/30 dark:border-white/10'
         placeholder='you@email.com'
         type='email'
         ref={$input}
@@ -15,6 +15,7 @@ export const UkraineSignup = () => {
           if (buttonText !== 'Submit') setButtonText('Submit')
         }}
       />
+
       <button
         className={`px-2 py-1 text-sm border rounded-lg border-black/40 dark:border-white/20 ${
           buttonText === 'Submit'
