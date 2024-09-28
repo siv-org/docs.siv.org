@@ -1,11 +1,14 @@
 const { redirects } = require('./redirects.js')
 
-const withNextra = require('nextra')({
-  latex: true,
-  theme: 'nextra-theme-docs',
-  themeConfig: './theme.config.tsx'
-})
+module.exports = (async () => {
+  const nextra = (await import('nextra')).default
+  const withNextra = nextra({
+    latex: true,
+    theme: 'nextra-theme-docs',
+    themeConfig: './theme.config.tsx'
+  })
 
-module.exports = withNextra({
-  redirects
-})
+  return withNextra({
+    redirects
+  })
+})()
