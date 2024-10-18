@@ -31,7 +31,8 @@ const antiCoercionArguments = {
     con: `Coercers can peek from neighboring voting booths.`
   },
   all: {
-    pro: `Vote selling is hypothetical, not observed.`,
+    pro: `Vote selling is hypothetical, not observed.
+    Coercion and vote-buying attacks are challenging to scale because every manipulated vote requires a cooperating voter.`,
     withBounty: `Because it is in the best interest of both buyers & sellers to defect, the trust necessary to carry out illegal vote selling diminishes significantly.`
   }
 }
