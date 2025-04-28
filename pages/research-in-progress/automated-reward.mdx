@@ -45,12 +45,12 @@ This is familiar, easy to understand, and relatively easy to get started with.
 
 ## Automatic Enforcement Using Smart Contract Escrows
 
-Because these are cryptographic claims, paying out rewards can be upgraded for automatic enforcement executed in seconds by Smart Contract escrows.
+Because these are cryptographic claims, paying out rewards can be upgraded into *automatic* enforcement, executed publicly, by Smart Contract escrows.
 
-This would mean:
+### Benefits:
 
-1. The funds are set aside upfront.
-1. It's much harder for the guarantor to fail to uphold their promise.
+1. The guarantee funds are publicly set aside upfront.
+1. It's much harder for the guarantor to fail to uphold their promise. If the smart contract system unexpectedly fails, legal remedy is still available as a backup.
 1. The per-election transaction costs, whether a successful claim is made or not, can be vastly lower.
 1. Successfully claiming the funds can quickly be done at home, rather than involving any sort of lengthy court process.
 1. Everyone is able to transparently see if and when funds are ever successfully claimed.
@@ -135,10 +135,10 @@ The bounty remains in escrow until the expiration period is over, or until a suc
 
 - One noteworthy consideration of this optimization is that the full tree is no longer posted onchain. There is also no financial guarantee anymore that directly forces the smart contract owner to post the full tree off-chain either. But if SIV fails to do, that absence is directly observable by *everyone*, all voters & independent observers too.
   - In this optimized construction, the smart contract is more directly focused on the job of providing just the financial guarantee for losing signed votes, no longer responsible for posting the full tree.
-  - The root hash links the smart contract posting to the off-chain full tree, which anyone can directly verify themselves is a valid merkle tree.
+  - The root-hash links the smart contract posting to the off-chain full tree, which anyone can directly verify themselves is a valid merkle tree.
 
 ---
 
-Based on preliminary research and feedback, this seems a promising solution.
+Based on preliminary research and feedback, this seems a promising upgrade.
 
 However, this model is currently under further study. We are open to feedback and collaboration: team@siv.org
