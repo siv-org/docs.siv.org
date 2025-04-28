@@ -113,8 +113,30 @@ If it's been x days (e.g. 45) since Transaction 2 (Merkle tree) was posted witho
 
 _To make sure Transaction 2 is posted without delay:_ If it's been y days (e.g. 45) since Transaction 1 was posted (funds put into escrow) without a matching Transaction 2 (Merkle tree), anyone can claim the reward, without needing a signed submission receipt.
 
+#### More efficient way to prove non-inclusion in the Merkle tree
+
+Transaction 3, check #3 says "Is the hash of the vote in the confirmation receipt truly missing from the Merkle tree posted in 2a?". We could post the entire tree, as described above, and check over each leaf, but that's going to be expensive onchain. A lot of data to post, and a non-trivial amount of work to loop through it all.
+
+Instead, we can optimize this by breaking the non-inclusion check into two parts, claim then dispute:
+
+First, as before, the claimer still submits their signed receipt and vote they believe wasn't included. This can still be split up into two transaction for MEV Defense as described above. Now though, they also need to provide a small financial deposit, as DOS protection. $5 should be fine to start.
+
+Then, it's up to the smart contract owner (SIV) to either:
+- de facto accept the claim, by doing nothing for some pre-defined DISPUTE_DURATION
+- Or, they can dispute it, by providing a valid Merkle path from the provided vote hash up to the root hash.
+
+**Efficiency gain:** This means transaction #2 (at the end of the election) only requires the single root hash for the tree, rather than all of the votes. The dispute transaction would include the path, which is only `log(n)` hashes, rather than `n` hashes. For a 100k vote election, this requires only ~17 hashes, rather than the 200k of the full tree. This is also far less computation for the smart contract, only needing to check the hashes along the path (e.g. 17), rather than looping through all of them (100k).
+
+If the smart contract confirms the dispute path is valid, the claimer loses their small deposit.
+
+The bounty remains in escrow until the expiration period is over, or until a successful claim is made.
+
+- One noteworthy consideration of this optimization is that the full tree is no longer posted onchain. There is also no financial guarantee anymore that directly forces the smart contract owner to post the full tree off-chain either. But if SIV fails to do, that absence is directly observable by *everyone*, all voters & independent observers too.
+  - In this optimized construction, the smart contract is more directly focused on the job of providing just the financial guarantee for losing signed votes, no longer responsible for posting the full tree.
+  - The root hash links the smart contract posting to the off-chain full tree, which anyone can directly verify themselves is a valid merkle tree.
+
 ---
 
-Based on preliminary research and feedback, this seems to be a promising solution.
+Based on preliminary research and feedback, this seems a promising solution.
 
-However, this model is currently under further study. We are open to feedback and collaboration.
+However, this model is currently under further study. We are open to feedback and collaboration: team@siv.org
