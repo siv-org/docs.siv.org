@@ -115,7 +115,7 @@ If it's been x days (e.g. 45) since Transaction 2 (Merkle tree) was posted witho
 
 _To make sure Transaction 2 is posted without delay:_ If it's been y days (e.g. 45) since Transaction 1 was posted (funds put into escrow) without a matching Transaction 2 (Merkle tree), anyone can claim the reward, without needing a signed submission receipt.
 
-#### More efficient way to prove non-inclusion in the Merkle tree
+#### v2: More efficient way to prove non-inclusion in the Merkle tree
 
 Transaction 3, check #3 says "Is the hash of the vote in the confirmation receipt truly missing from the Merkle tree posted in 2a?". We could post the entire tree, as described above, and check over each leaf, but that's going to be expensive onchain. A lot of data to post, and a non-trivial amount of work to loop through it all.
 
@@ -136,6 +136,43 @@ The bounty remains in escrow until the expiration period is over, or until a suc
 - One noteworthy consideration of this optimization is that the full tree is no longer posted onchain. There is also no financial guarantee anymore that directly forces the smart contract owner to post the full tree off-chain either. But if SIV fails to do, that absence is directly observable by *everyone*, all voters & independent observers too.
   - In this optimized construction, the smart contract is more directly focused on the job of providing just the financial guarantee for losing signed votes, no longer responsible for posting the full tree.
   - The root-hash links the smart contract posting to the off-chain full tree, which anyone can directly verify themselves is a valid merkle tree.
+
+#### v3: Even more efficient way to prove non-inclusion:
+
+Rather than the Claim-then-Dispute method described above (v2), we can simplify these back into a single Non-Inclusion Proof, as long as the tree is sorted:
+
+> ##### Sorted Merkle Tree Non-Inclusion Proof
+>
+> **Setup:**
+> - A Merkle tree is built over a strictly sorted list of values.
+> - Only the Merkle root is posted on-chain.
+> - The full list is available off-chain.
+>
+> **To prove that a value `x` is not in the tree:**
+>
+> Submit:
+> 1. Two adjacent leaf values `L1` and `L2` such that `L1 < x < L2`
+> 2. Merkle inclusion proofs for both `L1` and `L2` up to the root
+>
+> Verifier checks:
+> 1. That `L1 < x < L2`
+> 2. That `L1` and `L2` are adjacent in the sorted list (proven by their relative positions in the Merkle tree)
+> 3. That the Merkle proofs for `L1` and `L2` both lead to the known root hash
+>
+> If all pass, it proves `x` is not in the original sorted list.
+
+Anyone can verify the off-chain data is sorted.
+
+Individual voters can prove their vote is missing.
+
+**Improvements over v2:**
+- Successful claims get paid immediately.
+- Claimants no longer need to submit a deposit.
+- No need to pick a `DISPUTE_DURATION`.
+- One less transaction to post on-chain.
+- No need for SIV to dispute invalid claims, & thus less need to monitor.
+
+Same `log(n)` efficiency gain as v2 — still only need to post the original root hash.
 
 ---
 
