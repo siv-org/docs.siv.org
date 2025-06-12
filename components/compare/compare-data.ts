@@ -211,7 +211,7 @@ export const tableData: Category[] = [
         d_name: 'Coercion resistance',
         desc: 'How protected are voters against attempts to threaten or purchase their vote selections?',
         scores: [
-          [5, coercionScore.siv],
+          [3, coercionScore.siv],
           [6, coercionScore.mail],
           [8, coercionScore.inPerson]
         ],
