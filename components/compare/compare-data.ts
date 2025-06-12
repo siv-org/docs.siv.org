@@ -14,7 +14,8 @@ const antiCoercionArguments = {
     pro: `Vote selling is a serious crime with a hefty financial penalty and jail time.
           As a felony, caught vote sellers can lose their right to vote for life.
           If a SIV vote is discovered sold, it can still be cancelled, at any time. SIV Privacy Protectors can also work together to selectively de-anonymize corrupt votes for prosecution.`,
-    con: `Digital receipts make it easier to unforgeably prove to a remote coercer how you voted.`
+    con: `Digital receipts make it easier to unforgeably prove to a remote coercer how you voted.
+    Remote coercer can more easily be anonymous.`
   },
   paper: {
     pro: `Challenging to unquestionably prove how one voted to a remote coercer.
