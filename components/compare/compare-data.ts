@@ -217,7 +217,7 @@ export const tableData: Category[] = [
           [8, coercionScore.inPerson]
         ],
         scores_with_bounty: [
-          [8, coercionScore.siv_w_bounty],
+          [9, coercionScore.siv_w_bounty],
           [8, coercionScore.mail_w_bounty],
           [9, coercionScore.inPerson_w_bounty]
         ]
