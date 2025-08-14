@@ -46,6 +46,7 @@ const coercionScore = {
   siv_w_bounty: {
     adv: `${antiCoercionArguments.siv.pro}
           ${antiCoercionArguments.all.pro}
+          SIV's *Verifiable Private Overrides* enable voters to trick coercers into thinking they voted a different way than they did.
           With a bounty reward system in place, the unique and unforgeable proofs that SIV creates turn into benefits against vote selling, as strong evidence of prosecutable illegal activity if shared.
           ${antiCoercionArguments.all.withBounty}`,
     disadv: `${antiCoercionArguments.siv.con}
