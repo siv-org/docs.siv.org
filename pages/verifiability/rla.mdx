@@ -156,7 +156,10 @@ So far, we have only examined the implied statistical probability when an audit 
 
 We have covered the **confirmatory case (#1)** above.
 
-An **inconclusive confirmation (#2)** doesn't tell us any information positive nor negative about the overall confidence. The statistical implication is as if that vote was not checked.
+**Inconclusive confirmations (#2)** are context specific. For example:
+- If testing against ballot stuffing, not being able to reach a voter could be treated as a negative result.
+- If testing against on-device malware, a voter refusing to cooperate doesn't indicate much positive nor negative about malware. The statistical implication is as if that vote was not checked.
+- If testing against on-device malware, vote data mysteriously missing — without a justifiable explanation, such as a physically lost device —  could be treated as a negative result.
 
 The discovery of an **incorrectly tallied vote (#3)** does negatively affect the overall confidence.
 
