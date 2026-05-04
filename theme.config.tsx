@@ -25,7 +25,7 @@ const config: DocsThemeConfig = {
   footer: { content: 'Secure Internet Voting Inc.' },
   components: {
     ol: (props) => (
-      <ol className='nx-list-decimal ltr:nx-ml-6 rtl:nx-mr-6' {...props} />
+      <ol className='my-4 list-decimal ps-6 marker:text-inherit' {...props} />
     )
   },
   head: function useHead() {
