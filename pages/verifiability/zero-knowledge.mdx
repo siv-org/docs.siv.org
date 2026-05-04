@@ -7,30 +7,45 @@ title: Zero-Knowledge Proofs
 
 A Zero-Knowledge Proof is a type of cryptographic tool that allows someone to prove that a mathematical operation was carried out correctly without revealing any private information involved in the mathematical operation.
 
-This property is particularly useful in situations where the prover has some sensitive information that they don't want to share, but still want to demonstrate the validity of the information to the verifier.
+This property is particularly useful in situations where the prover has some sensitive information they don't want to share, but still want to demonstrate the validity of the information to the verifier.
 
 ### SIV's Zero-Knowledge Proofs
 
 SIV uses multiple Zero-Knowledge Proofs (ZKPs) to prove that an election is correctly conducted, that every vote was counted, and it all added up to one person winning with a particular total.
 
-SIV's two main Zero Knowledge Proofs are:
+
+### Mixnet Proofs
+
+SIV's initial core was built upon two important proofs:
 
 1. In [Step 4](/technical-specifications#step-4-votes-are-anonymized): Zero Knowledge Proof of a Valid Shuffle
 2. In [Step 5](/technical-specifications#step-5-encrypted-votes-are-unlocked-and-tallied): Zero Knowledge Proof of a Valid Partial Decryption
 
-These ZK Proofs, in particular the Shuffle Proof, come from Dr. Andrew Neff's 2001 paper "[A Verifiable Secret Shuffle and its Application to E-Voting](https://www.freehaven.net/anonbib/cache/shuffle:ccs01.pdf)". They are used to safely implement a cryptographic mixnet, so that votes can be anonymized by multiple indepedent parties, without risk that any of the parties could have possibly switched out or modified any of the underlying vote content.
+These ZK Proofs, in particular the Shuffle Proof, come from Dr. Andrew Neff's 2001 paper "[A Verifiable Secret Shuffle and its Application to E-Voting](https://www.freehaven.net/anonbib/cache/shuffle:ccs01.pdf)". They are used to safely implement a cryptographic mixnet, so that votes can be anonymized by multiple independent parties, without risk that any of the parties could have possibly switched out or modified any of the underlying vote content.
 
-During Steps 4 and 5, every election Privacy Protector who takes part in the cryptographic shuffle generates their own ZK Proofs. All of these proofs are automatically verified by SIV itself and all of the other Privacy Protectors.
+During Steps 4 and 5, every election Privacy Protector who takes part in the cryptographic shuffle generates their own ZK Proofs. All proofs are automatically verified by the election backend server, and all Privacy Protector local clients.
 
-SIV also enables a third ZK Proof: [Proof of Voting in a SIV Election](/authentication#zero-knowledge-proof-that-a-device-cast-a-siv-vote), without revealing the underlying vote. This proof is not required to carry out a SIV election, but it can be used to [strengthen Post-Election Audits](/verifiability/rla#carrying-out-a-siv-rla), as well as enabling further civic participation with strong authentication.
-
-### Defense in Depth
+#### Defense in Depth
 
 Although these Zero Knowledge Proofs are incredibly powerful, and allow independent verifiers to confirm the entire set of all votes at once, we must also acknowledge they are highly technical and involve a high barrier for understanding. For this reason, they are intentionally not the only method to confirm that SIV results are correct. SIV also provides the far simpler [Personal Voter Verification methods](/verifiability/personal-vote), based on _Verification #s_, that are quick to check and easy to understand, and widely accessible for all voters to gain confidence.
 
-### Further Reading
+##### For further study of Steps 4 & 5 of a SIV election:
 
-For further study of Steps 4 & 5 of a SIV election:
-
-- 15 Min Overview → [Verifiable Shuffle](https://siv.org/protocol#4) & [Votes Unlocked](https://siv.org/protocol#5)
+- 15 Min Overview → [Step 4: Verifiable Shuffle](https://siv.org/protocol#4) & [Step 5: Votes Unlocked](https://siv.org/protocol#5)
 - Technical Specification → [Voting Period Ends](/technical-specifications#voting-period-ends)
+
+### For Coercion Resistance
+
+Since August 2025, SIV has released a powerful new feature for coercion-resistance, powered by a custom ZK-circuit, called Verifiable Private Overrides.
+
+Learn more: https://blog.siv.org/2025/08/overrides
+
+### Proof of Verified-Eligibility
+
+Because every submitted vote is itself a unique cryptographic object, SIV also enables a new type of ZK Proof: [Proof of Past-Participation in a Verified-Digital Election](/authentication#zero-knowledge-proof-that-a-device-cast-a-siv-vote). This means voters can prove they were previously verified as unique eligible citizens, without revealing any underlying votes.
+
+This proof is not required to carry out a SIV election, but can be used to strengthen [Post-Election Audits](/verifiability/rla#carrying-out-a-siv-rla), by allowing auditors to prove they are in fact getting confirmation from real voters.
+
+Long term, this makes all SIV authentication re-useable, for free. Running elections with strong authentication often costs centralized administrators at least a few dollars per voter. But now, with these new Proof-of-Past-Participation signatures, voters could initiate and participate in their own decentralized votes, with self-sovereign keys already in their control, at no cost.
+
+This has the potential to enable all new modalities for high-scale civic participation, built upon strong authentication.
