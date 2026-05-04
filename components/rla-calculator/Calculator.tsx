@@ -75,7 +75,7 @@ export const Calculator = () => {
       <div className='flex justify-between'>
         <form className='flex flex-col space-y-1'>
           <label>
-            <div className='inline-block w-32 '>Winner's Total:</div>
+            <div className='inline-block w-32'>Winner's Total:</div>
             <input
               className='w-[6.8rem] px-2 ml-3 bg-gray-200/70 dark:bg-[#1b1b1b] dark:hover:bg-gray-300/10 hover:bg-gray-200'
               type='number'
@@ -115,7 +115,7 @@ export const Calculator = () => {
             <span>Margin of Victory:</span>
             <span>{marginOfVictory.toLocaleString()}</span>
           </i>
-          <i className='flex justify-between w-full mt-1 opacity-75'>
+          <i className='flex justify-between mt-1 w-full opacity-75'>
             Margin of Error:{' '}
             <div className=''>{marginOfError.toLocaleString()}</div>
           </i>
@@ -203,7 +203,9 @@ export const Calculator = () => {
               onChange={(e) => {
                 setError(null)
                 const val = e.target.value
-                const v = val === '' ? '' : +val
+                if (val === '') return setCompromisedSeen('')
+
+                const v = +val
                 if (v < 0) return
                 if (!Number.isInteger(v)) return
                 if (v > samples)

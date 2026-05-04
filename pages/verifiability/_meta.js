@@ -1,0 +1,11 @@
+export default {
+  'personal-vote': 'Personal Vote Counted Correctly',
+  'total-count': 'Total Vote Count',
+  'detecting-malware': 'Detecting Malware',
+  'zero-knowledge': 'Zero Knowledge Proofs',
+  rla: 'Risk Limiting Audits',
+  'proving-verification': 'Anti-Malware Codes: Proving Verification',
+  'remediating-compromised-votes': 'Remediating Compromised Votes',
+  'print-ballots': 'Paper Trail',
+  'voter-roll': 'Voter Roll Audit'
+}

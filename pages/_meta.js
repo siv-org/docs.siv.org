@@ -1,0 +1,22 @@
+export default {
+  index: 'Introduction',
+  weaknesses: "Paper's Weaknesses",
+  security: 'Security Requirements',
+  '30sec-overview': '30 Second Overview',
+  authentication: 'Authentication',
+  privacy: 'Privacy',
+  verifiability: 'Verifiability',
+  '15min-overview': '15 Minute Overview',
+  'technical-specifications': 'Technical Specifications',
+  'mitigating-attacks': 'Mitigating Attacks',
+  compare: 'Comparing Voting Methods',
+  benefits: 'Additional Benefits',
+  conclusion: 'Conclusion',
+  'research-in-progress': 'Further Research in Progress',
+  contact: {
+    title: 'Contact ↗',
+    type: 'page',
+    href: 'mailto:team@siv.org',
+    newWindow: true
+  }
+}
