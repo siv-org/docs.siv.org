@@ -39,6 +39,7 @@ const config: DocsThemeConfig = {
 
     return (
       <>
+        <title>{ogTitle}</title>
         <meta name='msapplication-TileColor' content='#fff' />
         <meta name='theme-color' content='#fff' />
         <meta name='robots' content='index,follow' />
