@@ -30,12 +30,11 @@ const config: DocsThemeConfig = {
   },
   head: function useHead() {
     const { title, frontMatter } = useConfig()
-    const ogTitle =
-      typeof frontMatter?.title === 'string' && frontMatter.title
-        ? `${frontMatter.title} · SIV`
-        : title
-          ? `${title} · SIV`
-          : 'SIV'
+    const frontMatterTitle =
+      typeof frontMatter?.title === 'string' ? frontMatter.title : ''
+    let ogTitle = 'SIV'
+    if (frontMatterTitle) ogTitle = `${frontMatterTitle} · SIV`
+    if (!frontMatterTitle && title) ogTitle = `${title} · SIV`
 
     return (
       <>
