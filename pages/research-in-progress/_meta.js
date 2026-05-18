@@ -1,0 +1,10 @@
+export default {
+  'vote-sellers-dilemma': "Vote Seller's Dilemma",
+  'financially-guaranteeing-vote-integrity':
+    'Financially Guaranteeing Vote Integrity',
+  'data-backups': 'Ultra Redundant Data Backups',
+  'information-theoretic-security': 'Information Theoretic Security',
+  'privacy-protectors': 'Lower-Barrier Privacy Protectors Design',
+  ukraine: 'Ukraine: Secure Voting in a War Zone',
+  'ukraine-plan': { display: 'hidden' }
+}

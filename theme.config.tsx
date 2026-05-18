@@ -12,8 +12,9 @@ const config: DocsThemeConfig = {
     />
   ),
   docsRepositoryBase: 'https://github.com/dsernst/siv-docs/blob/main',
-  editLink: { component: () => null },
+  editLink: { component: null },
   feedback: {
+    labels: 'Feedback',
     useLink: () => {
       const { title } = useConfig()
       return `mailto:team@siv.org?subject=${encodeURI(
@@ -21,30 +22,23 @@ const config: DocsThemeConfig = {
       )}`
     }
   },
-  footer: { text: 'Secure Internet Voting Inc.' },
+  footer: { content: 'Secure Internet Voting Inc.' },
   components: {
     ol: (props) => (
-      <ol className='nx-list-decimal ltr:nx-ml-6 rtl:nx-mr-6' {...props} />
+      <ol className='my-4 list-decimal ps-6 marker:text-inherit' {...props} />
     )
   },
-  useNextSeoProps: () => {
-    const { frontMatter } = useConfig()
-
-    return {
-      titleTemplate: '%s · SIV',
-      description: metaDescription,
-
-      openGraph: {
-        title: `${frontMatter.title} · SIV`,
-        description: metaDescription
-      }
-    }
-  },
   head: function useHead() {
-    const { title } = useConfig()
+    const { title, frontMatter } = useConfig()
+    const frontMatterTitle =
+      typeof frontMatter?.title === 'string' ? frontMatter.title : ''
+    let ogTitle = 'SIV'
+    if (frontMatterTitle) ogTitle = `${frontMatterTitle} · SIV`
+    if (!frontMatterTitle && title) ogTitle = `${title} · SIV`
 
     return (
       <>
+        <title>{ogTitle}</title>
         <meta name='msapplication-TileColor' content='#fff' />
         <meta name='theme-color' content='#fff' />
         <meta name='robots' content='index,follow' />
@@ -55,7 +49,7 @@ const config: DocsThemeConfig = {
         <meta name='twitter:card' content='summary_large_image' />
         <meta name='twitter:site:domain' content='book.siv.org' />
         <meta name='twitter:url' content='https://book.siv.org' />
-        <meta name='og:title' content={title ? title + ' · SIV' : 'SIV'} />
+        <meta name='og:title' content={ogTitle} />
         <meta name='apple-mobile-web-app-title' content='SIV Book' />
       </>
     )

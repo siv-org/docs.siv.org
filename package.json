@@ -18,20 +18,15 @@
     "url": "https://github.com/dsernst/siv-book/issues"
   },
   "homepage": "https://siv.org",
-  "overrides": {
-    "next-mdx-remote": "^6.0.0"
-  },
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
     "chart.js": "^4.2.1",
     "next": "^13.5",
-    "next-mdx-remote": "^6.0.0",
-    "nextra": "2",
-    "nextra-theme-docs": "2",
+    "nextra": "3.3.1",
+    "nextra-theme-docs": "3.3.1",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
-    "react-dom": "^18.2.0",
-    "remark-math": "^5.1.1"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/node": "18.11.10",
@@ -39,6 +34,6 @@
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.7",
-    "typescript": "^4.9.3"
+    "typescript": "^5.4.0"
   }
 }
