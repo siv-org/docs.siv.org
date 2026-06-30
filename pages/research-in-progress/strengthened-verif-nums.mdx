@@ -1,0 +1,163 @@
+---
+title: Strengthened Verification Numbers for Software Independence
+---
+
+Creating strong Ground Truth against on-device malware.
+
+## TL;DR
+
+- Voters can add their own entropy to their verification number, defeating Recycled Verification Number Attacks.
+- Their device can prove in zero-knowledge that the updated vote only changes the verification number, not the selection.
+- This means cheating malware can be caught red-handed, rather than simply deactivating silently when a voter strengthens.
+- This extends the protection to all voters, not only those who directly use it.
+- Can be combined with RLA techniques for broad coverage at scale: as few as ~50 voters using it can protect 99% of outcomes. (Exact numbers depend on election margin of victory — see [RLA Calculator](/verifiability/rla#rla-calculator).)
+
+---
+
+## Background: The Recycled Verification Number Attack
+
+With [SIV](https://siv.org), each voter gets a unique verification number (generated privately on their own device), so they can confirm their vote was recorded correctly after the election. This provides strong cast-as-intended verifiability — but it has a known vulnerability.
+
+If an attacker (e.g. on-device malware) can corrupt the assignment of verification numbers, it can cause many voters with the same vote selection to all believe they share the same number — without realizing it. Each voter looks up their number at the end, sees it's there, and assumes everything is fine. But the malware has silently stolen all but one of their votes.
+
+We call this a **Recycled Verification Number Attack**. We've also heard it referred to as a **Clash Attack**.
+
+---
+
+## The Defense: Strengthened Verification Numbers
+
+The core idea: let voters inject their own entropy into their verification number, making it impossible for malware to recycle it without their knowledge.
+
+### How it works
+
+SIV votes are encrypted as:
+
+```
+enc("XXXX-XXXX-XXXX:selection")
+```
+
+where `XXXX-XXXX-XXXX` is the 12-digit verification number generated on their voting device.
+
+**Strengthening** means the voter picks their own 4-digit number and combines it into the last 4 digits of their verification number:
+
+```
+Device-assigned:   1111-1111-1111
+Voter adds:                  1234
+Strengthened:      1111-1111-2345
+```
+
+The voter first writes down the device-assigned number on paper *before* entering their chosen digits — then records their addition and the resulting sum. The order matters: recording the device number first prevents a malicious device from retroactively claiming a fake starting value to force a recycled result.
+
+At the end of the election, once all votes are unlocked, the voter finds their unique strengthened number in the public list. If it's there with the correct selection, their vote was counted correctly.
+
+### Design notes
+
+<details>
+<summary><strong>Why add rather than replace or concatenate?</strong></summary>
+
+The first 8 digits remain machine-generated. The last 4 are modified by the voter. Addition (rather than direct replacement) provides a privacy floor: even if a voter picks a guessable number like `0000` or `1225` (December 25th), those digits get masked by the underlying machine entropy. With raw replacement, personally identifiable patterns would be directly visible in the final unlocked list — and could de-anonymize voters across multiple elections, especially in small communities that reuse SIV over time.
+
+That said, replacement and addition are mathematically equivalent in terms of verifiability power — any number reachable by one is reachable by the other. The choice is primarily a UX and privacy consideration. Election admins (or voters) could be given a preference setting.
+
+</details>
+
+<details>
+<summary><strong>Why only 4 digits?</strong></summary>
+
+Keeps the arithmetic simple enough to do by hand. No hashes, no special equipment. The device supplies the other 8, so even poor human randomness is sufficient.
+
+</details>
+
+<details>
+<summary><strong>No-carry addition</strong></summary>
+
+May be a useful variant: `9999 + 0005 = 9994` (digit-by-digit, no carrying). Reduces wrap-around confusion, and slightly easier to manually verify.
+
+</details>
+
+---
+
+## Compatibility with Existing Bribery & Coercion Defenses
+
+Strengthened Verification Numbers protect against **secretly stolen votes** (on-device malware). SIV's existing **Verifiable Private Overrides** feature ([siv.org/overrides](https://siv.org/overrides)) separately addresses **bribery and coercion**. The two defenses are mutually compatible and complementary.
+
+## Software Independence
+
+If every voter strengthens their verification number, SIV can achieve [software independence](https://en.wikipedia.org/wiki/Software_independence): the ability to verify election outcomes without trusting any software. Each voter's paper record is sufficient to confirm their own vote, and the final tally can be checked independently — by hand for small elections, or via existing paper RLA techniques for larger ones.
+
+Realistically, expecting 100% of voters to manually strengthen & verify is not very practical. But we can statistically approximate this guarantee, even with only a small fraction of voters strengthening. But first we need to harden our Strengthened Verification Number procedure to be able to detect cheating red-handed.
+
+---
+
+## The ZKP Extension: Proof of Strengthened Vote
+
+Strengthening protects any voter who does it — but we can't depend on all voters participating. Even in an unrealistically optimistic scenario where 90% strengthen, the remaining 10% of votes are still vulnerable, which could be enough to flip a close election.
+
+A sophisticated attacker can exploit this by selectively standing down for voters who strengthen, while continuing to steal votes from everyone else.
+
+The ZKP extension closes this gap.
+
+### What the proof shows
+
+When a voter strengthens their verification number, their device generates a zero-knowledge proof that the new encrypted vote:
+
+```
+enc("XXXX-XXXX-YYYY:candA")
+```
+
+contains the same selection as the original:
+
+```
+enc("XXXX-XXXX-XXXX:candA")
+```
+
+The proof is that only the last 4 digits changed — not the candidate choice. We have working proof-of-concept code, which can generate compact proofs in under 30 seconds. It is run locally, in the browser, directly on the same untrusted device.
+
+### Why this matters
+
+Without the ZKP, malware can selectively stand down: when a voter strengthens, it submits the voter's real vote with their strengthened number. The voter is protected, but the attack continues against everyone else.
+
+**With the ZKP, malware can no longer stand down.** If the original submitted vote was in fact for `candB` (a stolen selection), a valid ZKP from `XXXX:candB` → `YYYY:candA` cannot be generated — the math doesn't allow it. So if the voter strengthens, the malware is stuck. When the voter checks the final list, their chosen selection is missing, catching the attack red-handed.
+
+### Enabling collective protection via statistical sampling
+
+This is the most powerful consequence of the ZKP.
+
+Without ZKP, a strengthened vote tells us nothing about the honesty of other votes. With ZKP, strengthened votes become witnesses — valid proofs that the submitted vote faithfully reflects the device's original encrypted vote. We can then apply **RLA-style statistical sampling** across all votes, using the strengthened ones as verified samples.
+
+The math is striking. If we sample *m* votes and check each for evidence of attack, the probability of missing an attack large enough to flip the result drops as:
+
+```
+(1 - ε)^m
+```
+
+where ε is half the margin of victory. This falls off exponentially fast — auditing as few as ~50 votes, even out of hundreds of thousands, is often enough to detect any corruption that would have changed the outcome, with high confidence.
+
+### Post-election ZKP strengthening
+
+Importantly, ZKP strengthening doesn't have to happen during the voting window. Since the encrypted votes remain on the public ledger after the election closes, voters, possibly encouraged by formal auditors, can perform strengthening after the results are announced — the proof is still valid, and it cannot change the vote content, only verify it.
+
+This means post-election RLAs can incorporate ZKP strengthening as a formal audit step, with randomly selected voters invited to participate. It doesn't require voters to remember to do anything before the deadline.
+
+---
+
+## Remaining Software Dependency
+
+The ZKP approach doesn't fully eliminate software dependence: the public ledger must faithfully store originally submitted votes (e.g. a widely-mirrored append-only log), and the ZKP proofs must be verified by software. But since both are publicly runnable, a single non-corrupted device anywhere in the world is sufficient to confirm them.
+
+---
+
+## Detecting Attacks by Eye
+
+A useful side effect of only modifying the last 4 digits: large scale Recycled Verification Number Attacks become visually detectable in the final results. In a large honest election, a small number of coincidental 2-way prefix collisions are expected — roughly ~50 per 100,000 voters for the first 8-digits. Three-way collisions are quite rare (a single one in approx 1% of 100k elections), and four-way or larger vanishingly rare by chance. 
+
+If voters are strengthening, Recycled Verification Number Attacks would produce a conspicuous excess of these collisions, making the attack detectable by simple inspection of the final unlocked list.
+
+---
+
+## Open Questions & Future Work
+
+- **Usability testing**: How reliably can voters perform the strengthening step on their own? Even low voluntary participation is sufficient — formal RLA audits with hands-on assistance can cover the rest — but improving autonomous voter participation is a meaningful ongoing goal.
+- **Precise RLA math:** Pin down exact sample-size requirements for this approach, including the potential order-of-magnitude improvements from *Multi-Layered RLAs*.
+- **Parameter choices**: The 4-digit / addition / no-carry defaults are provisional. Configurability may be nice.
+

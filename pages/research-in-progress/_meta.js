@@ -1,4 +1,5 @@
 export default {
+  'strengthened-verif-nums': 'Software Independent Verification Numbers',
   'vote-sellers-dilemma': "Vote Seller's Dilemma",
   'financially-guaranteeing-vote-integrity':
     'Financially Guaranteeing Vote Integrity',

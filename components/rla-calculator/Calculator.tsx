@@ -18,8 +18,8 @@ const defaults = {
   winner: 55_000,
   runnerUp: 43_000,
   total: 100_000,
-  confidence: 0.999,
-  samples: 400
+  confidence: 0.99,
+  samples: 100
 }
 // const defaults = {
 //   winner: 550,
