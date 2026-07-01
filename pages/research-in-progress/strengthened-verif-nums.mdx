@@ -16,9 +16,9 @@ Creating strong Ground Truth against on-device malware.
 
 ## Background: The Recycled Verification Number Attack
 
-With [SIV](https://siv.org), each voter gets a unique verification number (generated privately on their own device), so they can confirm their vote was recorded correctly after the election. This provides strong cast-as-intended verifiability — but it has a known vulnerability.
+With [SIV](https://siv.org), each voter gets a unique verification number — generated privately on their own device — so they can confirm their vote was recorded correctly after the election. This provides strong cast-as-intended verifiability, but it has a known vulnerability.
 
-If an attacker (e.g. on-device malware) can corrupt the assignment of verification numbers, it can cause many voters with the same vote selection to all believe they share the same number — without realizing it. Each voter looks up their number at the end, sees it's there, and assumes everything is fine. But the malware has silently stolen all but one of their votes.
+If an attacker — e.g. on-device malware — can corrupt the assignment of verification numbers, it can cause many voters with the same vote selection to all believe they share the same number, without realizing it. Each voter looks up their number at the end, sees it's there, and assumes everything is fine. But the malware has silently stolen all but one of their votes.
 
 We call this a **Recycled Verification Number Attack**. We've also heard it referred to as a **Clash Attack**.
 
