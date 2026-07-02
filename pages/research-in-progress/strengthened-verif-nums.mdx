@@ -85,7 +85,9 @@ Strengthened Verification Numbers protect against **secretly stolen votes** (on-
 
 If every voter strengthens their verification number, SIV can achieve [software independence](https://en.wikipedia.org/wiki/Software_independence): the ability to verify election outcomes without trusting any software. Each voter's paper record is sufficient to confirm their own vote, and the final tally can be checked independently — by hand for small elections, or via existing paper RLA techniques for larger ones.
 
-Realistically, expecting 100% of voters to manually strengthen & verify is not very practical. But we can statistically approximate this goal, even with only a small fraction of voters strengthening. But first we need to harden our Strengthened Verification Number procedure to be able to detect cheating red-handed.
+Realistically, expecting 100% of voters to manually strengthen & verify is not very practical. But we can statistically approximate this goal, even with only a small fraction of voters strengthening.
+
+But first we need to harden our Strengthened Verification Number procedure, to be able to catch cheating malware red-handed.
 
 ---
 
@@ -95,11 +97,13 @@ Strengthening protects any voter who does it — but we can't depend on all vote
 
 A sophisticated attacker can exploit this by selectively standing down for voters who strengthen, while continuing to steal votes from everyone else.
 
+The 2nd-submitted votes, the strengthened ones, would all be protected. But the original submissions could still have been corrupted.
+
 The ZKP extension closes this gap.
 
 ### What the proof shows
 
-When a voter strengthens their verification number, their device generates a zero-knowledge proof that the new encrypted vote:
+When a voter strengthens their verification number, their device can generate a zero-knowledge proof that the new encrypted vote:
 
 ```
 enc("XXXX-XXXX-YYYY:candA")
@@ -111,7 +115,11 @@ contains the same selection as the original:
 enc("XXXX-XXXX-XXXX:candA")
 ```
 
-The proof is that only the last 4 digits changed — not the candidate choice. We have working proof-of-concept code, which can generate compact proofs in under 30 seconds. It is run locally, in the browser, directly on the same untrusted device.
+The proof is that only the last 4 digits changed — not the candidate choice.
+
+This extends the strengthening protection backwards, from not only the strengthened vote, but back to the original submission as well.
+
+We have working proof-of-concept code, which can generate compact proofs in under 30 seconds. It is run locally in the browser, directly on the same untrusted voter device.
 
 ### Why this matters
 
