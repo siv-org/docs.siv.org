@@ -131,7 +131,7 @@ Without the ZKP, malware can selectively stand down: when a voter strengthens, i
 
 This is the most powerful consequence of the ZKP.
 
-Without ZKP, a strengthened vote tells us nothing about the honesty of other votes. With ZKP, strengthened votes become witnesses — valid proofs that the submitted vote faithfully reflects the device's original encrypted vote. We can then apply **RLA-style statistical sampling** across all votes, using the strengthened ones as verified samples.
+Without the ZKP, a strengthened vote tells us nothing about the honesty of other votes. With the ZKP, strengthened votes become witnesses — valid proofs that the submitted vote faithfully reflects the device's original encrypted vote. We can then apply **RLA-style statistical sampling** across all votes, using the strengthened ones as verified samples.
 
 The math is striking. If we sample *m* votes and check each for evidence of attack, the probability of missing an attack large enough to flip the result drops as:
 
@@ -143,7 +143,7 @@ where ε is half the margin of victory. This falls off exponentially fast — au
 
 ### Post-election ZKP strengthening
 
-Importantly, ZKP strengthening doesn't have to happen during the voting window. Since the encrypted votes remain on the public ledger after the election closes, voters, possibly encouraged by formal auditors, can perform strengthening after the results are announced — the proof is still valid, and it cannot change the vote content, only verify it.
+Significantly, ZKP strengthening doesn't have to happen during the voting window. Since the encrypted votes remain on the public ledger after the election closes, voters, possibly encouraged by formal auditors, can perform strengthening after the results are announced — the proof is still valid, and it cannot change the vote content, only verify it.
 
 This means post-election RLAs can incorporate ZKP strengthening as a formal audit step, with randomly selected voters invited to participate. It doesn't require voters to remember to do anything before the deadline.
 
