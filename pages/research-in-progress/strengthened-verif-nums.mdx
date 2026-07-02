@@ -157,9 +157,9 @@ The ZKP approach doesn't fully eliminate software dependence: the public ledger 
 
 ## Detecting Attacks by Eye
 
-A useful side effect of only modifying the last 4 digits: large scale Recycled Verification Number Attacks become visually detectable in the final results. In a large honest election, a small number of coincidental 2-way prefix collisions are expected — roughly ~50 per 100,000 voters for the first 8-digits. Three-way collisions are quite rare (a single one in approx 1% of 100k elections), and four-way or larger vanishingly rare by chance. 
+An interesting side effect of only modifying the last 4 digits is that large scale Recycled Verification Number Attacks become visually detectable in the final results, if only their last 4 digits diverge. In a large honest election, a small number of coincidental prefix collisions pairs are expected — roughly ~50 per 100,000 voters for the first 8-digits. Three-way collisions are quite rare (approx 1% odds of a single triple in a 100k-voter election), and four-way or larger vanishingly rare by chance.
 
-If voters are strengthening, Recycled Verification Number Attacks would produce a conspicuous excess of these collisions, making the attack detectable by simple inspection of the final unlocked list.
+If voters are strengthening, Recycled Verification Number Attacks could produce a conspicuous excess of these collisions, making the attack detectable by simple inspection of the final unlocked list. This shouldn't be relied on alone, voters should still check for their own strengthened verification numbers, but this fact leaves even less room for large scale attacks to go unnoticed.
 
 ---
 
