@@ -168,4 +168,4 @@ If voters are strengthening, Recycled Verification Number Attacks would produce 
 - **Usability testing**: How reliably can voters perform the strengthening step on their own? Even low voluntary participation is sufficient — formal RLA audits with hands-on assistance can cover the rest — but improving autonomous voter participation is a meaningful ongoing goal.
 - **Precise RLA math:** Pin down exact sample-size requirements for this approach, including the potential order-of-magnitude improvements from *Multi-Layered RLAs*.
 - **Parameter choices**: The 4-digit / addition / no-carry defaults are provisional. Configurability may be nice.
-
+- **Quantum-resistant ZKPs**: Currently, our proof-of-concept code uses Groth16, which is vulnerable to Shor's algorithm. For security against anticipated future computing advances, we'll need to adapt it to a quantum-resistant ZKP scheme like STARKs. We do not expect this to be a major challenge.
