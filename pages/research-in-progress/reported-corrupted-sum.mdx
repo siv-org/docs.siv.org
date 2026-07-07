@@ -1,0 +1,54 @@
+---
+title: Reported-Corrupted Sum
+---
+
+Credible voter reports after an election, with built-in defense against false claims.
+
+## TL;DR
+
+- After votes are unlocked, a voter who sees their intended vote is missing needs to be able to credibly say: *"my vote is missing"*.
+- Reported-corrupted ballots can be re-tallied separately as a **Reported-Corrupted Sum** — subtracted from the Initial Tally to produce a cleaned Total.
+- False claims are **self-penalizing**: lying moves the voter's real vote into the corrupted bucket, weakening their own side.
+
+---
+
+## The Gap After Detection
+
+SIV gives voters several ways to discover a tampered vote: a missing [Verification #](/verifiability/personal-vote), a mismatch during a [2nd-Device Check](/verifiability/detecting-malware), or a failed [Strengthened Verification](/research-in-progress/strengthened-verif-nums) check. These checks can be initiated autonomously by voter, or as part of a more comprehensive [Risk Limiting Audit](/verifiability/rla).
+
+But detection is only half the story. Once detected, we still need to do something about it.
+
+If the voting period is still open, a compromised vote can be directly [remediated](/verifiability/remediating-compromised-votes). But after close, when new votes are no longer accepted, we can still allow honest voters to report issues, without creating an incentive for false claims.
+
+---
+
+## The Reported-Corrupted Sum
+
+The key idea: publish a separate tally of ballots voters have credibly flagged as corrupted, and subtract it from the initial full tally.
+
+```
+                Initial Tally
+    −  Reported-Corrupted Sum
+   ---------------------------
+            Uncorrupted Total
+```
+
+Each reported corruption is a "-1" against whatever selection it contains — as if that vote should never have counted.
+
+---
+
+## How Reporting Works
+
+A voter who believes their vote was corrupted reports it. The system looks up their **originally submitted encrypted ballot** — the one authenticated to their voter identity — and moves it into the Reported-Corrupted Set.
+
+Once enough reports have accumulated, [Privacy Protectors](/privacy/privacy-protectors) shuffle and unlock that batch separately to produce the Reported-Corrupted Sum.
+
+---
+
+## Why False Claims Don't Pay
+
+The self-penalizing case is a voter who **falsely reports corruption** when their originally submitted ballot did actually reflect their original intended vote.
+
+That ballot moves into the Reported-Corrupted Sum. This only makes their preferred candidate *lose* a legitimate vote from the Uncorrupted Total.
+
+Honest voters who were actually wronged face no such penalty: the ballot never reflected their intent, so reporting it removes a vote that was never truly theirs.

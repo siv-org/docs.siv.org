@@ -1,5 +1,6 @@
 export default {
   'strengthened-verif-nums': 'Software Independent Verification Numbers',
+  'reported-corrupted-sum': 'Reported-Corrupted Sum',
   'vote-sellers-dilemma': "Vote Seller's Dilemma",
   'financially-guaranteeing-vote-integrity':
     'Financially Guaranteeing Vote Integrity',
