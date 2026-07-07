@@ -2,7 +2,7 @@
 title: Reported-Corrupted Sum
 ---
 
-Credible voter reports after an election, with built-in defense against false claims.
+Enabling voters to credibly report corrupted submissions after an election, with built-in defense against false claims.
 
 ## TL;DR
 
@@ -14,7 +14,7 @@ Credible voter reports after an election, with built-in defense against false cl
 
 ## The Gap After Detection
 
-SIV gives voters several ways to discover a tampered vote: a missing [Verification #](/verifiability/personal-vote), a mismatch during a [2nd-Device Check](/verifiability/detecting-malware), or a failed [Strengthened Verification](/research-in-progress/strengthened-verif-nums) check. These checks can be initiated autonomously by voter, or as part of a more comprehensive [Risk Limiting Audit](/verifiability/rla).
+SIV gives voters several ways to discover a tampered vote: a missing [Verification #](/verifiability/personal-vote), a mismatch during a [2nd-Device Check](/verifiability/detecting-malware), or a failed [Strengthened Verification](/research-in-progress/strengthened-verif-nums) check. These checks can be initiated autonomously by a voter, or as part of a more comprehensive [Risk Limiting Audit](/verifiability/rla).
 
 But detection is only half the story. Once detected, we still need to do something about it.
 
@@ -35,19 +35,36 @@ The key idea: publish a separate tally of ballots voters have credibly flagged a
 
 Each reported corruption is a "-1" against whatever selection it contains — as if that vote should never have counted.
 
+<details>
+<summary><strong>Scope: Client-side failures we can't adjudicate</strong></summary>
+
+This mechanism exists for a specific failure mode: **something went wrong between voter intent and the encrypted ballot that reached the server**, and we can't cleanly assign blame.
+
+Possible causes:
+
+| | **Voter** | **Client Software** |
+| --- | --- | --- |
+| **Malicious** | Deliberately false report | Cheating malware |
+| **Accidental** | Misremembered or mistaken&nbsp;selection | Bug |
+
+We may not know which quadrant is the truth. But this Reported-Corrupted Sum technique lets us move forward anyway: honest reports are accommodated, and malicious false reports are self-penalizing.
+
+Failures in other parts of the voting process have clearer attribution, and can be handled more cleanly.
+</details>
+
 ---
 
 ## How Reporting Works
 
 A voter who believes their vote was corrupted reports it. The system looks up their **originally submitted encrypted ballot** — the one authenticated to their voter identity — and moves it into the Reported-Corrupted Set.
 
-Once enough reports have accumulated, [Privacy Protectors](/privacy/privacy-protectors) shuffle and unlock that batch separately to produce the Reported-Corrupted Sum.
+If enough reports accumulate, the batch can be shuffled and unlocked separately to produce the Reported-Corrupted Sum.
 
 ---
 
 ## Why False Claims Don't Pay
 
-The self-penalizing case is a voter who **falsely reports corruption** when their originally submitted ballot did actually reflect their original intended vote.
+The self-penalizing case is a voter who **falsely reports corruption** when their originally submitted ballot did actually reflect their intended vote.
 
 That ballot moves into the Reported-Corrupted Sum. This only makes their preferred candidate *lose* a legitimate vote from the Uncorrupted Total.
 
