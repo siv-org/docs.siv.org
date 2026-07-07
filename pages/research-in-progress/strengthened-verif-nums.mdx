@@ -11,6 +11,7 @@ Creating strong Ground Truth against on-device malware.
 - This means cheating malware can be caught red-handed, rather than simply deactivating silently when a voter strengthens.
 - This extends the protection to all voters, not only those who directly use it.
 - Can be combined with RLA techniques for broad coverage at scale: as few as ~50 voters using it can protect 99% of outcomes. (Exact numbers depend on election margin of victory — see [RLA Calculator](/verifiability/rla#rla-calculator).)
+- Complements existing [2nd-Device Checks](/verifiability/detecting-malware), which can catch tampered votes during the voting window.
 
 ---
 
@@ -160,6 +161,12 @@ The ZKP approach doesn't fully eliminate software dependence: the public ledger 
 An interesting side effect of only modifying the last 4 digits is that large scale Recycled Verification Number Attacks become visually detectable in the final results, if only their last 4 digits diverge. In a large honest election, a small number of coincidental prefix collisions pairs are expected — roughly ~50 per 100,000 voters for the first 8-digits. Three-way collisions are quite rare (approx 1% odds of a single triple in a 100k-voter election), and four-way or larger vanishingly rare by chance.
 
 If voters are strengthening, Recycled Verification Number Attacks could produce a conspicuous excess of these collisions, making the attack detectable by simple inspection of the final unlocked list. This shouldn't be relied on alone, voters should still check for their own strengthened verification numbers, but this fact leaves even less room for large scale attacks to go unnoticed.
+
+---
+
+## Two Complementary Verification Paths
+
+This new strengthened verification number ability complements the existing [2nd-Device Checks](/verifiability/detecting-malware), which can detect on-device tampering even while the voting window is still open, but depend on alternative devices free of coordinating malware. RLAs can be used to sample across both — eg. inviting some 2nd-Device Checkers to also Strengthen — for independent calibration of 2nd Device Checks.
 
 ---
 
