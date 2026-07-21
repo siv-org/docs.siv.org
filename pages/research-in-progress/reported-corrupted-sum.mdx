@@ -69,3 +69,40 @@ The self-penalizing case is a voter who **falsely reports corruption** when thei
 That ballot moves into the Reported-Corrupted Sum. This only makes their preferred candidate *lose* a legitimate vote from the Uncorrupted Total.
 
 Honest voters who were actually wronged face no such penalty: the ballot never reflected their intent, so reporting it removes a vote that was never truly theirs.
+
+### A Simple Example
+
+Suppose the Initial Tally is:
+
+```
+Alice: 52
+Bob:   48
+  
+Margin: 4
+```
+
+**Honest reports:** Two voters truly intended to vote for Bob, but their submitted ballots incorrectly recorded votes for Alice.
+
+When they report the corruption, those two Alice votes are removed:
+
+```
+Alice: 50
+Bob:   48
+  
+Margin: 2  ← the margin narrows
+```
+
+Now let's compare that to the case of **false reports**:
+
+Suppose instead that two Bob voters' submitted ballots *correctly* recorded their votes, but they *falsely* report corruption because they're unhappy with the outcome.
+
+Now their two Bob votes get removed:
+
+```
+Alice: 52
+Bob:   46
+  
+Margin: 6  ← the margin widens
+```
+
+In both cases, the margin changes, but false reports only hurt their true selection, widening the margin of victory, while honest reports bring it closer to the truth.
